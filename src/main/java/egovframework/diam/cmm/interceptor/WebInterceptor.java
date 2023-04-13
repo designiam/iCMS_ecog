@@ -87,7 +87,7 @@ public class WebInterceptor extends WebContentInterceptor {
 				//README.3
 				String mode = System.getProperty("globals.properties.mode");
 				if(mode.equals("dev")) {
-					domain = "icms.java.cro.kro.kr";
+					domain = "ecog.java.cro.kro.kr";
 				}
 				domain_site = domain + "/" + request_uri.substring(1, request_uri.indexOf("/", 1));
 			} catch(StringIndexOutOfBoundsException sioob) {
