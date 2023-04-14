@@ -4,6 +4,15 @@
 <div id="layer_popup"></div>
 <header id="hd">
 	<div id="header_top_banner"></div>
+	<div class="m-vol">
+		<div class="subject">월간 <b>ECO-G</b></div>
+		<div class="d-flex">
+			<div class="volume mr20">Vol. <b class="ml10">15</b></div>
+			<div class="date">2023.03</div>
+		</div>
+	</div>
+	<!-- //.m-vol -->
+		
 	<div id="hd_wrap">
 		<div id="hd_logo">
 			<c:choose>
@@ -137,6 +146,10 @@
 				</li>
 			</ul>
 		</div>
+		
+		<div class="btn-wrap">
+			<a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn-sm btn-fill-02">지난호보기</a>
+		</div>
 
         <div id="hd_mapper">
             <button type="button" data-toggle="sitemap">
@@ -153,45 +166,50 @@
                 </span>
             </button>
         </div>
-	</div>
-</header>
-<div id="gnb">
-	<div id="gnb_wrap">
-		<h2 id="gnb_heading" class="sr-only">Menu</h2>
-		<div id="gnb_container">
-			<c:choose>
-				<c:when test="${fn:length(menuList) > 0 }">
-					<ul id="gnb_1dul">
-						<c:forEach var="menu" items="${menuList}" varStatus="status">
-							<c:if test="${menu.dm_depth eq 2 && menu.dm_menu_hidden ne '1'}">
-								<li class="gnb_1dli">
-									<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><c:out value="${menu.dm_menu_text}" /></a>
-									<ul class="gnb_2dul">
-										<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
-											<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
-												<li class="gnb_2dli">
-													<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
-													<ul class="gnb_3dul">
-													<c:forEach items="${menuList }" var="depth3">
-														<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
-															<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
-															</li>
-														</c:if>
-													</c:forEach>
-													</ul>
-												</li>
-											</c:if>
-										</c:forEach>
-									</ul>
-								</li>
-							</c:if>
-						</c:forEach>
-					</ul>
-				</c:when>
-			</c:choose>
+
+		<div id="gnb">
+			<div id="gnb_wrap">
+				<h2 id="gnb_heading" class="sr-only">Menu</h2>
+				<div id="gnb_container">
+					<c:choose>
+						<c:when test="${fn:length(menuList) > 0 }">
+							<ul id="gnb_1dul">
+								<c:forEach var="menu" items="${menuList}" varStatus="status">
+									<c:if test="${menu.dm_depth eq 2 && menu.dm_menu_hidden ne '1'}">
+										<li class="gnb_1dli">
+											<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><c:out value="${menu.dm_menu_text}" /></a>
+											<ul class="gnb_2dul">
+												<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
+													<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
+														<li class="gnb_2dli">
+															<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
+															<ul class="gnb_3dul">
+															<c:forEach items="${menuList }" var="depth3">
+																<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
+																	<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
+																	</li>
+																</c:if>
+															</c:forEach>
+															</ul>
+														</li>
+													</c:if>
+												</c:forEach>
+											</ul>
+										</li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</c:when>
+					</c:choose>
+				</div>
+			</div>
 		</div>
+		<!-- //#gnb -->
+		
 	</div>
-</div>
+	<!-- //#hd_wrap -->
+</header>
+
 
 <!-- class in -->
 <div id="off" class="">

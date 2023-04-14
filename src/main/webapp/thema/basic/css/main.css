@@ -7,14 +7,20 @@ section .sub_copy {text-align: center;font-size: 1.25rem;}
 	section h2 {font-size:2rem}
 }
 
+@media (max-width: 768px) {
+	.m-vol { display: flex; }
+}
+
+
+
 /*================================================================
    비주얼 슬라이드
 ================================================================*/
-#vis_wrap { height: 600px; }
+#vis_wrap { height: 100vh; }
 #mainSlider { width: 100%; height: 100%; }
 @media (max-width: 768px) {
   #vis_wrap,
-  #mainSlider { height: 360px; }
+  #mainSlider { height: 460px; }
 }
 
 /*================================================================
