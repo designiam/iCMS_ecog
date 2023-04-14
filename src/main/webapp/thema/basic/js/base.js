@@ -344,6 +344,7 @@ $(function() {
         loopAdditionalSlides : 1,
         observer: true,
         observeParents: true,
+        watchOverflow: true,  //슬라이드 한 개 일 때, 버튼 사라짐
         navigation: {
             nextEl: "#mainSlider .swiper-button-next",
             prevEl: "#mainSlider .swiper-button-prev",

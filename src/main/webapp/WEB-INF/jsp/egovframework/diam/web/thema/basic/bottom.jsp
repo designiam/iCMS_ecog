@@ -3,32 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 		<c:if test="${pageVO.dm_main_content ne '1'}">
-				</div>				
+				</div>
 			</div>
 		</c:if>
-	</div>
-</div>
-
-<div id="ask">
-	<div id="ask_wrap">
-	
-	</div>
-</div>
-
-<div id="kit">
-    <div id="kit_wrap">
-        
-    </div>
-</div>
-
-<div id="stv">
-    <div id="stv_wrap">
-        
-    </div>
-</div>
-
-<div id="hub">
-	<div id="hub_wrap">
 	</div>
 </div>
 
@@ -100,16 +77,8 @@
 					<c:if test="${CONFIG_INFO.dm_tel ne null}">
 						<li class="cp_tel">
 							<dl>
-								<dt>대표전화</dt>
+								<dt>TEL.</dt>
 								<dd><c:out value="${CONFIG_INFO.dm_tel}" escapeXml="false"/></dd>
-							</dl>
-						</li>
-					</c:if>
-					<c:if test="${CONFIG_INFO.dm_fax ne null}">
-						<li class="cp_fax">
-							<dl>
-								<dt>팩스번호</dt>
-								<dd><c:out value="${CONFIG_INFO.dm_fax}" escapeXml="false"/></dd>
 							</dl>
 						</li>
 					</c:if>
@@ -118,6 +87,14 @@
 							<dl>
 								<dt>이메일</dt>
 								<dd><c:out value="${CONFIG_INFO.dm_ceo_email}" escapeXml="false"/></dd>
+							</dl>
+						</li>
+					</c:if>
+					<c:if test="${CONFIG_INFO.dm_fax ne null}">
+						<li class="cp_fax">
+							<dl>
+								<dt>FAX.</dt>
+								<dd><c:out value="${CONFIG_INFO.dm_fax}" escapeXml="false"/></dd>
 							</dl>
 						</li>
 					</c:if>
@@ -148,12 +125,14 @@
 			</ul>
 		</div>
 		
-		<div id="ft_copy">
-			Copyright (c) 2023, <c:out value="${CONFIG_INFO.dm_company_name}"/>. All Rights Reserved.
-		</div>
+		<div id="ft_copy">Copyright (c) 2023, <c:out value="${CONFIG_INFO.dm_company_name}"/>. All Rights Reserved.</div>
 	</div>
 	
 	<div id="ft_goto">
+		<a href="https://www.eco-g.or.kr/" id="shortcut">
+			<img src="${layout_path}/images/logo_ecog.png" alt="">
+			<p><small>ECO-G</small>바로가기</p>
+		</a>
 		<a href="#root" id="totop" class="totop" title="페이지의 최상단으로 이동"><i class="di di-arr-top"></i></a>
 	</div>
 </footer>
