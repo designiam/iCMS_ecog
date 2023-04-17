@@ -98,10 +98,52 @@
 	</div>
 	<!-- //.mw1710 -->
 </section>
+<!-- //.main-section.sec-best -->
+
 
 <section class="main-banner">
-	
+	<c:choose>
+		<c:when test="${fn:length(bannerList) > 0}">
+			<div class="banner-slide swiper-container" id="banSlider">
+				<ul class="swiper-wrapper pc-banner">
+				<c:forEach var="result" items ="${bannerList}" varStatus="index">
+					<c:choose>
+						<c:when test="${result.dm_link ne null && not empty result.dm_link}">
+							<li class="swiper-slide" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
+								<a href="${result.dm_link}" target="${result.dm_link_type}">
+									<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
+								</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="swiper-slide" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
+								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
+								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				</ul>
+			</div>
+			<div class="banner-slide swiper-container" id="m-banSlider">
+				<ul class="swiper-wrapper m-banner">
+					<li class="swiper-slide" style="background-image: url('${layout_path}/images/main/main_ban01_m.png');">
+						<a href="${result.dm_link}" target="${result.dm_link_type}">
+							<img src="${layout_path}/images/main/main_ban01_m.png" alt="">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="no-img" style="background-image: url('/images/no_image.png');">
+				<img src="/images/no_image.png" alt="등록된 배너가 없습니다."/>
+			</div>
+		</c:otherwise>
+	</c:choose>
 </section>
+<!-- //.main-banner -->
+
 
 <section class="main-section sec-now" style="display: none;">
 	나우
@@ -223,6 +265,10 @@ var bestSlider = new Swiper("#bestSlider", {
 	loop : true,
 	loopAdditionalSlides : 1,
 	breakpoints: {
+		768: {
+			slidesPerView: 3,
+			spaceBetween: 20,
+		},
 		1600: {
 			slidesPerView: 3,
 			spaceBetween: 40,

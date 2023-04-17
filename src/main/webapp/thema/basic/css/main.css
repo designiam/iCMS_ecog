@@ -66,12 +66,40 @@
 #bestSlider .swiper-slide-active { transform: translateY(-1rem); box-shadow: 5px 5px 6px rgba(0,0,0,0.16); }
 @media (max-width: 1500px) {
 	.sec-best > div { padding-right: 3rem; }
+	#bestSlider .swiper-slide .txt { padding: 2rem 1rem 1.5rem; }
+}
+@media (max-width: 1300px) {
+	.sec-best > div { padding-left: calc(3% + 280px + 2rem); }
+	
+	#bestSlider .swiper-slide .txt .content { margin-top: 1rem; }
+}
+@media (max-width: 992px) {
+	.sec-best > div { padding: 0 2rem; }
+}
+@media (max-width: 768px) {
+	.sec-best { padding: 6rem 0 5rem; }
+	#bestSlider .swiper-slide .txt .content { -webkit-line-clamp: 2; height: auto; }
 }
 @media (hover: hover), (-ms-high-contrast:none) {
 	#bestSlider .swiper-slide a:hover .img img { transform: scale(1.1); }
 	#bestSlider .swiper-slide a:hover .txt .subject { color: #3F8B11; }
 	#bestSlider .swiper-slide a:hover .txt .content { color: #111; }
 }
+
+
+/*================================================================
+   배너존
+================================================================*/
+.main-banner { margin: 2.25rem 0 5.5rem; }
+.banner-slide .swiper-slide { background-position: center; background-size: cover; background-repeat: no-repeat; }
+.banner-slide .swiper-slide img { width: 100%; }
+#banSlider { display: block; }
+#m-banSlider { display: none; }
+@media (max-width: 768px) {
+	#banSlider { display: none; }
+	#m-banSlider { display: block; }
+}
+
 
 /*================================================================
    최근게시물, 배너 영역
@@ -100,7 +128,6 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 /* 배너존 */
 .banner_list_wrap { position: relative; width: 35%; }
-.banner_list_wrap .no-img, #banSlider { height: 340px; }
 .banner_list_wrap .no-img,
 .banner_list_wrap .banner_list .swiper-slide { background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; }
 .banner_list_wrap .no-img img,
@@ -125,7 +152,6 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
   .latest_contents { flex-direction: column; gap: 4rem; }
   .latest_contents .board_list_wrap,
   .latest_contents .banner_list_wrap {width:100%;}
-  .latest_contents .banner_list_wrap .no-img, #banSlider { max-width: 384px; margin: 0 auto; }
 }
 @media (max-width: 768px) {
   .latest_contents .banner_list_wrap .no-img, #banSlider { height: 280px; }
