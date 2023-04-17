@@ -148,7 +148,7 @@
 		</div>
 		
 		<div class="btn-wrap">
-			<a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn-sm btn-fill-02">지난호보기</a>
+			<a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn-sm btn-fill-02">지난호 보기</a>
 		</div>
 
         <div id="hd_mapper">
@@ -596,6 +596,30 @@
 						</div>
 					</c:otherwise>
 				</c:choose>
+				<div class="side-content">
+					<div class="title">
+						<div>월간 <b>ECO-G</b></div>
+						<div style="letter-spacing: 0.1em;">Vol. <span class="vol">15</span> <span class="date">2023.03</span></div>
+						
+						<div class="logo">
+							<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
+						</div>
+					</div>
+					<div class="txt">
+						<p>
+							월간 ECO_G<br>
+							15호에서는 일상에서 일회용품 줄이기 <br>
+							일환으로 직원들의 참여 <b>#SNS 사진</b>과 함께 <br>
+							다양한 이슈를 소개해드립니다.
+						</p>
+						<p class="mt30">
+							광주환경공단 <br>
+							직원들의 <b>안녕~ 반가워 나의 봄</b><br>
+							사진전을 진행하였습니다.
+						</p>
+					</div>
+				</div>
+				<!-- //.side-content -->
 			</c:otherwise>
 		</c:choose>
 	</div>

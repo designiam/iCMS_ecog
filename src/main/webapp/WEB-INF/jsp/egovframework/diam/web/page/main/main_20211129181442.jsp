@@ -2,7 +2,144 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<section id="latest_list">
+
+<section class="main-section sec-best">
+	<div class="">
+		<div class="swiper-container" id="bestSlider">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요!</p>
+							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨</p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best02.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">국가기록원 「기록사랑 공모전」홍보</p>
+							<p class="content">행정안전부 국가기록원은 '2030 부산엑스포 유치 기원'의 마음을 담아부산광역시와 공동으로 전 국민 대상 글짓기, 그림그리기, 동영상 제작 기록사랑 공모전」을 개최합니다.</p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best03.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
+							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 </p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요!</p>
+							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨</p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best02.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">국가기록원 「기록사랑 공모전」홍보</p>
+							<p class="content">행정안전부 국가기록원은 '2030 부산엑스포 유치 기원'의 마음을 담아부산광역시와 공동으로 전 국민 대상 글짓기, 그림그리기, 동영상 제작 기록사랑 공모전」을 개최합니다.</p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#;">
+						<div class="img">
+							<img src="${layout_path}/images/main/thumb_best03.jpg" alt="">
+						</div>
+						<div class="txt">
+							<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
+							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 </p>
+							<p class="date">2023-03-14</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- //#bestSlider -->
+	
+		<div class="side-content">
+			<div class="title">
+				<div>월간 <p><b>BEST</b></p></div>
+			</div>
+			<div class="txt">
+				<p>
+					광주환경공단이 <br>
+					엄선한 콘텐츠들을 한눈에 볼 수 있습니다. 
+				</p>
+			</div>
+		</div>
+		<!-- //.side-content -->
+	</div>
+	<!-- //.mw1710 -->
+</section>
+
+<section class="main-banner">
+	
+</section>
+
+<section class="main-section sec-now" style="display: none;">
+	나우
+	<div class="side-content">
+		<div class="title">
+			<div>ECO-G <p><b>NOW</b></p></div>
+		</div>
+		<div class="txt">
+			<p>
+				광주환경공단 <br>
+				주요소식을 전합니다.
+			</p>
+		</div>
+	</div>
+	<!-- //.side-content -->
+</section>
+
+<section class="main-section sec-sns" style="display: none;">
+	SNS
+	<div class="side-content">
+		<div class="title">
+			<div>소통해요 <p><b>#SNS</b></p></div>
+		</div>
+		<div class="txt">
+			<p>
+				광주환경공단이 <br>
+				엄선한 콘텐츠들을 한눈에 볼 수 있습니다.
+			</p>
+		</div>
+	</div>
+	<!-- //.side-content -->
+</section>
+
+
+
+
+
+<section id="latest_list" style="display: none;">
 	<h2>iCMS 소식</h2>
 	<p class="sub_copy">새로운 소식을 전해드립니다.</p>
 	<div class="mt50">
@@ -76,6 +213,27 @@
 </section>
 
 <script>
+var bestSlider = new Swiper("#bestSlider", {
+	slidesPerView: 2,
+	spaceBetween: 20,
+	autoplay: {
+		delay: 3500,
+		disableOnInteraction: false, // false-스와이프 후 자동 재생
+	},
+	loop : true,
+	loopAdditionalSlides : 1,
+	breakpoints: {
+		1600: {
+			slidesPerView: 3,
+			spaceBetween: 40,
+		},
+		2200: {
+			slidesPerView: 4,
+			spaceBetween: 60,
+		},
+	},
+});
+
 function clickMiniBoard($this){
 	$(".latest_box").removeClass("active");
 	$($this).parent().parent().addClass("active");

@@ -75,6 +75,11 @@ custom-checkbox .custom-control-label::after,
 .wide_con::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100%; background: #F6F6F6; }
 .wide_con > * { position: relative; }
 
+.horiz-line { width: 4.375rem; height: 1px; background: #111; }
+
+.mw1710 { width: 100%; max-width: 1710px; margin: 0 auto; }
+.mw1195 { width: 100%; max-width: 1195px; margin: 0 auto; }
+
 /* 제목 사이즈 */
 h2 { font-size: 3.125rem; font-weight: 800; letter-spacing: -0.172rem; }
 h3, #container .heading h3 { color: #000; font-size: 2.75rem; font-weight: 800; letter-spacing: 0; }
