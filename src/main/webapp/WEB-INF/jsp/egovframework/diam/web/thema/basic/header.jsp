@@ -59,28 +59,29 @@
 
 <c:choose>
 	<c:when test="${pageVO.dm_page_type eq 'BOARD'}">
-        <link rel="stylesheet" href="<c:url value='${layout_path}/css/bbs.css' />">
+		<link rel="stylesheet" href="<c:url value='${layout_path}/css/bbs.css' />">
 		<script type="text/javascript" src="<c:url value='${layout_path}/js/bbs.js' />"></script>
-    </c:when>
-    <c:when test="${pageVO.dm_page_type eq 'PAGE'}">
-    	<c:choose>
-    		<c:when test="${pageVO.dm_main_content eq '1'}">
-		        <link rel="stylesheet" href="<c:url value='${layout_path}/css/main.css' />">
+	</c:when>
+	<c:when test="${pageVO.dm_page_type eq 'PAGE'}">
+		<c:choose>
+			<c:when test="${pageVO.dm_main_content eq '1'}">
+				<link rel="stylesheet" href="<c:url value='${layout_path}/css/main.css' />">
 				<script type="text/javascript" src="<c:url value='${layout_path}/js/main.js' />"></script>
 				<link rel="stylesheet" href="<c:url value='/js/egovframework/diam/slickslider/slick.css' />">
 				<script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.js' />"></script>
-		    </c:when>
-		    <c:otherwise>
-		    	<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
+			</c:when>
+			<c:otherwise>
+				<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
 				<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>		
-		    </c:otherwise>
-    	</c:choose>
-    </c:when>
-    <c:otherwise>
-    	<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+		<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
 		<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>
-    </c:otherwise>
+	</c:otherwise>
 </c:choose>
+<script type="text/javascript" src="<c:url value='/js/egovframework/diam/masonry.pkgd.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/common.js'/>"></script>
 <%-- <script type="text/javascript" src="<c:url value='${layout_path}/js/common.js' />"></script> --%>
 </head>

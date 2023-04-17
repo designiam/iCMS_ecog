@@ -4,7 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <section class="main-section sec-best">
-	<div class="">
+	<div class="inner">
+		<div class="side-content">
+			<div class="title">
+				<h2>월간 <p><b>BEST</b></p></h2>
+			</div>
+			<div class="txt">
+				<p>
+					광주환경공단이 <br>
+					엄선한 콘텐츠들을 한눈에 볼 수 있습니다. 
+				</p>
+			</div>
+		</div>
+		<!-- //.side-content -->
+		
 		<div class="swiper-container" id="bestSlider">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
@@ -82,21 +95,8 @@
 			</div>
 		</div>
 		<!-- //#bestSlider -->
-	
-		<div class="side-content">
-			<div class="title">
-				<div>월간 <p><b>BEST</b></p></div>
-			</div>
-			<div class="txt">
-				<p>
-					광주환경공단이 <br>
-					엄선한 콘텐츠들을 한눈에 볼 수 있습니다. 
-				</p>
-			</div>
-		</div>
-		<!-- //.side-content -->
 	</div>
-	<!-- //.mw1710 -->
+	<!-- //.inner -->
 </section>
 <!-- //.main-section.sec-best -->
 
@@ -145,21 +145,53 @@
 <!-- //.main-banner -->
 
 
-<section class="main-section sec-now" style="display: none;">
-	나우
-	<div class="side-content">
-		<div class="title">
-			<div>ECO-G <p><b>NOW</b></p></div>
+<section class="main-section sec-now">
+	<div class="inner">
+		<div class="side-content">
+			<div class="title">
+				<h2>ECO-G <p><b>NOW</b></p></h2>
+			</div>
+			<div class="txt">
+				<p>
+					광주환경공단 <br>
+					주요소식을 전합니다.
+				</p>
+			</div>
 		</div>
-		<div class="txt">
-			<p>
-				광주환경공단 <br>
-				주요소식을 전합니다.
-			</p>
+		<!-- //.side-content -->
+		
+		<div class="tabMenu-wrap">
+			<ul>
+				<li class="tabMenu on" data-value="1">Contents</li>
+				<li class="tabMenu" data-value="2">Article</li>
+				<li class="tabMenu" data-value="3">Life</li>
+			</ul>
 		</div>
+		<!-- //.tabMenu-wrap -->
+		
+		<div class="tabContent-wrap">
+			<div class="tabContent" data-target="1">
+				<div class="grid">
+					<div class="grid-sizer"></div>
+					<div class="grid-item"><div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div></div>
+					<div class="grid-item"><div class="img"><img src="${layout_path}/images/main/sample02.jpg" alt=""></div></div>
+					<div class="grid-item"><div class="img"><img src="${layout_path}/images/main/sample03.jpg" alt=""></div></div>
+					<div class="grid-item"><div class="img"><img src="${layout_path}/images/main/sample04.jpg" alt=""></div></div>
+					<div class="grid-item"><div class="img"><img src="${layout_path}/images/main/sample05.jpg" alt=""></div></div>
+				</div>
+				<!-- //.masonry -->
+			</div>
+			<!-- //.tabContent -->
+			<div class="tabContent" data-target="2">Article</div>
+			<!-- //.tabContent -->
+			<div class="tabContent" data-target="3">Life</div>
+			<!-- //.tabContent -->
+		</div>
+		<!-- //.tabContent-wrap -->
 	</div>
-	<!-- //.side-content -->
+	<!-- //.inner -->
 </section>
+<!-- //.main-section.sec-now -->
 
 <section class="main-section sec-sns" style="display: none;">
 	SNS
@@ -255,6 +287,20 @@
 </section>
 
 <script>
+//탭 레이아웃 리스너
+$(".tabMenu").on("click",function(){
+    $(".on").removeClass("on").attr("title", " ");
+    $(this).addClass("on").attr("title", "선택됨");
+
+    var value = $(this).data("value");
+    $("[data-target="+value+"]").show().attr("title", "선택됨");
+    $(".tabContent[data-target!="+value+"]").hide().attr("title", " ");
+});
+
+$("[data-value=1]").trigger("click");
+
+
+//인기 게시글 슬라이드
 var bestSlider = new Swiper("#bestSlider", {
 	slidesPerView: 2,
 	spaceBetween: 20,
@@ -279,6 +325,7 @@ var bestSlider = new Swiper("#bestSlider", {
 		},
 	},
 });
+
 
 function clickMiniBoard($this){
 	$(".latest_box").removeClass("active");
