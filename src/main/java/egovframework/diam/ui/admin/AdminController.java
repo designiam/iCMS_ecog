@@ -47,6 +47,7 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class AdminController {
 	
+	
 	@Resource(name="adminService")
 	private AdminService adminService;
 	

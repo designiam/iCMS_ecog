@@ -10,8 +10,8 @@ cmake-build-debug/
 # Mongo Explorer plugin:
 # Directories #
 /build/
-/bin/
 target/
+/bin/
 .idea
 classes/
 META-INF/
