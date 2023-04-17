@@ -66,6 +66,9 @@ tmp/**/*
 *.swp
 *~.nib
 
+.classpath
+.settings/
+.project
 
 .loadpath
 /src/main/resources/rebel.xml
