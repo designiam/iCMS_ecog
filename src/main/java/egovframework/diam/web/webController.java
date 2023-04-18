@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jettison.json.JSONObject;
-import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +91,48 @@ public class webController {
 	@Resource(name="searchService")	private SearchService searchService;
 	@Resource(name="commonCodeService")	private CommonCodeService commonCodeService;
 	
+	public boolean isNumber(String str) {
+		try {
+			Integer.parseInt(str);
+			return true;
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+	}
+	
+	
+	public HashMap<String, Dm_menus_vo> selectUnderMenu(List<Dm_menus_vo> list, Dm_menus_vo vo) {
+		HashMap<String, Dm_menus_vo> result = new HashMap<>();
+		
+		list.forEach(item -> {
+			if (item.getDm_parent_id().equals(vo.getDm_id()) && item.getDm_link_data().equals(vo.getDm_link_data())) {
+				result.put(item.getDm_depth(), item);
+				result.putAll(selectUnderMenu(list, item));
+			}
+		});
+		
+		return result;
+	}
+	
+	/**
+	 * selectMenu
+	 * 사용자페이지 header 영역에 표출할 메뉴리스트를 상위메뉴 > 하위메뉴 순으로 재귀호출을 통하여 데이터 가공
+	 * @param map 재귀호출을 통하여 가공된 메뉴데이터를 전달
+	 * @param menuList 사용중인 전체 메뉴리스트를 List자료형으로 전달 
+	 * @param nMenu 반복문 수행 중 조건에 일치하는 메뉴데이터를 vo객체로 전달
+	 * @return HashMap<String, Dm_menus_vo> 재귀호출을 통하여 가공된 메뉴데이터를 HashMap자료형으로 return
+	*/
+	private HashMap<String, Dm_menus_vo> selectMenu(HashMap<String, Dm_menus_vo> map, List<Dm_menus_vo> menuList,
+			Dm_menus_vo nMenu) {
+		for (Dm_menus_vo dm_menus_vo : menuList) {
+			if (nMenu.getDm_parent_id().equals(dm_menus_vo.getDm_id())) {
+				map.put(dm_menus_vo.getDm_depth(), dm_menus_vo);
+				map = this.selectMenu(map, menuList, dm_menus_vo);
+			}
+		}
+		return map;
+	}
+	
 	/**
 	 * index
 	 * 사용자 메인페이지를 표출하기 위해 메인페이지 파일경로와 화면에 출력될 데이터를 ModelAndView 객체로 ViewResolver로 전송
@@ -109,15 +150,25 @@ public class webController {
 			Dm_config_vo configVO = (Dm_config_vo) request.getAttribute("CONFIG_INFO");
 			Dm_pages_vo pageVO = new Dm_pages_vo();
 			
-			if (contentId != null && !contentId.isEmpty()) {
+			if (!commonUtil.isNullOrEmpty(contentId)) {
+				
+				if (isNumber(contentId)) {
+					result.addObject("isPK", true);
+					Dm_menus_vo menuVO = Dm_menus_vo.builder().dm_id(contentId).build();
+					menuVO = menuService.selectMenuByDmId(menuVO);
+					if (menuVO != null) {
+						contentId = menuVO.getDm_link_data();
+					}
+				}
+				
 				pageVO.setDm_domain(configVO.getDm_domain_id());
-				pageVO.setDm_uid(contentId);
+				pageVO.setDm_uid(contentId);					
 				pageVO = pageService.selectPageDmUid(pageVO);
 			} else {
 				pageVO.setDm_domain(configVO.getDm_domain_id());
 				pageVO = pageService.selectPageMainContent(pageVO);
 			}
-
+			
 			if (pageVO != null) {
 				Dm_layout_vo layoutVO = new Dm_layout_vo();
 				layoutVO.setDm_id(configVO.getDm_theme());
@@ -223,10 +274,25 @@ public class webController {
 						
 			if (contentId != null && !contentId.isEmpty()) {
 				HashMap<String, Dm_menus_vo> now_menu = new HashMap<>();
-				for (Dm_menus_vo dm_menus_vo : menuList) {
-					if (contentId.equals(dm_menus_vo.getDm_link_data())) {
-						now_menu.put(dm_menus_vo.getDm_depth(), dm_menus_vo);
-						now_menu = selectMenu(now_menu, menuList, dm_menus_vo);
+				
+				if (isNumber(contentId)) {
+					HashMap<String, Dm_menus_vo> childMenu = new HashMap<>();
+					result.addObject("isPK", true);
+					for (Dm_menus_vo dm_menus_vo : menuList) {
+						if (contentId.equals(dm_menus_vo.getDm_id())) {
+							now_menu.put(dm_menus_vo.getDm_depth(), dm_menus_vo);
+							now_menu = selectMenu(now_menu, menuList, dm_menus_vo);
+							childMenu = selectUnderMenu(menuList,dm_menus_vo);
+							now_menu.putAll(childMenu);
+						}
+					}
+				
+				} else {
+					for (Dm_menus_vo dm_menus_vo : menuList) {
+						if (contentId.equals(dm_menus_vo.getDm_link_data())) {
+							now_menu.put(dm_menus_vo.getDm_depth(), dm_menus_vo);
+							now_menu = selectMenu(now_menu, menuList, dm_menus_vo);
+						}
 					}
 				}
 				
@@ -234,14 +300,14 @@ public class webController {
 				if (now_menu.size() < 1) {
 					now_menu = selectMenu(now_menu, menuList, menuList.get(0));					
 				} else {
-					for (int i=1 ; i < now_menu.size() ; i++) {
+					for (int i= 1 ; i <= now_menu.size() ; i++) {
 						if (i == 1) {
-							now_menu_navi += now_menu.get(Integer.toString(i+1)).getDm_menu_text();
+							now_menu_navi += "<li><a href=\"?contentId=\">" + now_menu.get(Integer.toString(i)).getDm_menu_text() + "</a></li>";							
 						} else {
-							now_menu_navi += " > " + now_menu.get(Integer.toString(i+1)).getDm_menu_text();
+							now_menu_navi += "<li><a href=\"?contentId="+now_menu.get(Integer.toString(i)).getDm_id()+"\">" + now_menu.get(Integer.toString(i)).getDm_menu_text() + "</a></li>";							
 						}
 					}
-				}								
+				}
 				result.addObject("now_menu", now_menu);
 				result.addObject("now_menu_navi", now_menu_navi);
 			}
@@ -944,25 +1010,6 @@ public class webController {
 		}
 		
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
-	}
-	
-	/**
-	 * selectMenu
-	 * 사용자페이지 header 영역에 표출할 메뉴리스트를 상위메뉴 > 하위메뉴 순으로 재귀호출을 통하여 데이터 가공
-	 * @param map 재귀호출을 통하여 가공된 메뉴데이터를 전달
-	 * @param menuList 사용중인 전체 메뉴리스트를 List자료형으로 전달 
-	 * @param nMenu 반복문 수행 중 조건에 일치하는 메뉴데이터를 vo객체로 전달
-	 * @return HashMap<String, Dm_menus_vo> 재귀호출을 통하여 가공된 메뉴데이터를 HashMap자료형으로 return
-	*/
-	private HashMap<String, Dm_menus_vo> selectMenu(HashMap<String, Dm_menus_vo> map, List<Dm_menus_vo> menuList,
-			Dm_menus_vo nMenu) {
-		for (Dm_menus_vo dm_menus_vo : menuList) {
-			if (nMenu.getDm_parent_id().equals(dm_menus_vo.getDm_id().toString())) {
-				map.put(dm_menus_vo.getDm_depth(), dm_menus_vo);
-				map = this.selectMenu(map, menuList, dm_menus_vo);
-			}
-		}
-		return map;
 	}
 	
 	private void setThumbnail(List<Dm_write_vo> writeList) {

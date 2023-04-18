@@ -303,6 +303,7 @@
 	<update id="updateWriteHits">
 		UPDATE	dm_write
 		   SET	wr_hit = wr_hit + CAST(#{wr_hit} AS UNSIGNED)
+		      , wr_new_hit = wr_new_hit + CAST(#{wr_hit} AS UNSIGNED)
 		 WHERE	wr_id = #{wr_id}
 	</update>
 	
@@ -473,4 +474,12 @@
 		ORDER BY wr_datetime DESC
 		LIMIT #{rows}
 	</select>
+	
+	<update id="updateNewHitCountReset">
+		UPDATE dm_write
+		   SET wr_new_hit = 0
+		 WHERE dm_delete_yn = 'N'
+		   AND wr_is_comment = 0
+		   AND wr_reply = 0
+	</update>
 </mapper>

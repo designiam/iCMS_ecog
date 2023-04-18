@@ -76,7 +76,7 @@ public class AdminController {
 		} else {
 			adminVO.setRows(row);
 			adminVO.setPage(row * (page -1));
-		}		
+		}
 		
 		try {
 			int adminCnt = adminService.selectAdminListCnt(adminVO);
