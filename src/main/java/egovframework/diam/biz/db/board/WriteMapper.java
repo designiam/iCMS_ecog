@@ -169,4 +169,6 @@ public interface WriteMapper {
 	public List<Dm_write_vo> selectReplyList(Dm_write_vo vo);
 	
 	public List<Dm_write_vo> selectMainWriteList(Dm_write_vo vo);
+	
+	public void updateNewHitCountReset();
 }

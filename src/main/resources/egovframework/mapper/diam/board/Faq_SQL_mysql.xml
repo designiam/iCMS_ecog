@@ -32,6 +32,7 @@
 	<select id="selectFaqListCnt" resultType="int">
 		SELECT	COUNT(*)
 		  FROM	dm_faq A
+		INNER JOIN dm_domain_list B ON A.dm_domain = B.dm_id AND B.dm_delete_yn = 'N'
 		 WHERE	1=1
 	 	<include refid="selectFaqListWhere"/>
 	</select>
@@ -41,6 +42,7 @@
 	 		 ,	IFNULL((SELECT dm_domain_nm FROM dm_domain_list WHERE dm_id = A.dm_domain), '도메인 정보없음') as dm_domain_nm
 	 		 ,	(SELECT	dm_code_name FROM dm_common_code WHERE dm_code_group = '1001' AND A.dm_status = dm_code_value) as dm_state_txt
 	 	  FROM	dm_faq A
+	 	INNER JOIN dm_domain_list B ON A.dm_domain = B.dm_id AND B.dm_delete_yn = 'N'
 	 	 WHERE	1=1
 	 	<include refid="selectFaqListWhere"/>
 		ORDER BY A.dm_order ASC, A.dm_status DESC

@@ -38,6 +38,7 @@
  		SELECT	A.*
  			 ,	IFNULL((SELECT	dm_domain_nm FROM dm_domain_list WHERE dm_id = A.dm_domain), '도메인정보없음') as dm_domain_text
  		  FROM	dm_board A
+ 		INNER JOIN dm_domain_list B ON A.dm_domain = B.dm_id AND B.dm_delete_yn = 'N'
  		 WHERE	1=1
  		   AND  A.dm_delete_yn = 'N'
  		<include refid="selectBoardListWhere"/>

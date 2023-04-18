@@ -37,6 +37,7 @@
 	<select id="selectMainVisualListCnt" resultType="int">
 		SELECT	COUNT(*)
 		  FROM	dm_main_visual A
+		  INNER JOIN dm_domain_list B ON A.dm_domain = B.dm_id AND B.dm_delete_yn = 'N'
 		 WHERE	1=1
 		   AND  A.dm_delete_yn = 'N'
 		<include refid="selectMainVisualListWhere"/>
@@ -47,6 +48,7 @@
  			 ,	IFNULL((SELECT dm_domain_nm FROM dm_domain_list WHERE dm_id = A.dm_domain), '도메인정보없음') AS dm_domain_text
  			 ,	(SELECT	dm_code_name FROM dm_common_code WHERE dm_code_group = '1001' AND dm_code_value = A.dm_status) AS dm_status_text
  		  FROM	dm_main_visual A 
+ 		  INNER JOIN dm_domain_list B ON A.dm_domain = B.dm_id AND B.dm_delete_yn = 'N'
  		 WHERE	1=1
  		   AND  A.dm_delete_yn = 'N'
  		<include refid="selectMainVisualListWhere"/>

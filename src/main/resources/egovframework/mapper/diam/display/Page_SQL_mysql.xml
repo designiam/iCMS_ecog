@@ -32,18 +32,20 @@
 			<choose>
 				<when test='search_status == "table"'>
 					AND	(A.dm_main_content != '1' OR A.dm_main_content IS NULL)
-		 			AND	(A.dm_page_type != 'LOGIN' AND A.dm_page_type != 'MEMBER')
+		 			AND	dm_page_type IN ('PAGE', 'BOARD')
 				</when>
 				<otherwise>
 					AND	A.dm_status = #{search_status}
 				</otherwise>
-			</choose>			
+			</choose>
 		</if>
 	</sql>
 	
 	<select id="selectPageListCnt" resultType="int">
 		SELECT	COUNT(*)
 		  FROM	dm_pages A
+		 INNER JOIN (SELECT dm_id FROM dm_domain_list WHERE dm_delete_yn = 'N') B
+		 ON A.dm_domain = B.dm_id
 		 WHERE	1=1
 		 <include refid="selectPageListWhere"/>
 	</select>
@@ -54,6 +56,8 @@
 			 ,	IFNULL((SELECT	dm_domain_nm FROM dm_domain_list WHERE A.dm_domain = dm_id AND dm_domain_status = '1'), '도메인정보없음') as dm_domain_text
 			 ,	(SELECT dm_url FROM dm_config WHERE dm_domain_id = A.dm_domain) as dm_domain_url
 		 FROM	dm_pages A
+		INNER JOIN (SELECT dm_id FROM dm_domain_list WHERE dm_delete_yn = 'N') B
+		ON A.dm_domain = B.dm_id
 		WHERE	1=1
 		  AND   A.dm_delete_yn = 'N'
 		<include refid="selectPageListWhere"/>
@@ -177,7 +181,7 @@
     	  AND   dm_delete_yn = 'N'
     	  AND	dm_status = '1'
     	  AND	(dm_main_content != '1' OR dm_main_content IS NULL)
-    	  AND	(dm_page_type != 'LOGIN' AND dm_page_type != 'MEMBER')
+    	  AND	dm_page_type IN ('PAGE', 'BOARD')
     	<if test='search_domain != null and search_domain != ""'>
     	  AND	dm_domain = #{search_domain}
     	</if>

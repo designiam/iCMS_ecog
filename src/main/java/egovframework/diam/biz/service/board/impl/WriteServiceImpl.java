@@ -329,5 +329,9 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 		return resultMap;
 	}
 
+	@Override
+	public void updateNewHitCountReset() throws Exception {
+		mapper.updateNewHitCountReset();
+	}
 
 }
