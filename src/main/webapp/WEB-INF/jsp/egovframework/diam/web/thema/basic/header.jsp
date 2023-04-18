@@ -81,7 +81,6 @@
 		<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>
 	</c:otherwise>
 </c:choose>
-<script type="text/javascript" src="<c:url value='/js/egovframework/diam/masonry.pkgd.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/common.js'/>"></script>
 <%-- <script type="text/javascript" src="<c:url value='${layout_path}/js/common.js' />"></script> --%>
 </head>

@@ -47,22 +47,4 @@ var mainSlider = new Swiper('#m-banSlider', {
     }
 });
 
-
-// 최신글 영역
-$('.sec-now .grid').masonry({
-  // options
-  itemSelector: '.sec-now .grid .grid-item',
-  columnWidth: '.sec-now .grid .grid-sizer',
-  itemSelector: '.sec-now .grid .grid-item',
-  percentPosition: true,
-  fitWidth: true,
-  gutter: 30,
-  horizontalOrder: true,
-  transitionDuration: '0.2s',
-});
-
-$(window).resize(function() {
-	$('.sec-now .grid').masonry('layout');
-});
-
 });
