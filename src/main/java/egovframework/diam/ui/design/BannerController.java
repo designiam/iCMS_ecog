@@ -251,12 +251,16 @@ public class BannerController {
 					if (bannerVO.getMultiFile().getSize() > 0) {
 						uploadBannerFile(bannerVO, null, FILE_PATH);
 						
+						if (bannerVO.getMobile_multiFile().getSize() > 0) {
+							uploadMobileBannerFile(bannerVO, null, FILE_PATH);
+						}
+						
 						bannerVO.setDm_create_id(loginVO.getId());
 						result = bannerService.insertBanner(bannerVO);
 						
 						if (result > 0) {
 							resultMap.put("result", "success");
-							resultMap.put("notice", MessageCode.CMS_INSERT_SUCCESS.getMessage());							
+							resultMap.put("notice", MessageCode.CMS_INSERT_SUCCESS.getMessage());
 						} else {
 							resultMap.put("result", "fail");
 							resultMap.put("notice", MessageCode.CMS_INSERT_FAIL.getMessage());
@@ -265,7 +269,7 @@ public class BannerController {
 					} else {
 						resultMap.put("result", "fail");
 						resultMap.put("notice", "메인비주얼 이미지를 등록해주세요.");
-					}					
+					}
 				} else {
 					Dm_banners_vo checkVO = new Dm_banners_vo();
 					checkVO.setDm_id(bannerVO.getDm_id());
@@ -282,9 +286,20 @@ public class BannerController {
 								resultMap.put("result", "fail");
 								resultMap.put("notice", "배너 이미지를 등록해주세요.");
 								return new ResponseEntity<>(resultMap, HttpStatus.OK);
-				        	}		
+				        	}
 						}
+						
+						if (!commonUtil.isNullOrEmpty(bannerVO.getDm_del_mimage())) {
+							File file = new File(FILE_PATH+bannerVO.getDm_del_mimage());
+							if( file.exists() ){
+								FileDelete(file);
+							}
+							checkVO.setDm_mbanner_img("");
+							checkVO.setDm_mbanner_img_ori("");
+						}
+						
 						uploadBannerFile(bannerVO, checkVO, FILE_PATH);
+						uploadMobileBannerFile(bannerVO, checkVO, FILE_PATH);
 						
 						bannerVO.setDm_modify_id(loginVO.getId());
 						result = bannerService.updateBanner(bannerVO);
@@ -347,6 +362,26 @@ public class BannerController {
 			}
 		}
 	}
+	
+	private void uploadMobileBannerFile(Dm_banners_vo bannerVO, Dm_banners_vo checkVO, String file_path) throws Exception {
+		CommonUtil commonUtil = new CommonUtil();
+		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		
+		if (bannerVO.getMobile_multiFile().getSize() > 0 ) {
+			bannerVO.setDm_mbanner_img_ori(bannerVO.getMobile_multiFile().getOriginalFilename());
+			String ext = bannerVO.getMobile_multiFile().getOriginalFilename().substring(bannerVO.getMobile_multiFile().getOriginalFilename().indexOf(".") + 1);
+			String upload_visual = today + "_" + commonUtil.convertSHA256(bannerVO.getMobile_multiFile().getOriginalFilename()) + "." + ext;
+			bannerVO.getMobile_multiFile().transferTo(new File(file_path + upload_visual));
+			bannerVO.setDm_mbanner_img(upload_visual);
+		} else {
+			if (checkVO != null && (bannerVO.getDm_del_image() == null || bannerVO.getDm_del_image().isEmpty())) {
+				bannerVO.setDm_mbanner_img(checkVO.getDm_mbanner_img());
+				bannerVO.setDm_mbanner_img_ori(checkVO.getDm_mbanner_img_ori());
+			}
+		}
+	}
+	
+	
 	
 
 	/**

@@ -72,6 +72,8 @@
 		  	 ,	dm_banner_nm
 		  	 ,	dm_banner_img
 		  	 ,	dm_banner_img_ori
+		  	 ,	dm_mbanner_img
+		  	 ,	dm_mbanner_img_ori
 		  	 ,	dm_start_dt
 		  	 ,	dm_end_dt
 		  	 ,	dm_link
@@ -87,6 +89,8 @@
 	    	 ,	#{dm_banner_nm}
 	    	 ,	#{dm_banner_img}
 	    	 ,	#{dm_banner_img_ori}
+	    	 ,	#{dm_mbanner_img}
+	    	 ,	#{dm_mbanner_img_ori}
 	    	 ,	#{dm_start_dt}
 	    	 ,	#{dm_end_dt}
 	    	 ,	#{dm_link}
@@ -111,6 +115,8 @@
 		   SET	dm_banner_nm = #{dm_banner_nm}
 	  		 ,	dm_banner_img = #{dm_banner_img}
 	  		 ,	dm_banner_img_ori = #{dm_banner_img_ori}
+	  		 ,	dm_mbanner_img = #{dm_mbanner_img}
+	  		 ,	dm_mbanner_img_ori = #{dm_mbanner_img_ori}
 	  		 ,	dm_start_dt = #{dm_start_dt}
 	  		 ,	dm_end_dt = #{dm_end_dt}
 	  		 ,	dm_link = #{dm_link}

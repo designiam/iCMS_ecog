@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.diam.biz.db.main.CoverMapper">
+	<resultMap type="egovframework.diam.biz.model.main.Dm_cover_vo" id="resultCoverVO"/>
+	<sql id="selectWhere">
+		<if test='dm_status != null and dm_status != ""'>
+			AND A.dm_status = #{dm_status}
+		</if>
+		<if test='search_value != null and search_value != ""'>
+			<choose>
+				<when test='search_type == "dm_vol"'>
+					AND A.dm_vol = #{search_value}
+				</when>
+				<when test='search_type == "dm_title"'>
+					AND A.dm_title LIKE CONCAT('%',#{search_value},'%')
+				</when>
+				<otherwise>
+					AND (
+						A.dm_vol = #{search_value}
+						OR
+						A.dm_title LIKE CONCAT('%',#{search_value},'%')
+					)
+				</otherwise>
+			</choose>
+		</if>
+		<if test='search_start_date != null and search_start_date != ""'>
+			<![CDATA[
+				AND DATE_FORMAT(STR_TO_DATE(concat(A.dm_year,'-',A.dm_month), '%Y-%m'), '%Y-%m') >= DATE_FORMAT(#{search_start_date}, '%Y-%m')
+			]]>
+		</if>
+		<if test='search_end_date != null and search_end_date != ""'>
+			<![CDATA[
+				AND DATE_FORMAT(STR_TO_DATE(concat(A.dm_year,'-',A.dm_month), '%Y-%m'), '%Y-%m') <= DATE_FORMAT(#{search_end_date}, '%Y-%m')
+			]]>
+		</if>
+	</sql>
+	
+	<select id="selectCoverList" resultMap="resultCoverVO">
+		SELECT A.*
+		FROM dm_cover AS A
+		WHERE 1 = 1
+		AND A.dm_delete_yn = 'N'
+		<include refid="selectWhere"/>
+		LIMIT #{page}, #{rows}
+	</select>
+
+	<select id="selectCoverListCount" resultType="integer">
+		SELECT COUNT(A.dm_id)
+		FROM dm_cover AS A
+		WHERE 1 = 1
+		AND A.dm_delete_yn = 'N'
+		<include refid="selectWhere"/>
+	</select>
+	<insert id="upsertCover">
+		INSERT INTO dm_cover 
+			(  dm_id
+			 , dm_vol
+			 , dm_year
+			 , dm_month
+			 , dm_title
+			 , dm_content
+			 , dm_status
+			 , dm_create_dt
+			 , dm_create_id
+			)
+		VALUES
+			(  #{dm_id} 
+			 , #{dm_vol}
+			 , #{dm_year}
+			 , #{dm_month}
+			 , #{dm_title}
+			 , #{dm_content}
+			 , #{dm_status}
+			 , now()
+			 , #{dm_create_id}
+			)
+		ON DUPLICATE KEY UPDATE
+			  dm_vol = #{dm_vol}
+			, dm_year = #{dm_year}
+			, dm_month = #{dm_month}
+			, dm_title = #{dm_title}
+			, dm_content = #{dm_content}
+			, dm_status = #{dm_status}
+			, dm_modify_dt = now()
+			, dm_modify_id = #{dm_modify_id}
+	</insert>
+	
+	<select id="selectUseStatusCover" resultMap="resultCoverVO">
+		SELECT *
+		  FROM dm_cover
+		 WHERE dm_delete_yn = 'N'
+		   AND dm_status = 1
+		<if test='dm_id != null and dm_id != ""'>
+			AND dm_id != #{dm_id}
+		</if>
+		 LIMIT 1
+	</select>
+	
+	<update id="updateCoverStatus">
+		UPDATE dm_cover
+		   SET dm_status = #{dm_status}
+		 WHERE dm_id = #{dm_id}
+	</update>
+	
+	<select id="selectCover" resultMap="resultCoverVO">
+		SELECT * FROM dm_cover WHERE dm_id = #{dm_id}
+	</select>
+	
+	<select id="selectUniqVol" resultType="integer">
+		SELECT COUNT(dm_id) FROM dm_cover WHERE dm_delete_yn = 'N' AND dm_vol = #{dm_vol}
+		<if test='dm_id != null and dm_id != ""'>
+			AND dm_id != #{dm_id}
+		</if>
+	</select>
+	
+	<update id="deleteCover">
+		UPDATE  dm_cover
+		   SET  dm_delete_yn = 'Y'
+		      , dm_delete_dt = now()
+		      , dm_delete_id = #{dm_delete_id}
+		 WHERE  dm_id = #{dm_id}
+	</update>
+</mapper>

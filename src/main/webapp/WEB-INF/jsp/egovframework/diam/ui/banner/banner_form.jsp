@@ -78,6 +78,13 @@
 	                </dd>
 	            </dl>
 	            <dl>
+	                <dt>모바일 이미지</dt>
+	                <dd class="mobile_file_dd">
+	                	<input type="file" name="mobile_multiFile" id="mobile_multiFile" accept=".jpg, .jpeg, .gif, .png">
+	                	<p class="noty">.jpg, .jpeg, .gif, .png 확장자 파일만 업로드 가능합니다.</p>
+	                </dd>
+	            </dl>
+	            <dl>
 	                <dt>게시 기간<span class="required_value">*</span></dt>
 	                <dd>
 	                	<div class="during">
@@ -305,6 +312,9 @@ $(function () {
 			        			        			        
 			        if (data.rows.dm_banner_img != null && data.rows.dm_banner_img != "") {
 			        	$('.file_dd').append("<img src='/resources/banner/"+data.rows.dm_banner_img+"' style='margin-top:8px;'/><div><label><input type='checkbox' name='dm_del_image' class='file_link' id='dm_del_image' value='"+data.rows.dm_banner_img+"'/>삭제("+ data.rows.dm_banner_img_ori +")</label></div>");
+			        }
+			        if (data.rows.dm_mbanner_img != null && data.rows.dm_mbanner_img != "") {
+			        	$('.mobile_file_dd').append("<img src='/resources/banner/"+data.rows.dm_mbanner_img+"' style='margin-top:8px;'/><div><label><input type='checkbox' name='dm_del_mimage' class='file_link' value='"+data.rows.dm_mbanner_img+"'/>삭제("+ data.rows.dm_mbanner_img_ori +")</label></div>");
 			        }
 			        
 			        setDateTime(data.rows);

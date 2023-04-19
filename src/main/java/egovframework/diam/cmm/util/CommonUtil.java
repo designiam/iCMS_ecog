@@ -529,6 +529,17 @@ public class CommonUtil {
 		return result;
 	}
 	
+	public boolean videoExtCheck(MultipartFile file) {
+		boolean result = true;
+		final String[] ext_arr = {"wmv","mp4","m4v","avi","WMV","MP4","M4V","AVI"};
+		if (file != null && file.getSize() > 0) {
+			String file_name = file.getOriginalFilename();
+			String ext = file_name.substring(file_name.lastIndexOf(".") + 1);
+			result = Arrays.asList(ext_arr).contains(ext);
+		}
+		return result;
+	}
+	
 	/**
 	 * layoutFileCopy
 	 * 레이아웃 신규생성 시 basic레이아웃에 포함되어 있는 폴더를 복사

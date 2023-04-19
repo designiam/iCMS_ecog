@@ -622,4 +622,14 @@ public class uiController {
 		return "egovframework/diam/ui/statistics/page_view";
 	}
 	
+	@RequestMapping("/adm/cover.do")
+	public String cover() {
+		return "egovframework/diam/ui/main/cover";
+	}
+	
+	@RequestMapping("/adm/cover_form.do")
+	public String coverForm() {
+		return "egovframework/diam/ui/main/cover_form";
+	}
+	
 }
