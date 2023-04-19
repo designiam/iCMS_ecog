@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.URL;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -220,4 +219,31 @@ public class Dm_write_vo implements Serializable{
 	private List<Dm_write_vo> children = new ArrayList<>();
 	
 	private String state;
+	
+	private String wr_main;
+	
+	private String wr_path;
+	
+	private String wr_head;
+	
+	private String wr_banner;
+	
+	private String wr_thumb;
+	
+	private String wr_background;
+	
+	@Pattern(regexp="^(https?://)(www.)?([a-zA-Z0-9]+)\\.[a-z]+([a-zA-Z0-9가-힣/+?=#&-_]+)?", message="바로가기 링크는 http 프로토콜을 포함한 URL 형식이어야 합니다.")
+	@Size(max=255, message="바로가기 링크 값은 최대 255자까지만 입력가능합니다.")
+	private String wr_direct;
+	
+	public void setWr_direct(String wr_direct) {
+		this.wr_direct = wr_direct.isEmpty() ? null : wr_direct;
+	}
+	
+	private String wr_new_hit;
+	
+	private MultipartFile banner;
+	private MultipartFile background;
+	private MultipartFile thumbnail;
+	private MultipartFile head;
 }

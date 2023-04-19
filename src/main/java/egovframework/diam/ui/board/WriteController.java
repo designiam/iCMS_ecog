@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +36,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import egovframework.diam.biz.model.board.Dm_board_vo;
 import egovframework.diam.biz.model.board.Dm_write_vo;
@@ -368,8 +366,8 @@ public class WriteController {
 					
 					writeVO.setWr_file(String.join("|", file_array));
 					writeVO.setWr_ori_file_name(String.join("|", file_ori_array));
-					
-					
+					writeVO.setWr_path(FILE_PATH);
+					newUpload(writeVO);
 					
 					int result = writeService.insertWrite(writeVO);
 					
@@ -937,7 +935,7 @@ public class WriteController {
 	private void uploadWriteFile(Dm_board_vo boardVO, Dm_write_vo writeVO, List<String> file_array, List<String> file_ori_array, 
 			String file_path, String basic_path) throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
-				       
+		
 		for (int i=0; i < Integer.parseInt(boardVO.getDm_upload_count()); i++) {
 			if (writeVO.getFile().size() > 0) {
 				if (writeVO.getFile().get(i).getSize() > 0 ) {
@@ -945,7 +943,6 @@ public class WriteController {
 						File file = new File(basic_path+file_array.get(i));
 						if( file.exists() ){
 							FileDelete(file);
-							//file.delete(); 시큐어코딩 결함으로 주석처리, 후에 제거필요
 							file_array.set(i, "");
 							file_ori_array.set(i, "");
 						}
@@ -971,6 +968,40 @@ public class WriteController {
 						}
 					}
 				}
+			}
+		}
+	}
+	
+	private void newUpload(Dm_write_vo vo) throws Exception {
+		CommonUtil commonUtil = new CommonUtil();
+		List<MultipartFile> files = new ArrayList<>();
+		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		
+		if (!vo.getHead().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getHead())) {
+				vo.getHead().transferTo(new File(vo.getWr_path() + today + "_" + vo.getHead().getOriginalFilename()));
+				vo.setWr_head(today + "_" + vo.getHead().getOriginalFilename());
+			}
+		}
+		
+		if (!vo.getBackground().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getBackground())) {
+				vo.getBackground().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBackground().getOriginalFilename()));
+				vo.setWr_background(today + "_" + vo.getHead().getOriginalFilename());
+			}
+		}
+		
+		if (!vo.getBanner().isEmpty()) {
+			if (commonUtil.videoExtCheck(vo.getBanner())) {
+				vo.getBanner().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBanner().getOriginalFilename()));
+				vo.setWr_banner(today + "_" + vo.getHead().getOriginalFilename());
+			}
+		}
+		
+		if (!vo.getThumbnail().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getThumbnail())) {
+				vo.getThumbnail().transferTo(new File(vo.getWr_path() + today + "_" + vo.getThumbnail().getOriginalFilename()));
+				vo.setWr_thumb(today + "_" + vo.getHead().getOriginalFilename());
 			}
 		}
 	}

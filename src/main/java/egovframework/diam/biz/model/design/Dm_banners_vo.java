@@ -56,6 +56,12 @@ public class Dm_banners_vo implements Serializable {
 	/** 배너 이미지 원파일명 */
 	private String dm_banner_img_ori;
 	
+	/** 배너 이미지 임시파일명 */
+	private String dm_mbanner_img;
+	
+	/** 배너 이미지 원파일명 */
+	private String dm_mbanner_img_ori;
+	
 	/** 배너 시작일 */
 	//@Pattern(regexp="^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$", message="올바르지 않은 시작일 형식입니다.")
 	//@Size(min=10, max=10, message="올바르지 않은 시작일 형식입니다.")
@@ -115,8 +121,13 @@ public class Dm_banners_vo implements Serializable {
 	/** 배너 삭제파일명 */
 	private String dm_del_image;
 	
+	private String dm_del_mimage;
+	
 	/** 배너 업로드 파일 */
 	private MultipartFile multiFile;
+	
+	/** 배너 업로드 파일 */
+	private MultipartFile mobile_multiFile;
 	
 	/** 배너 도메인명 */
 	private String dm_domain_text;

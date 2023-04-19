@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,7 @@ import egovframework.diam.biz.model.design.Dm_popup_vo;
 import egovframework.diam.biz.model.display.Dm_layout_vo;
 import egovframework.diam.biz.model.display.Dm_menus_vo;
 import egovframework.diam.biz.model.display.Dm_pages_vo;
+import egovframework.diam.biz.model.main.Dm_cover_vo;
 import egovframework.diam.biz.model.member.Dm_member_config_vo;
 import egovframework.diam.biz.model.member.Dm_member_vo;
 import egovframework.diam.biz.service.board.BoardService;
@@ -50,6 +52,7 @@ import egovframework.diam.biz.service.design.PopupService;
 import egovframework.diam.biz.service.display.LayoutService;
 import egovframework.diam.biz.service.display.MenuService;
 import egovframework.diam.biz.service.display.PageService;
+import egovframework.diam.biz.service.main.CoverService;
 import egovframework.diam.biz.service.member.MemberConfigService;
 import egovframework.diam.biz.service.member.MemberService;
 import egovframework.diam.cmm.model.Dm_common_code_vo;
@@ -90,6 +93,7 @@ public class webController {
 	@Resource(name="memberConfigService") private MemberConfigService memberConfigService;
 	@Resource(name="searchService")	private SearchService searchService;
 	@Resource(name="commonCodeService")	private CommonCodeService commonCodeService;
+	@Autowired private CoverService coverService;
 	
 	public boolean isNumber(String str) {
 		try {
@@ -256,6 +260,8 @@ public class webController {
 		try {
 			Dm_config_vo configVO = (Dm_config_vo) request.getAttribute("CONFIG_INFO");
 			Dm_layout_vo layoutVO = (Dm_layout_vo) request.getAttribute("layoutVO");
+			Dm_cover_vo coverVO = coverService.selectUseCover(new Dm_cover_vo());
+			result.addObject("cover", coverVO);
 			
 			Dm_main_visual_vo mainVisualVO = new Dm_main_visual_vo();
 			mainVisualVO.setDm_domain(configVO.getDm_domain_id());
