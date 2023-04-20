@@ -220,6 +220,9 @@ public class Dm_write_vo implements Serializable{
 	
 	private String state;
 	
+	@Pattern(regexp="^(-)?[0-9]*$", message="발행호수가 바르지 않습니다.")
+	private String wr_vol;
+	
 	private String wr_main;
 	
 	private String wr_path;

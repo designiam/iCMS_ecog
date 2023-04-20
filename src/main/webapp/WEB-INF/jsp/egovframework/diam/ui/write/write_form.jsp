@@ -84,7 +84,50 @@ function fnSetData(row) {
 	if (row.mb_id == '비회원') {
 		$(".write_password").show();
 	}
+	
+	$("#wr_vol").val(row.wr_vol);
+	$("input[name=wr_main][value="+row.wr_main+"]").prop("checked", true);
+	$("#wr_direct").val(row.wr_direct);
+	
+	if (row.wr_head != null && row.wr_head != "") {
+		$("#head").toggle();
+		$("#head").after(
+				'<div><img src="'+row.wr_path+row.wr_head+'">'+
+				'<input type="hidden" name="wr_head" value="'+row.wr_head+'">'+
+				row.wr_head.substr(15, row.wr_head.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
+		);
+	}
+	
+	if (row.wr_banner != null && row.wr_banner != "") {
+		$("#banner").toggle();
+		$("#banner").after(
+				'<div><p><video src="'+row.wr_path+row.wr_banner+'" style="max-width:100%;" controls="controls"></p>'+
+				'<input type="hidden" name="wr_banner" value="'+row.wr_banner+'">'+
+				row.wr_banner.substr(15, row.wr_banner.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
+		);
+	}
+	if (row.wr_background != null && row.wr_background != "") {
+		$("#background").toggle();
+		$("#background").after(
+				'<div><img src="'+row.wr_path+row.wr_background+'">'+
+				'<input type="hidden" name="wr_background" value="'+row.wr_background+'">'+
+				row.wr_background.substr(15, row.wr_background.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
+		);
+	}
+	if (row.wr_thumb != null && row.wr_thumb != "") {
+		$("#thumbnail").toggle();
+		$("#thumbnail").after(
+				'<div><img src="'+row.wr_path+row.wr_thumb+'">'+
+				'<input type="hidden" name="wr_thumb" value="'+row.wr_thumb+'">'+
+				row.wr_thumb.substr(15, row.wr_thumb.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
+		);
+	}
 }
+
+$(document).on("click", ".reset", function(){
+	$(this).closest("div").siblings("input").toggle();
+	$(this).closest("div").remove();
+});
 
 function fnSave() {
 	$(".btnWrap").hide();
@@ -110,9 +153,18 @@ function fnSave() {
 			$(".video_only").remove();
 			break;
 		default:
+			$("#wr_vol").val("-1");
 			$(".video_only").remove();
 			$(".gallery_only").remove();
 			break;
+	}
+	
+	if ($("#skin").val() != "basic") {
+		if ($("#wr_vol").val() == "") {
+			alert("발행 호수를 입력하세요");
+			$(".btnWrap").show();
+			return;
+		}
 	}
 	
     var form = $("#fm")[0];
@@ -164,14 +216,17 @@ function setBoardForm(boardId) {
             	$("#skin").val(board_config.dm_skin);
             	switch (board_config.dm_skin) {
 					case "video":
+						$(".not_basic").show();
 						$(".video_only").show();
 						$(".gallery_only").hide();
 						break;
 					case "gallery":
+						$(".not_basic").show();
 						$(".video_only").hide();
 						$(".gallery_only").show();
 						break;
 					default:
+						$(".not_basic").hide();
 						$(".video_only").hide();
 						$(".gallery_only").hide();
 						break;
@@ -251,6 +306,7 @@ function setBoardForm(boardId) {
 $(function () {
 	$(".video_only").hide();
 	$(".gallery_only").hide();
+	$(".not_basic").hide();
 	<c:if test="${type eq 'update'}">
 		setBoardForm("<c:out value='${wr_board}'/>");
 		selectWrite();
@@ -375,6 +431,10 @@ var createSE = function() {
 				    <dt>파일첨부</dt>
 				    <dd></dd>
 				</dl>
+				<dl class="not_basic">
+				    <dt>발행 호<span class="required_value">*</span></dt>
+				    <dd><input type="text" name="wr_vol" id="wr_vol" onkeyup="setNumberPattern(this);"></dd>
+				</dl>
 				<dl>
 				    <dt>타이틀 이미지</dt>
 				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
@@ -394,7 +454,7 @@ var createSE = function() {
 				    <dt>바로가기 링크</dt>
 				    <dd>
 				    	<input type="text" name="wr_direct" id="wr_direct" maxlength="200">
-					    <p class='noty'>http 프로토콜을 포함한 링크를 입력해주세요.</p>
+					    <p class="noty">http 프로토콜을 포함한 링크를 입력해주세요.</p>
 				    </dd>
 				</dl>
 				<dl class="video_only">

@@ -171,4 +171,8 @@ public interface WriteMapper {
 	public List<Dm_write_vo> selectMainWriteList(Dm_write_vo vo);
 	
 	public void updateNewHitCountReset();
+	
+	public void updateWriteMainOff(Dm_write_vo vo);
+	
+	public Dm_write_vo selectMainByVol(Dm_write_vo vo);
 }

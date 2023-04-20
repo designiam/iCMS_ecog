@@ -72,9 +72,15 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	@Override
 	@Transactional
 	public int insertWrite(Dm_write_vo vo) throws Exception {
+		if (vo.getWr_main() != null && vo.getWr_main().equals("Y")) {
+			if (vo.getWr_vol() != null && Integer.parseInt(vo.getWr_vol()) > 0) {
+				mapper.updateWriteMainOff(vo);
+			}
+		}
+		
 		int result = mapper.insertWrite(vo);
 		if (vo.getWr_reply() < 1) {
-			result += mapper.updateWrnumParent(vo);			
+			result += mapper.updateWrnumParent(vo);
 			if (result > 1) {
 				return result;
 			} else {
@@ -93,8 +99,15 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	 * @return void 게시물데이터 update 기능만 담당하는 메소드
 	*/
 	@Override
+	@Transactional
 	public int updateWrite(Dm_write_vo vo) throws Exception {
-		return mapper.updateWrite(vo);
+		if (vo.getWr_main() != null && vo.getWr_main().equals("Y")) {
+			if (vo.getWr_vol() != null && Integer.parseInt(vo.getWr_vol()) > 0) {
+				mapper.updateWriteMainOff(vo);
+			}
+		}
+		int result = mapper.updateWrite(vo);
+		return result;
 	}
 	
 	/**
@@ -332,6 +345,11 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	@Override
 	public void updateNewHitCountReset() throws Exception {
 		mapper.updateNewHitCountReset();
+	}
+
+	@Override
+	public Dm_write_vo selectMainByVol(Dm_write_vo vo) throws Exception {
+		return mapper.selectMainByVol(vo);
 	}
 
 }

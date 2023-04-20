@@ -106,6 +106,10 @@
 		SELECT * FROM dm_cover WHERE dm_id = #{dm_id}
 	</select>
 	
+	<select id="selectCoverByVol" resultMap="resultCoverVO">
+		SELECT * FROM dm_cover WHERE dm_vol = #{dm_vol}
+	</select>
+	
 	<select id="selectUniqVol" resultType="integer">
 		SELECT COUNT(dm_id) FROM dm_cover WHERE dm_delete_yn = 'N' AND dm_vol = #{dm_vol}
 		<if test='dm_id != null and dm_id != ""'>

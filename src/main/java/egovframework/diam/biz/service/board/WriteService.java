@@ -140,4 +140,6 @@ public interface WriteService {
 	public Map<String, List<Dm_write_vo>> selectMainWriteList(List<Dm_board_vo> list) throws Exception;
 	
 	public void updateNewHitCountReset() throws Exception;
+	
+	public Dm_write_vo selectMainByVol(Dm_write_vo vo) throws Exception;
 }

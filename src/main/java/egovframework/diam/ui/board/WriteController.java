@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -368,6 +369,7 @@ public class WriteController {
 					writeVO.setWr_ori_file_name(String.join("|", file_ori_array));
 					writeVO.setWr_path(FILE_PATH);
 					newUpload(writeVO);
+					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_skin() + "/");
 					
 					int result = writeService.insertWrite(writeVO);
 					
@@ -431,10 +433,10 @@ public class WriteController {
 							}
 				        }
 				        uploadWriteFile(boardVO, writeVO, file_array, file_ori_array, FILE_PATH, basic_path);
-				        
 				        writeVO.setWr_file(String.join("|", file_array));
 						writeVO.setWr_ori_file_name(String.join("|", file_ori_array));
-						
+						writeVO.setWr_path(FILE_PATH);
+						newUpload(writeVO);
 						
 				        int result = writeService.updateWrite(writeVO);
 				        
@@ -457,6 +459,8 @@ public class WriteController {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", "게시판 정보가 없습니다.");
 			}			
+		} catch (SizeLimitExceededException sle) {
+			log.error("test");
 		} catch(InvalidKeyException ike) {
 			log.error(MessageCode.CMM_ENCRYPT_EXPIRED.getLog());
 			resultMap.put("notice", MessageCode.CMM_ENCRYPT_EXPIRED.getMessage());
@@ -474,6 +478,7 @@ public class WriteController {
 			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch(Exception e) {
+			e.printStackTrace();
 			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -974,34 +979,32 @@ public class WriteController {
 	
 	private void newUpload(Dm_write_vo vo) throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
-		List<MultipartFile> files = new ArrayList<>();
 		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-		
-		if (!vo.getHead().isEmpty()) {
+		if (vo.getHead() != null && !vo.getHead().isEmpty()) {
 			if (commonUtil.imageExtCheck(vo.getHead())) {
 				vo.getHead().transferTo(new File(vo.getWr_path() + today + "_" + vo.getHead().getOriginalFilename()));
 				vo.setWr_head(today + "_" + vo.getHead().getOriginalFilename());
 			}
 		}
 		
-		if (!vo.getBackground().isEmpty()) {
+		if (vo.getBackground() != null && !vo.getBackground().isEmpty()) {
 			if (commonUtil.imageExtCheck(vo.getBackground())) {
 				vo.getBackground().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBackground().getOriginalFilename()));
-				vo.setWr_background(today + "_" + vo.getHead().getOriginalFilename());
+				vo.setWr_background(today + "_" + vo.getBackground().getOriginalFilename());
 			}
 		}
 		
-		if (!vo.getBanner().isEmpty()) {
+		if (vo.getBanner() != null && !vo.getBanner().isEmpty()) {
 			if (commonUtil.videoExtCheck(vo.getBanner())) {
 				vo.getBanner().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBanner().getOriginalFilename()));
-				vo.setWr_banner(today + "_" + vo.getHead().getOriginalFilename());
+				vo.setWr_banner(today + "_" + vo.getBanner().getOriginalFilename());
 			}
 		}
 		
-		if (!vo.getThumbnail().isEmpty()) {
+		if (vo.getThumbnail() != null && !vo.getThumbnail().isEmpty()) {
 			if (commonUtil.imageExtCheck(vo.getThumbnail())) {
 				vo.getThumbnail().transferTo(new File(vo.getWr_path() + today + "_" + vo.getThumbnail().getOriginalFilename()));
-				vo.setWr_thumb(today + "_" + vo.getHead().getOriginalFilename());
+				vo.setWr_thumb(today + "_" + vo.getThumbnail().getOriginalFilename());
 			}
 		}
 	}

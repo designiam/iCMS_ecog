@@ -117,7 +117,15 @@
 			wr_file,
 			wr_ori_file_name,
 			wr_ip,
-			dm_create_dt
+			dm_create_dt,
+			wr_main,
+			wr_path,
+			wr_head,
+			wr_banner,
+			wr_thumb,
+			wr_background,
+			wr_direct,
+			wr_vol
 		) VALUE (
 			<if test="wr_num != null and wr_num != ''">
 		  		#{wr_num},
@@ -144,8 +152,16 @@
 			now(),
 			#{wr_file},
 			#{wr_ori_file_name},
-			#{wr_ip}
-			,now()
+			#{wr_ip},
+			now(),
+			#{wr_main},
+			#{wr_path},
+			#{wr_head},
+			#{wr_banner},
+			#{wr_thumb},
+			#{wr_background},
+			#{wr_direct},
+			#{wr_vol}
 		)
 	</insert>
 	
@@ -181,7 +197,14 @@
 				</if>
 				wr_name = #{wr_name}, 
 				wr_file = #{wr_file}, 
-				wr_ori_file_name = #{wr_ori_file_name}
+				wr_ori_file_name = #{wr_ori_file_name},
+				wr_vol = #{wr_vol},
+				wr_main = #{wr_main},
+				wr_head = #{wr_head},
+				wr_banner = #{wr_banner},
+				wr_thumb = #{wr_thumb},
+				wr_background = #{wr_background},
+				wr_direct = #{wr_direct}
 		 WHERE	wr_id = #{wr_id}
 	</update>
 	
@@ -482,4 +505,20 @@
 		   AND wr_is_comment = 0
 		   AND wr_reply = 0
 	</update>
+	
+	<update id="updateWriteMainOff">
+		UPDATE dm_write
+		   SET wr_main = 'N'
+		 WHERE wr_main = 'Y'
+		   AND wr_vol = #{wr_vol}
+		   AND dm_delete_yn = 'N'
+	</update>
+	
+	<select id="selectMainByVol" resultMap="resultWriteVO">
+		SELECT *
+		  FROM dm_write
+		 WHERE wr_vol = #{wr_vol}
+		   AND wr_main = 'Y'
+		   AND dm_delete_yn = 'N'
+	</select>
 </mapper>
