@@ -64,4 +64,9 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 		});
 	}
 
+	@Override
+	public Dm_cover_vo selectCoverByVol(Dm_cover_vo vo) throws Exception {
+		return coverMapper.selectCoverByVol(vo);
+	}
+
 }

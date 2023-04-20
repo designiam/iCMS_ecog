@@ -23,4 +23,6 @@ public interface CoverMapper {
 	public int selectUniqVol(Dm_cover_vo vo);
 	
 	public int deleteCover(Dm_cover_vo vo);
+	
+	public Dm_cover_vo selectCoverByVol(Dm_cover_vo vo);
 }

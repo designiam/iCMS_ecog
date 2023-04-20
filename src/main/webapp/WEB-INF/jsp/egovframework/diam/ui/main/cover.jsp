@@ -135,7 +135,7 @@ $(document).ready(function(){
 <div class="easyui-layout" fit="true">
     <div data-options="region:'north', border:false">
         <div class="title">
-            <h1>프리뷰 관리</h1>
+            <h1>표지 관리</h1>
             <div class="btnWrap">
                 <button id="fnNew" class="bt01">신규생성</button>
             </div>

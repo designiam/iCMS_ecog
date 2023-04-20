@@ -255,13 +255,29 @@ public class webController {
 	*/
 	@RequestMapping("/web/frame_top.do")
 	public ModelAndView top(@RequestParam(value="contentId", required=false, defaultValue="") String contentId,
+			@RequestParam(value="vol", required=false, defaultValue="") String vol,
 			HttpServletRequest request) throws Exception {
+		
+		CommonUtil commonUtil = new CommonUtil();
 		ModelAndView result = new ModelAndView();
 		try {
 			Dm_config_vo configVO = (Dm_config_vo) request.getAttribute("CONFIG_INFO");
 			Dm_layout_vo layoutVO = (Dm_layout_vo) request.getAttribute("layoutVO");
-			Dm_cover_vo coverVO = coverService.selectUseCover(new Dm_cover_vo());
+			
+			Dm_cover_vo coverVO = new Dm_cover_vo();
+			if (commonUtil.isNullOrEmpty(vol)) {
+				coverVO = coverService.selectUseCover(new Dm_cover_vo());				
+			} else {
+				coverVO.setDm_vol(vol);
+				coverVO = coverService.selectCoverByVol(coverVO);
+			}
 			result.addObject("cover", coverVO);
+			
+			if (coverVO != null) {
+				Dm_write_vo writeVO = Dm_write_vo.builder()
+						.wr_vol(vol)
+						.build();
+			}
 			
 			Dm_main_visual_vo mainVisualVO = new Dm_main_visual_vo();
 			mainVisualVO.setDm_domain(configVO.getDm_domain_id());
