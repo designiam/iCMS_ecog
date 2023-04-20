@@ -422,6 +422,23 @@
 				<div class="content">보이지 않는 곳에서 일하는 사람들이 있습니다. <br> 광주의 환경을 지키는 아름다운 사람들의 이야기, 우리는 광주환경공단입니다.</div>
 			</div>
 		</div>
+		
+		<div class="swiper-container" id="snsSlider">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample01.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample02.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample03.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample04.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample05.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample06.jpg" alt=""></div>
+			</div>
+			<div class="swiper-controller">
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+			<!-- //.swiper-controller -->
+		</div>
+		<!-- //#snsSlider -->
 	</div>
 	<!-- //.inner -->
 </section>
@@ -468,8 +485,27 @@ var bestSlider = new Swiper("#bestSlider", {
 });
 
 
-function clickMiniBoard($this){
-	$(".latest_box").removeClass("active");
-	$($this).parent().parent().addClass("active");
-}
+//SNS 슬라이드
+var snsSlider = new Swiper("#snsSlider", {
+	slidesPerView: 'auto',
+	spaceBetween: 10,
+	centeredSlides: true,
+	slideToClickedSlide : true,
+	//autoplay: {
+	//	delay: 3500,
+	//	disableOnInteraction: false,
+	//},
+	loop : true,
+	loopAdditionalSlides : 1,
+	navigation: {
+		nextEl: "#snsSlider .swiper-button-next",
+		prevEl: "#snsSlider .swiper-button-prev",
+	},
+	breakpoints: {
+		768: {
+			spaceBetween: 25,
+		},
+	},
+});
+
 </script>
