@@ -102,6 +102,19 @@ function fnSave() {
     	}
 	</c:if>
 	
+	switch ($("#skin").val()) {
+		case "video":
+			$(".gallery_only").remove();
+			break;
+		case "gallery":
+			$(".video_only").remove();
+			break;
+		default:
+			$(".video_only").remove();
+			$(".gallery_only").remove();
+			break;
+	}
+	
     var form = $("#fm")[0];
     var formData = new FormData(form);
 
@@ -148,6 +161,21 @@ function setBoardForm(boardId) {
             	$(".link dd").html("");
             	
             	var board_config = data.rows;
+            	$("#skin").val(board_config.dm_skin);
+            	switch (board_config.dm_skin) {
+					case "video":
+						$(".video_only").show();
+						$(".gallery_only").hide();
+						break;
+					case "gallery":
+						$(".video_only").hide();
+						$(".gallery_only").show();
+						break;
+					default:
+						$(".video_only").hide();
+						$(".gallery_only").hide();
+						break;
+				}
             	
             	if (board_config.dm_use_category == "1") {
                     $("#category").show();
@@ -221,6 +249,8 @@ function setBoardForm(boardId) {
 }
 
 $(function () {
+	$(".video_only").hide();
+	$(".gallery_only").hide();
 	<c:if test="${type eq 'update'}">
 		setBoardForm("<c:out value='${wr_board}'/>");
 		selectWrite();
@@ -268,6 +298,7 @@ var createSE = function() {
 			<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 			<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 			<input type="hidden" name="type" id="type" value="<c:out value='${type}'/>" />
+			<input type="hidden" id="skin"/>
 			<c:choose>
 				<c:when test='${type eq "update"}'>
 					<input type="hidden" name="wr_id" id="wr_id" value="<c:out value='${wr_id}'/>"/>
@@ -343,7 +374,37 @@ var createSE = function() {
 				<dl class="file">
 				    <dt>파일첨부</dt>
 				    <dd></dd>
-				</dl>				
+				</dl>
+				<dl>
+				    <dt>타이틀 이미지</dt>
+				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
+				</dl>
+				<dl class="gallery_only">
+				    <dt>썸네일</dt>
+				    <dd><input type="file" name="thumbnail" id="thumbnail" accept="image/*"></dd>
+				</dl>
+				<dl class="video_only">
+					<dt>메인 게시 여부</dt>
+					<dd>
+						<label><input type="radio" name="wr_main" value="N" checked> 미사용</label>
+						<label><input type="radio" name="wr_main" value="Y"> 사용</label>
+					</dd>
+				</dl>
+				<dl class="video_only">
+				    <dt>바로가기 링크</dt>
+				    <dd>
+				    	<input type="text" name="wr_direct" id="wr_direct" maxlength="200">
+					    <p class='noty'>http 프로토콜을 포함한 링크를 입력해주세요.</p>
+				    </dd>
+				</dl>
+				<dl class="video_only">
+				    <dt>영상 배너</dt>
+				    <dd><input type="file" name="banner" id="banner" accept="video/*"></dd>
+				</dl>
+				<dl class="video_only">
+				    <dt>백그라운드 이미지</dt>
+				    <dd><input type="file" name="background" id="background" accept="image/*"></dd>
+				</dl>	
 				<dl>
 				    <dt>내용<span class="required_value">*</span></dt>
 				    <dd>

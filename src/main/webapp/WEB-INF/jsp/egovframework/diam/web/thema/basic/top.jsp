@@ -70,7 +70,6 @@ $('#preview .toggle-on').click(function() {
 		</div>
 	</div>
 	<!-- //.m-vol -->
-		
 	<div id="hd_wrap">
 		<div id="hd_logo">
 			<c:choose>

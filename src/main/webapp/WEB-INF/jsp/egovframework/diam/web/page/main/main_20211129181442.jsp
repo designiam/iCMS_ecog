@@ -105,7 +105,7 @@
 				<ul class="swiper-wrapper m-banner">
 					<li class="swiper-slide" style="background-image: url('${layout_path}/images/main/main_ban01_m.png');">
 						<a href="${result.dm_link}" target="${result.dm_link_type}">
-							<img src="${layout_path}/images/main/main_ban01_m.png" alt="">
+							<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
 						</a>
 					</li>
 				</ul>
