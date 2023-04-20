@@ -200,9 +200,9 @@ a:hover { color: #111; text-decoration: none; }
 #gnb_1dul { display: flex; justify-content: center; align-items: center; height: 100%; }
 #gnb_1dul .gnb_1dli { position: relative; margin-left: 6.25rem; }
 #gnb_1dul .gnb_1dli:not(:first-child):before { display: none; position: absolute; top: calc(50% - 0.25rem); left: 0; width: 1px; height: 0.5em; background: rgba(0,0,0,0.15); content: ""; }
-#gnb_1dul .gnb_1dli .gnb_1da { position: relative; padding: 0.5rem; color: #fff; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 1.563rem; font-weight: 700; letter-spacing: 0.01em; }
-#gnb_1dul .gnb_1dli .gnb_1da::before { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 0.188rem; background: #fff; transition: all .25s; }
-#gnb_1dul .gnb_1dli:hover .gnb_1da::before { width: 100%; }
+#gnb_1dul .gnb_1dli .gnb_1da { position: relative; padding: 0.5rem; color: #337140; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 1.563rem; font-weight: 700; letter-spacing: 0.01em; }
+#gnb_1dul .gnb_1dli .gnb_1da::before { content: ""; opacity: 0; visibility: hidden; position: absolute; top: 0.5rem; right: 0; width: 0.5rem; height: 0.5rem; background: #337140; border-radius: 50%; transition: all .25s; }
+#gnb_1dul .gnb_1dli:hover .gnb_1da::before { opacity: 1; visibility: visible; top: 0; }
 
 #gnb_1dul .gnb_2dul { display: block; opacity: 0; visibility: hidden; position: absolute; top: 120%; left: 50%; transform: translateX(-50%); width: auto; margin: 0; line-height: 1; transition: all 0.25s ease-in-out; min-width: 200px; background: #3f4553; color: #fff; }
 #gnb_1dul .gnb_2dul:after { display: block; visibility: hidden; clear: both; content: ""; }

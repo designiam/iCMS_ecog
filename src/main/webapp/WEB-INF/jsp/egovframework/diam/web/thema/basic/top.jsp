@@ -2,8 +2,66 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="layer_popup"></div>
+
+<div class="video-banner">
+	<div id="preview">
+		<div class="preview-wrap">
+			<video poster="<c:out value='${layout_path}'/>/sample_poster.jpg" muted="muted" autoplay="autoplay" loop="loop">
+				<source src="<c:out value='${layout_path}'/>/sample.mp4" type="video/mp4">
+			</video>
+		</div>
+		<!-- //.preview-wrap -->
+		<p>사람중심, 안전·혁신 환경을 만드는 ECO-G</p>
+		<div class="origin-wrap">
+			<div id="origin">
+				<div class="video-container">
+					<div class="video-wrap">
+						<iframe src="https://www.youtube-nocookie.com/embed/AG-VpKjKb38?controls=0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					</div>
+					<!-- //.video-wrap -->
+				</div>
+				<!-- //.video-container -->
+				
+				<div class="txt">
+					<div class="cate-wrap">
+						<p class="cate">LIFE</p>
+						<p class="date">2023.04.19</p>
+					</div>
+					<div class="subject">보이지 않는 곳에서 일하는 사람들이 있습니다.</div>
+					<div class="content">광주의 환경을 지키는 <br>아름다운 사람들의 이야기</div>
+					<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
+				</div>
+				<!-- //.txt -->
+			</div>
+			<!-- //#origin -->
+		</div>
+		<!-- //.origin-wrap -->
+		<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
+	</div>
+	<!-- //#preview -->
+</div>
+<!-- //.video-banner -->
+<script>
+$('#preview .toggle-on').click(function() {
+	var $preVideo = $('#preview .preview-wrap video');
+	var $originWrap = $('.video-banner .origin-wrap');
+	var $originVideo = $('#origin .preview-wrap video');
+    if ($originWrap.hasClass('on')) {
+    	$('.video-banner').removeClass('on');
+		$preVideo.get(0).play();
+		$originWrap.removeClass('on');
+    }
+    else {
+    	$preVideo.get(0).pause();
+    	setTimeout(function() {
+	    	$('.video-banner').addClass('on');
+	    	$originWrap.addClass('on');
+    	}, 250)
+    }
+});
+</script>
+
 <header id="hd">
-	<div id="header_top_banner"></div>
 	<div class="m-vol">
 		<div class="subject">월간 <b>ECO-G</b></div>
 		<div class="d-flex">
@@ -24,6 +82,7 @@
 				<c:otherwise>
 					<a href="<c:out value='${param.root }'/>/index.do">
 						<img src="<c:out value='${layout_path}'/>/images/logo.png" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>">
+						
 					</a>
 				</c:otherwise>
 			</c:choose>

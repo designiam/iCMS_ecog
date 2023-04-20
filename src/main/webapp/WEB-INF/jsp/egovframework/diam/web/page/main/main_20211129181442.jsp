@@ -398,6 +398,16 @@
 				엄선한 콘텐츠들을 한눈에 볼 수 있습니다.
 			</p>
 		</div>
+		<div class="sns-wrap">
+			<ul>
+				<li class="sns-blog"><a href="https://blog.naver.com/ecogj" target="_blank"><span class="sr-only">네이버 블로그</span></a></li>
+				<li class="sns-youtube"><a href="https://www.youtube.com/channel/UCCd9MhX9BrrS-vIbevOvo7w" target="_blank"><span class="sr-only">유튜브</span></a></li>
+				<li class="sns-instagram"><a href="https://www.instagram.com/ecogwangju_official/" target="_blank"><span class="sr-only">인스타그램</span></a></li>
+				<li class="sns-facebook"><a href="https://www.facebook.com/ecogwangju" target="_blank"><span class="sr-only">페이스북</span></a></li>
+				<li class="sns-kakao"><a href="https://pf.kakao.com/_lxegxnxb" target="_blank"><span class="sr-only">카카오톡 채널</span></a></li>
+			</ul>
+		</div>
+		<!-- //.sns-wrap -->
 	</div>
 	<!-- //.side-content -->
 	<div class="inner">
