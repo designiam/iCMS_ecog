@@ -249,7 +249,7 @@ $(function() {
 });
 
 $(function() {
-    $('#vis #titler .menutab h3').on('click', function() {
+    $('.menutab h3').on('click', function() {
         var $this = $(this),
             $that = $this.parent().next('ul');
             $parent = $this.parent();
