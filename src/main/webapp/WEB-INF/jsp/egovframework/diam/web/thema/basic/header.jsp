@@ -54,8 +54,11 @@
 <script type="text/javascript" src="<c:url value='${layout_path}/js/base.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/diam.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/main.js'/>"></script>
-<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js'/>"></script>
-
+<c:choose>
+	<c:when test="${pageVO.dm_main_content ne '1'}">
+		<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>
+	</c:when>
+</c:choose>
 
 <c:choose>
 	<c:when test="${pageVO.dm_page_type eq 'BOARD'}">
@@ -72,13 +75,11 @@
 			</c:when>
 			<c:otherwise>
 				<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
-				<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>		
 			</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
-		<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>
 	</c:otherwise>
 </c:choose>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/common.js'/>"></script>

@@ -3,63 +3,65 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="layer_popup"></div>
 
-<div class="video-banner">
-	<div id="preview">
-		<div class="preview-wrap">
-			<video poster="<c:out value='${layout_path}'/>/sample_poster.jpg" muted="muted" autoplay="autoplay" loop="loop">
-				<source src="<c:out value='${layout_path}'/>/sample.mp4" type="video/mp4">
-			</video>
-		</div>
-		<!-- //.preview-wrap -->
-		<p>사람중심, 안전·혁신 환경을 만드는 ECO-G</p>
-		<div class="origin-wrap">
-			<div id="origin">
-				<div class="video-container">
-					<div class="video-wrap">
-						<iframe src="https://www.youtube-nocookie.com/embed/AG-VpKjKb38?controls=0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-					</div>
-					<!-- //.video-wrap -->
-				</div>
-				<!-- //.video-container -->
-				
-				<div class="txt">
-					<div class="cate-wrap">
-						<p class="cate">LIFE</p>
-						<p class="date">2023.04.19</p>
-					</div>
-					<div class="subject">보이지 않는 곳에서 일하는 사람들이 있습니다.</div>
-					<div class="content">광주의 환경을 지키는 <br>아름다운 사람들의 이야기</div>
-					<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
-				</div>
-				<!-- //.txt -->
+<c:if test="${pageVO.dm_main_content eq '1'}">
+	<div class="video-banner">
+		<div id="preview">
+			<div class="preview-wrap">
+				<video poster="<c:out value='${layout_path}'/>/sample_poster.jpg" muted="muted" autoplay="autoplay" loop="loop">
+					<source src="<c:out value='${layout_path}'/>/sample.mp4" type="video/mp4">
+				</video>
 			</div>
-			<!-- //#origin -->
+			<!-- //.preview-wrap -->
+			<p>사람중심, 안전·혁신 환경을 만드는 ECO-G</p>
+			<div class="origin-wrap">
+				<div id="origin">
+					<div class="video-container">
+						<div class="video-wrap">
+							<iframe src="https://www.youtube-nocookie.com/embed/AG-VpKjKb38?controls=0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						</div>
+						<!-- //.video-wrap -->
+					</div>
+					<!-- //.video-container -->
+					
+					<div class="txt">
+						<div class="cate-wrap">
+							<p class="cate">LIFE</p>
+							<p class="date">2023.04.19</p>
+						</div>
+						<div class="subject">보이지 않는 곳에서 일하는 사람들이 있습니다.</div>
+						<div class="content">광주의 환경을 지키는 <br>아름다운 사람들의 이야기</div>
+						<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
+					</div>
+					<!-- //.txt -->
+				</div>
+				<!-- //#origin -->
+			</div>
+			<!-- //.origin-wrap -->
+			<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
 		</div>
-		<!-- //.origin-wrap -->
-		<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
+		<!-- //#preview -->
 	</div>
-	<!-- //#preview -->
-</div>
-<!-- //.video-banner -->
-<script>
-$('#preview .toggle-on').click(function() {
-	var $preVideo = $('#preview .preview-wrap video');
-	var $originWrap = $('.video-banner .origin-wrap');
-	var $originVideo = $('#origin .preview-wrap video');
-    if ($originWrap.hasClass('on')) {
-    	$('.video-banner').removeClass('on');
-		$preVideo.get(0).play();
-		$originWrap.removeClass('on');
-    }
-    else {
-    	$preVideo.get(0).pause();
-    	setTimeout(function() {
-	    	$('.video-banner').addClass('on');
-	    	$originWrap.addClass('on');
-    	}, 250)
-    }
-});
-</script>
+	<!-- //.video-banner -->
+	<script>
+	$('#preview .toggle-on').click(function() {
+		var $preVideo = $('#preview .preview-wrap video');
+		var $originWrap = $('.video-banner .origin-wrap');
+		var $originVideo = $('#origin .preview-wrap video');
+	    if ($originWrap.hasClass('on')) {
+	    	$('.video-banner').removeClass('on');
+			$preVideo.get(0).play();
+			$originWrap.removeClass('on');
+	    }
+	    else {
+	    	$preVideo.get(0).pause();
+	    	setTimeout(function() {
+		    	$('.video-banner').addClass('on');
+		    	$originWrap.addClass('on');
+	    	}, 250)
+	    }
+	});
+	</script>
+</c:if>
 
 <header id="hd">
 	<div class="m-vol">
@@ -235,24 +237,26 @@ $('#preview .toggle-on').click(function() {
 								<c:forEach var="menu" items="${menuList}" varStatus="status">
 									<c:if test="${menu.dm_depth eq 2 && menu.dm_menu_hidden ne '1'}">
 										<li class="gnb_1dli">
-											<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><c:out value="${menu.dm_menu_text}" /></a>
-											<ul class="gnb_2dul">
-												<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
-													<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
-														<li class="gnb_2dli">
-															<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
-															<ul class="gnb_3dul">
-															<c:forEach items="${menuList }" var="depth3">
-																<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
-																	<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
-																	</li>
-																</c:if>
-															</c:forEach>
-															</ul>
-														</li>
-													</c:if>
-												</c:forEach>
-											</ul>
+											<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><span><c:out value="${menu.dm_menu_text}" /></span></a>
+											<div class="gnb_2dul_con">
+												<ul class="gnb_2dul">
+													<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
+														<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
+															<li class="gnb_2dli">
+																<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
+																<ul class="gnb_3dul">
+																<c:forEach items="${menuList }" var="depth3">
+																	<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
+																		<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
+																		</li>
+																	</c:if>
+																</c:forEach>
+																</ul>
+															</li>
+														</c:if>
+													</c:forEach>
+												</ul>
+											</div>
 										</li>
 									</c:if>
 								</c:forEach>
@@ -260,7 +264,9 @@ $('#preview .toggle-on').click(function() {
 						</c:when>
 					</c:choose>
 				</div>
+				<!-- //#gnb_container -->
 			</div>
+			<!-- //#gnb_wrap -->
 		</div>
 		<!-- //#gnb -->
 		
