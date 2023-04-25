@@ -130,7 +130,14 @@ $(document).on("click", ".reset", function(){
 });
 
 function fnSave() {
-	$(".btnWrap").hide();
+
+	var banner = $("#banner")[0].files[0];
+	if (banner != null) {
+		if (banner.size > 52428800) {
+			alert("파일 사이즈는 50MB를 초과할 수 없습니다.");
+			return;
+		}		
+	}
 	
 	if ($("#wr_content").data("editor") == '1') {
 		oEditors.getById["wr_content"].exec("UPDATE_CONTENTS_FIELD", []); //textarea의 id를 적어줍니다.		
@@ -167,6 +174,7 @@ function fnSave() {
 		}
 	}
 	
+	$(".btnWrap").hide();
     var form = $("#fm")[0];
     var formData = new FormData(form);
 
@@ -175,9 +183,10 @@ function fnSave() {
         data : formData,
         dataType: "json",
         type : "post",
-        async : false,
-        contentType: false,
-        processData: false,
+        async: false,
+    	cache: false,
+    	contentType: false,
+    	processData: false,
         success : function (data) {
         	if(data.result == "success") {
         		window.opener.$.messager.alert('알림', data.notice, 'info');
@@ -189,6 +198,9 @@ function fnSave() {
             	$(".btnWrap").show();
             }                
         }, error:function(request,status,error) {
+        	console.log(request);
+        	$(".btnWrap").show();
+        	return;
         	if (request.status == "303") {
 				location.replace("/adm/login.do");
 			} else {
@@ -462,7 +474,7 @@ var createSE = function() {
 				    <dd><input type="file" name="banner" id="banner" accept="video/*"></dd>
 				</dl>
 				<dl class="video_only">
-				    <dt>백그라운드 이미지</dt>
+				    <dt>배너 포스터</dt>
 				    <dd><input type="file" name="background" id="background" accept="image/*"></dd>
 				</dl>	
 				<dl>

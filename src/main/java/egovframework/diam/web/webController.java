@@ -275,8 +275,11 @@ public class webController {
 			
 			if (coverVO != null) {
 				Dm_write_vo writeVO = Dm_write_vo.builder()
-						.wr_vol(vol)
+						.wr_vol(coverVO.getDm_vol())
 						.build();
+				writeVO = writeService.selectMainByVol(writeVO);
+				
+				result.addObject("mainWrite", writeVO);
 			}
 			
 			Dm_main_visual_vo mainVisualVO = new Dm_main_visual_vo();

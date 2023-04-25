@@ -69,6 +69,38 @@ public class WebWriteController {
 	@Resource(name="pageService")
 	private PageService pageService;
 	
+	private void newUpload(Dm_write_vo vo) throws Exception {
+		CommonUtil commonUtil = new CommonUtil();
+		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		if (vo.getHead() != null && !vo.getHead().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getHead())) {
+				vo.getHead().transferTo(new File(vo.getWr_path() + today + "_" + vo.getHead().getOriginalFilename()));
+				vo.setWr_head(today + "_" + vo.getHead().getOriginalFilename());
+			}
+		}
+		
+		if (vo.getBackground() != null && !vo.getBackground().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getBackground())) {
+				vo.getBackground().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBackground().getOriginalFilename()));
+				vo.setWr_background(today + "_" + vo.getBackground().getOriginalFilename());
+			}
+		}
+		
+		if (vo.getBanner() != null && !vo.getBanner().isEmpty()) {
+			if (commonUtil.videoExtCheck(vo.getBanner())) {
+				vo.getBanner().transferTo(new File(vo.getWr_path() + today + "_" + vo.getBanner().getOriginalFilename()));
+				vo.setWr_banner(today + "_" + vo.getBanner().getOriginalFilename());
+			}
+		}
+		
+		if (vo.getThumbnail() != null && !vo.getThumbnail().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getThumbnail())) {
+				vo.getThumbnail().transferTo(new File(vo.getWr_path() + today + "_" + vo.getThumbnail().getOriginalFilename()));
+				vo.setWr_thumb(today + "_" + vo.getThumbnail().getOriginalFilename());
+			}
+		}
+	}
+	
 	/**
 	 * insert
 	 * 사용자가 입력한 게시물데이터의 insert/update 동작 수행
@@ -158,6 +190,9 @@ public class WebWriteController {
 					
 					//XSS필터링을 위한 신규추가
 					writeVO.setWr_content(commonUtil.xssSaxFiltering(writeVO.getWr_content()));
+					writeVO.setWr_path(FILE_PATH);
+					newUpload(writeVO);
+					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_skin() + "/");
 					
 					writeService.insertWrite(writeVO);
 					session.removeAttribute("DIAM_WEB_WRITE_RSA_KEY");
@@ -218,6 +253,8 @@ public class WebWriteController {
 						
 						//XSS필터링을 위한 신규추가
 						writeVO.setWr_content(commonUtil.xssSaxFiltering(writeVO.getWr_content()));
+						writeVO.setWr_path(FILE_PATH);
+						newUpload(writeVO);
 						
 				        writeService.updateWrite(writeVO);
 				        session.removeAttribute("DIAM_WEB_WRITE_RSA_KEY");

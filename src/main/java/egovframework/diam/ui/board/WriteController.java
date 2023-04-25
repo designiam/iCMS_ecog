@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +32,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.diam.biz.model.board.Dm_board_vo;
@@ -70,7 +72,6 @@ public class WriteController {
 	@Resource(name="configService") private ConfigService configService;
 	@Resource(name="memberService") private MemberService memberService;
 	@Resource(name="pageService") private PageService pageService;
-
 		
 	/**
 	 * get_write_list
@@ -95,7 +96,7 @@ public class WriteController {
 			writeVO.setRows(row);
 			writeVO.setPage(row * (page -1));
 		}
-		try {		
+		try {
 			List<Dm_write_vo> writeList = writeService.selectWriteList(writeVO);
 			int writeCnt = writeService.selectWriteListCnt(writeVO);
 			if (writeList.size() > 0) {
@@ -459,8 +460,6 @@ public class WriteController {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", "게시판 정보가 없습니다.");
 			}			
-		} catch (SizeLimitExceededException sle) {
-			log.error("test");
 		} catch(InvalidKeyException ike) {
 			log.error(MessageCode.CMM_ENCRYPT_EXPIRED.getLog());
 			resultMap.put("notice", MessageCode.CMM_ENCRYPT_EXPIRED.getMessage());
@@ -478,7 +477,6 @@ public class WriteController {
 			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch(Exception e) {
-			e.printStackTrace();
 			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -1017,5 +1015,14 @@ public class WriteController {
 	*/
 	private synchronized void FileDelete(File file) {
 		file.delete();
+	}
+
+	
+	@PostMapping("/adm/max.do")
+	public ResponseEntity<?> test() {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("notice", "에반데..");
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

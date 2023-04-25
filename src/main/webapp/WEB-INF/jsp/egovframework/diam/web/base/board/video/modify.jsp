@@ -11,8 +11,9 @@
 <script>
 var oEditors = [];
 $(function () {
+	
 	<c:if test="${boardVO.dm_use_dhtml_editor eq 1}">
-	nhn.husky.EZCreator.createInIFrame({ 
+	nhn.husky.EZCreator.createInIFrame({
 		oAppRef : oEditors, 
 		elPlaceHolder : "wr_content", //저는 textarea의 id와 똑같이 적어줬습니다.
 		sSkinURI : "/js/egovframework/diam/se2/SmartEditor2Skin.html", //경로를 꼭 맞춰주세요!
@@ -61,7 +62,26 @@ function checkForm() {
 		alert("정확한 동영상 공유 링크를 입력해주세요");
 		return false;
 	}
+	
+	if ($("#wr_vol").val() == "") {
+		alert("발행 호수를 입력하세요.");
+		$("#wr_vol").focus();
+		return false;
+	}
+	
+	var banner = $("#banner")[0].files[0];
+	if (banner != null) {
+		if (banner.size > 52428800) {
+			alert("파일 사이즈는 50MB를 초과할 수 없습니다.");
+			return false;
+		}
+	}
 }
+
+$(document).on("click", ".rmv", function(e){
+	e.preventDefault();
+	$(this).closest("div").remove();
+});
 </script>
 <p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
 <div class="bbs bbs_post bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
@@ -147,7 +167,79 @@ function checkForm() {
 						</td>
 					</tr>
 				</c:if>
-				
+				<tr>
+					<th><label for="wr_vol">발행호<span class="required">*</span></label></th>
+					<td>
+						<input type="text" name="wr_vol" id="wr_vol" value="<c:out value='${writeVO.wr_vol }'/>" class="form-control" autocomplete="off" placeholder="발행호수"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="wr_main">메인게시글<span class="required">*</span></label></th>
+					<td>
+						<label><input type="radio" name="wr_main" id="wr_main" value="N" <c:if test="${writeVO.wr_main eq 'N'}">checked</c:if>/> 미사용</label>
+						<label><input type="radio" name="wr_main" id="wr_main" value="Y" <c:if test="${writeVO.wr_main eq 'Y'}">checked</c:if>/> 사용</label>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="wr_direct">바로가기 링크</label></th>
+					<td>
+						<input type="text" name="wr_direct" id="wr_direct" class="form-control" autocomplete="off" placeholder="바로가기 링크"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="head">타이틀 이미지</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="head">업로드</label>
+							<input type="file" name="head" id="head" class="upload-hidden" accept="image/*"/>
+						</div>
+						<c:if test="${!empty writeVO.wr_head }">
+							<div class="fileout">
+								<c:set value="${fn:length(writeVO.wr_head) }" var="lenHead"/>
+								<span class="fileout_checkbox"><a href="#" class="rmv">삭제</a></span>
+								<span class="fileout_filename"><a href="<c:out value='${writeVO.wr_path}${writeVO.wr_head}' />" target="_blank"><c:out value='${fn:substring(writeVO.wr_head, 15, lenHead)}'/></a></span>
+								<input type="hidden" name="wr_head" value="<c:out value='${writeVO.wr_head }'/>">
+							</div>
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="banner">영상배너</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="banner">업로드</label>
+							<input type="file" name="banner" id="banner" class="upload-hidden" accept="video/*"/>
+						</div>
+						<c:if test="${!empty writeVO.wr_banner }">
+							<div class="fileout">
+								<c:set value="${fn:length(writeVO.wr_banner) }" var="lenBanner"/>
+								<span class="fileout_checkbox"><a href="#" class="rmv">삭제</a></span>
+								<span class="fileout_filename"><a href="<c:out value='${writeVO.wr_path}${writeVO.wr_banner}' />" target="_blank"><c:out value='${fn:substring(writeVO.wr_banner, 15, lenBanner)}'/></a></span>
+								<input type="hidden" name="wr_banner" value="<c:out value='${writeVO.wr_banner }'/>">
+							</div>
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="background">배너 포스터</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="background">업로드</label>
+							<input type="file" name="background" id="background" class="upload-hidden" accept="image/*"/>
+						</div>
+						<c:if test="${!empty writeVO.wr_background }">
+							<div class="fileout">
+								<c:set value="${fn:length(writeVO.wr_background) }" var="lenBack"/>
+								<span class="fileout_checkbox"><a href="#" class="rmv">삭제</a></span>
+								<span class="fileout_filename"><a href="<c:out value='${writeVO.wr_path}${writeVO.wr_background}' />" target="_blank"><c:out value='${fn:substring(writeVO.wr_background, 15, lenBack)}'/></a></span>
+								<input type="hidden" name="wr_background" value="<c:out value='${writeVO.wr_background }'/>">
+							</div>
+						</c:if>
+					</td>
+				</tr>
 				<tr>
 					<th><label for="wr_content">내용<span class="required">*</span></label></th>
 					<td>
@@ -174,7 +266,7 @@ function checkForm() {
 							</label>
 						</th>
 						<td>
-							<input type="text" name="wr_link2" id="wr_link2" class="form-control" size="50" value="<c:out value='${writeVO.wr_link2 }' />">
+							<input type="text" name="wr_link2" id="wr_link2" class="form-control" size="50" value="<c:out value='${writeVO.wr_link2 }' />" />
 						</td>
 					</tr>
 				</c:if>

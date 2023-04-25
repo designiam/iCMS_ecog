@@ -2,45 +2,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="layer_popup"></div>
-
 <c:if test="${pageVO.dm_main_content eq '1'}">
-	<div class="video-banner">
-		<div id="preview">
-			<div class="preview-wrap">
-				<video poster="<c:out value='${layout_path}'/>/sample_poster.jpg" muted="muted" autoplay="autoplay" loop="loop">
-					<source src="<c:out value='${layout_path}'/>/sample.mp4" type="video/mp4">
-				</video>
-			</div>
-			<!-- //.preview-wrap -->
-			<p>사람중심, 안전·혁신 환경을 만드는 ECO-G</p>
-			<div class="origin-wrap">
-				<div id="origin">
-					<div class="video-container">
-						<div class="video-wrap">
-							<iframe src="https://www.youtube-nocookie.com/embed/AG-VpKjKb38?controls=0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-						</div>
-						<!-- //.video-wrap -->
+<div class="video-banner">
+	<div id="preview">
+		<div class="preview-wrap">
+			<video poster="<c:out value='${mainWrite.wr_path }${mainWrite.wr_background }'/>" muted="muted" autoplay="autoplay" loop="loop">
+				<source src="<c:out value='${mainWrite.wr_path }${mainWrite.wr_banner }'/>" type="video/mp4">
+			</video>
+		</div>
+		<!-- //.preview-wrap -->
+		<p><c:out value="${cover.dm_title }"/></p>
+		<div class="origin-wrap">
+			<div id="origin">
+				<div class="video-container">
+					<div class="video-wrap">
+						<c:set value="${fn:split(mainWrite.wr_link1, '/')}" var="videoId"/>
+						<c:forEach items="${videoId }" var="i" varStatus="stat">
+							<c:if test="${stat.last}">
+								<c:set var="uniqId" value="${i}"/>
+							</c:if>
+						</c:forEach>
+						<iframe src="https://www.youtube-nocookie.com/embed/<c:out value='${uniqId }'/>?controls=0&autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</div>
-					<!-- //.video-container -->
-					
-					<div class="txt">
-						<div class="cate-wrap">
-							<p class="cate">LIFE</p>
-							<p class="date">2023.04.19</p>
-						</div>
-						<div class="subject">보이지 않는 곳에서 일하는 사람들이 있습니다.</div>
-						<div class="content">광주의 환경을 지키는 <br>아름다운 사람들의 이야기</div>
-						<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
-					</div>
-					<!-- //.txt -->
+					<!-- //.video-wrap -->
 				</div>
-				<!-- //#origin -->
+				<!-- //.video-container -->
+				<div class="txt">
+					<div class="cate-wrap">
+						<p class="cate">LIFE</p>
+						<p class="date"><c:out value="${fn:substring(mainWrite.wr_datetime, 0, 10) }"/></p>
+					</div>
+					<div class="subject"><c:out value="${mainWrite.wr_subject }"/></div>
+					<div class="content"><c:out value="${mainWrite.wr_content }" escapeXml="false"/></div>
+					<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
+				</div>
+				<!-- //.txt -->
 			</div>
 			<!-- //.origin-wrap -->
-			<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
 		</div>
+		<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
 		<!-- //#preview -->
 	</div>
+</div>
 	<!-- //.video-banner -->
 	<script>
 	$('#preview .toggle-on').click(function() {
@@ -67,8 +70,8 @@
 	<div class="m-vol">
 		<div class="subject">월간 <b>ECO-G</b></div>
 		<div class="d-flex">
-			<div class="volume mr20">Vol. <b class="ml10">15</b></div>
-			<div class="date">2023.03</div>
+			<div class="volume mr20">Vol. <b class="ml10"><c:out value="${cover.dm_vol}"/></b></div>
+			<div class="date"><c:out value="${cover.dm_year }.${cover.dm_month }"/></div>
 		</div>
 	</div>
 	<!-- //.m-vol -->
@@ -662,24 +665,14 @@
 				<div class="side-content">
 					<div class="title">
 						<div>월간 <b>ECO-G</b></div>
-						<div style="letter-spacing: 0.1em;">Vol. <span class="vol">15</span> <span class="date">2023.03</span></div>
-						
+						<div style="letter-spacing: 0.1em;">Vol. <span class="vol"><c:out value="${cover.dm_vol }"/></span> <span class="date"><c:out value="${cover.dm_year }.${cover.dm_month }"/></span></div>
+						<c:out value="" escapeXml=""/>
 						<div class="logo">
 							<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
 						</div>
 					</div>
 					<div class="txt">
-						<p>
-							월간 ECO_G<br>
-							15호에서는 일상에서 일회용품 줄이기 <br>
-							일환으로 직원들의 참여 <b>#SNS 사진</b>과 함께 <br>
-							다양한 이슈를 소개해드립니다.
-						</p>
-						<p class="mt30">
-							광주환경공단 <br>
-							직원들의 <b>안녕~ 반가워 나의 봄</b><br>
-							사진전을 진행하였습니다.
-						</p>
+						<c:out value="${cover.dm_content }" escapeXml="false"/>
 					</div>
 				</div>
 				<!-- //.side-content -->
@@ -687,7 +680,6 @@
 		</c:choose>
 	</div>
 </div>
-
 <div id="main">
 	<div id="container">
 		<c:if test="${pageVO.dm_main_content ne '1'}">
