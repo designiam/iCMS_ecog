@@ -515,10 +515,49 @@
 	</update>
 	
 	<select id="selectMainByVol" resultMap="resultWriteVO">
-		SELECT *
-		  FROM dm_write
-		 WHERE wr_vol = #{wr_vol}
-		   AND wr_main = 'Y'
-		   AND dm_delete_yn = 'N'
+		   SELECT A.*, B.dm_uid AS uid
+		     FROM dm_write AS A
+		LEFT JOIN dm_pages AS B
+			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
+		    WHERE A.wr_vol = #{wr_vol}
+		      AND A.wr_main = 'Y'
+		      AND A.dm_delete_yn = 'N'
+	</select>
+	
+	<select id="selectSameVolWrite" resultMap="resultWriteVO">
+		   SELECT A.*, B.dm_uid AS uid
+		  	 FROM dm_write AS A
+		LEFT JOIN dm_pages AS B
+			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
+			WHERE wr_vol = #{wr_vol}
+			  AND A.dm_delete_yn = 'N'
+		<if test='wr_id != null and wr_id != ""'>
+			  AND wr_id != #{wr_id}
+		</if>
+	</select>
+	
+	<select id="selectPopularWrite" resultMap="resultWriteVO">
+		    SELECT A.*, C.dm_uid AS uid
+		      FROM dm_write AS A
+		INNER JOIN dm_board AS B
+		        ON A.wr_board = B.dm_id AND B.dm_skin = 'gallery'
+		 LEFT JOIN dm_pages AS C
+			    ON B.dm_id = C.dm_board_id AND C.dm_page_type = 'BOARD' AND C.dm_delete_yn = 'N'
+		     WHERE A.dm_delete_yn = 'N'
+		       AND wr_vol = #{wr_vol}
+		  ORDER BY wr_new_hit DESC
+		     LIMIT 3
+	</select>
+	
+	<select id="selectMainWrite" resultMap="resultWriteVO" parameterType="java.util.HashMap">
+		SELECT A.*, B.dm_uid AS uid
+		  	 FROM dm_write AS A
+		LEFT JOIN dm_pages AS B
+			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
+			WHERE wr_vol = #{vol}
+			  AND A.dm_delete_yn = 'N'
+		<foreach collection="list" item="item" open="AND (" close=")" separator=" OR ">
+			A.wr_board = #{item}
+		</foreach>
 	</select>
 </mapper>

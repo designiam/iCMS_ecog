@@ -49,6 +49,7 @@ import egovframework.diam.biz.service.board.WriteService;
 import egovframework.diam.biz.service.config.ConfigService;
 import egovframework.diam.biz.service.display.PageService;
 import egovframework.diam.biz.service.member.MemberService;
+import egovframework.diam.cmm.JsoupCrawling;
 import egovframework.diam.cmm.model.Dm_common_code_vo;
 import egovframework.diam.cmm.model.LoginVO;
 import egovframework.diam.cmm.util.CommonUtil;
@@ -255,8 +256,7 @@ public class WriteController {
 	 * @return void response객체를 통하여 ajax 결과값 전송
 	*/
 	@RequestMapping("/adm/get_write.do")
-	public ResponseEntity<Object> get_write (Dm_write_vo writeVO) {
-		
+	public ResponseEntity<Object> get_write (Dm_write_vo writeVO) {		
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		try {
@@ -370,7 +370,7 @@ public class WriteController {
 					writeVO.setWr_ori_file_name(String.join("|", file_ori_array));
 					writeVO.setWr_path(FILE_PATH);
 					newUpload(writeVO);
-					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_skin() + "/");
+					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_table() + "/");
 					
 					int result = writeService.insertWrite(writeVO);
 					

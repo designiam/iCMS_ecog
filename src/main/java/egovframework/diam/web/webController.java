@@ -256,7 +256,7 @@ public class webController {
 	@RequestMapping("/web/frame_top.do")
 	public ModelAndView top(@RequestParam(value="contentId", required=false, defaultValue="") String contentId,
 			@RequestParam(value="vol", required=false, defaultValue="") String vol,
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request, HttpSession session) throws Exception {
 		
 		CommonUtil commonUtil = new CommonUtil();
 		ModelAndView result = new ModelAndView();
@@ -266,11 +266,13 @@ public class webController {
 			
 			Dm_cover_vo coverVO = new Dm_cover_vo();
 			if (commonUtil.isNullOrEmpty(vol)) {
-				coverVO = coverService.selectUseCover(new Dm_cover_vo());				
+				coverVO = coverService.selectUseCover(new Dm_cover_vo());
+				vol = coverVO.getDm_vol();
 			} else {
 				coverVO.setDm_vol(vol);
 				coverVO = coverService.selectCoverByVol(coverVO);
 			}
+			session.setAttribute("vol", vol);
 			result.addObject("cover", coverVO);
 			
 			if (coverVO != null) {

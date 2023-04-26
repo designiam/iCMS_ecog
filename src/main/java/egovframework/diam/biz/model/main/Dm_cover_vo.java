@@ -1,5 +1,7 @@
 package egovframework.diam.biz.model.main;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -54,4 +56,6 @@ public class Dm_cover_vo {
 	private String search_type;
 	private String search_start_date;
 	private String search_end_date;
+	
+	private List<String> boardList;
 }

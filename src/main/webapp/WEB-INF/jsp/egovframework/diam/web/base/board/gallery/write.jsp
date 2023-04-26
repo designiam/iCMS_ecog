@@ -59,7 +59,13 @@ function checkForm() {
     		alert("비회원으로 등록 시에는 비밀번호를 입력해주세요.");
     		return false;
     	}
-	</c:if>	
+	</c:if>
+	
+	if ($("#wr_vol").val() == "") {
+		alert("발행 호수를 입력하세요.");
+		$("#wr_vol").focus();
+		return false;
+	}
 }
 </script>
 <p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
@@ -141,7 +147,32 @@ function checkForm() {
 						</td>
 					</tr>
 				</c:if>
-				
+				<tr>
+					<th><label for="wr_vol">발행호<span class="required">*</span></label></th>
+					<td>
+						<input type="text" name="wr_vol" id="wr_vol" class="form-control" autocomplete="off" placeholder="발행호수"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="head">타이틀 이미지</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="head">업로드</label>
+							<input type="file" name="head" id="head" class="upload-hidden" accept="image/*"/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="background">썸네일</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="thumbnail">업로드</label>
+							<input type="file" name="thumbnail" id="thumbnail" class="upload-hidden" accept="image/*"/>
+						</div>
+					</td>
+				</tr>
 				<tr>
 					<th><label for="wr_content">내용<span class="required">*</span></label></th>
 					<td>

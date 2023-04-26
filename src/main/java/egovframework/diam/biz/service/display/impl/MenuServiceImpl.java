@@ -167,4 +167,9 @@ public class MenuServiceImpl extends EgovAbstractServiceImpl implements MenuServ
 	public List<Dm_menus_vo> selectTreeMenu(Dm_menus_vo vo) throws Exception {
 		return menuMapper.selectTreeMenu(vo);
 	}
+
+	@Override
+	public List<String> selectChildBoardMenu(Dm_menus_vo vo) throws Exception {
+		return menuMapper.selectChildBoardMenu(vo);
+	}
 }
