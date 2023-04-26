@@ -135,9 +135,9 @@
 		
 		<div class="tabMenu-wrap tab-style-03">
 			<ul>
-				<li class="tabMenu on" data-value="1">Contents</li>
-				<li class="tabMenu" data-value="2">Article</li>
-				<li class="tabMenu" data-value="3">Life</li>
+				<li class="tabMenu on" data-value="1" data-id="271">Contents</li>
+				<li class="tabMenu" data-value="2" data-id="272">Article</li>
+				<li class="tabMenu" data-value="3" data-id="273">Life</li>
 			</ul>
 		</div>
 		<!-- //.tabMenu-wrap -->
@@ -442,9 +442,34 @@
 	</div>
 	<!-- //.inner -->
 </section>
-
-
 <script>
+$(function(){
+	getPopularData();
+	$("[data-value=1]").trigger("click");
+	
+});
+
+//인기순 조회
+function getPopularData() {
+	var set = {
+		url: "/web/selectPopularWrite.do",
+		data: {wr_vol : "${sessionScope.vol}"},
+		type: "get"
+	}
+	
+	asyncFunc(set)
+	.done(function(data){
+		console.log(data);
+	}).fail(function(request, status, error){
+		alert(request.responseJSON.notice);
+	});
+}
+
+//ajax 함수
+function asyncFunc(set) {
+	return $.ajax(set);
+}
+
 //탭 레이아웃 리스너
 $(".tabMenu").on("click",function(){
     $(".on").removeClass("on").attr("title", " ");
@@ -453,9 +478,27 @@ $(".tabMenu").on("click",function(){
     var value = $(this).data("value");
     $("[data-target="+value+"]").show().attr("title", "선택됨");
     $(".tabContent[data-target!="+value+"]").hide().attr("title", " ");
+    
+    var menuId = $(this).data("id");
+    var set = {
+    	url: "/web/selectChildMenuBoard.do",
+    	type: "get",
+    	data: {dm_id : menuId}
+    }
+    
+    asyncFunc(set)
+    .done(function(data){
+    	if (data.result == "success") {
+			console.log(data.rows);
+			
+		} else {
+			alert(data.notice);
+		}
+    	
+    }).fail(function(request, status, error){
+		alert(request.responseJSON.notice);
+	});
 });
-
-$("[data-value=1]").trigger("click");
 
 
 //인기 게시글 슬라이드

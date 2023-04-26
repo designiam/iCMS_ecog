@@ -4,6 +4,7 @@
 package egovframework.diam.biz.db.board;
 
 import java.util.List;
+import java.util.Map;
 
 import egovframework.diam.biz.model.board.Dm_write_vo;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
@@ -175,4 +176,10 @@ public interface WriteMapper {
 	public void updateWriteMainOff(Dm_write_vo vo);
 	
 	public Dm_write_vo selectMainByVol(Dm_write_vo vo);
+	
+	public List<Dm_write_vo> selectPopularWrite(Dm_write_vo vo);
+	
+	public List<Dm_write_vo> selectSameVolWrite(Dm_write_vo vo);
+	
+	public List<Dm_write_vo> selectMainWrite(Map<String, Object> param);
 }

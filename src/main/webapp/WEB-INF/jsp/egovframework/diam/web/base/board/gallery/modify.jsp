@@ -57,6 +57,12 @@ function checkForm() {
 			$("#wr_password").val(rsa.encrypt(wr_password));
 		}
 	</c:if>
+	
+	if ($("#wr_vol").val() == "") {
+		alert("발행 호수를 입력하세요.");
+		$("#wr_vol").focus();
+		return false;
+	}
 }
 </script>
 <p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
@@ -140,7 +146,48 @@ function checkForm() {
 						</td>
 					</tr>
 				</c:if>
-				
+				<tr>
+					<th><label for="wr_vol">발행호<span class="required">*</span></label></th>
+					<td>
+						<input type="text" name="wr_vol" id="wr_vol" value="<c:out value='${writeVO.wr_vol }'/>" class="form-control" autocomplete="off" placeholder="발행호수"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="head">타이틀 이미지</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="head">업로드</label>
+							<input type="file" name="head" id="head" class="upload-hidden" accept="image/*"/>
+						</div>
+						<c:if test="${!empty writeVO.wr_head }">
+							<div class="fileout">
+								<c:set value="${fn:length(writeVO.wr_head) }" var="lenHead"/>
+								<span class="fileout_checkbox"><a href="#" class="rmv">삭제</a></span>
+								<span class="fileout_filename"><a href="<c:out value='${writeVO.wr_path}${writeVO.wr_head}' />" target="_blank"><c:out value='${fn:substring(writeVO.wr_head, 15, lenHead)}'/></a></span>
+								<input type="hidden" name="wr_head" value="<c:out value='${writeVO.wr_head }'/>">
+							</div>
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="thumbnail">배너 포스터</label></th>
+					<td>
+						<div class="filebox">
+							<input class="upload-name" value="파일선택" disabled="disabled"/>
+							<label for="thumbnail">업로드</label>
+							<input type="file" name="thumbnail" id="thumbnail" class="upload-hidden" accept="image/*"/>
+						</div>
+						<c:if test="${!empty writeVO.wr_thumb }">
+							<div class="fileout">
+								<c:set value="${fn:length(writeVO.wr_thumb) }" var="lenBack"/>
+								<span class="fileout_checkbox"><a href="#" class="rmv">삭제</a></span>
+								<span class="fileout_filename"><a href="<c:out value='${writeVO.wr_path}${writeVO.wr_thumb}' />" target="_blank"><c:out value='${fn:substring(writeVO.wr_thumb, 15, lenBack)}'/></a></span>
+								<input type="hidden" name="wr_thumb" value="<c:out value='${writeVO.wr_thumb }'/>">
+							</div>
+						</c:if>
+					</td>
+				</tr>
 				<tr>
 					<th><label for="wr_content">내용<span class="required">*</span></label></th>
 					<td>

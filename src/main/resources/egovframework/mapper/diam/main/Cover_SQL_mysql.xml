@@ -41,7 +41,9 @@
 		WHERE 1 = 1
 		AND A.dm_delete_yn = 'N'
 		<include refid="selectWhere"/>
-		LIMIT #{page}, #{rows}
+		<if test='page > -1 and rows > 0'>
+			LIMIT #{page}, #{rows}
+		</if>
 	</select>
 
 	<select id="selectCoverListCount" resultType="integer">

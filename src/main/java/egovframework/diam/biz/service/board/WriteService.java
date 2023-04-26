@@ -142,4 +142,10 @@ public interface WriteService {
 	public void updateNewHitCountReset() throws Exception;
 	
 	public Dm_write_vo selectMainByVol(Dm_write_vo vo) throws Exception;
+	
+	public List<Dm_write_vo> selectPopularWrite(Dm_write_vo vo) throws Exception;
+	
+	public List<Dm_write_vo> selectSameVolWrite(Dm_write_vo vo) throws Exception;
+	
+	public List<Dm_write_vo> selectMainWrite(Map<String, Object> param) throws Exception;
 }

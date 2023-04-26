@@ -352,4 +352,19 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 		return mapper.selectMainByVol(vo);
 	}
 
+	@Override
+	public List<Dm_write_vo> selectPopularWrite(Dm_write_vo vo) throws Exception {
+		return mapper.selectPopularWrite(vo);
+	}
+
+	@Override
+	public List<Dm_write_vo> selectSameVolWrite(Dm_write_vo vo) throws Exception {
+		return mapper.selectSameVolWrite(vo);
+	}
+
+	@Override
+	public List<Dm_write_vo> selectMainWrite(Map<String, Object> param) throws Exception {
+		return mapper.selectMainWrite(param);
+	}
+
 }

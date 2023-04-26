@@ -105,5 +105,4 @@ public class Dm_menus_vo implements Serializable {
 	private String dm_delete_dt;
 	
 	private String dm_delete_yn;
-
 }

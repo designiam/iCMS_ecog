@@ -192,7 +192,7 @@ public class WebWriteController {
 					writeVO.setWr_content(commonUtil.xssSaxFiltering(writeVO.getWr_content()));
 					writeVO.setWr_path(FILE_PATH);
 					newUpload(writeVO);
-					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_skin() + "/");
+					writeVO.setWr_path("/resources/board/"+ boardVO.getDm_table() + "/");
 					
 					writeService.insertWrite(writeVO);
 					session.removeAttribute("DIAM_WEB_WRITE_RSA_KEY");
@@ -572,7 +572,7 @@ public class WebWriteController {
 			@RequestParam(value="board_id", required=true) String board_id, ModelMap model) {
 		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		String result = "egovframework/diam/web/error";
-		try {			
+		try {
 			Dm_board_vo boardVO = new Dm_board_vo();
 			boardVO.setDm_id(board_id);
 			boardVO = boardService.selectBoard(boardVO);
@@ -584,7 +584,7 @@ public class WebWriteController {
 				commentVO = writeService.selectWrite(commentVO);
 				
 				if (commentVO != null) {
-					if ("reply".equals(type) || "modify".equals(type)) {		
+					if ("reply".equals(type) || "modify".equals(type)) {
 						Dm_write_vo writeOriVO = new Dm_write_vo();
 						writeOriVO.setWr_num(commentVO.getWr_num());
 						writeOriVO = writeService.selectWriteOri(writeOriVO);
@@ -592,7 +592,7 @@ public class WebWriteController {
 						model.addAttribute("DiamLoginVO", loginVO);
 						model.addAttribute("boardVO", boardVO);
 						model.addAttribute("writeOriVO", writeOriVO);
-						model.addAttribute("commentVO", commentVO);						
+						model.addAttribute("commentVO", commentVO);
 						result = "egovframework/diam/web/base/board/comment_" + type;
 					} else {
 						model.addAttribute("message", "유효하지 않은 명령값입니다.");
@@ -710,7 +710,7 @@ public class WebWriteController {
 								} else {
 									resultMap.put("result", "fail");
 									resultMap.put("notice", "잘못된 접근입니다.");									
-								}								
+								}
 							}
 						} else {
 							if (!loginVO.getIs_admin() && !checkVO.getMb_id().equals(loginVO.getId())) {
@@ -831,7 +831,7 @@ public class WebWriteController {
 					writeVO.setCa_name(parentVO.getCa_name());
 					writeVO.setMb_id(mb_id);
 					writeVO.setWr_ip(commonUtil.getUserIp(request));
-									
+					
 					String FILE_PATH = request.getServletContext().getRealPath("/resources/board/"+boardVO.getDm_table())+"/";
 					String basic_path = request.getServletContext().getRealPath("/");
 					

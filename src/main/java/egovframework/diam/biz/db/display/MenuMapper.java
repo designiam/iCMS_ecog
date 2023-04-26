@@ -108,4 +108,6 @@ public interface MenuMapper {
 	public void deleteMenuByDomain(Dm_menus_vo vo);
 	
 	public List<Dm_menus_vo> selectTreeMenu(Dm_menus_vo vo);
+	
+	public List<String> selectChildBoardMenu(Dm_menus_vo vo);
 }

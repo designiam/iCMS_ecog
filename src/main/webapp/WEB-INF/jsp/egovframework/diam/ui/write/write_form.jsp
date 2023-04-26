@@ -447,7 +447,7 @@ var createSE = function() {
 				    <dt>발행 호<span class="required_value">*</span></dt>
 				    <dd><input type="text" name="wr_vol" id="wr_vol" onkeyup="setNumberPattern(this);"></dd>
 				</dl>
-				<dl>
+				<dl class="not_basic">
 				    <dt>타이틀 이미지</dt>
 				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
 				</dl>
