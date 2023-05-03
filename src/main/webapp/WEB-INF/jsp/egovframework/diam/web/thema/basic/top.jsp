@@ -575,7 +575,6 @@
 					</div>
 				</c:if>
 				<!-- //.segment -->
-				</div>
 				
 				<c:choose>
 					<c:when test="${exist eq 'exist' }">
@@ -629,6 +628,8 @@
 					</c:when>
 				</c:choose>
 				<!-- //.menutab -->
+				</div>
+				<!-- //.titler -->
 			</c:when>
 			<c:otherwise>
 				<c:choose>
