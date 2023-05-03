@@ -135,7 +135,7 @@
 		
 		<div class="tabMenu-wrap tab-style-03">
 			<ul>
-				<li class="tabMenu on" data-value="1" data-id="271">Contents</li>
+				<li class="tabMenu" data-value="1" data-id="271">Contents</li>
 				<li class="tabMenu" data-value="2" data-id="272">Article</li>
 				<li class="tabMenu" data-value="3" data-id="273">Life</li>
 			</ul>
@@ -445,11 +445,10 @@
 <script>
 $(function(){
 	getPopularData();
-	$("[data-value=1]").trigger("click");
-	
+	getMenuContents(getMenuId());
 });
 
-//인기순 조회
+//월간 BEST
 function getPopularData() {
 	var set = {
 		url: "/web/selectPopularWrite.do",
@@ -472,34 +471,60 @@ function asyncFunc(set) {
 
 //탭 레이아웃 리스너
 $(".tabMenu").on("click",function(){
-    $(".on").removeClass("on").attr("title", " ");
-    $(this).addClass("on").attr("title", "선택됨");
-
-    var value = $(this).data("value");
-    $("[data-target="+value+"]").show().attr("title", "선택됨");
-    $(".tabContent[data-target!="+value+"]").hide().attr("title", " ");
+	if ($(this).attr("class").indexOf("on") > -1) {
+		$(this).removeClass("on").attr("title", "");
+	} else {
+	    $(".on").removeClass("on").attr("title", "");
+	    $(this).addClass("on").attr("title", "선택됨");		
+	}
+	
+    var menuArr = new Array();
+    var menuId = $(".on").data("id");
     
-    var menuId = $(this).data("id");
+    if (menuId == "" || menuId == null) {
+    	getMenuContents(getMenuId());
+	} else {
+		menuArr.push(menuId);
+		getMenuContents(menuArr);
+	}
+});
+//1차 메뉴 아이디 get 함수
+function getMenuId(){
+	
+	var menuArr = new Array();
+	var tabs = $(".tabMenu");
+	$.each(tabs, function(i, obj){
+		menuArr.push($(obj).data("id"));
+	});
+	
+	return menuArr;
+}
+//메뉴 아이디로 게시글 get 함수
+function getMenuContents(arr) {
+	
+	if (arr.length < 1) {
+		alert("잘못된 접근입니다. 새로고침 후 이용해주세요.");
+		location.reload();
+		return;
+	}
+	
     var set = {
-    	url: "/web/selectChildMenuBoard.do",
-    	type: "get",
-    	data: {dm_id : menuId}
-    }
-    
-    asyncFunc(set)
-    .done(function(data){
-    	if (data.result == "success") {
+       	url: "/web/selectChildMenuBoard.do",
+       	type: "get",
+       	data: {dm_id : arr}
+       }
+       
+  	asyncFunc(set)
+	.done(function(data){
+		if (data.result == "success") {
 			console.log(data.rows);
-			
 		} else {
 			alert(data.notice);
 		}
-    	
-    }).fail(function(request, status, error){
+	}).fail(function(request, status, error){
 		alert(request.responseJSON.notice);
-	});
-});
-
+   	});
+}
 
 //인기 게시글 슬라이드
 var bestSlider = new Swiper("#bestSlider", {

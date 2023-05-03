@@ -166,7 +166,7 @@
 		SELECT dm_id, dm_parent_id, dm_menu_text, dm_depth FROM CTE
 	</select>
 	
-	<select id="selectChildBoardMenu" resultType="String">
+	<select id="selectChildBoardMenu" resultType="String" parameterType="java.util.List">
 		WITH RECURSIVE CTE AS (
 			SELECT dm_id, dm_parent_id, dm_depth, dm_link_data FROM dm_menus WHERE dm_id = #{dm_id} AND dm_delete_yn = 'N'
 			UNION ALL 
