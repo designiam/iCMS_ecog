@@ -550,7 +550,7 @@
 	</select>
 	
 	<select id="selectMainWrite" resultMap="resultWriteVO" parameterType="java.util.HashMap">
-		SELECT A.*, B.dm_uid AS uid
+		   SELECT A.*, B.dm_uid AS uid
 		  	 FROM dm_write AS A
 		LEFT JOIN dm_pages AS B
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'

@@ -1,6 +1,7 @@
 package egovframework.diam.web.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.diam.biz.model.board.Dm_write_vo;
 import egovframework.diam.biz.model.display.Dm_menus_vo;
@@ -110,13 +112,14 @@ public class WebCoverController {
 	}
 	
 	@GetMapping("/web/selectChildMenuBoard.do")
-	public ResponseEntity<?> selectChildMenus(Dm_menus_vo vo, HttpSession session) {
+	public ResponseEntity<?> selectChildMenus(@RequestParam("dm_id[]") String[] ids, HttpSession session) {
 		Map<String, Object> resultMap = new HashMap<>();
 		CommonUtil commonUtil = new CommonUtil();
-		if (commonUtil.isNullOrEmpty(vo.getDm_id())) {
+		if (ids.length < 1) {
 			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
 		}
+		
 		try {
 			String vol = (String) session.getAttribute("vol");
 			if (commonUtil.isNullOrEmpty(vol)) {
@@ -124,8 +127,12 @@ public class WebCoverController {
 				resultMap.put("notice", "발행호수 정보를 찾을 수 없습니다.");
 				return new ResponseEntity<>(resultMap, HttpStatus.OK);
 			}
+			Map<String, Object> param = new HashMap<>();
+			param.put("vol", vol);
+			param.put("list", Arrays.asList(ids));
+			
 			List<String> list = new ArrayList<>();
-			list = menuService.selectChildBoardMenu(vo);
+			/*list = menuService.selectChildBoardMenu(vo);
 			if (list.size() > 0) {
 				Map<String, Object> param = new HashMap<>();
 				param.put("vol", vol);
@@ -137,7 +144,7 @@ public class WebCoverController {
 			} else {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", MessageCode.CMS_SELECT_NODATA.getMessage());				
-			}
+			}*/
 			
 			
 		} catch (DataAccessException dae) {
@@ -151,4 +158,5 @@ public class WebCoverController {
 		}
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
+	
 }
