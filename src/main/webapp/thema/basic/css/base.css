@@ -397,7 +397,7 @@ a:hover { color: #111; text-decoration: none; }
 #container { min-height: 650px; }
 
 /* 헤드라인 */
-#container .heading { margin: 4.375rem 0 3.125rem; text-align: center; }
+#container .heading { /* margin: 4.375rem 0 3.125rem; */ text-align: center; }
 #container .heading h2 { font-size: 38px; }
 #container .heading h2 strong { color: #cf3232; }
 #container .heading .description { margin: 0.75rem 0 0 0; font-size: 20px; color: #999; line-height: 1.25; }
@@ -438,7 +438,7 @@ a:hover { color: #111; text-decoration: none; }
 #container .outline.mecode_50 .outline_title:before {}
 
 /* 서브페이지 사이드 메뉴 SNB */
-#container { margin: 75px auto; -ms-flex: 1 0 auto; flex: 1 0 auto; display: -ms-flexbox; display: flex; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: nowrap; flex-wrap: nowrap; }
+#container { margin: 0 auto 6.25rem; -ms-flex: 1 0 auto; flex: 1 0 auto; display: -ms-flexbox; display: flex; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: nowrap; flex-wrap: nowrap; }
 #container .contentWrap { -ms-flex: 1 1 auto; flex: 1 1 auto; width: 100%; }
 #container .contentMenu { -ms-flex: 0 0 auto; flex: 0 0 auto; width: 240px; margin-top: -35px; margin-right: 70px; display: none; }
 

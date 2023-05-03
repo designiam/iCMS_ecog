@@ -147,7 +147,7 @@
 	<div class="bbs_gallist">
 		<c:choose>
 			<c:when test="${fn:length(writeList) > 0}">
-				<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+				<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 					<c:forEach var="result" items="${writeList}" varStatus="status">
 						<li class="cell col">
 							<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">

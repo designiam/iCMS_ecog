@@ -3,65 +3,67 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="layer_popup"></div>
 <c:if test="${pageVO.dm_main_content eq '1'}">
-<div class="video-banner">
-	<div id="preview">
-		<div class="preview-wrap">
-			<video poster="<c:out value='${mainWrite.wr_path }${mainWrite.wr_background }'/>" muted="muted" autoplay="autoplay" loop="loop">
-				<source src="<c:out value='${mainWrite.wr_path }${mainWrite.wr_banner }'/>" type="video/mp4">
-			</video>
-		</div>
-		<!-- //.preview-wrap -->
-		<p><c:out value="${cover.dm_title }"/></p>
-		<div class="origin-wrap">
-			<div id="origin">
-				<div class="video-container">
-					<div class="video-wrap">
-						<c:set value="${fn:split(mainWrite.wr_link1, '/')}" var="videoId"/>
-						<c:forEach items="${videoId }" var="i" varStatus="stat">
-							<c:if test="${stat.last}">
-								<c:set var="uniqId" value="${i}"/>
-							</c:if>
-						</c:forEach>
-						<iframe src="https://www.youtube-nocookie.com/embed/<c:out value='${uniqId }'/>?controls=0&autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-					</div>
-					<!-- //.video-wrap -->
-				</div>
-				<!-- //.video-container -->
-				<div class="txt">
-					<div class="cate-wrap">
-						<p class="cate">LIFE</p>
-						<p class="date"><c:out value="${fn:substring(mainWrite.wr_datetime, 0, 10) }"/></p>
-					</div>
-					<div class="subject"><c:out value="${mainWrite.wr_subject }"/></div>
-					<div class="content"><c:out value="${mainWrite.wr_content }" escapeXml="false"/></div>
-					<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
-				</div>
-				<!-- //.txt -->
+	<div class="video-banner">
+		<div id="preview">
+			<div class="preview-wrap">
+				<video poster="<c:out value='${mainWrite.wr_path }${mainWrite.wr_background }'/>" muted="muted" autoplay="autoplay" loop="loop">
+					<source src="<c:out value='${mainWrite.wr_path }${mainWrite.wr_banner }'/>" type="video/mp4">
+				</video>
 			</div>
-			<!-- //.origin-wrap -->
+			<!-- //.preview-wrap -->
+			<p><c:out value="${cover.dm_title }"/></p>
+			<div class="origin-wrap">
+				<div id="origin">
+					<div class="video-container">
+						<div class="video-wrap">
+							<c:set value="${fn:split(mainWrite.wr_link1, '/')}" var="videoId"/>
+							<c:forEach items="${videoId }" var="i" varStatus="stat">
+								<c:if test="${stat.last}">
+									<c:set var="uniqId" value="${i}"/>
+								</c:if>
+							</c:forEach>
+							<iframe src="https://www.youtube-nocookie.com/embed/<c:out value='${uniqId }'/>?controls=0&autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						</div>
+						<!-- //.video-wrap -->
+					</div>
+					<!-- //.video-container -->
+					<div class="txt">
+						<div class="cate-wrap">
+							<p class="cate">LIFE</p>
+							<p class="date"><c:out value="${fn:substring(mainWrite.wr_datetime, 0, 10) }"/></p>
+						</div>
+						<div class="subject"><c:out value="${mainWrite.wr_subject }"/></div>
+						<div class="content"><c:out value="${mainWrite.wr_content }" escapeXml="false"/></div>
+						<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
+					</div>
+					<!-- //.txt -->
+				</div>
+				<!-- //.origin-wrap -->
+			</div>
+			<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
+			<!-- //#preview -->
 		</div>
-		<button class="toggle-on"><i class="di di-arr-bot-r"></i></button>
-		<!-- //#preview -->
 	</div>
-</div>
 	<!-- //.video-banner -->
 	<script>
-	$('#preview .toggle-on').click(function() {
-		var $preVideo = $('#preview .preview-wrap video');
-		var $originWrap = $('.video-banner .origin-wrap');
-		var $originVideo = $('#origin .preview-wrap video');
-	    if ($originWrap.hasClass('on')) {
-	    	$('.video-banner').removeClass('on');
-			$preVideo.get(0).play();
-			$originWrap.removeClass('on');
-	    }
-	    else {
-	    	$preVideo.get(0).pause();
-	    	setTimeout(function() {
-		    	$('.video-banner').addClass('on');
-		    	$originWrap.addClass('on');
-	    	}, 250)
-	    }
+	var preToggle =$('#preview .toggle-on');
+	var preVideo = $('#preview .preview-wrap video');
+	var oriVideo = $('#origin .video-wrap iframe');
+	var originWrap = $('.video-banner .origin-wrap');
+	
+	preToggle.click(function() {
+		if (originWrap.hasClass('on')) {
+			$('.video-banner').removeClass('on');
+			preVideo.get(0).play();
+			originWrap.removeClass('on');
+		}
+		else {
+			preVideo.get(0).pause();
+			setTimeout(function() {
+				$('.video-banner').addClass('on');
+				originWrap.addClass('on');
+			}, 250)
+		}
 	});
 	</script>
 </c:if>
