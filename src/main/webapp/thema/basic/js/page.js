@@ -74,7 +74,7 @@ $(function() {
 
     $(".gnb_1dli").mouseout(function() {
         gnbNum = $(this).index();
-    	$("#hd").removeClass("hd_zindex");
+    	//$("#hd").removeClass("hd_zindex");
     	//$(".gnb_1dli").removeClass("gnb_1dli_on");
     });
 
