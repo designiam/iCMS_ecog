@@ -129,7 +129,7 @@
 	</div>
 	
 	<div id="ft_goto">
-		<a href="https://www.eco-g.or.kr/" id="shortcut">
+		<a href="https://www.eco-g.or.kr/" target="_blank" id="shortcut">
 			<img src="${layout_path}/images/logo_ecog.png" alt="">
 			<p><small>ECO-G</small>바로가기</p>
 		</a>

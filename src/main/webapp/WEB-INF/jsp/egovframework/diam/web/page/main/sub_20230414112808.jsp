@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<!-- 지난호 보기 -->
+
 <div class="area-custom-select">
 	<div class="custom-select" tabindex="0">
 		<span class="custom-select-text"><strong>Vol.02</strong>2023.05</span>
