@@ -397,13 +397,13 @@ a:hover { color: #111; text-decoration: none; }
 #container { min-height: 650px; }
 
 /* 헤드라인 */
-#container .heading { /* margin: 4.375rem 0 3.125rem; */ text-align: center; }
+#container .heading { /* margin: 4.375rem 0 3.125rem; */ display: none; text-align: center; }
 #container .heading h2 { font-size: 38px; }
 #container .heading h2 strong { color: #cf3232; }
 #container .heading .description { margin: 0.75rem 0 0 0; font-size: 20px; color: #999; line-height: 1.25; }
 
 /* 탭 리스트 : 하위메뉴 출력 */
-.tablist { margin: 3rem 0; }
+.tablist { /* margin: 3rem 0; */ }
 .tablist ul { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
 .tablist ul li { /* flex: 1 0 0; */ flex: 1 0 20%; position: relative; max-width: 280px; min-height: 2.75rem; margin: -1px 0 0 -1px; }
 .tablist ul li a { position: relative; display: inline-flex; justify-content: center; align-items: center; text-align: center; width: 100%; height: 100%; padding: 0.25rem 0.5rem; border-radius: 0; font-size: 1.125rem; letter-spacing: 0; transition: all .25s; }
@@ -601,7 +601,6 @@ html #ft #ft_goto.fixed #shortcut { opacity: 1; visibility: visible; }
   html { font-size: 14px; }
   #hd_wrap, #ft_wrap, #container, #vis #titler .leader,
   #hd_wrap, #container, #ft_wrap { padding: 0 1rem; }
-  #container { margin: 3.5rem auto 75px; }
   #hd_wrap { position: relative; }
   #hd_user { right: 1.5rem; } 
   #hd_contact { display: none; }

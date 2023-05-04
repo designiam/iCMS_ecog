@@ -41,9 +41,12 @@
 	</c:if>
 	<div class="bbs_leadin">
 		<div class="bbs_count">
-			<span>전체 <strong><c:out value='${writeListCnt}'/></strong> 건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
+			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
 		</div>
-		<div class="bbs_order"></div>
+		<div class="bbs_order">
+			<button class="btn active">최신순</button>
+			<button class="btn">인기순</button>
+		</div>
 	</div>
 	<c:if test="${!empty noticeList }">
 		<div class="bbs_listing">

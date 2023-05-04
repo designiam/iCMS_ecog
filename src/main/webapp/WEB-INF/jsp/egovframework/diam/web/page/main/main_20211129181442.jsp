@@ -519,7 +519,7 @@ function getMenuContents(arr) {
 		if (data.result == "success") {
 			console.log(data.rows);
 		} else {
-			alert(data.notice);
+			//alert(data.notice);
 		}
 	}).fail(function(request, status, error){
 		alert(request.responseJSON.notice);

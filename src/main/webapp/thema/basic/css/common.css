@@ -837,6 +837,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs_gallist ul li { margin-bottom: 4.375rem; }
 .bbs_gallist ul li > a { display: block; width: 100%; height: 100%; border: 1px solid #ddd; border-radius: 0.625rem; overflow: hidden; transition: all .25s; }
 .bbs_gallist ul li .cell_thumb { position: relative; margin: 0 auto; width: 100%; overflow: hidden; }
+.bbs_gallist ul li .cell_thumb .vol { position: absolute; bottom: 0; left: 0; display: inline-flex; justify-content: center; align-items: center; min-width: 100px; height: 40px; background: #3DBBA6; border-radius: 0 1.25rem 0 0; color: #fff; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 0; line-height: 1; }
 .bbs_gallist ul li .thumb-wrap { position: relative; width: 100%; padding-top: 59.82%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; }
 .bbs_gallist ul li .thumb-wrap img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 .bbs_gallist ul li .cell_txt { padding: 1.875rem 1.25rem 3.75rem; }
@@ -848,7 +849,8 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .bbs_gallist .empty { text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 0.25rem; -ms-flex: 1 0 auto; flex: 1 0 auto;  display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; min-height: 200px; }
 @media (max-width: 992px) {
   .bbs_gallist ul { margin: 0 -10px; }
-  .bbs_gallist ul li.cell { margin-bottom: 2.5rem; padding: 0 10px; }  
+  .bbs_gallist ul li.cell { margin-bottom: 2.5rem; padding: 0 10px; } 
+  .bbs_gallist ul li .cell_thumb .vol { min-width: 80px; height: 35px; font-size: 1rem; } 
 }
 @media (max-width: 768px) {
   .bbs_gallist ul li .cell_txt { padding: 1.25rem 1rem 2.75rem; }
@@ -857,6 +859,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 @media (max-width: 576px) {
   .bbs_gallist ul { margin: 0 -5px; }
   .bbs_gallist ul li.cell { padding: 0 5px; }
+  .bbs_gallist ul li .cell_thumb .vol { min-width: 55px; }
 }
 @media (hover: hover), (-ms-high-contrast:none) {
   .bbs_gallist ul li:hover > a { border: 1px solid #3DBBA6; box-shadow: 0.188rem 0.188rem 0.313rem rgba(0,0,0,0.16); }
@@ -869,11 +872,19 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 
 /* 게시판 목록 메타 */
-.bbs_leadin { -ms-flex: 1 0 auto; flex: 1 0 auto;  display: -ms-flexbox; display: flex; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; margin: 0 0 10px 0; }
-.bbs_leadin em { font-style: normal; }
-.bbs_leadin .bbs_count em { color: #999; }
-.bbs_leadin .bbs_count strong { font-weight: 600; }
-.bbs_leadin .bbs_order { display: none; }
+.bbs_leadin { display: flex; justify-content: space-between; align-items: center; margin-top: 1.625rem; padding: 1.313rem 2.813rem; background: #F9F9F9; border-radius: 0.313rem; }
+.bbs_leadin .bbs_count span:first-child { font-size: 1.125rem; font-weight: 400; letter-spacing: 0; }
+.bbs_leadin .bbs_count span:last-child { margin-left: 8px; color: #999; font-size: 1rem; font-weight: 400; letter-spacing: 0; }
+.bbs_leadin .bbs_count b { color: #3DBBA6; }
+.bbs_leadin .bbs_order button { position: relative; color: #424242; line-height: 1.25; transition: all .15s ease-in-out; }
+.bbs_leadin .bbs_order button:not(:last-child)::after { content: ""; position: absolute; top: 0.525rem; right: -0.188rem; width: 1px; height: 1rem; background: #ddd; }
+.bbs_leadin .bbs_order button.active { font-weight: 700; }
+@media (max-width: 576px) {
+  .bbs_leadin { padding: 1.313rem 1rem; }
+}
+@media (hover: hover), (-ms-high-contrast:none) {
+  .bbs_leadin .bbs_order button:hover { font-weight: 700; }
+}
 
 /* 게시판 목록 버튼 */
 .bbs_listbtn { margin: 50px 0; text-align: center; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; }

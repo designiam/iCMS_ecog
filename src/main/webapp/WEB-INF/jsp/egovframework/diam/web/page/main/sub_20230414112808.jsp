@@ -20,6 +20,7 @@
 					<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb04.jpg');">
 						<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src='/images/no_image.png'">
 					</div>
+					<span class="vol">Vol.1</span>
 				</div>
 				<div class="cell_txt">
 					<div class="cell_cate">Report</div>
@@ -34,6 +35,7 @@
 					<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb03.jpg');">
 						<img src="${layout_path}/images/pages/sample_thumb03.jpg" alt="" onerror="this.src='/images/no_image.png'">
 					</div>
+					<span class="vol">Vol.1</span>
 				</div>
 				<div class="cell_txt">
 					<div class="cell_cate">News</div>
@@ -48,6 +50,7 @@
 					<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb02.jpg');">
 						<img src="${layout_path}/images/pages/sample_thumb02.jpg" alt="" onerror="this.src='/images/no_image.png'">
 					</div>
+					<span class="vol">Vol.1</span>
 				</div>
 				<div class="cell_txt">
 					<div class="cell_cate">People</div>
@@ -62,6 +65,7 @@
 					<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb01.jpg');">
 						<img src="${layout_path}/images/pages/sample_thumb01.jpg" alt="" onerror="this.src='/images/no_image.png'">
 					</div>
+					<span class="vol">Vol.1</span>
 				</div>
 				<div class="cell_txt">
 					<div class="cell_cate">Special</div>
