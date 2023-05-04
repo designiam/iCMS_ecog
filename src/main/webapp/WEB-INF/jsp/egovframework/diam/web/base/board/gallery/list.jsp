@@ -156,49 +156,24 @@
 							<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
 								<div class="cell_thumb">
 									<c:choose>
-										<c:when test="${empty result.thumb }">
+										<c:when test="${empty result.wr_thumb }">
 											<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
 												<img src="/images/no_image.png" alt="no image">
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url('<c:out value='${result.thumb}'/>');">
-												<img src="<c:out value='${result.thumb}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
+											<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url('<c:out value='${result.wr_path}${result.wr_thumb}'/>');">
+												<img src="<c:out value='${result.wr_path}${result.wr_thumb}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
 											</div>
 										</c:otherwise>
 									</c:choose>
+									<span class="vol">Vol.<c:out value="${result.wr_vol}" escapeXml='false'/></span>
 								</div>
 								<!-- //.cell_thumb -->
-								
-								<div class="cell_subject"><c:out value="${result.wr_subject}" escapeXml='false'/></div>
-								
-								<div class="cell_icon mt10">
-									<c:if test="${dm_hit_url ne null && not empty dm_hit_url}">
-										<c:if test="${result.wr_hit >= boardVO.dm_hit_max}">
-											<img src="<c:out value='${dm_hit_url}'/>" alt="UP" />
-										</c:if>
-									</c:if>
-									<c:if test="${dm_new_url ne '' && dm_new_url ne null}">
-										<fmt:parseDate var="tmpWriteDate" value="${result.wr_datetime}" pattern="yyyy-MM-dd HH:mm:ss"/>
-										<fmt:parseDate var="tmpCurrentDate" value="${curDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-										<c:set var="writeDate" value="${tmpWriteDate.time + (1000*60*60*boardVO.dm_new_time)}"/>
-										<c:set var="currentDate" value="${tmpCurrentDate.time}"/>
-										<c:if test="${currentDate <= writeDate}">
-											<img src="<c:out value='${dm_new_url}'/>" alt="NEW" />
-										</c:if>
-									</c:if>
-									<c:if test="${dm_file_icon ne '' && dm_file_icon ne null}">
-										<c:set var="fileArrCnt" value="0"/>
-										<c:set var="fileArr" value="${fn:split(result.wr_file,'|') }"/>
-										<c:forEach var="result2" items="${fileArr}" varStatus="status">
-											<c:if test="${result2 ne '' && result2 ne null}">
-												<c:set var="fileArrCnt" value="${fileArrCnt + 1}"/>
-											</c:if>
-										</c:forEach>
-										<c:if test="${fileArrCnt > 0}">
-											<img src="<c:out value='${dm_file_icon}'/>" alt="FILE" />
-										</c:if>
-									</c:if>
+								<div class="cell_txt">
+									<div class="cell_cate">Report</div>
+									<div class="cell_subject"><c:out value="${result.wr_subject}" escapeXml='false'/></div>
+									<div class="cell_content"><c:out value="${result.wr_content}" escapeXml='false'/></div>
 								</div>
 							</a>
 						</li>
@@ -214,7 +189,7 @@
 		<c:out value='${pagingStr}' escapeXml="false"/>
 	</div>
 	
-	<div class="bbs_search">
+	<%-- <div class="bbs_search">
 		<fieldset>
 			<h3>검색</h3>
 			<form id="search_form" action="<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${pageVO.dm_uid}'/>&command=list" method="post" >
@@ -230,13 +205,13 @@
 				<button type="submit" class="sch_button"><span>검색</span></button>
 			</form>
 		</fieldset>
-	</div>
+	</div> --%>
 	
-	<div class="bbs_listbtn">
+	<%-- <div class="bbs_listbtn">
 		<c:if test="${is_write eq true}">
 			<a href="<c:out value='${param.root }'/>/index.do?command=write&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">작성하기</a>
 		</c:if>
-	</div>
+	</div> --%>
 </div>
 
 <c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">
