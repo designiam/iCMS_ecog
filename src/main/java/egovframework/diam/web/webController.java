@@ -233,6 +233,12 @@ public class webController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView result = new ModelAndView();
 		try {
+			Dm_pages_vo pageVO = (Dm_pages_vo) request.getAttribute("pageVO");
+			if (pageVO != null) {
+				String skin = pageService.selectBoardSkinByPage(pageVO);
+				result.addObject("skin" , skin);
+			}
+			
 			Dm_layout_vo layoutVO = (Dm_layout_vo) request.getAttribute("layoutVO");
 			result.setViewName("egovframework/diam/web/thema/" + layoutVO.getDm_layout_folder() + "/header");
 		} catch(DataAccessException dae) {

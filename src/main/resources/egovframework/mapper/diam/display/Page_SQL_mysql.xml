@@ -255,4 +255,13 @@
 		   AND	dm_domain = #{param1}
 		   AND	dm_page_type = #{param2}
 	</select>
+	
+	<select id="selectBoardSkinByPage" resultType="string">
+		SELECT A.dm_skin
+		FROM dm_board AS A
+		INNER JOIN dm_pages AS B
+		ON A.dm_id = B.dm_board_id AND B.dm_id = #{dm_id}
+	</select>
+		
+	
 </mapper>

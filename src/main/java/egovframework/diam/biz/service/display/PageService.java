@@ -188,4 +188,6 @@ public interface PageService {
 	*/
 	public String selectPageUtilUid(String domain_id, String page_type) throws Exception;
 	
+	
+	public String selectBoardSkinByPage(Dm_pages_vo vo) throws Exception;
 }

@@ -413,6 +413,10 @@ var createSE = function() {
 				        <select id="ca_name" name="ca_name" class="easyui-combobox" panelHeight="auto"></select>
 				    </dd>
 				</dl>
+				<dl class="not_basic">
+				    <dt>발행 호<span class="required_value">*</span></dt>
+				    <dd><input type="text" name="wr_vol" id="wr_vol" onkeyup="setNumberPattern(this);"></dd>
+				</dl>
 				<dl>
 				    <dt>제목<span class="required_value">*</span></dt>
 				    <dd>
@@ -420,6 +424,12 @@ var createSE = function() {
 				        <label><input type="checkbox" name="wr_is_notice" value="1" id="notice">공지</label>
 				        <label id="secret"><input type="checkbox" id="secret_option" name="wr_option" value="secret">비밀글</label>
 				        <p class="noty">1자이상 255자 이하로 입력해 주세요.</p>
+				    </dd>
+				</dl>
+				<dl class="not_basic">
+				    <dt>부제목</dt>
+				    <dd>
+				        <input type="text" name="wr_sub_subject" id="wr_sub_subject">
 				    </dd>
 				</dl>
 				<dl>
@@ -444,16 +454,22 @@ var createSE = function() {
 				    <dd></dd>
 				</dl>
 				<dl class="not_basic">
-				    <dt>발행 호<span class="required_value">*</span></dt>
-				    <dd><input type="text" name="wr_vol" id="wr_vol" onkeyup="setNumberPattern(this);"></dd>
+				    <dt>작가</dt>
+				    <dd>
+				        <input type="text" name="" id="" autocomplete="off"/>
+				    </dd>
 				</dl>
 				<dl class="not_basic">
-				    <dt>타이틀 이미지</dt>
-				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
+				    <dt>작가 이메일</dt>
+				    <dd>
+				        <input type="text" name="" id="" autocomplete="off"/>
+				    </dd>
 				</dl>
-				<dl class="gallery_only">
-				    <dt>썸네일</dt>
-				    <dd><input type="file" name="thumbnail" id="thumbnail" accept="image/*"></dd>
+				<dl class="not_basic">
+				    <dt>Pictured by</dt>
+				    <dd>
+				        <input type="text" name="" id="" autocomplete="off"/>
+				    </dd>
 				</dl>
 				<dl class="video_only">
 					<dt>메인 게시 여부</dt>
@@ -469,6 +485,18 @@ var createSE = function() {
 					    <p class="noty">http 프로토콜을 포함한 링크를 입력해주세요.</p>
 				    </dd>
 				</dl>
+				<dl class="not_basic">
+				    <dt>타이틀 이미지</dt>
+				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
+				</dl>
+				<dl class="not_basic">
+				    <dt>메인 썸네일</dt>
+				    <dd><input type="file" name="thumbnail" id="thumbnail" accept="image/*"></dd>
+				</dl>
+				<dl class="not_basic">
+				    <dt>리스트형 썸네일</dt>
+				    <dd><input type="file" name="thumbnail_sub" id="thumbnail_sub" accept="image/*"></dd>
+				</dl>
 				<dl class="video_only">
 				    <dt>영상 배너</dt>
 				    <dd><input type="file" name="banner" id="banner" accept="video/*"></dd>
@@ -476,7 +504,13 @@ var createSE = function() {
 				<dl class="video_only">
 				    <dt>배너 포스터</dt>
 				    <dd><input type="file" name="background" id="background" accept="image/*"></dd>
-				</dl>	
+				</dl>
+				<dl>
+					<dt>요약</dt>
+					<dd>
+						<textarea id="" name=""></textarea>
+					</dd>
+				</dl>
 				<dl>
 				    <dt>내용<span class="required_value">*</span></dt>
 				    <dd>

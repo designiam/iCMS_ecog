@@ -189,4 +189,6 @@ public interface PageMapper {
 	 * @return String 조회된 페이지의 고유 UID값을 문자열로 전달
 	*/
 	public String selectPageUtilUid(String domain_id, String page_type);
+	
+	public String selectBoardSkinByPage(Dm_pages_vo vo);
 }

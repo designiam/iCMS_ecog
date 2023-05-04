@@ -4,6 +4,7 @@
 package egovframework.diam.biz.service.display.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -168,8 +169,4 @@ public class MenuServiceImpl extends EgovAbstractServiceImpl implements MenuServ
 		return menuMapper.selectTreeMenu(vo);
 	}
 
-	@Override
-	public List<String> selectChildBoardMenu(Dm_menus_vo vo) throws Exception {
-		return menuMapper.selectChildBoardMenu(vo);
-	}
 }

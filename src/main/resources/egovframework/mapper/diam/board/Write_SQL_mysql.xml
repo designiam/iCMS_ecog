@@ -550,14 +550,27 @@
 	</select>
 	
 	<select id="selectMainWrite" resultMap="resultWriteVO" parameterType="java.util.HashMap">
-		   SELECT A.*, B.dm_uid AS uid
-		  	 FROM dm_write AS A
-		LEFT JOIN dm_pages AS B
-			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
-			WHERE wr_vol = #{vol}
-			  AND A.dm_delete_yn = 'N'
-		<foreach collection="list" item="item" open="AND (" close=")" separator=" OR ">
-			A.wr_board = #{item}
-		</foreach>
+		    SELECT  A.*
+		   		  , D.dm_link_data AS uid
+		   		  , D.dm_parent_id AS type
+			  FROM  dm_write AS A
+		INNER JOIN  (
+						SELECT  B.dm_link_data
+							  , B.dm_parent_id
+							  , C.dm_board_id
+						  FROM  dm_menus AS B
+					INNER JOIN  dm_pages AS C
+							ON  B.dm_link_data = C.dm_uid
+						 WHERE  1 = 1
+					<foreach collection="list" item="item" separator=" OR " open="AND (" close=") ">
+						B.dm_parent_id = #{item}						
+					</foreach>
+				    ) AS D
+			    ON  A.wr_board = D.dm_board_id
+		     WHERE  1 = 1
+			   AND  A.dm_delete_yn = 'N'
+			   AND  A.wr_vol = #{vol}
+		  ORDER BY  A.wr_datetime DESC
+		     LIMIT  #{page}, #{rows}
 	</select>
 </mapper>

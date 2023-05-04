@@ -112,7 +112,7 @@ public class WebCoverController {
 	}
 	
 	@GetMapping("/web/selectChildMenuBoard.do")
-	public ResponseEntity<?> selectChildMenus(@RequestParam("dm_id[]") String[] ids, HttpSession session) {
+	public ResponseEntity<?> selectChildMenus(@RequestParam("dm_id[]") String[] ids, @RequestParam("page") int page, HttpSession session) {
 		Map<String, Object> resultMap = new HashMap<>();
 		CommonUtil commonUtil = new CommonUtil();
 		if (ids.length < 1) {
@@ -127,26 +127,24 @@ public class WebCoverController {
 				resultMap.put("notice", "발행호수 정보를 찾을 수 없습니다.");
 				return new ResponseEntity<>(resultMap, HttpStatus.OK);
 			}
+			
 			Map<String, Object> param = new HashMap<>();
 			param.put("vol", vol);
 			param.put("list", Arrays.asList(ids));
+			param.put("page", 12 * (page -1));
+			param.put("rows", 12);
 			
-			List<String> list = new ArrayList<>();
-			/*list = menuService.selectChildBoardMenu(vo);
+			List<Dm_write_vo> list = writeService.selectMainWrite(param);
+			
 			if (list.size() > 0) {
-				Map<String, Object> param = new HashMap<>();
-				param.put("vol", vol);
-				param.put("list", list);
-				List<Dm_write_vo> voList = writeService.selectMainWrite(param);
-				
 				resultMap.put("result", "success");
-				resultMap.put("rows", voList);
+				resultMap.put("rows", list);
+				
 			} else {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", MessageCode.CMS_SELECT_NODATA.getMessage());				
-			}*/
-			
-			
+			}
+		
 		} catch (DataAccessException dae) {
 			log.error(MessageCode.CMM_DATA_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
