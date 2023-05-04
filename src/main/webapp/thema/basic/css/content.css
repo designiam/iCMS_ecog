@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* 제거 항목 */
-#vis #titler, .bbs_view_info { display: none; }
+#vis #titler, .bbs_view_info, .nb_ul, .bbs_viewbtn_1 { display: none; }
 .bbs_viewing { border: 0; }
 .bbs_view_contents { padding: 3.125rem 0 6.25rem; }
 
@@ -45,3 +45,38 @@
   .bbs_view_writer dl.picture { text-align: left; }
   .bbs_view_writer dl.picture dt { margin: 0; }
 }
+
+
+/* 해당 호수 콘텐츠 슬라이드 */
+.bbs_view_slide { margin-top: 7.188rem; }
+.bbs_view_slide h6 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.06em; }
+.vol-slider { position: relative; margin-top: 1.875rem; }
+.vol-slider li > a { display: block; width: 100%; height: 100%; }
+.vol-slider li .cell_thumb { position: relative; width: 100%; margin: 0 auto; border-radius: 0.625rem; overflow: hidden; }
+.vol-slider li .cell_thumb .vol { position: absolute; bottom: 0; left: 0; display: inline-flex; justify-content: center; align-items: center; min-width: 70px; height: 26px; background: #3DBBA6; border-radius: 0 1.25rem 0 0; color: #fff; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0; line-height: 1; }
+.vol-slider li .thumb-wrap { position: relative; width: 100%; padding-top: 60.71%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; transition: all .25s; }
+.vol-slider li .thumb-wrap img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.vol-slider ul li .cell_txt { padding-top: 1.125rem; }
+.vol-slider ul li .cell_subject { font-weight: 600; letter-spacing: -0.03em; word-break: break-all;
+overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 2.5rem; }
+.vol-slider .swiper-button-prev, .vol-slider .swiper-button-next { width: 3rem; height: 3rem; background-color: #fff; background-size: 0.938rem; border-radius: 50%; box-shadow: 0 0.188rem 0.375rem rgba(0,0,0,0.16); }
+.vol-slider .swiper-button-prev { left: calc(-36px - 3rem); background-image: url("../images/arrL_swiper_gr.png"); }
+.vol-slider .swiper-button-next { right: calc(-36px - 3rem); background-image: url("../images/arrR_swiper_gr.png"); }
+@media (max-width: 1200px) {
+  .vol-slider .swiper-button-prev, .vol-slider .swiper-button-next { display: none; }
+}
+@media (hover: hover), (-ms-high-contrast:none) {
+  .vol-slider li:hover .thumb-wrap { transform: scale(1.1); }
+}
+
+
+/* 목록 버튼 */
+.bbs_viewbtn { justify-content: center; margin: 3.313rem 0 0; }
+.bbs_viewbtn .btn_list { display: inline-flex; justify-content: center; align-items: center; min-width: 18.75rem; height: 65px; background: #fff; border: 1px solid #ddd; border-radius: 0.313rem; color: #111; font-size: 1.125rem; font-weight: 700; letter-spacing: 0; line-height: 1.25; }
+.bbs_viewbtn .btn_list img { margin-left: 15px; transition: all .25s; }
+.bbs_viewbtn .btn_list:hover { background: #fff; border-color: #3DBBA6; }
+.bbs_viewbtn .btn_list:hover img { margin-left: 25px; }
+@media (max-width: 768px) {
+  .bbs_viewbtn .btn_list { min-width: 12rem; height: 55px; font-size: 1rem; }
+}
+

@@ -256,6 +256,70 @@ function deleteWrite() {
 			</li>
 		</ul>
 		
+		<div class="bbs_view_slide">
+			<h6>같이 보면 좋은 콘텐츠</h6>
+			<div class="vol-slider">
+				<div class="swiper-container">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb04.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">승촌보캠핑장 '청량한 음악 한 모금' 콘서트에 초대합니다.</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb03.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb03.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">제15회 기후변화주간, #오늘도나는지구를구했다.</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb02.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb02.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">재난상황 조직체계 및 프로세스</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb01.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb01.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">광주환경공단 2021년 공공데이터 신규 개방 알림</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+		
 		<div class="bbs_viewbtn">
 			<div class="bbs_viewbtn_1">
 				<c:choose>
@@ -273,7 +337,7 @@ function deleteWrite() {
 			</div>
 			
 			<div class="bbs_viewbtn_2">
-				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">목록</a>
+				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_list">목록보기 <img src="${layout_path}/images/arrR_bk.png" alt=""></a>
 				<c:if test="${boardVO.dm_is_reply eq 1}">
 					<c:if test="${is_reply eq true}">
 						<a href="<c:out value='${param.root }'/>/index.do?command=reply&wr_id=<c:out value='${writeVO.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">답변</a>
@@ -289,3 +353,25 @@ function deleteWrite() {
 		</c:if>	
 	</c:if>
 </div>
+
+<script>
+// 해당 호수 콘텐츠 슬라이드
+var volSwiper = new Swiper(".vol-slider .swiper-container", {
+	slidesPerView: 2,
+	spaceBetween: 15,
+	autoplay: {
+		delay: 3500,
+		disableOnInteraction: false,
+	},
+	navigation: {
+		nextEl: ".vol-slider .swiper-button-next",
+		prevEl: ".vol-slider .swiper-button-prev",
+	},
+	breakpoints: {
+		576: {
+			slidesPerView: 3,
+			spaceBetween: 30,
+		},
+	}
+});
+</script>
