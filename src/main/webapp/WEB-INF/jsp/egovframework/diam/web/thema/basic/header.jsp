@@ -85,4 +85,6 @@
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/common.js'/>"></script>
 <%-- <script type="text/javascript" src="<c:url value='${layout_path}/js/common.js' />"></script> --%>
 </head>
-<body id="contentId-${pageVO.dm_uid }">
+<body id="contentId-${pageVO.dm_uid }" class="${skin}">
+
+

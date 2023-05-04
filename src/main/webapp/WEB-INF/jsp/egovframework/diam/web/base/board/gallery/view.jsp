@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <%@ include file="base.jsp"%>
+
+<link rel="stylesheet" href="<c:url value='${layout_path}/css/content.css' />">
+
 <script>
 $(function(){
 	$("#modifyWrite").on('click', function(){
@@ -83,7 +86,15 @@ function deleteWrite() {
 		</c:if>
 	</c:if>
 	<div class="bbs_viewing">
-		<h5><c:if test="${!empty writeVO.ca_name }"><span class="cate theme-color-1">[<c:out value="${writeVO.ca_name}"/>] </span></c:if><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h5>
+		<div class="bbs_view_header" style="background-image: url('${writeVO.wr_path}${writeVO.wr_head}');">
+			<img src="<c:out value='${writeVO.wr_path}${writeVO.wr_head}'/>">
+		</div>
+	
+		<div class="bbs_view_title">
+			<h4><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h4>
+			<p>UN이 정한 “세계 물의 날” 기념 광주천 정화활동</p>
+		</div>
+		
 		<div class="bbs_view_info">
 			<dl class="bbs_view_info_name">
 				<dt>작성자</dt>
@@ -209,6 +220,42 @@ function deleteWrite() {
 			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "<br/>")}' escapeXml="false"/>
 		</div>
 		
+		<div class="bbs_view_writer">
+			<dl class="writer">
+				<dt><span>저자</span> <b>환경공단</b></dt>
+				<dd>abcd_@naver.com</dd>
+			</dl>
+			<dl class="picture">
+				<dt>사진</dt>
+				<dd><b>환경공단 제공</b></dd>
+			</dl>
+		</div>
+		
+		<ul class="nb_ul">
+			<li class="btn_prev">
+				<span class="nb_tit"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글</span>
+				<c:choose>
+					<c:when test="${writeVO.prev_id ne null }">
+						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.prev_id }' />"><c:out value="${writeVO.prev_subject }" /></a>
+					</c:when>
+					<c:otherwise>
+						<a>이전 게시글이 존재하지 않습니다.</a>
+					</c:otherwise>
+				</c:choose>
+			</li>
+			<li class="btn_next">
+				<span class="nb_tit"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글</span>
+				<c:choose>
+					<c:when test="${writeVO.next_id ne null }">
+						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.next_id }' />"><c:out value="${writeVO.next_subject }" /></a>
+					</c:when>
+					<c:otherwise>
+						<a>다음 게시글이 존재하지 않습니다.</a>
+					</c:otherwise>
+				</c:choose>
+			</li>
+		</ul>
+		
 		<div class="bbs_viewbtn">
 			<div class="bbs_viewbtn_1">
 				<c:choose>
@@ -235,30 +282,6 @@ function deleteWrite() {
 			</div>
 		</div>
 		
-		<ul class="nb_ul">
-			<li class="btn_prev">
-				<span class="nb_tit"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글</span>
-				<c:choose>
-					<c:when test="${writeVO.prev_id ne null }">
-						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.prev_id }' />"><c:out value="${writeVO.prev_subject }" /></a>
-					</c:when>
-					<c:otherwise>
-						<a>이전 게시글이 존재하지 않습니다.</a>
-					</c:otherwise>
-				</c:choose>
-			</li>
-			<li class="btn_next">
-				<span class="nb_tit"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글</span>
-				<c:choose>
-					<c:when test="${writeVO.next_id ne null }">
-						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.next_id }' />"><c:out value="${writeVO.next_subject }" /></a>
-					</c:when>
-					<c:otherwise>
-						<a>다음 게시글이 존재하지 않습니다.</a>					
-					</c:otherwise>
-				</c:choose>
-			</li>
-		</ul>
 	</div>
 	<c:if test="${boardVO.dm_is_comment eq 1}">
 		<c:if test="${writeVO.wr_reply eq '0'}">

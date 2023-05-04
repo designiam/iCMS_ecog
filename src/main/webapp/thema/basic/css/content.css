@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* 제거 항목 */
+#vis #titler, .bbs_view_info { display: none; }
+.bbs_viewing { border: 0; }
+.bbs_view_contents { padding: 3.125rem 0 6.25rem; }
+
+/* 컨테이너 */
+#container { max-width: 900px; }
+
+/* 헤더 이미지 */
+.bbs_view_header { position: relative; left: 50%; transform: translateX(-50%); width: 100vw; height: 260px;  background-position: center; background-size: cover; background-repeat: no-repeat; }
+.bbs_view_header img { opacity: 0; visibility: hidden; }
+
+@media (min-width: 1930px) {
+  .bbs_view_header { height: 360px; }
+}
+@media (max-width: 992px) {
+  .bbs_view_header { height: 160px; }
+}
+
+/* 콘텐츠 타이틀 */
+.bbs_view_title { padding: 5.625rem 0 2.5rem; border-bottom: 1px solid #ddd; text-align: center; }
+.bbs_view_title h4 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.06em; }
+.bbs_view_title p { margin-top: 1.375rem; font-size: 1.563rem; letter-spacing: -0.06em; }
+@media (max-width: 768px) {
+  .bbs_view_title h4 { font-size: 1.5rem; }
+  .bbs_view_title p { margin-top: 1rem; font-size: 1.125rem; }
+}
+
+
+/* 콘텐츠 작가 표시 */
+.bbs_view_writer { display: flex; justify-content: space-between; padding: 30px 0 0; border-top: 1px solid #ddd; color: #111; font-size: 16px; letter-spacing: -0.72px; }
+.bbs_view_writer dt, .bbs_view_writer dd { display: inline-block; font-weight: 400; }
+.bbs_view_writer dl.writer span { margin-right: 5px; }
+.bbs_view_writer dl.writer b { font-size: 18px; font-weight: 800; }
+.bbs_view_writer dl.writer dd { margin-left: 4.375rem; font-weight: 500; letter-spacing: 0; }
+.bbs_view_writer dl.picture dt { margin-right: 10px; font-size: 14px; }
+@media (max-width: 768px) {
+  .bbs_view_writer { display: block; }
+  .bbs_view_writer dt, .bbs_view_writer dd { display: block; }
+  .bbs_view_writer dl { margin-bottom: 1rem; }
+  .bbs_view_writer dl.writer { text-align: left; }
+  .bbs_view_writer dl.writer dd { margin: 0; }
+  .bbs_view_writer dl.picture { text-align: left; }
+  .bbs_view_writer dl.picture dt { margin: 0; }
+}
