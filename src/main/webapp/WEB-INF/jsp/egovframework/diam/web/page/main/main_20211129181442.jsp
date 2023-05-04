@@ -32,42 +32,6 @@
 						</div>
 					</a>
 				</div>
-				<div class="swiper-slide">
-					<a href="#;">
-						<div class="img">
-							<img src="${layout_path}/images/main/thumb_best02.jpg" alt="">
-						</div>
-						<div class="txt">
-							<p class="subject">국가기록원 「기록사랑 공모전」홍보</p>
-							<p class="content">행정안전부 국가기록원은 '2030 부산엑스포 유치 기원'의 마음을 담아부산광역시와 공동으로 전 국민 대상 글짓기, 그림그리기, 동영상 제작 기록사랑 공모전」을 개최합니다.</p>
-							<p class="date">2023-03-14</p>
-						</div>
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="#;">
-						<div class="img">
-							<img src="${layout_path}/images/main/thumb_best03.jpg" alt="">
-						</div>
-						<div class="txt">
-							<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
-							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 </p>
-							<p class="date">2023-03-14</p>
-						</div>
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="#;">
-						<div class="img">
-							<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">
-						</div>
-						<div class="txt">
-							<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요!</p>
-							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨</p>
-							<p class="date">2023-03-14</p>
-						</div>
-					</a>
-				</div>
 			</div>
 		</div>
 		<!-- //#bestSlider -->
@@ -157,229 +121,9 @@
 							</div>
 						</a>
 					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample02.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 단체헌혈로 소중한 생명 나눠요!</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#">
-							<div class="img"><img src="${layout_path}/images/main/sample04.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">지역아동센터광주지원단 맞손, 아동복지 증진 공동 모색</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample05.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample06.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample07.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample03.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 장애인 등을 위한 각종 시책 활발</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample08.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">노후설비 대폭 교체로 하수처리 효율 개선한다!</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
 				</div>
 				<!-- //.masonry -->
 			</div>
-			<!-- //.tabContent -->
-			<div class="tabContent" data-target="2">
-				<div class="masonry">
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample02.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 단체헌혈로 소중한 생명 나눠요!</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용하세요.</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#">
-							<div class="img"><img src="${layout_path}/images/main/sample04.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">지역아동센터광주지원단 맞손, 아동복지 증진 공동 모색</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample05.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample06.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample07.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample03.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 장애인 등을 위한 각종 시책 활발</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample08.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">노후설비 대폭 교체로 하수처리 효율 개선한다!</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!-- //.masonry -->
-			</div>
-			<!-- //.tabContent -->
-			<div class="tabContent" data-target="3">
-				<div class="masonry">
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample05.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용하세요.</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample02.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 단체헌혈로 소중한 생명 나눠요!</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#">
-							<div class="img"><img src="${layout_path}/images/main/sample04.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">지역아동센터광주지원단 맞손, 아동복지 증진 공동 모색</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample06.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">재난상황 조직체계 및 프로세스</p>
-								<p class="cate">Article</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample07.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, '어린이 SNS 기자단' 모집</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample03.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 장애인 등을 위한 각종 시책 활발</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample08.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">노후설비 대폭 교체로 하수처리 효율 개선한다!</p>
-								<p class="cate">Life</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!-- //.masonry -->
-			</div>
-			<!-- //.tabContent -->
 		</div>
 		<!-- //.tabContent-wrap -->
 	</div>
@@ -458,7 +202,29 @@ function getPopularData() {
 	
 	asyncFunc(set)
 	.done(function(data){
-		console.log(data);
+		
+		if (data.rows.length > 0) {
+			var str = '<div class="swiper-wrapper">';
+			
+			$.each(data.rows, function(i, obj){
+				str +='<div class="swiper-slide">';
+				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
+				str +='<div class="img">';
+				str +='<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">';
+				str +='</div>';
+				str +='<div class="txt">';
+				str +='<p class="subject">'+obj.wr_subject+'</p>';
+				str +='<p class="content">'+obj.wr_content+'</p>';
+				str +='<p class="date">'+obj.wr_datetime.substring(0,10)+'</p>';
+				str +='</div>';
+				str +='</a>';
+				str +='</div>';
+			});
+			str += '</div>';
+			var target = $("#bestSlider");
+			target.empty();
+			target.append(str);
+		}
 	}).fail(function(request, status, error){
 		alert(request.responseJSON.notice);
 	});
@@ -511,19 +277,56 @@ function getMenuContents(arr) {
     var set = {
        	url: "/web/selectChildMenuBoard.do",
        	type: "get",
-       	data: {dm_id : arr}
+       	data: {
+       			dm_id : arr,
+       			page : 1
+       		}
        }
-       
+    
   	asyncFunc(set)
 	.done(function(data){
 		if (data.result == "success") {
-			console.log(data.rows);
+			setNowList(data.rows);
 		} else {
-			//alert(data.notice);
+			var target = $(".masonry");
+			var str = '<div><img src="'+'<c:out value="${layout_path}" />'+'/images/noimage.jpg" /></div>';
+			target.empty();
+			target.append(str);
 		}
 	}).fail(function(request, status, error){
 		alert(request.responseJSON.notice);
    	});
+}
+// eco-g now 리스트 세팅
+function setNowList(rows){
+	
+	var target = $(".masonry");
+	var str = "";
+	$.each(rows, function(i, obj){
+		var cate = "";
+		switch (obj.type) {
+			case "271":
+				cate = "Contents";
+				break;
+			case "272":
+				cate = "Article";
+				break;
+			default:
+				cate = "Life";
+				break;
+		}
+		str += '<div class="masonry-item">';
+		str += '<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
+		str += '<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>';
+		str += '<div class="txt">';
+		str += '<p class="subject">'+obj.wr_subject+'</p>';
+		str += '<p class="cate">'+cate+'</p>';
+		str += '</div>';
+		str += '</a>';
+		str += '</div>';
+	});
+	target.empty();
+	target.append(str);
 }
 
 //인기 게시글 슬라이드

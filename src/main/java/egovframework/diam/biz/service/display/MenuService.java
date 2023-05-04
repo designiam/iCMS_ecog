@@ -4,6 +4,7 @@
 package egovframework.diam.biz.service.display;
 
 import java.util.List;
+import java.util.Map;
 
 import egovframework.diam.biz.model.display.Dm_menus_vo;
 
@@ -106,6 +107,4 @@ public interface MenuService {
 	public void deleteMenuByDomain(Dm_menus_vo vo) throws Exception;
 	
 	public List<Dm_menus_vo> selectTreeMenu(Dm_menus_vo vo) throws Exception;
-	
-	public List<String> selectChildBoardMenu(Dm_menus_vo vo) throws Exception;
 }

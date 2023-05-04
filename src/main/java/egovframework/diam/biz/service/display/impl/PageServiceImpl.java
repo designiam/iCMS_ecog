@@ -287,4 +287,9 @@ public class PageServiceImpl extends EgovAbstractServiceImpl implements PageServ
 		String result = pageMapper.selectPageUtilUid(domain_id, page_type);
 		return result;
 	}
+
+	@Override
+	public String selectBoardSkinByPage(Dm_pages_vo vo) throws Exception {
+		return pageMapper.selectBoardSkinByPage(vo);
+	}
 }
