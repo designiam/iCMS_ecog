@@ -1,5 +1,7 @@
 package egovframework.diam.biz.model.event;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -64,4 +66,12 @@ public class Dm_event_vo {
 	
 	private int rows;
 	private int page;
+	private String search_type;
+	private String search_value;
+	private String search_status;
+	private String search_start_date;
+	private String search_end_date;
+	
+	private String status_text;
+	private MultipartFile file;
 }

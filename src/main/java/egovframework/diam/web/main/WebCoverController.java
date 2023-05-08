@@ -93,9 +93,15 @@ public class WebCoverController {
 	@GetMapping("/web/selectPopularWrite.do")
 	public ResponseEntity<?> selectPopularWrite(Dm_write_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
+		CommonUtil commonUtil = new CommonUtil();
 		
 		try {
 			List<Dm_write_vo> list = writeService.selectPopularWrite(vo);
+			if (list.size() > 0) {
+				list.forEach(item -> {
+					item.setWr_content(commonUtil.removeHtml(item.getWr_content()));
+				});
+			}
 			resultMap.put("result", "success");
 			resultMap.put("rows", list);
 		} catch (DataAccessException dae) {

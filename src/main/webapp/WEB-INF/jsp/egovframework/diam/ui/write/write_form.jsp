@@ -53,6 +53,7 @@ function selectWrite() {
 function fnSetData(row) {
 	$("#dm_table_text").text(row.dm_table_text);
 	$("#wr_subject").val(unescapeHtml(row.wr_subject));
+	$("#wr_sub_subject").val(unescapeHtml(row.wr_sub_subject));
 	$("#wr_content").val(row.wr_content);
 	$("#wr_name").val(unescapeHtml(row.wr_name));
 	$("#wr_link1").val(unescapeHtml(row.wr_link1));
@@ -148,7 +149,7 @@ function fnSave() {
 		if (banner.size > 52428800) {
 			alert("파일 사이즈는 50MB를 초과할 수 없습니다.");
 			return;
-		}		
+		}
 	}
 	
 	if ($("#wr_content").data("editor") == '1') {
@@ -438,7 +439,7 @@ var createSE = function() {
 				<dl class="not_basic">
 				    <dt>부제목</dt>
 				    <dd>
-				        <input type="text" name="wr_sub_subject" id="wr_sub_subject">
+				        <textarea style="min-height: auto; resize: none;" name="wr_sub_subject" id="wr_sub_subject"></textarea>
 				    </dd>
 				</dl>
 				<dl>

@@ -107,6 +107,15 @@ public class CoverController {
 				return new ResponseEntity<>(resultMap, HttpStatus.OK);
 			}
 			
+			if (coverVO.getDm_status().equals("0")) {
+				Dm_cover_vo checkVO = coverService.selectUseCover(coverVO);
+				if (checkVO == null) {
+					resultMap.put("result", "fail");
+					resultMap.put("notice", "메인 표지를 등록해야 합니다.");
+					return new ResponseEntity<>(resultMap, HttpStatus.OK);
+				}
+			}
+			
 			coverVO.setDm_create_id(loginVO.getId());
 			coverVO.setDm_modify_id(loginVO.getId());
 			coverVO.setDm_content(commonUtil.xssSaxFiltering(coverVO.getDm_content()));

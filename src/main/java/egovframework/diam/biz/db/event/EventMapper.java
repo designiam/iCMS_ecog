@@ -11,5 +11,11 @@ public interface EventMapper {
 	public List<Dm_event_vo> selectEventList(Dm_event_vo vo);
 	
 	public int selectEventCount(Dm_event_vo vo);
+	
+	public int upsertEvent(Dm_event_vo vo);
+	
+	public Dm_event_vo selectEvent(Dm_event_vo vo);
+	
+	public int deleteEvent(Dm_event_vo vo);
 
 }
