@@ -18,7 +18,7 @@
 	<!-- //.side-content -->
 		
 	<div class="inner">
-		<div class="swiper-container" id="bestSlider">
+		<div class="" id="bestSlider">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="#;">
@@ -44,20 +44,19 @@
 <section class="main-banner">
 	<c:choose>
 		<c:when test="${fn:length(bannerList) > 0}">
-			<div class="banner-slide swiper-container" id="banSlider">
-				<ul class="swiper-wrapper pc-banner">
+			<div class="banner-slide " id="banSlider">
+				<ul class="pc-banner">
 				<c:forEach var="result" items ="${bannerList}" varStatus="index">
 					<c:choose>
 						<c:when test="${result.dm_link ne null && not empty result.dm_link}">
-							<li class="swiper-slide" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
+							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
 								<a href="${result.dm_link}" target="${result.dm_link_type}">
 									<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
 								</a>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li class="swiper-slide" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
-								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
+							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
 								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
 							</li>
 						</c:otherwise>
@@ -65,13 +64,24 @@
 				</c:forEach>
 				</ul>
 			</div>
-			<div class="banner-slide swiper-container" id="m-banSlider">
-				<ul class="swiper-wrapper m-banner">
-					<li class="swiper-slide" style="background-image: url('${layout_path}/images/main/main_ban01_m.png');">
-						<a href="${result.dm_link}" target="${result.dm_link_type}">
-							<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
-						</a>
-					</li>
+			<div class="banner-slide " id="m-banSlider">
+				<ul class="m-banner">
+					<c:forEach var="result" items ="${bannerList}" varStatus="index">
+						<c:choose>
+							<c:when test="${result.dm_link ne null && not empty result.dm_link}">
+							<li class="" style="background-image: url('/resources/banner/${result.dm_mbanner_img}');">
+								<a href="${result.dm_link}" target="${result.dm_link_type}">
+									<img src="/resources/banner/${result.dm_mbanner_img}" alt="${result.dm_banner_nm}">
+								</a>
+							</li>
+							</c:when>
+							<c:otherwise>
+								<li class="" style="background-image: url('/resources/banner/${result.dm_mbanner_img}');">
+									<img src="/resources/banner/${result.dm_mbanner_img}" alt="${result.dm_banner_nm}">
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</ul>
 			</div>
 		</c:when>
@@ -204,10 +214,10 @@ function getPopularData() {
 	.done(function(data){
 		
 		if (data.rows.length > 0) {
-			var str = '<div class="swiper-wrapper">';
+			var str = '<ul class="">';
 			
 			$.each(data.rows, function(i, obj){
-				str +='<div class="swiper-slide">';
+				str +='<li class="">';
 				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 				str +='<div class="img">';
 				str +='<img src="'+obj.wr_path+obj.wr_thumb+'" alt="">';
@@ -218,9 +228,9 @@ function getPopularData() {
 				str +='<p class="date">'+obj.wr_datetime.substring(0,10)+'</p>';
 				str +='</div>';
 				str +='</a>';
-				str +='</div>';
+				str +='</li>';
 			});
-			str += '</div>';
+			str += '</ul>';
 			var target = $("#bestSlider");
 			target.empty();
 			target.append(str);
@@ -241,7 +251,7 @@ $(".tabMenu").on("click",function(){
 		$(this).removeClass("on").attr("title", "");
 	} else {
 	    $(".on").removeClass("on").attr("title", "");
-	    $(this).addClass("on").attr("title", "선택됨");		
+	    $(this).addClass("on").attr("title", "선택됨");
 	}
 	
     var menuArr = new Array();
@@ -330,30 +340,30 @@ function setNowList(rows){
 }
 
 //인기 게시글 슬라이드
-var bestSlider = new Swiper("#bestSlider", {
-	slidesPerView: 2,
-	spaceBetween: 20,
-	autoplay: {
-		delay: 3500,
-		disableOnInteraction: false,
-	},
-	loop : false,
-	loopAdditionalSlides : 1,
-	breakpoints: {
-		768: {
-			slidesPerView: 3,
-			spaceBetween: 20,
-		},
-		1600: {
-			slidesPerView: 3,
-			spaceBetween: 40,
-		},
-		2200: {
-			slidesPerView: 4,
-			spaceBetween: 60,
-		},
-	},
-});
+//var bestSlider = new Swiper("#bestSlider", {
+//	slidesPerView: 2,
+//	spaceBetween: 20,
+//	autoplay: {
+//		delay: 3500,
+//		disableOnInteraction: false,
+//	},
+//	loop : false,
+//	loopAdditionalSlides : 1,
+//	breakpoints: {
+//		768: {
+//			slidesPerView: 3,
+//			spaceBetween: 20,
+//		},
+//		1600: {
+//			slidesPerView: 3,
+//			spaceBetween: 40,
+//		},
+//		2200: {
+//			slidesPerView: 4,
+//			spaceBetween: 60,
+//		},
+//	},
+//});
 
 
 //SNS 슬라이드
