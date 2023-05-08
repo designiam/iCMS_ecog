@@ -761,18 +761,18 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs .btn_cancel,
 .bbs .btn_comment,
 .bbs .btn_modify,
-.bbs .btn_delete { display: inline-block; font-weight: 400; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #1D2D67; border: 1px solid #1D2D67; color: #fff; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.25rem; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+.bbs .btn_delete { display: inline-block; padding: 0.375rem 0.75rem; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #555; border: 1px solid #555; border-radius: 0.188rem; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.5; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
 .bbs .btn_list:hover,
 .bbs .btn_write:hover,
 .bbs .btn_close:hover,
 .bbs .btn_submit:hover,
 .bbs .btn_comment:hover,
-.bbs .btn_modify:hover { background-color: #394881; }
+.bbs .btn_modify:hover { background-color: #333; }
 .bbs .btn_list {}
 .bbs .btn_write {}
 .bbs .btn_close {}
 .bbs .btn_submit {}
-.bbs .btn_comment {}
+.bbs .btn_comment {  }
 .bbs .btn_modify {}
 .bbs .btn_delete,
 .bbs .btn_cancel { background-color: #999; border-color: #999; }
@@ -1002,23 +1002,21 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .bbs_view_sympathy .view_sympathy_box > a.bad.active span { background-color: #dc3545; border-color: #dc3545; color: #fff; }
 
 /* 게시판 댓글 버튼 */
-.cmt_btn { position: relative; background: none; border: 0; text-align: left; width: 100%; margin: 30px 0 0 0; padding: 10px 0; font-size: 20px;
- color: #3f4553; border-bottom: 1px solid #3f4553; font-weight: normal; }
+.cmt_btn { position: relative; background: none; border: 0; text-align: left; width: 100%; margin-top: 2.5rem; padding: 1.375rem 1.25rem; background: #F5F5F5; font-size: 1.125rem; font-weight: 800; }
 .cmt_btn i { color: #3f4553; }
-.cmt_btn:after { position: absolute; right: 10px; top: 50%; margin-top: -0.5em; content: "\f077"; font-family: 'FontAwesome'; display: block; width: 1em; height: 1em; line-height: 1; transition: all 0.25s ease-in-out; transform-origin: center 0.6em; }
+.cmt_btn span { font-size: 14px; font-weight:400; }
+.cmt_btn:after { content: "\62"; position: absolute; right: 1.125rem; top: 50%; display: block; margin-top: -0.5em; font-family: "Diam"; font-size: 14px; line-height: 1; transition: all 0.25s ease-in-out; transform-origin: center 0.6em; }
 .cmt_btn_op:after { transform: rotate(180deg); }
-.cmt_btn:before { position: absolute; bottom: 0; left: 0; content: ""; display: block; width: 3.5em; height: 2px; background: #3f4553; }
 .cmt_btn_op:before {}
 
 /* 게시판 댓글 목록 */
 .bbs_comment {}
 .bbs_comment h3 { display: none; }
 .bbs_comment h4 { display: none; }
-.comment_ul { border-bottom: 1px solid #ddd; }
-.comment_li { border-top: 1px solid #ddd; }
+.comment_ul { border-bottom: 1px solid #F5F5F5; }
+.comment_li {  }
 .comment_li.none { text-align: center; padding: 3rem; }
-.comment_box { position: relative; padding: 10px 10px 10px 120px; }
-.comment_box::before { position: absolute; top: 10px; left: 10px; content: "\e853"; font-family: 'Material Icons';  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; font-feature-settings: 'liga'; display: block; width: 80px; height: 80px; color: #eee; font-size: 84px; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -moz-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
+.comment_box { position: relative; padding: 1.25rem 1rem; }
 .comment_li.reply { background-color: #fbfbfb; border-color: #eee; }
 .comment_li.reply .comment_box::before { content: "\e5da"; font-size: 40px; font-weight: bold; -webkit-box-pack: end; -moz-box-pack: end; -ms-flex-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end; -webkit-box-align: start; -moz-box-align: start; -ms-flex-align: start; -webkit-align-items: flex-start; align-items: flex-start; }
 .comment_box b, 
@@ -1027,45 +1025,49 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .comment_box dt, 
 .comment_box dd { font-weight: normal; font-style: normal; }
 .comment_box .comment_sympathy .view_sympathy_box > a,
-.comment_box .btn_delete,
-.comment_box .btn_modify,
-.comment_box .btn_write { display: inline-block; font-weight: 400; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #fff; border: 1px solid #ccc; color: #333; padding: 0.125rem 0.625rem; font-size: 0.875rem; line-height: 1.5; border-radius: 0.78125rem; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+.comment_box .btn_write { display: inline-block; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #fff; border: 1px solid #ddd; padding: 0.125rem 0.625rem; color: #666; font-size: 12px; font-weight: 400; line-height: 1.5; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
 .comment_box .comment_sympathy .view_sympathy_box > a:hover,
-.comment_box .btn_delete:hover,
-.comment_box .btn_modify:hover,
 .comment_box .btn_write:hover { border-color: #555; background-color: #555; color: #fff; }
-.comment_header { display: flex; justify-content: space-between; align-items: flex-start; }
+.comment_header { position: relative; display: flex; justify-content: flex-start; align-items: baseline; gap: 8px; }
 .comment_header dl { display: inline-block; }
 .comment_header dt, 
 .comment_header dd { display: inline-block; }
 .comment_header dt { display: none; }
-.comment_header dl.comment_wr_name {}
-.comment_header dl.comment_wr_date { flex: 0 0 auto; color: #999; }
+.comment_header dl.comment_wr_name dd { font-weight: 700; }
+.comment_header dl.comment_wr_date { flex: 0 0 auto; color: #999; font-size: 12px; }
+.comment_header .comment_button { position: absolute; top: 0; right: 0; }
+.comment_header .comment_button button { width: 16px; height: 20px; padding: 0; background-color: transparent; border: 0; }
+.comment_header .comment_button button img { max-width: 100%; }
+.comment_header .comment_button ul { display: none; position: absolute; top: calc(20px + 3px); right: -1rem; padding: 0.25rem 0; border-radius: 0.313rem; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.16); }
+.comment_header .comment_button ul li { width: 4.375rem; height: 1.875rem; }
+.comment_header .comment_button ul li a { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #666; font-size: 12px; transition: all .25s; }
+.comment_header .comment_button ul li:hover a { text-decoration: underline; }
+.comment_content { margin-top: 12px; font-size: 14px; }
 .comment_footer { -webkit-box-flex: 1 0 auto; -moz-box-flex: 1 0 auto; -ms-flex: 1 0 auto; -webkit-flex: 1 0 auto; flex: 1 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -moz-box-pack: justify; -ms-flex-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; margin-top: 1rem; }
-@media (max-width: 768px) {
-  .comment_box { padding: 10px 10px 10px 75px; }
-  .comment_box::before { width: 50px; height: 50px; font-size: 50px; }
-}
 
 
 /* 게시판 댓글 쓰기 */
-.comment_form { clear: both; display: block; margin: 10px 0 0 0; padding: 20px; border: 1px solid #b3b3b3; background: #fff; }
+.comment_form { position: relative; clear: both; display: block; margin: 10px 0 0 0; padding: 1rem 1.25rem; background: #F7F7F7; border-radius: 0.313rem; }
 .comment_form h4 { display: none; }
 .comment_write {}
 .comment_write dl {}
 .comment_write dl dt { display: none; }
 .comment_write input[type="text"],
-.comment_write input[type="password"] { width: 150px; display: inline-block; font-weight: 400; color: #212529; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #fff; border: 1px solid #ddd; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: 0; outline: 0; }
-.comment_write textarea { display: block; border: 0; background: #fff; color: #000; vertical-align: middle; margin: 0; padding: 0; width: 100%; height: 60px; border-radius: 0; background: none !important; outline: 0; resize: vertical; }
-.comment_write_info { -webkit-box-flex: 0 0 auto; -moz-box-flex: 0 0 auto; -ms-flex: 0 0 auto; -webkit-flex: 0 0 auto; flex: 0 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: start; -moz-box-pack: start; -ms-flex-pack: start; -webkit-justify-content: flex-start; justify-content: flex-start; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
-.comment_write_info dl { margin-right: 5px; -webkit-box-flex: 0 0 auto; -moz-box-flex: 0 0 auto; -ms-flex: 0 0 auto; -webkit-flex: 0 0 auto; flex: 0 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: start; -moz-box-pack: start; -ms-flex-pack: start; -webkit-justify-content: flex-start; justify-content: flex-start; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
+.comment_write input[type="password"] { width: 120px; display: inline-block; vertical-align: middle; padding: 0.188rem .625rem; background-color: #fff; border: 1px solid #ddd; border-radius: 0.188rem; font-size: 1rem; line-height: 1.5; outline: 0; }
+.comment_write textarea { display: block; width: 100%; min-height: 8.125rem; margin: 0; padding: .625rem; background: #fff; border: 1px solid #ddd; border-radius: 0.188rem; vertical-align: middle; outline: 0; resize: vertical; }
+.comment_write_info { -webkit-box-flex: 0 0 auto; -moz-box-flex: 0 0 auto; -ms-flex: 0 0 auto; -webkit-flex: 0 0 auto; flex: 0 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: start; -moz-box-pack: start; -ms-flex-pack: start; -webkit-justify-content: flex-start; justify-content: flex-start; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; flex-wrap: wrap; }
+.comment_write_info dl { margin-right: 6px; margin-bottom: 3px; -webkit-box-flex: 0 0 auto; -moz-box-flex: 0 0 auto; -ms-flex: 0 0 auto; -webkit-flex: 0 0 auto; flex: 0 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: start; -moz-box-pack: start; -ms-flex-pack: start; -webkit-justify-content: flex-start; justify-content: flex-start; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
 .comment_write_info .cmf_name {}
 .comment_write_info .cmf_name input[type="text"][readonly] { border-color: transparent; }
 .comment_write_info .cmf_pass {}
 .comment_write_info .cmf_secret { margin-left: auto; margin-right: 0; }
 .comment_write_form { margin: 10px 0; }
-.comment_write_btn {}
-.comment_write_btn .btn_comment { width: 150px; }
+.comment_write_btn { position: absolute; top: 1rem; right: 1.25rem; text-align: center; }
+.comment_write_btn .btn_comment { width: 95px; }
+@media (max-width: 576px) {
+  .comment_form { padding: 1rem 0.5rem; }
+  .comment_write_btn { position: static; }
+}
 
 /* 게시판 읽기: 이전글/다음글 */
 .nb_ul { margin: 40px 0; padding: 0; list-style: none; position: relative; clear: both; text-align: left; border-top: 1px solid #ddd; overflow: hidden; max-width: 100%; }

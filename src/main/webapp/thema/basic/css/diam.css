@@ -5,6 +5,9 @@
 /*================================================================
     폼 스타일
 ================================================================*/
+input[type="text"], input[type="password"], textarea { transition: all .25s; }
+input[type="text"]:focus-visible, input[type="password"]:focus-visible, textarea:focus-visible { border-color: #555; }
+input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder { color: #666; font-size: 12px; font-weight: 400; letter-spacing: -0.04em; }
 select {appearance:none;-webkit-appearance:none;-moz-appearance:none;background:url('../images/select_arrow.png') no-repeat right 9px center; cursor: pointer; }
 select::-ms-expand {display:none;}
 

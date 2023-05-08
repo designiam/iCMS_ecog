@@ -67,7 +67,7 @@ function writeComment() {
 	        success : function (data) {
 	            alert(data.notice);
 	            if (data.result == 'success') {
-	            	location.reload();                
+	            	location.reload();
 	            }
 	        }, error:function(request, status, error) {
 	            alert(request.responseJSON.notice);
@@ -84,7 +84,7 @@ function comment_reply(wr_id) {
     $("#comment_form").remove();
     $("#comment_fm").remove();
     $('.comment_form').removeClass('comment_form');
-   
+
     $(".comment_reply_fm"+wr_id).addClass("comment_form").html(comment_fm);
     $(".comment_reply_fm"+wr_id+" h4").text("댓글의 댓글 쓰기");
     $(".comment_form input[name='mode']").val('1');
@@ -98,11 +98,18 @@ jQuery(function($) {
     $(".cmt_btn").click(function(e){
         e.preventDefault();
         $(this).toggleClass("cmt_btn_op");
-        $(".bbs_comment").toggle();
+        $(".bbs_comment").slideToggle(300);
+    });
+    
+    //수정삭제열기
+    $(".comment_button button").click(function(e){
+        e.preventDefault();
+        $(this).toggleClass("cmt_btn_op");
+        $(".comment_button ul").slideToggle(300);
     });
 });
 </script>
-<button type="button" class="cmt_btn"><i class="material-icons" aria-hidden="true">comment</i> 댓글</button>
+<button type="button" class="cmt_btn">댓글 <span>총 151개</span></button>
 <div class="bbs_comment">
 	<h3>댓글 목록</h3>
 	<ul class="comment_ul">
@@ -156,24 +163,57 @@ jQuery(function($) {
 									<dt>작성일</dt>
 									<dd><c:out value='${comment.wr_datetime}'/></dd>
 								</dl>
+								<div class="comment_button">
+									<button type="button"><img src="../images/ico_option.png" alt=""></button>
+									<ul>
+									<c:choose>
+										<c:when test="${comment.mb_id eq '비회원'}">
+											<c:if test="${is_admin || DiamLoginVO.id eq null}">
+												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">수정</a></li>
+												<c:choose>
+													<c:when test="${empty comment.children }">
+														<li><a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a></li>
+													</c:when>
+													<c:otherwise>
+														<li><a class="" href="javascript:deniedDelete();">삭제</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${is_admin eq true || comment.mb_id eq DiamLoginVO.id}">
+												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', false);">수정</a></li>
+												<c:choose>
+													<c:when test="${empty comment.children }">
+														<li><a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a></li>
+													</c:when>
+													<c:otherwise>
+														<li><a class="" href="javascript:deniedDelete();">삭제</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
+									</ul>
+								</div>
 							</div>
 							<div class="comment_content" id="content_<c:out value='${comment.wr_id}'/>">
 								<p>
 									<c:choose>
-						    			<c:when test="${comment.wr_option eq 'secret'}">
-						    				<c:choose>
-						    					<c:when test="${is_admin eq true || DiamLoginVO.id eq comment.mb_id || DiamLoginVO.id eq comment.ori_mb_id || (DiamLoginVO.id ne null && DiamLoginVO.id eq comment.reply_mb_id)}">
-						    						<c:out value="${fn:replace(comment.wr_content, newLineChar , '<br/>')}" escapeXml="false"/>
-						    					</c:when>
-						    					<c:otherwise>
-						    						비밀글입니다
-						    					</c:otherwise>
-						    				</c:choose>
-						    			</c:when>
-						    			<c:otherwise>
-						    				<c:out value="${fn:replace(comment.wr_content, newLineChar, '<br/>')}" escapeXml="false"/>
-						    			</c:otherwise>
-						    		</c:choose>
+										<c:when test="${comment.wr_option eq 'secret'}">
+											<c:choose>
+												<c:when test="${is_admin eq true || DiamLoginVO.id eq comment.mb_id || DiamLoginVO.id eq comment.ori_mb_id || (DiamLoginVO.id ne null && DiamLoginVO.id eq comment.reply_mb_id)}">
+													<c:out value="${fn:replace(comment.wr_content, newLineChar , '<br/>')}" escapeXml="false"/>
+												</c:when>
+												<c:otherwise>
+													비밀글입니다
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:otherwise>
+											<c:out value="${fn:replace(comment.wr_content, newLineChar, '<br/>')}" escapeXml="false"/>
+										</c:otherwise>
+									</c:choose>
 								</p>
 							</div>
 							
@@ -181,40 +221,12 @@ jQuery(function($) {
 								<div class="comment_button">
 									<c:if test="${is_comment eq true}">
 										<c:if test='${comment.wr_comment < 2}'>
-							    			<a class="btn_write" href="javascript:comment_reply('<c:out value="${comment.wr_id}"/>');">댓글쓰기</a>
-							    		</c:if>
-							    	</c:if>
-							    	<c:choose>
-							    		<c:when test="${comment.mb_id eq '비회원'}">
-							    			<c:if test="${is_admin || DiamLoginVO.id eq null}">
-							    				<a class="btn_modify" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">댓글수정</a>
-							    				<c:choose>
-							    					<c:when test="${empty comment.children }">
-											    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">댓글삭제</a>
-							    					</c:when>
-							    					<c:otherwise>
-							    						<a class="btn_delete" href="javascript:deniedDelete();">댓글 삭제</a>
-							    					</c:otherwise>
-							    				</c:choose>
-							    			</c:if>
-							    		</c:when>
-							    		<c:otherwise>
-							    			<c:if test="${is_admin eq true || comment.mb_id eq DiamLoginVO.id}">
-							    				<a class="btn_modify" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', false);">댓글수정</a>
-									    		<c:choose>
-							    					<c:when test="${empty comment.children }">
-											    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">댓글삭제</a>
-							    					</c:when>
-							    					<c:otherwise>
-							    						<a class="btn_delete" href="javascript:deniedDelete();">댓글 삭제</a>
-							    					</c:otherwise>
-							    				</c:choose>
-							    			</c:if>
-							    		</c:otherwise>
-							    	</c:choose>	
+											<a class="btn_write" href="javascript:comment_reply('<c:out value="${comment.wr_id}"/>');">답글</a>
+										</c:if>
+									</c:if>
 								</div>
 							</div>
-							<div class="comment_reply_fm<c:out value='${comment.wr_id}'></c:out>"></div>
+							<div class="comment_reply_fm comment_reply_fm<c:out value='${comment.wr_id}'></c:out>"></div>
 						</div>
 					</li>
 					<c:if test="${!empty comment.children }">
@@ -347,8 +359,8 @@ jQuery(function($) {
 					</c:when>
 					<c:otherwise>
 						<dl class="cmf_name">
-							<dt><label for="">작성자명</label></dt>
-							<dd><c:out value='${DiamLoginVO.name}'></c:out></dd>
+							<dt><label for="">작성자</label></dt>
+							<dd><input type="text" value="<c:out value='${DiamLoginVO.name}'></c:out>" disabled ></dd>
 							<dd><input type="hidden" name="wr_name" id="wr_name" value="<c:out value='${DiamLoginVO.name}'></c:out>"></dd>
 							
 						</dl>
@@ -375,7 +387,7 @@ jQuery(function($) {
 				</dl>
 			</div>
 			<div class="comment_write_btn">
-				<button type="button" class="btn_comment" onclick="writeComment();">댓글작성</button>
+				<button type="button" class="btn_comment" onclick="writeComment();">등록하기</button>
 			</div>
 		</form>
 	</div>
