@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <%@ include file="base.jsp"%>
+
+<link rel="stylesheet" href="<c:url value='${layout_path}/css/content.css' />">
+
 <style>
 .video-container {
 	position: relative;
@@ -101,7 +104,15 @@ function deleteWrite() {
 		</c:if>
 	</c:if>
 	<div class="bbs_viewing">
-		<h5><c:if test="${!empty writeVO.ca_name }"><span class="cate theme-color-1">[<c:out value="${writeVO.ca_name}"/>] </span></c:if><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h5>
+		<div class="bbs_view_header" style="background-image: url('${writeVO.wr_path}${writeVO.wr_head}');">
+			<img src="<c:out value='${writeVO.wr_path}${writeVO.wr_head}'/>">
+		</div>
+		
+		<div class="bbs_view_title">
+			<h4><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h4>
+			<p><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+		</div>
+	
 		<div class="bbs_view_info">
 			<dl class="bbs_view_info_name">
 				<dt>작성자</dt>
@@ -243,32 +254,23 @@ function deleteWrite() {
 			<br>
 			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "<br/>")}' escapeXml="false"/>
 		</div>
-		
-		<div class="bbs_viewbtn">
-			<div class="bbs_viewbtn_1">
-				<c:choose>
-					<c:when test="${writeVO.mb_id eq '비회원'}">
-						<a href="javascript:;" id="modifyWrite" class="btn_modify">수정</a>
-						<a href="javascript:;" id="deleteWrite" class="btn_delete">삭제</a>
-					</c:when>
-					<c:otherwise>
-						<c:if test="${is_admin eq true || writeVO.mb_id eq DiamLoginVO.id}">
-							<a href="javascript:;" id="modifyWrite" class="btn_modify">수정</a>
-							<a href="javascript:;" id="deleteWrite" class="btn_delete">삭제</a>
-						</c:if>
-					</c:otherwise>
-				</c:choose>
-			</div>
-			
-			<div class="bbs_viewbtn_2">
-				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_list">목록</a>
-				<c:if test="${boardVO.dm_is_reply eq 1}">
-					<c:if test="${is_reply eq true}">
-						<a href="<c:out value='${param.root }'/>/index.do?command=reply&wr_id=<c:out value='${writeVO.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">답변</a>
-					</c:if>
-				</c:if>
-			</div>
+
+		<div class="bbs_view_writer">
+			<dl class="writer">
+				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
+				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
+			</dl>
+			<dl class="picture">
+				<dt>사진</dt>
+				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
+			</dl>
 		</div>
+		
+		<c:if test="${boardVO.dm_is_comment eq 1}">
+			<c:if test="${writeVO.wr_reply eq '0'}">
+				<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
+			</c:if>	
+		</c:if>
 		
 		<ul class="nb_ul">
 			<li class="btn_prev">
@@ -289,15 +291,122 @@ function deleteWrite() {
 						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.next_id }' />"><c:out value="${writeVO.next_subject }" /></a>
 					</c:when>
 					<c:otherwise>
-						<a>다음 게시글이 존재하지 않습니다.</a>					
+						<a>다음 게시글이 존재하지 않습니다.</a>
 					</c:otherwise>
 				</c:choose>
 			</li>
 		</ul>
+		
+		<div class="bbs_view_slide">
+			<h6>같이 보면 좋은 콘텐츠</h6>
+			<div class="vol-slider">
+				<div class="swiper-container">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb04.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">승촌보캠핑장 '청량한 음악 한 모금' 콘서트에 초대합니다.</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb03.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb03.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">제15회 기후변화주간, #오늘도나는지구를구했다.</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb02.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb02.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">재난상황 조직체계 및 프로세스</div>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="#;">
+								<div class="cell_thumb">
+									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb01.jpg');">
+										<img src="${layout_path}/images/pages/sample_thumb01.jpg" alt="" onerror="this.src='/images/no_image.png'">
+									</div>
+									<span class="vol">Vol.1</span>
+								</div>
+								<div class="cell_txt">
+									<div class="cell_subject">광주환경공단 2021년 공공데이터 신규 개방 알림</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+		
+		<div class="bbs_viewbtn">
+			<div class="bbs_viewbtn_1">
+				<c:choose>
+					<c:when test="${writeVO.mb_id eq '비회원'}">
+						<a href="javascript:;" id="modifyWrite" class="btn_modify">수정</a>
+						<a href="javascript:;" id="deleteWrite" class="btn_delete">삭제</a>
+					</c:when>
+					<c:otherwise>
+						<c:if test="${is_admin eq true || writeVO.mb_id eq DiamLoginVO.id}">
+							<a href="javascript:;" id="modifyWrite" class="btn_modify">수정</a>
+							<a href="javascript:;" id="deleteWrite" class="btn_delete">삭제</a>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			
+			<div class="bbs_viewbtn_2">
+				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_list">목록보기 <img src="${layout_path}/images/arrR_bk.png" alt=""></a>
+				<c:if test="${boardVO.dm_is_reply eq 1}">
+					<c:if test="${is_reply eq true}">
+						<a href="<c:out value='${param.root }'/>/index.do?command=reply&wr_id=<c:out value='${writeVO.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">답변</a>
+					</c:if>
+				</c:if>
+			</div>
+		</div>
 	</div>
-	<c:if test="${boardVO.dm_is_comment eq 1}">
-		<c:if test="${writeVO.wr_reply eq '0'}">
-			<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
-		</c:if>	
-	</c:if>
 </div>
+
+<script>
+// 해당 호수 콘텐츠 슬라이드
+var volSwiper = new Swiper(".vol-slider .swiper-container", {
+	slidesPerView: 2,
+	spaceBetween: 15,
+	autoplay: {
+		delay: 3500,
+		disableOnInteraction: false,
+	},
+	navigation: {
+		nextEl: ".vol-slider .swiper-button-next",
+		prevEl: ".vol-slider .swiper-button-prev",
+	},
+	breakpoints: {
+		576: {
+			slidesPerView: 3,
+			spaceBetween: 30,
+		},
+	}
+});
+</script>

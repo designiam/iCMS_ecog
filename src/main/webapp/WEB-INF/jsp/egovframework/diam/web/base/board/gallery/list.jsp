@@ -173,7 +173,7 @@
 								<div class="cell_txt">
 									<div class="cell_cate">Report</div>
 									<div class="cell_subject"><c:out value="${result.wr_subject}" escapeXml='false'/></div>
-									<div class="cell_content"><c:out value="${result.wr_content}" escapeXml='false'/></div>
+									<div class="cell_content"><c:out value="${result.wr_summary}" escapeXml='false'/></div>
 								</div>
 							</a>
 						</li>
@@ -181,7 +181,7 @@
 				</ul>
 			</c:when>
 			<c:otherwise>
-				<p class="empty">게시글이 없습니다.</p>
+				<p class="empty"><img src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></p>
 			</c:otherwise>
 		</c:choose>
 	</div>

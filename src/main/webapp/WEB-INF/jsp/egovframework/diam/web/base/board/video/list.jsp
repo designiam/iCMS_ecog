@@ -37,13 +37,13 @@
 			</div>
 		</c:if>
 	</c:if>
-	
 	<div class="bbs_leadin">
 		<div class="bbs_count">
-			전체 <strong class="theme-color-1"><c:out value='${writeListCnt}'/></strong>건 <span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
+			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
 		</div>
 		<div class="bbs_order">
-
+			<button class="btn active">최신순</button>
+			<button class="btn">인기순</button>
 		</div>
 	</div>
 	<c:if test="${!empty noticeList }">
@@ -149,58 +149,22 @@
 	<div class="bbs_gallist">
 		<c:choose>
 			<c:when test="${fn:length(writeList) > 0}">
-				<ul class="vide row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+				<ul class="video row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 					<c:forEach var="result" items="${writeList}" varStatus="status">
 						<li class="cell col">
-<%-- 							<a href="/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="image">
-								<span style="position: relative; display: block; overflow: hidden; width: 100%; height: auto; 
-								padding-top: 56.25%; background: url('${result.thumb}') center center no-repeat; background-size: cover;" 
-								class="thumb outside"><img src="${result.thumb}" alt="${result.wr_subject} 썸네일이미지" onerror="this.src='/images/no_img.jpg'" style="position: absolute; opacity: 0; visibility: hidden;"></span>
-							</a> --%>
 							<c:set var="linkData" value="${fn:substring(result.wr_link1, 17, -1) }"/>
  							<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
 								<div class="cell_thumb">
-									<div class="">
+									<div class="thumb-wrap" style="background-image: url('https://img.youtube.com/vi/${linkData}/mqdefault.jpg');">
 										<img src="https://img.youtube.com/vi/${linkData}/mqdefault.jpg" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
 									</div>
+									<span class="vol">Vol.<c:out value="${result.wr_vol}" escapeXml='false'/></span>
 								</div>
 								<!-- //.cell_thumb -->
-							
-								<div class="cell_info">
+								<div class="cell_txt">
+									<div class="cell_cate">Report</div>
 									<div class="cell_subject"><c:out value="${result.wr_subject}" escapeXml='false'/></div>
-									<div class="cell_txt">
-										<div class="cell_date">${fn:substring(result.wr_datetime,0,10) }</div>
-										<div class="cell_name"><c:out value="${result.wr_name}"/></div>
-									</div>
-								</div>
-								
-								<div class="cell_icon mt10">
-									<c:if test="${dm_hit_url ne null && not empty dm_hit_url}">
-										<c:if test="${result.wr_hit >= boardVO.dm_hit_max}">
-											<img src="<c:out value='${dm_hit_url}'/>" alt="UP" />
-										</c:if>
-									</c:if>
-									<c:if test="${dm_new_url ne '' && dm_new_url ne null}">
-										<fmt:parseDate var="tmpWriteDate" value="${result.wr_datetime}" pattern="yyyy-MM-dd HH:mm:ss"/>
-										<fmt:parseDate var="tmpCurrentDate" value="${curDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-										<c:set var="writeDate" value="${tmpWriteDate.time + (1000*60*60*boardVO.dm_new_time)}"/>
-										<c:set var="currentDate" value="${tmpCurrentDate.time}"/>
-										<c:if test="${currentDate <= writeDate}">
-											<img src="<c:out value='${dm_new_url}'/>" alt="NEW" />
-										</c:if>
-									</c:if>
-									<c:if test="${dm_file_icon ne '' && dm_file_icon ne null}">
-										<c:set var="fileArrCnt" value="0"/>
-										<c:set var="fileArr" value="${fn:split(result.wr_file,'|') }"/>
-										<c:forEach var="result2" items="${fileArr}" varStatus="status">
-											<c:if test="${result2 ne '' && result2 ne null}">
-												<c:set var="fileArrCnt" value="${fileArrCnt + 1}"/>
-											</c:if>
-										</c:forEach>
-										<c:if test="${fileArrCnt > 0}">
-											<img src="<c:out value='${dm_file_icon}'/>" alt="FILE" />
-										</c:if>
-									</c:if>
+									<div class="cell_content"><c:out value="${result.wr_summary}" escapeXml='false'/></div>
 								</div>
 							</a>
 						</li>
@@ -208,7 +172,7 @@
 				</ul>
 			</c:when>
 			<c:otherwise>
-				<p class="empty">게시글이 없습니다.</p>
+				<p class="empty"><img src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></p>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -216,7 +180,7 @@
 		<c:out value='${pagingStr}' escapeXml="false"/>
 	</div>
 	
-	<div class="bbs_search">
+	<%-- <div class="bbs_search">
 		<fieldset>
 			<h3>검색</h3>
 			<form id="search_form" action="<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${pageVO.dm_uid}'/>&command=list" method="post" >
@@ -232,13 +196,13 @@
 				<button type="submit" class="sch_button"><span>검색</span></button>
 			</form>
 		</fieldset>
-	</div>
+	</div> --%>
 	
-	<div class="bbs_listbtn">
+<%-- 	<div class="bbs_listbtn">
 		<c:if test="${is_write eq true}">
 			<a href="<c:out value='${param.root }'/>/index.do?command=write&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">작성하기</a>        
 		</c:if>
-	</div>
+	</div> --%>
 </div>
 
 <c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">

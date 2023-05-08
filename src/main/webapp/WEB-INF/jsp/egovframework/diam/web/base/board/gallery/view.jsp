@@ -92,7 +92,7 @@ function deleteWrite() {
 	
 		<div class="bbs_view_title">
 			<h4><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h4>
-			<p>UN이 정한 “세계 물의 날” 기념 광주천 정화활동</p>
+			<p><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
 		</div>
 		
 		<div class="bbs_view_info">
@@ -222,12 +222,12 @@ function deleteWrite() {
 		
 		<div class="bbs_view_writer">
 			<dl class="writer">
-				<dt><span>저자</span> <b>환경공단</b></dt>
-				<dd>abcd_@naver.com</dd>
+				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
+				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
 			</dl>
 			<dl class="picture">
 				<dt>사진</dt>
-				<dd><b>환경공단 제공</b></dd>
+				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
 			</dl>
 		</div>
 		
@@ -345,7 +345,6 @@ function deleteWrite() {
 				</c:if>
 			</div>
 		</div>
-		
 	</div>
 	<c:if test="${boardVO.dm_is_comment eq 1}">
 		<c:if test="${writeVO.wr_reply eq '0'}">
