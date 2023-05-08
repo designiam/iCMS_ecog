@@ -242,7 +242,7 @@ public class BannerController {
 					resultMap.put("result", "fail");
 					resultMap.put("notice", "jpg,jpeg,gif,png 확장자 파일만 업로드 가능합니다.");
 					return new ResponseEntity<>(resultMap, HttpStatus.OK);
-				}				
+				}
 				
 				int result = 0;
 				

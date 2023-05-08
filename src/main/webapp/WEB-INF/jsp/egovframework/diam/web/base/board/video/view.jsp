@@ -110,7 +110,7 @@ function deleteWrite() {
 		
 		<div class="bbs_view_title">
 			<h4><c:out value='${writeVO.wr_subject}' escapeXml="false"/></h4>
-			<p><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+			<p><c:out value='${fn:replace(writeVO.wr_sub_subject, newLineChar, "<br/>")}' escapeXml="false"/></p>
 		</div>
 	
 		<div class="bbs_view_info">

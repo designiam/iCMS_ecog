@@ -3,10 +3,146 @@
 <mapper namespace="egovframework.diam.biz.db.event.EventMapper">
 	<resultMap id="resultEventVO" type="egovframework.diam.biz.model.event.Dm_event_vo"/>
 	
-	<select id="selectEventList" resultMap="resultEventVO">
+	<sql id="selectWhere">
+		<if test='search_value != "" and search_value != null'>
+			<choose>
+				<when test='search_type == "dm_title"'>
+					AND A.dm_title LIKE CONCAT('%',#{search_value},'%')
+				</when>
+				<when test='search_type == "dm_content"'>
+					AND A.dm_content LIKE CONCAT('%',#{search_value},'%')				
+				</when>
+				<otherwise>
+					AND (
+						A.dm_title = #{search_value}
+						OR
+						A.dm_content LIKE CONCAT('%',#{search_value},'%')
+					)
+				</otherwise>
+			</choose>
+		</if>
+		<if test='search_status != null and search_status != ""'>
+			AND A.dm_status = #{search_status}
+		</if>
+		<if test='search_start_date != null and search_start_date != ""'>
+			<![CDATA[
+				AND	STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') <= DATE_FORMAT(A.dm_event_start, '%Y-%m-%d')
+			]]>
+		</if>
+		<if test='search_end_date != null and search_end_date != ""'>
+			<![CDATA[
+				AND	STR_TO_DATE(#{search_end_date}, '%Y-%m-%d') >= DATE_FORMAT(A.dm_event_end, '%Y-%m-%d')
+			]]>
+		</if>
+	</sql>
 	
+	<select id="selectEventList" resultMap="resultEventVO">
+		   SELECT  A.*
+		   		 , B.dm_code_name AS status_text
+			 FROM  dm_event AS A
+		LEFT JOIN  (SELECT dm_code_value, dm_code_name FROM dm_common_code WHERE dm_delete_yn = 'N' AND dm_code_group = '3003') AS B
+			   ON  A.dm_status = B.dm_code_value
+			WHERE  1 = 1
+			  AND  A.dm_delete_yn = 'N'
+		<include refid="selectWhere"/>
+		 ORDER BY  A.dm_create_dt DESC
+		    LIMIT  #{page}, #{rows}
 	</select>
 	
-	<select id=""></select>
+	<select id="selectEventCount" resultType="integer">
+		SELECT COUNT(A.dm_id)
+		FROM dm_event AS A
+		WHERE 1 = 1
+		AND A.dm_delete_yn = 'N'
+		<include refid="selectWhere"/>
+	</select>
 	
+	<update id="upsertEvent">
+		INSERT INTO dm_event 
+			(	dm_id
+			  , dm_title
+			  , dm_content
+			  , dm_status
+			  , dm_inquiry
+			  , dm_host
+			  , dm_target
+			  , dm_event_start
+			  , dm_event_end
+			  , dm_file_name
+			  , dm_file_path
+			  , dm_announce
+			  , dm_twitter
+			  , dm_instagram
+			  , dm_naver
+			  , dm_facebook
+			  , dm_youtube
+			  , dm_kakao
+			  , dm_etc
+			  , dm_create_dt
+			  , dm_create_id
+			)
+		VALUES
+			(
+				#{dm_id}
+			  , #{dm_title}
+			  , #{dm_content}
+			  , #{dm_status}
+			  , #{dm_inquiry}
+			  , #{dm_host}
+			  , #{dm_target}
+			  , #{dm_event_start}
+			  , #{dm_event_end}
+			  , #{dm_file_name}
+			  , #{dm_file_path}
+			  , #{dm_announce}
+			  , #{dm_twitter}
+			  , #{dm_instagram}
+			  , #{dm_naver}
+			  , #{dm_facebook}
+			  , #{dm_youtube}
+			  , #{dm_kakao}
+			  , #{dm_etc}
+			  , now()
+			  , #{dm_create_id}
+			)
+		ON DUPLICATE KEY UPDATE
+				dm_title = #{dm_title}
+			  , dm_content = #{dm_content}
+			  , dm_status = #{dm_status}
+			  , dm_inquiry = #{dm_inquiry}
+			  , dm_host = #{dm_host}
+			  , dm_target = #{dm_target}
+			  , dm_event_start = #{dm_event_start}
+			  , dm_event_end = #{dm_event_end}
+			  , dm_file_name = #{dm_file_name}
+			  , dm_file_path = #{dm_file_path}
+			  , dm_announce = #{dm_announce}
+			  , dm_twitter = #{dm_twitter}
+			  , dm_instagram = #{dm_instagram}
+			  , dm_naver = #{dm_naver}
+			  , dm_facebook = #{dm_facebook}
+			  , dm_youtube = #{dm_youtube}
+			  , dm_kakao = #{dm_kakao}
+			  , dm_etc = #{dm_etc}
+			  , dm_modify_dt = now()
+			  , dm_modify_id = #{dm_modify_id}
+	</update>
+	
+	<select id="selectEvent" resultMap="resultEventVO">
+		   SELECT  A.*
+		   		 , B.dm_code_name AS status_text
+			 FROM  dm_event AS A
+		LEFT JOIN  (SELECT dm_code_value, dm_code_name FROM dm_common_code WHERE dm_delete_yn = 'N' AND dm_code_group = '3003') AS B
+			   ON  A.dm_status = B.dm_code_value
+			WHERE  1 = 1
+			  AND  A.dm_id = #{dm_id}
+	</select>
+	
+	<update id="deleteEvent">
+		UPDATE  dm_event
+		   SET  dm_delete_yn = 'Y'
+		      , dm_delete_id = #{dm_delete_id}
+		      , dm_delete_dt = now()
+		 WHERE  dm_id = #{dm_id}
+	</update>
 </mapper>

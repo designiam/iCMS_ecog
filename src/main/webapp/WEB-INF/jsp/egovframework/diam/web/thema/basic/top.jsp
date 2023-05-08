@@ -11,7 +11,7 @@
 				</video>
 			</div>
 			<!-- //.preview-wrap -->
-			<p><c:out value="${cover.dm_title }"/></p>
+			<p><c:out value="${cover.dm_title }" escapeXml="false"/></p>
 			<div class="origin-wrap">
 				<div id="origin">
 					<div class="video-container">

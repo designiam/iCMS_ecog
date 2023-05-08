@@ -9,6 +9,7 @@ public enum MessageCode {
 	CMS_INSERT_FAIL(1005, "데이터 등록을 실패하였습니다."),
 	CMS_UPDATE_FAIL(1006,"데이터 수정을 실패하였습니다."),
 	CMS_DELETE_FAIL(1007, "데이터 삭제를 실패하였습니다."),
+	CMS_UPSERT_FAIL(1008, "데이터를 등록/수정 하였습니다."),
 	CMS_SELECT_NODATA(1009, "조건에 맞는 데이터가 없습니다."),
 	CMM_LOGIN_ALREADY(5000, "이미 로그인 중입니다."),
 	CMM_ACCESS_DENIED(5001, "접근 불가능한 계정입니다."),

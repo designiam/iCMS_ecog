@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
+<%
+	Date today = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	String ymd = format.format(today);			
+%>
+<c:set var="ymd" value="<%=ymd%>"/>
 <c:import url="/adm/page_header.do" />
 <script>
 var uWidth = 1024;
@@ -18,7 +26,7 @@ function deleteFaq(){
                 }
     			
     			$.ajax({
-    				url: "/adm/delete_faq.do",
+    				url: "/adm/deleteEvent.do",
     				data: {dm_id : ids},
     				type: "post"
     			}).done(function(response){
@@ -42,31 +50,33 @@ function doSearch() {
     var search_type = $('#search_type').val();
     var search_value = $('#stx').val();
     var search_status = $('#search_status').combobox('getValue');
-	var search_domain = $('#search_domain').combobox('getValue');
+	var search_start_date = $("#search_start_date").datebox('getValue');
+    var search_end_date= $("#search_end_date").datebox('getValue');
     
     $('#dg').datagrid('load',
         {
             search_type : search_type,
             search_value : search_value,
             search_status : search_status,
-            search_domain : search_domain
+            search_start_date : search_start_date,
+	        search_end_date : search_end_date
         })
 }
 
 function newFaq() {
-	window.open("/adm/faq_form.do","faq_new",option);
+	window.open("/adm/event_form.do","event_new",option);
 }
 
 function allList() {
     $("#search_type").val('');
     $("#stx").val('');
     $("#search_status").combobox('reload');
-    $("#search_domain").combobox('reload');
+    $("#search_start_date").datebox('setValue', '');
+    $("#search_end_date").datebox('setValue', '');
     $("#dg").datagrid('load', {
         search_type: '',
         search_value : '',
-        search_status : '',
-        search_domain : ''
+        search_status : ''
     });
 }
 
@@ -127,7 +137,7 @@ $(function () {
 	
     $(document).on('click', ".open_form", function () {
         var dm_id = $(this).data("id");
-        window.open("/adm/faq_form.do?dm_id="+dm_id, "faq_detail",option);
+        window.open("/adm/event_form.do?dm_id="+dm_id, "event_detail",option);
     });
     
 });
@@ -135,7 +145,7 @@ $(function () {
 <div class="easyui-layout" fit="true">
     <div data-options="region:'north', border:false">
         <div class="title">
-            <h1>FAQ관리</h1>
+            <h1>이벤트관리</h1>
             <div class="btnWrap">
                 <button id="fnNew" class="bt01">신규생성</button>
             </div>
@@ -143,25 +153,31 @@ $(function () {
         <div class="Srchbox">
             <div>
             	<dl>
-            		<dt><strong>사용여부</strong></dt>
+                    <dt><strong>기간</strong></dt>
+                    <dd>
+                        <input type="text" class="easyui-datebox" id="search_start_date" value="<c:out value='${ymd}'/>" data-options="formatter:myformatter,parser:myparser"> ~
+                        <input type="text" class="easyui-datebox" id="search_end_date" value="<c:out value='${ymd}'/>" data-options="formatter:myformatter,parser:myparser">
+                        <a onclick="DateSearch.getToday();" class="btn">오늘</a>
+                        <a onclick="DateSearch.getThisWeek();" class="btn">이번주</a>
+                        <a onclick="DateSearch.getThisMonth();" class="btn">이번달</a>
+                        <a onclick="DateSearch.getNextSevenDays()" class="btn">1주일</a>
+                        <a onclick="DateSearch.getNextFiftheenDays()" class="btn">15일</a>
+                        <a onclick="DateSearch.getMonthAgo()" class="btn">1개월</a>
+                        <a onclick="DateSearch.getThreeMonthAgo()" class="btn">3개월</a>
+                        <a onclick="DateSearch.getSixMonthAgo()" class="btn">6개월</a>
+                        <a onclick="DateSearch.resetDate()" class="btn">전체</a>
+                    </dd>
+                </dl>
+            	<dl>
+            		<dt><strong>상태</strong></dt>
                     <dd>
                         <select id="search_status" name="search_status" class="easyui-combobox" panelHeight="auto"
-                                data-options="url: '/adm/select_code.do?dm_code_group=1001&search=1',
+                                data-options="url: '/adm/select_code.do?dm_code_group=3003&search=1',
                                                 method: 'get',
                                                 valueField: 'dm_code_value',
                                                 textField: 'dm_code_name',
                                                 editable: false">
                         </select>
-                    </dd>
-                    <dt><strong>도메인명</strong></dt>
-                    <dd>
-                        <select id="search_domain" name="search_domain" class="easyui-combobox" panelHeight="auto"
-		                        data-options="url: '/adm/select_domain_id.do?search=1',
-								method: 'get',
-								valueField: 'dm_id',
-                                textField: 'dm_domain_nm',
-								editable: false">
-	                	</select>
                     </dd>
                 </dl>
                 <dl>
@@ -169,8 +185,8 @@ $(function () {
                     <dd>
                         <select name="search_type" id="search_type">
                             <option value="">통합검색</option>
-                            <option value="dm_question">질문</option>
-                            <option value="dm_answer">답변</option>
+                            <option value="dm_title">제목</option>
+                            <option value="dm_content">내용</option>
                         </select>
                         <input type="text" name="search_value" id="stx" maxlength="20" placeholder="검색어는 20글자까지 입력가능합니다." autocomplete="off" onkeyup="setTextPattern(this);">
                     </dd>
@@ -183,7 +199,7 @@ $(function () {
     <div data-options="region:'center', border:false" class="Contents">
         <table id="dg"
                class="easyui-datagrid" fit="true" border="false"
-               data-options="pagePosition:'top',rownumbers:true,pagination:true, singleSelect:true,url:'/adm/get_faq_list.do',method:'post',fitColumns:true,striped:false,selectOnCheck:false,checkOnSelect:false,footer:'#ft'"
+               data-options="pagePosition:'top',rownumbers:true,pagination:true, singleSelect:true,url:'/adm/selectEventList.do',method:'post',fitColumns:true,striped:false,selectOnCheck:false,checkOnSelect:false,footer:'#ft'"
                pageList="[10,20,30,50,70,100]" pageSize="50" fit="true">
             <thead>
             <tr>
@@ -195,11 +211,15 @@ $(function () {
                         off:'N'
                     }
                 }">-</th>
-                 <th data-options="field:'dm_domain_nm',width:150,align:'center'">도메인명</th>
-                <th data-options="field:'dm_question',width:350,align:'center'">질문</th>
-                <th data-options="field:'dm_answer',width:700,align:'center'">답변</th>
-                <th data-options="field:'dm_state_txt',width:50,align:'center'">사용여부</th>
-                <th data-options="field:'dm_order',width:50,align:'center'">정렬순서</th>
+                 <th data-options="field:'dm_title',width:220,align:'center'">제목</th>
+                <th data-options="field:'status_text',width:70,align:'center'">상태</th>
+                <th data-options="field:'dm_host',width:100,align:'center'">주최</th>
+                <th data-options="field:'dm_target',width:100,align:'center'">응모대상</th>
+                <th data-options="field:'dm_inquiry',width:100,align:'center'">문의처</th>
+                <th data-options="field:'dm_event_start',width:120,align:'center'">시작일</th>
+                <th data-options="field:'dm_event_end',width:120,align:'center'">종료일</th>
+                <th data-options="field:'dm_announce',width:120,align:'center'">발표일</th>
+                <th data-options="field:'dm_hit',width:50,align:'center'">조회수</th>
                 <th field ="detail" width="70" formatter="formatDetail" align="center">관리</th>
             </tr>
             </thead>
