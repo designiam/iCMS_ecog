@@ -104,6 +104,8 @@
 			ca_name,
 			wr_option,
 			wr_subject,
+			wr_sub_subject,
+			wr_summary,
 			wr_content,
 			wr_link1,
 			wr_link2,
@@ -125,7 +127,11 @@
 			wr_thumb,
 			wr_background,
 			wr_direct,
-			wr_vol
+			wr_vol,
+			wr_writer,
+			wr_writer_mail,
+			wr_pictured,
+			wr_thumb_sub
 		) VALUE (
 			<if test="wr_num != null and wr_num != ''">
 		  		#{wr_num},
@@ -140,6 +146,8 @@
 			#{ca_name},
 			#{wr_option},
 			#{wr_subject},
+			#{wr_sub_subject},
+			#{wr_summary},
 			#{wr_content},
 			#{wr_link1},
 			#{wr_link2},
@@ -161,7 +169,11 @@
 			#{wr_thumb},
 			#{wr_background},
 			#{wr_direct},
-			#{wr_vol}
+			#{wr_vol},
+			#{wr_writer},
+			#{wr_writer_mail},
+			#{wr_pictured},
+			#{wr_thumb_sub}
 		)
 	</insert>
 	
@@ -187,7 +199,9 @@
 		   SET	
 		   		ca_name = #{ca_name},		   		
 				wr_option = #{wr_option},  
-				wr_subject = #{wr_subject}, 
+				wr_subject = #{wr_subject},
+				wr_sub_subject = #{wr_sub_subject},
+				wr_summary = #{wr_summary},
 				wr_content = #{wr_content}, 
 				wr_link1 = #{wr_link1}, 
 				wr_link2 = #{wr_link2}, 
@@ -203,8 +217,12 @@
 				wr_head = #{wr_head},
 				wr_banner = #{wr_banner},
 				wr_thumb = #{wr_thumb},
+				wr_thumb_sub = #{wr_thumb_sub},
 				wr_background = #{wr_background},
-				wr_direct = #{wr_direct}
+				wr_direct = #{wr_direct},
+				wr_writer = #{wr_writer},
+				wr_writer_mail = #{wr_writer_mail},
+				wr_pictured = #{wr_pictured}
 		 WHERE	wr_id = #{wr_id}
 	</update>
 	

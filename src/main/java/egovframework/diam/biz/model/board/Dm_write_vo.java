@@ -78,6 +78,11 @@ public class Dm_write_vo implements Serializable{
 	@Size(min=1, max=255, message="제목은 1자 이상 255자까지 입력해주세요.")
 	private String wr_subject;
 	
+	@Size(max=255, message="부제목은 255자까지만 입력가능합니다.")
+	private String wr_sub_subject;
+	
+	private String wr_summary;
+	
 	/** 게시글 내용 */
 	@NotBlank(message="내용을 입력해주세요.")
 	@Size(min=1, max=21844, message="내용은 1자 이상 21844자이하로 입력해주세요.")
@@ -245,8 +250,18 @@ public class Dm_write_vo implements Serializable{
 	
 	private String wr_new_hit;
 	
+
+	private String wr_writer;
+	
+	private String wr_writer_mail;
+	
+	private String wr_pictured;
+	
+	private String wr_thumb_sub;
+	
 	private MultipartFile banner;
 	private MultipartFile background;
 	private MultipartFile thumbnail;
 	private MultipartFile head;
+	private MultipartFile thumbnail_sub;
 }
