@@ -57,6 +57,10 @@ function fnSetData(row) {
 	$("#wr_name").val(unescapeHtml(row.wr_name));
 	$("#wr_link1").val(unescapeHtml(row.wr_link1));
 	$("#wr_link2").val(unescapeHtml(row.wr_link2));
+	$("#wr_writer").val(row.wr_writer);
+	$("#wr_writer_mail").val(row.wr_writer_mail);
+	$("#wr_pictured").val(row.wr_pictured);
+	$("#wr_summary").val(row.wr_summary);
 	if (row.ca_name != null && row.ca_name != "") {
 	    $("#ca_name").combobox("reload", '/adm/get_category.do?wr_board='+row.wr_board+ '&selected=' + encodeURI(row.ca_name));
 	}
@@ -120,6 +124,14 @@ function fnSetData(row) {
 				'<div><img src="'+row.wr_path+row.wr_thumb+'">'+
 				'<input type="hidden" name="wr_thumb" value="'+row.wr_thumb+'">'+
 				row.wr_thumb.substr(15, row.wr_thumb.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
+		);
+	}
+	if (row.wr_thumb_sub != null && row.wr_thumb_sub != "") {
+		$("#thumbnail_sub").toggle();
+		$("#thumbnail_sub").after(
+				'<div><img src="'+row.wr_path+row.wr_thumb_sub+'">'+
+				'<input type="hidden" name="wr_thumb_sub" value="'+row.wr_thumb_sub+'">'+
+				row.wr_thumb_sub.substr(15, row.wr_thumb_sub.length -1)+'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
 		);
 	}
 }
@@ -198,9 +210,6 @@ function fnSave() {
             	$(".btnWrap").show();
             }                
         }, error:function(request,status,error) {
-        	console.log(request);
-        	$(".btnWrap").show();
-        	return;
         	if (request.status == "303") {
 				location.replace("/adm/login.do");
 			} else {
@@ -456,19 +465,19 @@ var createSE = function() {
 				<dl class="not_basic">
 				    <dt>작가</dt>
 				    <dd>
-				        <input type="text" name="" id="" autocomplete="off"/>
+				        <input type="text" name="wr_writer" id="wr_writer" autocomplete="off"/>
 				    </dd>
 				</dl>
 				<dl class="not_basic">
 				    <dt>작가 이메일</dt>
 				    <dd>
-				        <input type="text" name="" id="" autocomplete="off"/>
+				        <input type="text" name="wr_writer_mail" id="wr_writer_mail" autocomplete="off"/>
 				    </dd>
 				</dl>
 				<dl class="not_basic">
 				    <dt>Pictured by</dt>
 				    <dd>
-				        <input type="text" name="" id="" autocomplete="off"/>
+				        <input type="text" name="wr_pictured" id="wr_pictured" autocomplete="off"/>
 				    </dd>
 				</dl>
 				<dl class="video_only">
@@ -508,7 +517,7 @@ var createSE = function() {
 				<dl>
 					<dt>요약</dt>
 					<dd>
-						<textarea id="" name=""></textarea>
+						<textarea id="wr_summary" name="wr_summary"></textarea>
 					</dd>
 				</dl>
 				<dl>

@@ -210,7 +210,7 @@ function getPopularData() {
 				str +='<div class="swiper-slide">';
 				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 				str +='<div class="img">';
-				str +='<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">';
+				str +='<img src="'+obj.wr_path+obj.wr_thumb+'" alt="">';
 				str +='</div>';
 				str +='<div class="txt">';
 				str +='<p class="subject">'+obj.wr_subject+'</p>';
@@ -317,7 +317,7 @@ function setNowList(rows){
 		}
 		str += '<div class="masonry-item">';
 		str += '<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
-		str += '<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>';
+		str += '<div class="img"><img src="'+obj.wr_path+obj.wr_thumb+'" alt=""></div>';
 		str += '<div class="txt">';
 		str += '<p class="subject">'+obj.wr_subject+'</p>';
 		str += '<p class="cate">'+cate+'</p>';

@@ -1001,6 +1001,13 @@ public class WriteController {
 				vo.setWr_thumb(today + "_" + vo.getThumbnail().getOriginalFilename());
 			}
 		}
+		
+		if (vo.getThumbnail_sub() != null && !vo.getThumbnail_sub().isEmpty()) {
+			if (commonUtil.imageExtCheck(vo.getThumbnail_sub())) {
+				vo.getThumbnail_sub().transferTo(new File(vo.getWr_path() + today + "_" + vo.getThumbnail_sub().getOriginalFilename()));
+				vo.setWr_thumb_sub(today + "_" + vo.getThumbnail_sub().getOriginalFilename());
+			}
+		}
 	}
 	
 	/**

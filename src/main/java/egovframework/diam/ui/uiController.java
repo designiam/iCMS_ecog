@@ -632,4 +632,14 @@ public class uiController {
 		return "egovframework/diam/ui/main/cover_form";
 	}
 	
+	@RequestMapping("/adm/event_list.do")
+	public String eventList() {
+		return "egovframework/diam/ui/event/event_list";
+	}
+	
+	@RequestMapping("/adm/event_form.do")
+	public String eventForm() {
+		return "egovframework/diam/ui/event/event_form";
+	}
+	
 }
