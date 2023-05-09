@@ -606,6 +606,7 @@ public class webController {
 							result.setViewName("egovframework/diam/web/base/board/result");
 							return result;
 						} else {
+							
 							Dm_write_vo writeViewVO = new Dm_write_vo();
 							searchDmWriteVO.setWr_id(wr_id);
 							searchDmWriteVO.setWr_hit(Integer.parseInt(boardVO.getDm_hit_count()));
