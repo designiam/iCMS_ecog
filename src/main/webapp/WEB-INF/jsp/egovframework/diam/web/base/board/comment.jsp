@@ -19,8 +19,8 @@ function updateComment(wr_id, nonMemberAt) {
 			</c:otherwise>
 		</c:choose>	
 	} else {
-		executeCommentModify(wr_id, "<c:out value='${pageVO.dm_board_id}'/>");			
-	}	
+		executeCommentModify(wr_id, "<c:out value='${pageVO.dm_board_id}'/>");
+	}
 }
 
 function deleteComment(wr_id, nonMemberAt){
@@ -102,9 +102,8 @@ jQuery(function($) {
     });
     
     //수정삭제열기
-    $(".comment_button button").click(function(e){
+    $(".comment_button > button").click(function(e){
         e.preventDefault();
-        $(this).toggleClass("cmt_btn_op");
         $(".comment_button ul").slideToggle(300);
     });
 });
@@ -169,26 +168,38 @@ jQuery(function($) {
 									<c:choose>
 										<c:when test="${comment.mb_id eq '비회원'}">
 											<c:if test="${is_admin || DiamLoginVO.id eq null}">
-												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">수정</a></li>
+												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">수정</a>
+													<!-- <button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button> -->
+												</li>
 												<c:choose>
 													<c:when test="${empty comment.children }">
-														<li><a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a></li>
+														<li><%-- <a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a> --%>
+															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+														</li>
 													</c:when>
 													<c:otherwise>
-														<li><a class="" href="javascript:deniedDelete();">삭제</a></li>
+														<li><a class="" href="javascript:deniedDelete();">삭제</a>
+															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+														</li>
 													</c:otherwise>
 												</c:choose>
 											</c:if>
 										</c:when>
 										<c:otherwise>
 											<c:if test="${is_admin eq true || comment.mb_id eq DiamLoginVO.id}">
-												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', false);">수정</a></li>
+												<li><%-- <a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', false);">수정</a> --%>
+													<button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button>
+												</li>
 												<c:choose>
 													<c:when test="${empty comment.children }">
-														<li><a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a></li>
+														<li><%-- <a class="" href="javascript:deleteComment('<c:out value="${comment.wr_id}"/>', true);">삭제</a> --%>
+															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+														</li>
 													</c:when>
 													<c:otherwise>
-														<li><a class="" href="javascript:deniedDelete();">삭제</a></li>
+														<li><a class="" href="javascript:deniedDelete();">삭제</a>
+															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+														</li>
 													</c:otherwise>
 												</c:choose>
 											</c:if>
@@ -216,7 +227,6 @@ jQuery(function($) {
 									</c:choose>
 								</p>
 							</div>
-							
 							<div class="comment_footer">
 								<div class="comment_button">
 									<c:if test="${is_comment eq true}">
@@ -316,7 +326,7 @@ jQuery(function($) {
 								    		<c:otherwise>
 								    			<c:if test="${is_admin eq true || item.mb_id eq DiamLoginVO.id}">
 								    				<a class="btn_modify" href="javascript:updateComment('<c:out value="${item.wr_id}"/>', false);">댓글수정</a>
-										    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${item.wr_id}"/>', false);">댓글삭제</a>		
+										    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${item.wr_id}"/>', false);">댓글삭제</a>
 								    			</c:if>
 								    		</c:otherwise>
 								    	</c:choose>	
@@ -393,8 +403,60 @@ jQuery(function($) {
 	</div>
 </c:if>
 
+<!-- Modal -->
+<div class="modal fade modal-style" id="commentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title sr-only" id="commentModalLabel">댓글 수정 삭제</h5>
+				<p class="notice">댓글 삭제 및 수정은 작성자·관리자만 가능합니다.</p>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+						<defs>
+							<clipPath id="clip-path"><rect width="18" height="18" fill="#fff" stroke="#333" stroke-width="1"/></clipPath>
+						</defs>
+						<g clip-path="url(#clip-path)">
+							<g transform="translate(9.143 -5) rotate(45)">
+								<path d="M20,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H20a1,1,0,0,1,1,1A1,1,0,0,1,20,1Z" transform="translate(0 10)" fill="#333"/>
+								<path d="M20,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H20a1,1,0,0,1,1,1A1,1,0,0,1,20,1Z" transform="translate(10) rotate(90)" fill="#333"/>
+							</g>
+						</g>
+					</svg>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="modify_table">
+					<tbody>
+						<tr>
+							<th><label for="">비밀번호</label></th>
+							<td>
+								<input type="password" class="form-control" id="" placeholder="비밀번호를 입력해주세요." />
+								<p class="noty">※댓글 작성 시 기재했던 비밀번호를 입력해 주세요</p>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="">작성자</label></th>
+							<td><input type="text" class="form-control" id="" value="환경공단A" /></td>
+						</tr>
+						<tr>
+							<th><label for="">내용</label></th>
+							<td>
+								<textarea class="form-control" name=""></textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-sm btn-fill-03">삭제하기</button>
+				<button type="button" class="btn btn-sm btn-line btn-line-03" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
-	var comment_fm = $("#comment_form").html();
-	var password_input = $(".comment_write_info").html();
+var comment_fm = $("#comment_form").html();
+var password_input = $(".comment_write_info").html();
 </script>
 

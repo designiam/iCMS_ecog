@@ -105,15 +105,20 @@ h5 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.028rem; }
 
 .btn-lg { min-width: 15rem; padding: 1.17rem 0; font-size: 1.25rem; letter-spacing: -0.038rem; }
 .btn-md { min-width: 12rem; padding: 0.86rem 0; font-size: 1.125rem; letter-spacing: -0.034rem; }
-.btn-sm { min-width: 6.875rem; min-height: 2.188rem; padding: 0.25rem; font-size: 1.125rem; font-weight: 400; letter-spacing: 0.01rem; }
+.btn-sm { min-width: 90px; min-height: 45px; padding: 0.25rem; border-radius: 0.313rem; font-size: 1rem; font-weight: 400; letter-spacing: 0; }
 
 .btn-line { background-color: #fff; border-width: 1px; border-style: solid; }
-.btn-line-01 { color: #666; }
-.btn-line-02 { color: #111; }
-.btn-line-03 { color: #1696F6; }
+.btn-line-01 { border-color: #666; }
+.btn-line-02 { border-color: #111; }
+.btn-line-03 { border-color: #138976; }
 .btn-fill-01 { background-color: #666; color: #fff; }
 .btn-fill-02 { background-color: #111; color: #fff; }
-.btn-fill-03 { background-color: #1696F6; color: #fff; }
+.btn-fill-03,
+.btn-fill-03:hover { background-color: #138976; color: #fff; font-weight: 700; }
+@media (hover: hover), (-ms-high-contrast:none) {
+  .btn-line-03:hover { color: #138976; }
+  .btn-fill-03:hover { background-color: #117a69; }
+}
 
 
 /* a-더보기 버튼 */
