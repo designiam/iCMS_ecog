@@ -45,7 +45,14 @@
 			WHERE  1 = 1
 			  AND  A.dm_delete_yn = 'N'
 		<include refid="selectWhere"/>
-		 ORDER BY  A.dm_create_dt DESC
+		<choose>
+			<when test='command == "web"'>
+				ORDER BY  A.dm_status ASC, A.dm_create_dt DESC
+			</when>
+			<otherwise>
+				ORDER BY  A.dm_create_dt DESC			
+			</otherwise>		
+		</choose>
 		    LIMIT  #{page}, #{rows}
 	</select>
 	

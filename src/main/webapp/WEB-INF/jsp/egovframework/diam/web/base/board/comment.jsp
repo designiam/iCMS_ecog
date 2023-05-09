@@ -108,7 +108,7 @@ jQuery(function($) {
     });
 });
 </script>
-<button type="button" class="cmt_btn">댓글 <span>총 151개</span></button>
+<button type="button" class="cmt_btn">댓글 <span>총 <c:out value="${commentCount }"/>개</span></button>
 <div class="bbs_comment">
 	<h3>댓글 목록</h3>
 	<ul class="comment_ul">

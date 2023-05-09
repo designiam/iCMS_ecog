@@ -71,6 +71,7 @@ public class Dm_event_vo {
 	private String search_status;
 	private String search_start_date;
 	private String search_end_date;
+	private String command;
 	
 	private String status_text;
 	private MultipartFile file;

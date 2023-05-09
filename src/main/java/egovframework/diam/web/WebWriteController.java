@@ -524,10 +524,12 @@ public class WebWriteController {
 						boolean is_comment = commonUtil.getAuth(boardVO.getDm_auth_type(), loginVO.getDm_level(), boardVO.getDm_comment_level(), loginVO.getGroup_id(), commentGroupList, loginVO.getIs_admin());
 
 						List<Dm_write_vo> commentList = writeService.selectParentComment(writeVO);
+						int commentCount = writeService.selectWriteCommentReplyCnt(writeVO);
 									
 						model.addAttribute("is_comment", is_comment);
 						model.addAttribute("commentList", commentList);
 						model.addAttribute("boardVO", boardVO);
+						model.addAttribute("commentCount", commentCount);
 					} else {
 						model.addAttribute("message", "게시글 정보가 없습니다.");
 						result = "egovframework/diam/web/error";

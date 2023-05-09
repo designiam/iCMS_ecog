@@ -591,4 +591,5 @@
 		  ORDER BY  A.wr_datetime DESC
 		     LIMIT  #{page}, #{rows}
 	</select>
+	
 </mapper>
