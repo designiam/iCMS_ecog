@@ -1053,6 +1053,9 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .comment_write {}
 .comment_write dl {}
 .comment_write dl dt { display: none; }
+.comment_write input[type="text"]::placeholder,
+.comment_write input[type="password"]::placeholder,
+.comment_write textarea::placeholder { color: #666; font-size: 12px; font-weight: 400; letter-spacing: -0.04em; }
 .comment_write input[type="text"],
 .comment_write input[type="password"] { width: 120px; display: inline-block; vertical-align: middle; padding: 0.188rem .625rem; background-color: #fff; border: 1px solid #ddd; border-radius: 0.188rem; font-size: 1rem; line-height: 1.5; outline: 0; }
 .comment_write textarea { display: block; width: 100%; min-height: 8.125rem; margin: 0; padding: .625rem; background: #fff; border: 1px solid #ddd; border-radius: 0.188rem; vertical-align: middle; outline: 0; resize: vertical; }
@@ -1129,6 +1132,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .modal-style .modal-header .close:not(:disabled):not(.disabled):hover { opacity: 1; }
 .modal-style .modal-footer { justify-content: center; padding: 0; border: 0; }
 
+.modal-style .modal-body { padding: 0.875rem 0 0.875rem; }
 .modal-style .modify_table { width: 100%; }
 .modal-style .modify_table tr + tr { margin-top: 14px; }
 .modal-style .modify_table tr,
@@ -1138,6 +1142,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .modal-style .modify_table th label { font-size: 1.125rem; font-weight: 700; }
 .modal-style .modify_table textarea { width: 100%; }
 .modal-style .modify_table .noty { margin-top: 7px; color: #999; }
+
 
 /*===========================================================*\
   통합검색 일반

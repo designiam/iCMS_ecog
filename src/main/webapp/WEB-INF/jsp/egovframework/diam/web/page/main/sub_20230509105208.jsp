@@ -1,49 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<style>
-	.title-wrap {
-		align-items: baseline;
-		width: 80%;
-		display: flex;
-		justify-content: space-between;
-		margin: 0 auto;
-	}
+
+<!-- 이벤트 뷰 페이지 -->
+<div class="event-view">
+	<div class="title-wrap">
+		<h3>텀블러 이용하GO, 커피도 받GO!텀블러 이용하GO, 커피도 받GO!텀블러 이용하GO, 커피도 받GO!</h3>
+		<div class="label upcoming">진행예정</div>
+	</div>
+	<div class="info-wrap wide_con">
+		<div class="info">
+			<dl>
+				<dt>응모기간</dt>
+				<dd>2023. 04. 26. ~ 2023. 05. 01</dd>
+			</dl>
+			<dl>
+				<dt>결과발표</dt>
+				<dd>2023. 05. 02.</dd>
+			</dl>
+			<dl>
+				<dt>참여대상</dt>
+				<dd>누구나</dd>
+			</dl>
+			<dl>
+				<dt>주최</dt>
+				<dd>광주광역시 대변인실</dd>
+			</dl>
+			<dl>
+				<dt>문의처</dt>
+				<dd>운영사무국 070-5165-7520</dd>
+			</dl>
+		</div>
+	</div>
 	
-	.info-wrap {
-		width: 80%;
-		display: flex;
-		margin: 0 auto;
-	}
+	<div class="event-content">
+		<img style="max-width:100%;" src="/images/noimg_content.jpg" alt="콘텐츠가 없습니다.">
+	</div>
 	
-	.info-wrap section {
-		left: 0;
-		width: 100vw;
-		position: absolute;
-		background-color: #eee;
-	}
-	.info-wrap ul {
-		width: 80%;
-		display: flex;
-		justify-content: center;
-        align-items: center;
-	}
-	
-	.info-wrap ul li {
-		width: 50%;
-	}
-</style>
-<div class="title-wrap">
-	<h1 class="title">제목입력란</h1>
-	<label class="label">마감</label>
-</div>
-<div class="info-wrap">
-	<section>
-		<ul>
-			<li>a</li>
-			<li>a</li>
-			<li>a</li>
-			<li>a</li>
-			<li>a</li>
-			<li>a</li>
-		</ul>
-	</section>
+	<div class="btn-wrap text-center mt55">
+		<a href="#;" class="btn-lg btn-line btn-line-02">목록보기 <img src="/thema/basic/images/arrR_bk.png" alt=""></a>
+	</div>
 </div>

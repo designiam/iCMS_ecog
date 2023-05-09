@@ -7,16 +7,14 @@
 ================================================================*/
 input[type="text"], input[type="password"], textarea { transition: all .25s; }
 input[type="text"]:focus-visible, input[type="password"]:focus-visible, textarea:focus-visible { border-color: #555; }
-input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder { color: #666; font-size: 12px; font-weight: 400; letter-spacing: -0.04em; }
+input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder { color: #999; font-size: 15px; font-weight: 400; letter-spacing: -0.03em; }
 select {appearance:none;-webkit-appearance:none;-moz-appearance:none;background:url('../images/select_arrow.png') no-repeat right 9px center; cursor: pointer; }
 select::-ms-expand {display:none;}
 
 
 .form-style { background-color: #f9f9f9; padding: 3.125rem 2.188rem; }
-.form-control { height: calc(1.5em + .75rem + 7.5px); border: 1px solid #ddd; border-radius: 0.278rem; }
-.form-control::placeholder,
-textarea::placeholder { color: #BABABA; font-size: 1rem; }
-.form-control:focus { border-color: #9FABD8; }
+.form-control { height: calc(1.5em + .75rem + 14px); border: 1px solid #ddd; border-radius: 0; color: inherit; }
+.form-control:focus { border-color: #555; }
 .form-group > label { margin-bottom: 0.5rem; font-weight: 600; user-select: none; }
 
 textarea.form-control::-webkit-scrollbar { width: 5px; }
@@ -24,10 +22,6 @@ textarea.form-control::-webkit-scrollbar-track { background: #f9f9f9; border-rad
 textarea.form-control::-webkit-scrollbar-thumb { background: #ccc; border-radius: 0.188rem; }
 textarea.form-control::-webkit-scrollbar-thumb:hover { background: #aaa; }
 
-/* @media (hover: hover) {
-    input[type="number"]:hover, input[type="text"]:hover, input[type="password"]:hover, input[type="url"]:hover, 
-    input[type="email"]:hover, input[type="tel"]:hover, input[type="date"]:hover, textarea:hover { border-color: #1D2D67; }
-} */
 
 /* 그림자 리셋 */
 .custom-control-input:not(:disabled):active~.custom-control-label::before { background-color: #fff; border-color: #ddd; }
@@ -99,23 +93,29 @@ h5 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.028rem; }
 }
 
 
-.btn-wrap button, .btn-wrap a { margin: 0.5rem; border-radius: 0; border: 0; font-family: 'Pretendard','Noto Sans KR',sans-serif; }
+.btn-wrap button { margin: 0.5rem; border-radius: 0; border: 0; font-family: 'Pretendard','Noto Sans KR',sans-serif; }
 .btn-wrap a { display: inline-flex; justify-content: center; align-items: center; }
-.btn-wrap a:hover { color: #fff; }
 
-.btn-lg { min-width: 15rem; padding: 1.17rem 0; font-size: 1.25rem; letter-spacing: -0.038rem; }
+.btn-lg { min-width: 18.75rem; height: 65px; padding: 0.5rem; font-size: 1.125rem; font-weight: 700; letter-spacing: 0; }
 .btn-md { min-width: 12rem; padding: 0.86rem 0; font-size: 1.125rem; letter-spacing: -0.034rem; }
 .btn-sm { min-width: 90px; min-height: 45px; padding: 0.25rem; border-radius: 0.313rem; font-size: 1rem; font-weight: 400; letter-spacing: 0; }
 
-.btn-line { background-color: #fff; border-width: 1px; border-style: solid; }
+.btn-line { background-color: #fff; border-width: 1px; border-style: solid; transition: all .25s; }
 .btn-line-01 { border-color: #666; }
 .btn-line-02 { border-color: #111; }
+.btn-line-02 img { transition: all .25s; }
 .btn-line-03 { border-color: #138976; }
 .btn-fill-01 { background-color: #666; color: #fff; }
 .btn-fill-02 { background-color: #111; color: #fff; }
 .btn-fill-03,
 .btn-fill-03:hover { background-color: #138976; color: #fff; font-weight: 700; }
+@media (max-width: 768px) {
+  .btn-lg { min-width: 12rem; height: 55px; font-size: 1rem; }
+  .btn-sm { min-width: 80px; min-height: 40px; }
+}
 @media (hover: hover), (-ms-high-contrast:none) {
+  .btn-line-02:hover { background: #fff; border-color: #3DBBA6; }
+  .btn-line-02:hover img { margin-left: 25px; }
   .btn-line-03:hover { color: #138976; }
   .btn-fill-03:hover { background-color: #117a69; }
 }

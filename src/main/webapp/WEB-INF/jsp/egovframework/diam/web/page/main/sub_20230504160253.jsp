@@ -57,10 +57,10 @@ function setList(data){
 				labelClass = " proceed";
 				break;
 			case "2":
-				labelClass = "";
+				labelClass = " upcoming";
 				break;
 			default: 
-				labelClass = " upcoming";
+				labelClass = "";
 				break;
 			}
 			str += '<div class="label'+labelClass+'">'+obj.status_text+'</div>';
