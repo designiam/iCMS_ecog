@@ -197,11 +197,12 @@ h5 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.028rem; }
     .a-more-06:hover > span::before, .a-more-06:hover > span::after { background: #fff; }
 }
 
-.a-exlink-02 { display: inline-flex; align-items: center; padding: 15px 20px; background: #DAE5F5; color: #004887; font-size: 14px; font-weight: 700; letter-spacing: -0.044rem; }
-.a-exlink-02 p { margin-right: 5px; }
-.a-exlink-02 .svg-color { fill: #004887; }
+.a-exlink-02 { display: inline-flex; align-items: center; color: #138976; font-size: 1.375rem; font-weight: 400; letter-spacing: -0.06rem; }
+.a-exlink-02 p { position: relative; margin-right: 7px; }
+.a-exlink-02 p::before { content: ""; position: absolute; left: 0; bottom: -0.313rem; width: 100%; height: 1px; background: #138976; }
+.a-exlink-02 .svg-color { fill: #138976; }
 @media (hover: hover), (-ms-high-contrast:none) {
-    .a-exlink-02:hover { color: #004887; }
+    .a-exlink-02:hover { color: #138976; }
 }
 
 .a-download { display: inline-flex; align-items: center; color: #0070C4; font-size: 18px; font-weight: 700; letter-spacing: -0.034rem; transition: all .25s; }
