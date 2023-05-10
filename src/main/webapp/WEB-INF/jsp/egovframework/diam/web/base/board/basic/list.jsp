@@ -39,9 +39,11 @@
 	</c:if>
 	<div class="bbs_leadin">
 		<div class="bbs_count">
-			<span>전체 <strong><c:out value='${writeListCnt}'/></strong> 건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
+			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
 		</div>
 		<div class="bbs_order">
+			<button class="btn active">최신순</button>
+			<button class="btn">인기순</button>
 		</div>
 	</div>
 	<div class="bbs_listing">
@@ -295,7 +297,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td class="tac" colspan="6">게시물이 없습니다.</td>
+							<td class="tac" colspan="6"><img style="width: 100%" src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -305,7 +307,7 @@
 	<div class="bbs_paging" id="paging_box">
 		<c:out value='${pagingStr}' escapeXml="false"/>
 	</div>
-	<div class="bbs_search">
+	<%-- <div class="bbs_search">
 		<fieldset>
 			<h3>검색</h3>
 			<form id="search_form" action="<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${pageVO.dm_uid}'/>&command=list" method="post" >
@@ -321,10 +323,10 @@
 				<button type="submit" class="sch_button"><span>검색</span></button>
 			</form>
 		</fieldset>
-	</div>
+	</div> --%>
 	<div class="bbs_listbtn">
 		<c:if test="${is_write eq true}">
-			<a href="<c:out value='${param.root }'/>/index.do?command=write&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">글쓰기</a>
+			<a href="<c:out value='${param.root }'/>/index.do?command=write&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">작성하기</a>
 		</c:if>
 	</div>
 </div>

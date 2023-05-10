@@ -375,7 +375,7 @@ textarea { border: 1px solid #ced4da; }
 
 /* Bootstrap Patch */
 caption { display: none; }
-.table { border-top: 2px solid #6c757d; }
+.table { border-top: 2px solid #555; }
 .table thead th { border-bottom: 1px solid #dee2e6; }
 .table td, .table th { padding: 0.75rem 0.75rem; line-height: 1.25; border-top: 0; border-bottom: 1px solid #dee2e6; text-align: center; word-break: break-all; font-weight: normal; }
 .table td:not(.text-left), .table th:not(.text-left) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -587,8 +587,8 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 \*===========================================================*/
 
 /* 버튼 */
-.btn_submit { background-color: #394881; color: #fff; }
-.btn_submit:hover { background-color: #394881; color: #fff; }
+.btn_submit { background-color: #3DBBA6; color: #fff; }
+.btn_submit:hover { background-color: #3DBBA6; color: #fff; }
 .btn_cancel { background-color: #6c757d; color: #fff; }
 .btn_cancel:hover { background-color: #6c757d; color: #fff; }
 .btn_revoke { background-color: #6c757d; color: #fff; }
@@ -658,7 +658,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .mb_form .lnk_wrap { -webkit-box-flex: 1 0 auto; -moz-box-flex: 1 0 auto; -ms-flex: 1 0 auto; -webkit-flex: 1 0 auto; flex: 1 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -moz-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; flex-wrap: nowrap; }
 .mb_form .lnk_wrap > a { position: relative; display: block; margin: 0 5px; padding: 0 5px; white-space: nowrap; }
 .mb_form .lnk_wrap > a:not(:first-child)::before { content: ""; margin: 0; display: block; width: 1px; height: 10px; background-color: #999; position: absolute; left: -5px; top: 50%; transform: translateY(-50%); }
-.mb_form .custom-control-input:checked~.custom-control-label::before { border-color: #394881; background-color: #394881; }
+.mb_form .custom-control-input:checked~.custom-control-label::before { border-color: #3DBBA6; background-color: #3DBBA6; }
 .mb_form .custom-control-input:focus~.custom-control-label::before { box-shadow: 0 0 0 0.2rem rgb(57 72 129 / 25%); }
 
 #mbLogin {}
@@ -674,7 +674,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .mb_login .id_area::before { content: "\e7fd"; }
 .mb_login .pw_area::before { content: "\e897"; }
 .mb_login .btn_wrap .btn { display: block; width: 100%; }
-.mb_login .btn_wrap .btn_submit { background-color: #394881; }
+.mb_login .btn_wrap .btn_submit { background-color: #3DBBA6; }
 
 #mbFindID,
 #mbFindPW {}
@@ -686,8 +686,8 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .mb_join .btn_wrap { margin: 1.5rem -0.5rem 0 -0.5rem; -webkit-box-flex: 1 0 auto; -moz-box-flex: 1 0 auto; -ms-flex: 1 0 auto; -webkit-flex: 1 0 auto; flex: 1 0 auto; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -moz-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -moz-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
 .mb_join .btn_wrap .btn { display: block; width: 100%; }
 .mb_join .btn_wrap .btn { padding: 0.75rem 1.25rem; height: auto; font-size: 1.25rem; margin-left: 0.5rem; margin-right: 0.5rem; }
-.mb_join .btn_wrap .btn_submit { background-color: #394881; }
-.mb_join .custom-control-input:checked~.custom-control-label::before { border-color: #394881; background-color: #394881; }
+.mb_join .btn_wrap .btn_submit { background-color: #3DBBA6; }
+.mb_join .custom-control-input:checked~.custom-control-label::before { border-color: #3DBBA6; background-color: #3DBBA6; }
 .mb_join .custom-control-input:focus~.custom-control-label::before { box-shadow: 0 0 0 0.2rem rgb(57 72 129 / 25%); }
 
 #mbAgree {}
@@ -698,7 +698,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .mb_agree .agree_text { padding: 1rem 1.5rem; height: 150px; overflow: hidden; overflow-y: scroll; border: 1px solid #ddd; font-size: 12px; background-color: #f9f9f9; }
 .mb_agree .agree_check { margin: 0.5rem 0; padding-left: 2rem; }
 .mb_agree .btn_wrap .btn_submit { background-color: #c0c0c0; }
-.mb_agree .btn_wrap .btn_submit.active { background-color: #394881; }
+.mb_agree .btn_wrap .btn_submit.active { background-color: #3DBBA6; }
 
 #mbRegis {}
 .mb_regis {}
@@ -751,7 +751,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs label { margin: 0; }
 .bbs_list {}
 .bbs_view {}
-.bbs_post {}
+.bbs_post { margin: 3.125rem 0; }
 
 /* 게시판 버튼 */
 .bbs .btn_list,
@@ -761,7 +761,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs .btn_cancel,
 .bbs .btn_comment,
 .bbs .btn_modify,
-.bbs .btn_delete { display: inline-block; padding: 0.375rem 0.75rem; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #555; border: 1px solid #555; border-radius: 0.188rem; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.5; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+.bbs .btn_delete { display: inline-block; padding: 0.375rem 0.75rem; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-color: #555; border: 1px solid #555; border-radius: 0.313rem; color: #fff; font-size: 0.938rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.5; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
 .bbs .btn_list:hover,
 .bbs .btn_write:hover,
 .bbs .btn_close:hover,
@@ -779,14 +779,14 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 
 /* 게시판 목록 */
 .bbs_listing { margin: 0; }
-.bbs_listing .table { /* table-layout: fixed; */ height: auto; border-top: 2px solid #394881; word-break: break-all; }
+.bbs_listing .table { /* table-layout: fixed; */ height: auto; word-break: break-all; }
 .bbs_listing .table th, 
 .bbs_listing .table td { padding: 1rem 0.75rem; border-top: 0; text-align: center; line-height: 1.25; word-break: keep-all; font-weight: normal; font-size: 1.125rem; letter-spacing: -0.03em; }
 .bbs_listing .table thead th { border-bottom: 1px solid #ccc; font-size: 1rem; font-weight: 500; color: #111; }
 .bbs_listing .table tbody td { border-bottom: 1px solid #eee; font-weight: 400; color: #777; }
 .bbs_listing .table tbody td .list_util { width: 36px; margin-top: -4px; margin-left: 4px; }
-.bbs_listing .is_noti { display: inline-block; padding: 5px 8px; background-color: #394881; color: #fff; border-radius: 3px; font-size: 0.875rem; letter-spacing: 0; font-weight: normal; line-height: 1; }
-.bbs_listing .is_view { padding: 5px 8px; color: #394881; border-radius: 3px; font-size: 0.875rem; letter-spacing: 0; font-weight: normal; line-height: 1; }
+.bbs_listing .is_noti { display: inline-block; padding: 5px 8px; background-color: #3DBBA6; color: #fff; border-radius: 3px; font-size: 0.875rem; letter-spacing: 0; font-weight: normal; line-height: 1; }
+.bbs_listing .is_view { padding: 5px 8px; color: #3DBBA6; border-radius: 3px; font-size: 0.875rem; letter-spacing: 0; font-weight: normal; line-height: 1; }
 .bbs_listing .td_num { width: 115px; }
 .bbs_listing .td_link,
 .bbs_listing .td_content,
@@ -832,7 +832,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 }
 
 /* 갤러리 게시판 목록 */
-.bbs_gallist { margin-top: 3.75rem; }
+.bbs_gallist {}
 .bbs_gallist ul {}
 .bbs_gallist ul li { margin-bottom: 4.375rem; }
 .bbs_gallist ul li > a { display: block; width: 100%; height: 100%; border: 1px solid #ddd; border-radius: 0.625rem; overflow: hidden; transition: all .25s; }
@@ -868,7 +868,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 
 /* 게시판 목록 메타 */
-.bbs_leadin { display: flex; justify-content: space-between; align-items: center; margin-top: 1.625rem; padding: 1.313rem 2.813rem; background: #F9F9F9; border-radius: 0.313rem; }
+.bbs_leadin { display: flex; justify-content: space-between; align-items: center; margin: 1.625rem 0 3.75rem; padding: 1.313rem 2.813rem; background: #F9F9F9; border-radius: 0.313rem; }
 .bbs_leadin .bbs_count span:first-child { font-size: 1.125rem; font-weight: 400; letter-spacing: 0; }
 .bbs_leadin .bbs_count span:last-child { margin-left: 8px; color: #999; font-size: 1rem; font-weight: 400; letter-spacing: 0; }
 .bbs_leadin .bbs_count b { color: #3DBBA6; }
@@ -884,10 +884,12 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 /* 게시판 목록 버튼 */
 .bbs_listbtn { margin: 50px 0; text-align: center; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; }
-.bbs_listbtn .btn_write { position: relative; z-index: 1; overflow: hidden; border: 1px solid #1D2D67; background-color: #fff; color: #1D2D67; width: 200px; height: 50px; font-size: 1.25rem; font-weight: 700; border-radius: 30px; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; -webkit-transition: all 0.25s ease-in-out; -ms-transition: all 0.25s ease-in-out; -o-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
+.bbs_listbtn .btn_write { display: inline-flex; justify-content: center; align-items: center; min-width: 18.75rem; height: 65px; background: #fff; border: 1px solid #ddd; border-radius: 0.313rem; color: #111; font-size: 1.125rem; font-weight: 700; letter-spacing: 0; line-height: 1.25; }
 .bbs_listbtn .btn_write::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 0; z-index: -1; background-color: #1D2D67; -webkit-transition: all 0.25s ease-in-out; -ms-transition: all 0.25s ease-in-out; -o-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
-.bbs_listbtn .btn_write:hover { color: #fff; background-color: transparent; border-color: transparent; }
-.bbs_listbtn .btn_write:hover::before { width: 100%; }
+.bbs_listbtn .btn_write:hover { background-color: transparent; border-color: #3DBBA6; }
+@media (max-width: 768px) {
+  .bbs_listbtn .btn_write { min-width: 12rem; height: 55px; font-size: 1rem; }
+}
 
 /* 게시판 분류 */
 .bbs_cate { margin: 30px 0; }
@@ -895,7 +897,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .bbs_cate > ul > li { margin: 0.25rem; }
 .bbs_cate > ul > li > a { padding: 0.375rem 0.75rem; display: block; border-radius: 0.25rem; transition-property: background,color; transition-duration: 0.25s; transition-timing-function: ease-in-out; }
 .bbs_cate > ul > li:hover > a,
-.bbs_cate > ul > li.on > a { background-color: #394881; color: #fff; }
+.bbs_cate > ul > li.on > a { background-color: #3DBBA6; color: #fff; }
 
 /* 게시판 검색 */
 .bbs_search { margin: 10px; padding: 0; border-radius: 0.25rem; }
@@ -944,7 +946,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 
 /* 게시판 읽기 */
-.bbs_view { margin-bottom: 50px; }
+.bbs_view { margin: 3.125rem 0; }
 .bbs_view + .bbs_list { margin: 50px 0; }
 .bbs_viewing { position: relative; border-top: 2px solid #878787; }
 .bbs_viewing > h5 { padding: 32px 25px 0 25px; font-size: 1.25rem; font-weight: 400; }
@@ -1333,14 +1335,14 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .bd_qna .custom-control-input { width: 1.5rem; height: 1.5rem; }
 .bd_qna .custom-control-label::before,
 .bd_qna .custom-control-label::after { width: 1.5rem; height: 1.5rem; top: 0; left: -2rem; }
-.bd_qna .custom-control-input:checked~.custom-control-label { color: #394881; }
-.bd_qna .custom-control-input:checked~.custom-control-label::before { background-color: #394881; border-color: #394881; }
+.bd_qna .custom-control-input:checked~.custom-control-label { color: #3DBBA6; }
+.bd_qna .custom-control-input:checked~.custom-control-label::before { background-color: #3DBBA6; border-color: #3DBBA6; }
 .bd_qna .custom-control-input:focus:not(:checked)~.custom-control-label::before,
-.bd_qna .custom-control-input:focus~.custom-control-label::before { border-color: #394881; box-shadow: 0 0 0 0.2rem rgb(57,72,129,0.25); }
+.bd_qna .custom-control-input:focus~.custom-control-label::before { border-color: #3DBBA6; box-shadow: 0 0 0 0.2rem rgb(57,72,129,0.25); }
 .bd_qna .form-control:focus,
-.bd_qna .custom-file-input:focus~.custom-file-label { border-color: #394881; box-shadow: none; }
+.bd_qna .custom-file-input:focus~.custom-file-label { border-color: #3DBBA6; box-shadow: none; }
 .bd_qna .qnaWrite .form-group > label { font-size: 1.25rem; }
-.bd_qna .qnaBtn .btn-primary { border-color: #394881; background-color: #394881; }
+.bd_qna .qnaBtn .btn-primary { border-color: #3DBBA6; background-color: #3DBBA6; }
 .bd_qna .qnaBtn .btn-primary:not(:disabled):not(.disabled).active:focus, 
 .bd_qna .qnaBtn .btn-primary:not(:disabled):not(.disabled):active:focus, 
 .bd_qna .qnaBtn .btn-primary:hover { border-color: #2e3860; background-color: #2e3860; box-shadow: none; }

@@ -58,7 +58,7 @@ custom-checkbox .custom-control-label::after,
 
 .custom-checkbox .custom-control-label::after { left: -1.65rem; }
 .custom-checkbox .custom-control-label::before { border: 1px solid #ddd; }
-.custom-control-input:checked~.custom-control-label::before { background-color: #214397; border-color: #214397; }
+.custom-control-input:checked~.custom-control-label::before { background-color: #3DBBA6; border-color: #3DBBA6; }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after { background: url("../images/icon_checkbox.png") center no-repeat; }
 
 

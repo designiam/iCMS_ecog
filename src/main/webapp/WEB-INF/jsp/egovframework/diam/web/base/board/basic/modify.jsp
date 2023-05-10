@@ -59,8 +59,8 @@ function checkForm() {
 	</c:if>
 }
 </script>
-<p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
 <div class="bbs bbs_post bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
+	<p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
 	<form action="<c:out value='${param.root }'/>/write/set_write.do" name="writeVO" id="writeVO" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
 		<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 		<input type="hidden" id="RSAExponent" value="${RSAExponent}"/> 
