@@ -18,6 +18,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
+import javax.faces.annotation.RequestParameterMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,6 +32,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -374,7 +376,62 @@ public class WebWriteController {
 		}
 		return "egovframework/diam/web/base/board/result";
 	}
-		
+	
+	@RequestMapping("/write/newCheckPwd.do")
+	public ResponseEntity<?> newCheck(@RequestParam("password") String password, @RequestParam("pk") String pk, HttpSession session) {
+		CommonUtil commonUtil = new CommonUtil();
+		Map<String, Object> resultMap = new HashMap<>();
+		try {
+			Dm_write_vo checkVO = new Dm_write_vo();
+			checkVO.setWr_id(pk);
+			checkVO = writeService.selectWrite(checkVO);
+			
+			if (checkVO != null) {
+				Dm_write_vo writeVO = new Dm_write_vo();
+				writeVO.setWr_id(pk);
+				
+				if (!commonUtil.isNullOrEmpty(password)) {
+					String wr_password = password;
+					PrivateKey privateKey = (PrivateKey) session.getAttribute("DIAM_WEB_COMMENT_RSA_KEY");
+					wr_password = commonUtil.decryptRsa(privateKey, wr_password);
+					writeVO.setWr_password(commonUtil.convertSHA256(wr_password));
+				}
+				
+				writeVO = writeService.selectWriteCheckPassword(writeVO);
+				
+				if (writeVO != null) {
+					session.setAttribute("DIAM_CHECKPASS_RESULT", writeVO.getWr_password());
+					resultMap.put("result", "success");
+					resultMap.put("notice", "비밀번호 확인 완료");
+				} else {
+					resultMap.put("result", "fail");
+					resultMap.put("notice", "비밀번호가 올바르지 않습니다.");
+				}
+			} else {
+				resultMap.put("result", "fail");
+				resultMap.put("notice", "해당하는 게시글 정보가 없습니다.");
+			}
+			
+		} catch(InvalidKeyException ike) {
+			log.error(MessageCode.CMM_ENCRYPT_EXPIRED.getLog());
+			resultMap.put("notice",MessageCode.CMM_ENCRYPT_EXPIRED.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(BadPaddingException bpe) {
+			log.error(MessageCode.CMM_ENCRYPT_EXPIRED.getLog());
+			resultMap.put("notice",MessageCode.CMM_ENCRYPT_EXPIRED.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice",MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice",MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+	
 	/**
 	 * check_password
 	 * 비밀번호 입력팝업에서 사용자가 입력한 비밀번호 검증
@@ -416,9 +473,9 @@ public class WebWriteController {
 							wr_password = commonUtil.decryptRsa(privateKey, wr_password);
 							writeVO.setWr_password(commonUtil.convertSHA256(wr_password));
 						}
-												
+						
 						writeVO = writeService.selectWriteCheckPassword(writeVO);
-												
+						
 						if (writeVO != null) {
 							session.setAttribute("DIAM_CHECKPASS_RESULT", writeVO.getWr_password());
 							resultMap.put("result", "success");
@@ -430,11 +487,11 @@ public class WebWriteController {
 					} else {
 						resultMap.put("result", "fail");
 						resultMap.put("notice", "해당하는 게시글 정보가 없습니다.");
-					}					
+					}
 				} else {
 					resultMap.put("result", "fail");
 					resultMap.put("notice", "해당하는 게시판 정보가 없습니다.");
-				}				
+				}
 			} else {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", "해당하는 UID에 해당하는 페이지가 없습니다.");
@@ -885,6 +942,69 @@ public class WebWriteController {
 			model.addAttribute("message","board.other.error");
 		}
 		return "egovframework/diam/web/base/board/result";
+	}
+	
+	@PostMapping("/web/modifyComment.do")
+	public ResponseEntity<?> modifyComment(Dm_write_vo vo) {
+		Map<String , Object> resultMap = new HashMap<>();
+		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		CommonUtil commonUtil = new CommonUtil();
+		String mb_id = !commonUtil.isNullOrEmpty(loginVO.getId()) ? loginVO.getId() : "비회원";
+		
+		try {
+			if (commonUtil.isNullOrEmpty(vo.getWr_id())) {
+				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+				return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+			} else {
+				vo.setDm_modify_id(mb_id);
+				writeService.updateComment(vo);
+				resultMap.put("result", "success");
+				resultMap.put("notice", MessageCode.CMS_UPDATE_SUCCESS.getMessage());
+			}
+			
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+	
+	@PostMapping("/web/deleteComment.do")
+	public ResponseEntity<?> deleteComment(Dm_write_vo vo) {
+		Map<String , Object> resultMap = new HashMap<>();
+		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		CommonUtil commonUtil = new CommonUtil();
+		String mb_id = !commonUtil.isNullOrEmpty(loginVO.getId()) ? loginVO.getId() : "비회원";
+		
+		try {
+			if (commonUtil.isNullOrEmpty(vo.getWr_id())) {
+				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+				return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+			} else {
+				vo.setDm_delete_id(mb_id);
+				List<Dm_write_vo> list = new ArrayList<>();
+				list.add(vo);
+				writeService.deleteComment(list);
+				
+				resultMap.put("result", "success");
+				resultMap.put("notice", MessageCode.CMS_DELETE_SUCCESS.getMessage());
+			}
+			
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
 		
 	/**

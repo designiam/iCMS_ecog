@@ -515,7 +515,7 @@ var createSE = function() {
 				    <dt>배너 포스터</dt>
 				    <dd><input type="file" name="background" id="background" accept="image/*"></dd>
 				</dl>
-				<dl>
+				<dl class="not_basic">
 					<dt>요약</dt>
 					<dd>
 						<textarea id="wr_summary" name="wr_summary"></textarea>

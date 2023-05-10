@@ -80,7 +80,22 @@ function deniedDelete() {
 	return;
 }
 
-function comment_reply(wr_id) {
+$(document).on("click", ".btn_write", function(){
+	var wr_id = $(this).data("wr_id");
+	$(this).addClass("btn_comment");
+	$("#comment_form").remove();
+    $("#comment_fm").remove();
+    $('.comment_form').removeClass('comment_form');
+
+    $(".comment_reply_fm"+wr_id).addClass("comment_form").html(comment_fm);
+    $(".comment_reply_fm"+wr_id+" h4").text("댓글의 댓글 쓰기");
+    $(".comment_form input[name='mode']").val('1');
+    $('#comment_content').val(''); // IE TEXTAREA Placeholder Patch
+    $("#wr_id").val(wr_id);
+});
+
+/* function comment_reply(wr_id) {
+	
     $("#comment_form").remove();
     $("#comment_fm").remove();
     $('.comment_form').removeClass('comment_form');
@@ -90,7 +105,7 @@ function comment_reply(wr_id) {
     $(".comment_form input[name='mode']").val('1');
     $('#comment_content').val(''); // IE TEXTAREA Placeholder Patch
     $("#wr_id").val(wr_id);
-}
+} */
 </script>
 <script>
 jQuery(function($) {
@@ -104,7 +119,8 @@ jQuery(function($) {
     //수정삭제열기
     $(".comment_button > button").click(function(e){
         e.preventDefault();
-        $(".comment_button ul").slideToggle(300);
+        
+        $(this).siblings("ul").slideToggle(300);
     });
 });
 </script>
@@ -168,8 +184,8 @@ jQuery(function($) {
 									<c:choose>
 										<c:when test="${comment.mb_id eq '비회원'}">
 											<c:if test="${is_admin || DiamLoginVO.id eq null}">
-												<li><a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">수정</a>
-													<!-- <button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button> -->
+												<li><%-- <a class="" href="javascript:updateComment('<c:out value="${comment.wr_id}"/>', true);">수정</a> --%>
+													<button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button>
 												</li>
 												<c:choose>
 													<c:when test="${empty comment.children }">
@@ -231,7 +247,8 @@ jQuery(function($) {
 								<div class="comment_button">
 									<c:if test="${is_comment eq true}">
 										<c:if test='${comment.wr_comment < 2}'>
-											<a class="btn_write" href="javascript:comment_reply('<c:out value="${comment.wr_id}"/>');">답글</a>
+											<%-- <a class="btn_write" href="javascript:comment_reply('<c:out value="${comment.wr_id}"/>');">답글</a> --%>
+											<a class="btn_write" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
 										</c:if>
 									</c:if>
 								</div>
@@ -313,7 +330,8 @@ jQuery(function($) {
 									<div class="comment_button">
 										<c:if test="${is_comment eq true}">
 											<c:if test='${item.wr_comment < 2}'>
-								    			<a class="btn_write" href="javascript:comment_reply('<c:out value="${item.wr_id}"/>');">댓글쓰기</a>
+								    			<%-- <a class="btn_write" href="javascript:comment_reply('<c:out value="${item.wr_id}"/>');">댓글쓰기</a> --%>
+								    			<a class="btn_write" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
 								    		</c:if>
 								    	</c:if>
 								    	<c:choose>
@@ -360,18 +378,18 @@ jQuery(function($) {
 					<c:when test="${DiamLoginVO.id eq null }">
 						<dl class="cmf_name">
 							<dt><label for="wr_name">작성자</label></dt>
-							<dd><input type="text" name="wr_name" id="wr_name" placeholder="작성자명"/></dd>
+							<dd><input type="text" name="wr_name" id="wr_name" maxlength="10" placeholder="작성자명"/></dd>
 						</dl>
 						<dl class="cmf_pass">
 							<dt><label for="wr_password">비밀번호</label></dt>
-							<dd><input type="password" name="wr_password" id="wr_password" autocomplete="new-password" placeholder="비밀번호"/></dd>
+							<dd><input type="password" name="wr_password" id="wr_password" maxlength="20" autocomplete="new-password" placeholder="비밀번호"/></dd>
 						</dl>
 					</c:when>
 					<c:otherwise>
 						<dl class="cmf_name">
 							<dt><label for="">작성자</label></dt>
 							<dd><input type="text" value="<c:out value='${DiamLoginVO.name}'></c:out>" disabled ></dd>
-							<dd><input type="hidden" name="wr_name" id="wr_name" value="<c:out value='${DiamLoginVO.name}'></c:out>"></dd>
+							<dd><input type="hidden" name="wr_name" id="wr_name" maxlength="500" value="<c:out value='${DiamLoginVO.name}'></c:out>"></dd>
 							
 						</dl>
 					</c:otherwise>
@@ -427,28 +445,31 @@ jQuery(function($) {
 			<div class="modal-body">
 				<table class="modify_table">
 					<tbody>
-						<tr>
+						<tr class="anonymous-only">
 							<th><label for="">비밀번호</label></th>
 							<td>
-								<input type="password" class="form-control" id="" placeholder="비밀번호를 입력해주세요." />
+								<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." />
 								<p class="noty">※댓글 작성 시 기재했던 비밀번호를 입력해 주세요</p>
 							</td>
 						</tr>
-						<tr>
+						<tr class="modify-only">
 							<th><label for="">작성자</label></th>
-							<td><input type="text" class="form-control" id="" value="환경공단A" /></td>
+							<td><input type="text" class="form-control" id="username" readonly="readonly"/></td>
 						</tr>
-						<tr>
+						<tr class="modify-only">
 							<th><label for="">내용</label></th>
 							<td>
-								<textarea class="form-control" name=""></textarea>
+								<textarea class="form-control" id="content"></textarea>
 							</td>
+						</tr>
+						<tr class="delete-only">
+							<th style="text-align:center;">삭제하시겠습니까?</th>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-sm btn-fill-03">삭제하기</button>
+				<button type="button" class="btn btn-sm btn-fill-03">확인</button>
 				<button type="button" class="btn btn-sm btn-line btn-line-03" data-dismiss="modal">취소</button>
 			</div>
 		</div>
@@ -456,7 +477,151 @@ jQuery(function($) {
 </div>
 
 <script>
+var adm = "${is_admin}" == "true" ? true : false;
+var modalText = "";
+var pk = "";
 var comment_fm = $("#comment_form").html();
 var password_input = $(".comment_write_info").html();
+
+$(document).on("show", ".modal-dialog", function(){
+	alert("show");
+});
+
+//버튼 클릭 리스너
+$(document).on("click", ".comment_button ul li button", function() {
+	modalText = $(this).text();
+	pk = $(this).closest(".comment_box").find(".comment_wr_name").attr("id");
+	pk = pk.split("_")[2];
+	
+	var content = $(this).closest(".comment_li").find(".comment_content p").text();
+	content = $.trim(content);
+	var writer = $(this).closest(".comment_li").find(".comment_wr_name dd").text();
+	writer = $.trim(writer);
+	$("#username").val(writer);
+	$("#content").val(content);
+	
+	$(".modal-footer button").eq(0).removeClass("auth");
+	$(".modal-footer button").eq(0).removeClass("m_confirm");
+	$(".modal-footer button").eq(0).removeClass("d_confirm");
+	
+	if (adm) {
+		$(".anonymous-only").hide();
+		if (modalText == "수정") {
+			$(".modify-only").show();
+			$(".delete-only").hide();
+			$(".modal-footer button").eq(0).text("수정하기");
+			$(".modal-footer button").eq(0).addClass("m_confirm");
+			
+		} else {
+			$(".modify-only").hide();
+			$(".delete-only").show();
+			$(".modal-footer button").eq(0).text("삭제하기");
+			$(".modal-footer button").eq(0).addClass("d_confirm");
+		}
+	} else {
+		$(".anonymous-only").show();
+		$(".modify-only").hide();
+		$(".delete-only").hide();
+		$(".modal-footer button").eq(0).addClass("auth");
+		$(".auth").text("확인");
+		$(".auth").data("pk", pk);
+	}
+});
+
+// modal fade in 리스너
+$("#commentModal").on("shown.bs.modal", function(){
+	
+});
+
+// 비번 제출 리스너
+$(document).on("click", ".auth", function(){
+	var inputPwd = $("#pwd").val();
+	
+	if (inputPwd != "") {
+		var rsa = new RSAKey();
+		rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
+		$("#pwd").val(rsa.encrypt(inputPwd));
+	}
+	
+	$.ajax({
+        url : "/write/newCheckPwd.do",
+        dataType : 'json',
+        type : 'post',
+        data : {
+        	"password" : $("#pwd").val(), 
+        	"pk" : $(this).data("pk")
+        },
+        success : function (data) {
+            if (data.result == 'success') {
+            	$(".anonymous-only").hide();
+            	
+            	if (modalText == "수정") {
+            		$(".modify-only").show();
+        			$(".delete-only").hide();
+        			$(".auth").text("수정하기");
+        			$(".auth").addClass("m_confirm");
+				} else {
+					$(".modify-only").hide();
+					$(".delete-only").show();
+        			$(".auth").text("삭제하기");
+        			$(".auth").addClass("d_confirm");
+				}
+            	
+            	$(".auth").removeClass("auth");
+            	
+            	
+            } else if (data.result == 'expired') {
+            	alert(data.notice);
+            	location.reload();
+            } else {
+            	alert(data.notice);
+            }
+            $("#pwd").val('');
+        }, error : function(request, status, error) {
+            $("#pwd").val('');
+        	alert(request.responseJSON.notice);
+        }
+    });
+});
+//댓글 수정 리스너
+$(document).on("click", ".m_confirm", function(){
+	var content = $.trim($("#content").val());
+	
+	$.ajax({
+		url: "/web/modifyComment.do",
+		data: {
+			wr_id : pk,
+			wr_content : content
+		},
+		type: "post",
+		success: function(response) {
+			if (response.result == "success") {
+				alert(response.notice);
+				location.reload();
+			}
+		}, error: function(request, status, error){
+			alert(request.responseJSON.notice);
+		}
+	});
+	
+});
+//댓글 삭제 리스너
+$(document).on("click", ".d_confirm", function(){
+	$.ajax({
+		url: "/web/deleteComment.do",
+		data: {
+			wr_id: pk
+		},
+		type: "post",
+		success: function(response) {
+			if (response.result == "success") {
+				alert(response.notice);
+				location.reload();
+			}
+		}, error: function(request, status, error){
+			alert(request.responseJSON.notice);
+		}
+	});
+});
 </script>
 
