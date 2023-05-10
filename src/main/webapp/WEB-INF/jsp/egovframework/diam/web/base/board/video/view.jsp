@@ -265,11 +265,12 @@ function deleteWrite() {
 				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
 			</dl>
 		</div>
-		
-		<c:if test="${boardVO.dm_is_comment eq 1}">
-			<c:if test="${writeVO.wr_reply eq '0'}">
-				<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
-			</c:if>	
+		<c:if test="${sessionScope.vol eq writeVO.wr_vol && writeVO.wr_main eq 'Y'}">
+			<c:if test="${boardVO.dm_is_comment eq 1}">
+				<c:if test="${writeVO.wr_reply eq '0'}">
+					<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
+				</c:if>	
+			</c:if>
 		</c:if>
 		
 		<ul class="nb_ul">
@@ -302,58 +303,6 @@ function deleteWrite() {
 			<div class="vol-slider">
 				<div class="swiper-container">
 					<ul class="swiper-wrapper">
-						<li class="swiper-slide">
-							<a href="#;">
-								<div class="cell_thumb">
-									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb04.jpg');">
-										<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src='/images/no_image.png'">
-									</div>
-									<span class="vol">Vol.1</span>
-								</div>
-								<div class="cell_txt">
-									<div class="cell_subject">승촌보캠핑장 '청량한 음악 한 모금' 콘서트에 초대합니다.</div>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#;">
-								<div class="cell_thumb">
-									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb03.jpg');">
-										<img src="${layout_path}/images/pages/sample_thumb03.jpg" alt="" onerror="this.src='/images/no_image.png'">
-									</div>
-									<span class="vol">Vol.1</span>
-								</div>
-								<div class="cell_txt">
-									<div class="cell_subject">제15회 기후변화주간, #오늘도나는지구를구했다.</div>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#;">
-								<div class="cell_thumb">
-									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb02.jpg');">
-										<img src="${layout_path}/images/pages/sample_thumb02.jpg" alt="" onerror="this.src='/images/no_image.png'">
-									</div>
-									<span class="vol">Vol.1</span>
-								</div>
-								<div class="cell_txt">
-									<div class="cell_subject">재난상황 조직체계 및 프로세스</div>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#;">
-								<div class="cell_thumb">
-									<div class="thumb-wrap" style="background-image: url('${layout_path}/images/pages/sample_thumb01.jpg');">
-										<img src="${layout_path}/images/pages/sample_thumb01.jpg" alt="" onerror="this.src='/images/no_image.png'">
-									</div>
-									<span class="vol">Vol.1</span>
-								</div>
-								<div class="cell_txt">
-									<div class="cell_subject">광주환경공단 2021년 공공데이터 신규 개방 알림</div>
-								</div>
-							</a>
-						</li>
 					</ul>
 				</div>
 				<div class="swiper-button-next"></div>
@@ -390,7 +339,64 @@ function deleteWrite() {
 </div>
 
 <script>
-// 해당 호수 콘텐츠 슬라이드
+
+
+$(function(){
+	var vol = "<c:out value='${writeVO.wr_vol}'/>";
+	var pk = "<c:out value='${writeVO.wr_id}'/>";
+	
+	$.ajax({
+		url: "/web/selectSameVolWrite.do",
+		data: {
+			wr_id: pk,
+			wr_vol: vol
+		},
+		type: "get"
+	}).done(function(response){
+		console.log(response);
+		if (response.result == "success") {
+			setList(response.rows);
+		} else {
+			alert(response.notice);
+		}
+	}).fail(function(request, status, error){
+		alert(request.responseJSON.notice);
+	});
+});
+
+
+function setList(rows) {
+	var target = $(".swiper-wrapper");
+	
+	var str = "";
+	if (rows.length > 0) {
+		$.each(rows, function(i, obj) {
+			console.log(obj.wr_id);
+			str += '<li class="swiper-slide">';
+			str += '<a href="?command=view&wr_id='+obj.wr_id+'&contentId='+obj.uid+'">';
+			str += '<div class="cell_thumb">';
+			//str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
+			//str += '<img src="'+obj.wr_path + obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
+			str += '<div class="thumb-wrap" style="background-image: url(\'${layout_path}/images/pages/sample_thumb04.jpg\');">';
+			str += '<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src=\'/images/no_image.png\'">';
+			str += '</div>';
+			str += '<span class="vol">Vol.'+obj.wr_vol+'</span>';
+			str += '</div>';
+			str += '<div class="cell_txt">';
+			str += '<div class="cell_subject">'+obj.wr_subject+'</div>';
+			str += '</div>';
+			str += '</a>';
+			str += '</li>';
+		});
+	} else {
+		
+	}
+	target.empty();
+	target.append(str);
+	
+}
+
+//해당 호수 콘텐츠 슬라이드
 var volSwiper = new Swiper(".vol-slider .swiper-container", {
 	slidesPerView: 2,
 	spaceBetween: 15,

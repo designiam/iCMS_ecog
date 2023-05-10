@@ -541,6 +541,8 @@
 		    WHERE A.wr_vol = #{wr_vol}
 		      AND A.wr_main = 'Y'
 		      AND A.dm_delete_yn = 'N'
+		      AND A.wr_reply = 0 
+		      AND A.wr_is_comment = 0
 	</select>
 	
 	<select id="selectSameVolWrite" resultMap="resultWriteVO">
@@ -550,8 +552,10 @@
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
 			WHERE wr_vol = #{wr_vol}
 			  AND A.dm_delete_yn = 'N'
+			  AND A.wr_reply = 0 
+			  AND A.wr_is_comment = 0
 		<if test='wr_id != null and wr_id != ""'>
-			  AND wr_id != #{wr_id}
+			  AND A.wr_id != #{wr_id}
 		</if>
 	</select>
 	
@@ -559,12 +563,14 @@
 		    SELECT A.*, C.dm_uid AS uid
 		      FROM dm_write AS A
 		INNER JOIN dm_board AS B
-		        ON A.wr_board = B.dm_id AND B.dm_skin = 'gallery'
+		        ON A.wr_board = B.dm_id AND (B.dm_skin = 'gallery' OR B.dm_skin = 'video')
 		 LEFT JOIN dm_pages AS C
 			    ON B.dm_id = C.dm_board_id AND C.dm_page_type = 'BOARD' AND C.dm_delete_yn = 'N'
 		     WHERE A.dm_delete_yn = 'N'
-		       AND wr_vol = #{wr_vol}
-		  ORDER BY wr_new_hit DESC
+		       AND A.wr_vol = #{wr_vol}
+		       AND A.wr_reply = 0 
+		       AND A.wr_is_comment = 0
+		  ORDER BY A.wr_new_hit DESC
 		     LIMIT 3
 	</select>
 	
@@ -589,6 +595,8 @@
 		     WHERE  1 = 1
 			   AND  A.dm_delete_yn = 'N'
 			   AND  A.wr_vol = #{vol}
+			   AND  A.wr_reply = 0 
+		       AND  A.wr_is_comment = 0
 		  ORDER BY  A.wr_datetime DESC
 		     LIMIT  #{page}, #{rows}
 	</select>

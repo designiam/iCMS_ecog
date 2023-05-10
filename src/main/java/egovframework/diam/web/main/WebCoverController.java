@@ -70,7 +70,7 @@ public class WebCoverController {
 			
 			if (se == null) {
 				resultMap.put("result", "fail");
-				resultMap.put("notice", "잘못된 요청입니다.");
+				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
 			} else {
 				List<Dm_write_vo> list = writeService.selectSameVolWrite(se);
 				resultMap.put("result", "success");

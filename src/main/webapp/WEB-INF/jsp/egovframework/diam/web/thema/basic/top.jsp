@@ -34,7 +34,14 @@
 						</div>
 						<div class="subject"><c:out value="${mainWrite.wr_subject }"/></div>
 						<div class="content"><c:out value="${mainWrite.wr_content }" escapeXml="false"/></div>
-						<a class="a-more-02" href="#;"><p>콘텐츠 바로가기</p><span></span></a>
+						<c:choose>
+							<c:when test="${!empty mainWrite.wr_direct }">
+								<a class="a-more-02" target="_blank" href="<c:out value='${mainWrite.wr_direct }'/>"><p>콘텐츠 바로가기</p><span></span></a>
+							</c:when>
+							<c:otherwise>
+								<a class="a-more-02" href="?contentId=<c:out value='${mainWrite.uid }'/>&wr_id=<c:out value='${mainWrite.wr_id }'/>&command=view"><p>콘텐츠 바로가기</p><span></span></a>								
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!-- //.txt -->
 				</div>
