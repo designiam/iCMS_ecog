@@ -14,7 +14,7 @@
 </div>
 <!-- //.area-custom-select -->
 
-<div class="bbs_gallist">
+<div class="bbs_gallist mt60">
 	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 		<li class="cell col">
 			<a href="#;">

@@ -45,7 +45,7 @@
 .custom-select-option:hover { background: #F5F5F5; }
 
 @media (max-width: 768px) {
-  .area-custom-select { width: 225px; }
+  .area-custom-select { width: 215px; }
   .custom-select, .custom-select-option { height: 40px; padding: 0 20px 8px; }
   .custom-select { font-size: 15px; }
   .custom-select-text { bottom: 5px; }

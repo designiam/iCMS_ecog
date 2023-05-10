@@ -36,6 +36,6 @@
 	</div>
 	
 	<div class="btn-wrap text-center mt55">
-		<a href="#;" class="btn-lg btn-line btn-line-02">목록보기 <img src="/thema/basic/images/arrR_bk.png" alt=""></a>
+		<a href="?contentId=f4d2bc90024029c9815b86cbd951b3213fd2f2b23291ecb84cd7bb3080ccbf31" class="btn-lg btn-line btn-line-02">목록보기 <img src="/thema/basic/images/arrR_bk.png" alt=""></a>
 	</div>
 </div>

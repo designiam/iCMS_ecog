@@ -9,6 +9,45 @@
 	</div>
 </div>
 
+<c:if test="${pageVO.dm_main_content ne '1'}">
+<div class="scroll_right_cont">
+	<h5>함께보는 <br><b>ECO-G</b></h5>
+	<ul>
+		<li class="float01">
+			<a href="https://up.gjto.or.kr/" target="_blank">
+				<img src="${layout_path}/images/icon_quick01.png" alt="카카오톡 채널" />
+			</a>
+		</li>
+		<li class="float02">
+			<a href="https://www.facebook.com/ecogwangju" target="_blank">
+				<img src="${layout_path}/images/icon_quick02.png" alt="페이스북" />
+			</a>
+		</li>
+		<li class="float03">
+			<a href="https://twitter.com/kecotwt"  target="_blank">
+				<img src="${layout_path}/images/icon_quick03.png" alt="트위터">
+			</a>
+		</li>
+		<li class="float04">
+			<button type="button" onclick="copyUrl()">
+				<img src="${layout_path}/images/icon_quick04.png" alt="URL 공유">
+			</button>
+		</li>
+	</ul>
+</div>
+
+<script>
+//url 복사
+let nowUrl = window.location.href;
+
+function copyUrl(){
+    navigator.clipboard.writeText(nowUrl).then(res=>{
+        alert("주소가 복사되었습니다!");
+    })
+}
+</script>
+</c:if>
+
 <footer id="ft">
 	<div id="ft_wrap">
 		<div id="ft_sign">

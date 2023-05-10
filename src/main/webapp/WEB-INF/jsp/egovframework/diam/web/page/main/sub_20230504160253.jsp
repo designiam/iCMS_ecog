@@ -133,5 +133,7 @@ $(document).on("click", ".pg_page", function(e) {
 	var thisPage = $(this).data("page");
 	getList(thisPage);
 	
+	$("html, body").animate({scrollTop: 0}, 300);
+    return false;
 });
 </script>
