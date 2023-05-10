@@ -339,7 +339,27 @@ function deleteWrite() {
 </div>
 
 <script>
-
+//해당 호수 콘텐츠 슬라이드
+var volSwiper = new Swiper(".vol-slider .swiper-container", {
+	slidesPerView: 2,
+	spaceBetween: 15,
+	observer: true,
+	observeParents: true,
+	autoplay: {
+		delay: 3500,
+		disableOnInteraction: false,
+	},
+	navigation: {
+		nextEl: ".vol-slider .swiper-button-next",
+		prevEl: ".vol-slider .swiper-button-prev",
+	},
+	breakpoints: {
+		576: {
+			slidesPerView: 3,
+			spaceBetween: 30,
+		},
+	}
+});
 
 $(function(){
 	var vol = "<c:out value='${writeVO.wr_vol}'/>";
@@ -396,23 +416,5 @@ function setList(rows) {
 	
 }
 
-//해당 호수 콘텐츠 슬라이드
-var volSwiper = new Swiper(".vol-slider .swiper-container", {
-	slidesPerView: 2,
-	spaceBetween: 15,
-	autoplay: {
-		delay: 3500,
-		disableOnInteraction: false,
-	},
-	navigation: {
-		nextEl: ".vol-slider .swiper-button-next",
-		prevEl: ".vol-slider .swiper-button-prev",
-	},
-	breakpoints: {
-		576: {
-			slidesPerView: 3,
-			spaceBetween: 30,
-		},
-	}
-});
+
 </script>

@@ -33,7 +33,7 @@
 							<p class="date"><c:out value="${fn:substring(mainWrite.wr_datetime, 0, 10) }"/></p>
 						</div>
 						<div class="subject"><c:out value="${mainWrite.wr_subject }"/></div>
-						<div class="content"><c:out value="${mainWrite.wr_content }" escapeXml="false"/></div>
+						<div class="content"><c:out value="${mainWrite.wr_summary }" escapeXml="false"/></div>
 						<c:choose>
 							<c:when test="${!empty mainWrite.wr_direct }">
 								<a class="a-more-02" target="_blank" href="<c:out value='${mainWrite.wr_direct }'/>"><p>콘텐츠 바로가기</p><span></span></a>
