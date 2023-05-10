@@ -180,6 +180,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 @media (max-width: 768px) {
   #bestSlider ul { margin: 0 -0.5rem; }
   #bestSlider li { width: calc(50% - 1rem); margin: 0 0.5rem; border-radius: 0.75rem; }
+  #bestSlider li:last-child { display: none; }
 }
 @media (hover: hover), (-ms-high-contrast:none) {
 	#bestSlider li:hover { transform: translateY(-1rem); box-shadow: 5px 5px 6px rgba(0,0,0,0.16); }

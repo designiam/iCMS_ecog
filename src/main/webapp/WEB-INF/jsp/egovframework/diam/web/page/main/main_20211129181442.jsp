@@ -220,11 +220,11 @@ function getPopularData() {
 				str +='<li class="">';
 				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 				str +='<div class="img">';
-				str +='<img src="'+obj.wr_path+obj.wr_thumb+'" alt="">';
+				str +='<img src="'+obj.wr_path+obj.wr_thumb+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
 				str +='</div>';
 				str +='<div class="txt">';
 				str +='<p class="subject">'+obj.wr_subject+'</p>';
-				str +='<p class="content">'+obj.wr_content+'</p>';
+				str +='<p class="content">'+obj.wr_summary+'</p>';
 				str +='<p class="date">'+obj.wr_datetime.substring(0,10)+'</p>';
 				str +='</div>';
 				str +='</a>';
