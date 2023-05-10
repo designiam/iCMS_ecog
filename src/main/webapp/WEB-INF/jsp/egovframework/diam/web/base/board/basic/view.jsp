@@ -4,6 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <%@ include file="base.jsp"%>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/rsa.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/jsbn.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/prng4.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/rng.js"></script>
 <script>
 $(function(){
 	$("#modifyWrite").on('click', function(){
@@ -213,8 +217,8 @@ function deleteWrite() {
 			<div class="bbs_viewbtn_1">
 				<c:choose>
 					<c:when test="${writeVO.mb_id eq '비회원'}">
-						<a href="javascript:;" id="modifyWrite" class="btn_write">수정</a>
-						<a href="javascript:;" id="deleteWrite" class="btn_delete">삭제</a>
+						<a href="javascript:;" data-toggle="modal" data-target="#commentModal" class="btn_write sub">수정</a>
+						<a href="javascript:;" data-toggle="modal" data-target="#commentModal" class="btn_delete sub">삭제</a>
 					</c:when>
 					<c:otherwise>
 						<c:if test="${is_admin eq true || writeVO.mb_id eq DiamLoginVO.id}">
@@ -266,3 +270,119 @@ function deleteWrite() {
 		</c:if>	
 	</c:if>
 </div>
+
+<!-- Modal -->
+<div class="modal fade modal-style" id="commentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title sr-only" id="commentModalLabel">비밀번호 입력</h5>
+				<p class="notice">게시글 삭제 및 수정은 작성자·관리자만 가능합니다.</p>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+						<defs>
+							<clipPath id="clip-path"><rect width="18" height="18" fill="#fff" stroke="#333" stroke-width="1"/></clipPath>
+						</defs>
+						<g clip-path="url(#clip-path)">
+							<g transform="translate(9.143 -5) rotate(45)">
+								<path d="M20,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H20a1,1,0,0,1,1,1A1,1,0,0,1,20,1Z" transform="translate(0 10)" fill="#333"/>
+								<path d="M20,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H20a1,1,0,0,1,1,1A1,1,0,0,1,20,1Z" transform="translate(10) rotate(90)" fill="#333"/>
+							</g>
+						</g>
+					</svg>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="modify_table">
+					<tbody>
+						<tr class="anonymous-only">
+							<th><label for="">비밀번호</label></th>
+							<td>
+								<form action="/write/delete_write.do" method="post" id="frm">
+									<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+									<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
+									<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." />
+									<input type="hidden" name="wr_id" id="pk">
+									<input type="hidden" name="board_id" id="boardPk">
+									<input type="hidden" name="paramMap" id="param">
+								</form>
+								<p class="noty">※게시글 작성 시 기재했던 비밀번호를 입력해 주세요</p>
+							</td>
+						</tr>
+						<tr class="delete-only">
+							<th style="text-align:center;">삭제하시겠습니까?</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-sm btn-fill-03">확인</button>
+				<button type="button" class="btn btn-sm btn-line btn-line-03" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).on("click", ".sub" , function(){
+		$(".delete-only").hide();
+		$(".modal-footer button").eq(0).removeClass("auth");
+		$(".modal-footer button").eq(0).removeClass("d_confirm");
+		$(".modal-footer button").eq(0).addClass("auth");
+		
+		if ($(this).text() == "수정") {
+			$(".modal-footer button").eq(0).attr("id", "mod");
+		} else {
+			$(".modal-footer button").eq(0).attr("id", "del");			
+		}
+	});
+	
+	$(document).on("click", ".auth", function(){
+		var flag = $(this).attr("id");
+		
+		var inputPwd = $("#pwd").val();
+		
+		if (inputPwd != "") {
+			var rsa = new RSAKey();
+			rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
+			$("#pwd").val(rsa.encrypt(inputPwd));
+		}
+		
+		$.ajax({
+			url: "/write/check_password.do",
+			type:"post",
+			data: {
+				contentId: "<c:out value='${param.contentId}'/>",
+				chkpass: $("#pwd").val(),
+				wr_id: "<c:out value='${param.wr_id}'/>"
+			},success: function(response){
+				if (response.result == "success") {
+					if (flag == "del") {
+						$(".anonymous-only").hide();
+						$(".delete-only").show();
+						$(".auth").addClass("d_confirm");
+					} else {
+						location.href = "/index.do?command=modify&wr_id=<c:out value='${writeVO.wr_id}' />&"+unescapeHtml("<c:out value='${writeSearchQueryString}' escapeXml='false'/>");
+					}
+					
+					$(".auth").removeClass("auth");
+				} else {
+					alert(response.notice);
+				}
+				$("#pwd").val("");
+			},error: function(request, status, error) {
+				$("#pwd").val("");
+				alert(request.responseJSON.notice);
+			}
+		});
+	});
+	
+	$("#commentModal").on("hidden.bs.modal", function(){
+		$(".modal-footer button").eq(0).attr("id", "");
+		$("#pwd").val("");
+	});
+	
+	$(document).on("click", ".d_confirm", function(){
+		location.href = "/write/delete_write.do?wr_id=<c:out value='${writeVO.wr_id}' />&board_id=<c:out value='${writeVO.wr_board}' />&"+unescapeHtml("<c:out value='${writeSearchQueryString}' escapeXml='false'/>");
+	});
+	
+</script>
