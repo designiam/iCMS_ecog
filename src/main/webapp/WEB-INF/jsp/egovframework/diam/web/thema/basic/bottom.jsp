@@ -9,7 +9,8 @@
 	</div>
 </div>
 
-<c:if test="${pageVO.dm_main_content ne '1'}">
+<c:set value="${param.command}" var="comm"/>
+<c:if test="${pageVO.dm_main_content ne '1' && (!empty comm || comm eq 'list')}">
 <div class="scroll_right_cont">
 	<h5>함께보는 <br><b>ECO-G</b></h5>
 	<ul>
