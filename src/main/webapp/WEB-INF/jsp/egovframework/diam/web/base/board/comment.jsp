@@ -3,6 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
+<style>
+	.comment_box .btn_write.on {
+		border-color: #555; background-color: #555; color: #fff;
+	}
+/* 	.btn_write:hover {
+		cursor: pointer;
+	} */
+	
+</style>
 <script type="text/javascript" src="/js/egovframework/diam/rsa/rsa.js"></script>
 <script type="text/javascript" src="/js/egovframework/diam/rsa/jsbn.js"></script>
 <script type="text/javascript" src="/js/egovframework/diam/rsa/prng4.js"></script>
@@ -82,16 +91,28 @@ function deniedDelete() {
 
 $(document).on("click", ".btn_write", function(){
 	var wr_id = $(this).data("wr_id");
-	$(this).addClass("btn_comment");
-	$("#comment_form").remove();
-    $("#comment_fm").remove();
-    $('.comment_form').removeClass('comment_form');
+	
+	if ($(this).attr("class").indexOf("on") > -1) {
+		$(".comment_reply_fm").empty();
+		$(".comment_reply_fm").removeClass("comment_form");
+		$(".bbs_comment").after('<div class="comment_form" id="comment_form">' + comment_fm + '</div>');
+		
+		$(this).removeClass("on");
+	} else {
+		$("#comment_form").remove();
+	    $("#comment_fm").remove();
+	    $('.comment_form').removeClass('comment_form');
+	
+	    $(".comment_reply_fm"+wr_id).addClass("comment_form").html(comment_fm);
+	    $(".comment_reply_fm"+wr_id+" h4").text("댓글의 댓글 쓰기");
+	    $(".comment_form input[name='mode']").val('1');
+	    $('#comment_content').val(''); // IE TEXTAREA Placeholder Patch
+	    $("#wr_id").val(wr_id);
+	    
+	    $(this).addClass("on");
+		$(".btn_write").not($(this)).removeClass("on");		
+	}
 
-    $(".comment_reply_fm"+wr_id).addClass("comment_form").html(comment_fm);
-    $(".comment_reply_fm"+wr_id+" h4").text("댓글의 댓글 쓰기");
-    $(".comment_form input[name='mode']").val('1');
-    $('#comment_content').val(''); // IE TEXTAREA Placeholder Patch
-    $("#wr_id").val(wr_id);
 });
 
 /* function comment_reply(wr_id) {
@@ -248,7 +269,7 @@ jQuery(function($) {
 									<c:if test="${is_comment eq true}">
 										<c:if test='${comment.wr_comment < 2}'>
 											<%-- <a class="btn_write" href="javascript:comment_reply('<c:out value="${comment.wr_id}"/>');">답글</a> --%>
-											<a class="btn_write" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
+											<a class="btn_write" href="javascript:void(0);" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
 										</c:if>
 									</c:if>
 								</div>
@@ -358,9 +379,23 @@ jQuery(function($) {
 										<c:if test="${is_comment eq true}">
 											<c:if test='${item.wr_comment < 2}'>
 								    			<%-- <a class="btn_write" href="javascript:comment_reply('<c:out value="${item.wr_id}"/>');">댓글쓰기</a> --%>
-								    			<a class="btn_write" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
+								    			<a class="btn_write" href="javascript:void(0);" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
 								    		</c:if>
 								    	</c:if>
+<%-- 								    	<c:choose>
+								    		<c:when test="${item.mb_id eq '비회원'}">
+								    			<c:if test="${is_admin || DiamLoginVO.id eq null}">
+								    				<a class="btn_modify sub" data-toggle="modal" data-target="#commentModal" href="javascript:void(0)">댓글수정</a>
+										    		<a class="btn_delete sub" data-toggle="modal" data-target="#commentModal" href="javascript:void(0)">댓글삭제</a>
+								    			</c:if>
+								    		</c:when>
+								    		<c:otherwise>
+								    			<c:if test="${is_admin eq true || item.mb_id eq DiamLoginVO.id}">
+								    				<a class="btn_modify sub" data-toggle="modal" data-target="#commentModal" href="javascript:void(0)">댓글수정</a>
+										    		<a class="btn_delete sub" data-toggle="modal" data-target="#commentModal" href="javascript:void(0)">댓글삭제</a>
+								    			</c:if>
+								    		</c:otherwise>
+								    	</c:choose>	 --%>
 									</div>
 								</div>
 								<div class="comment_reply_fm<c:out value='${item.wr_id}'></c:out>"></div>
@@ -501,7 +536,7 @@ $(document).on("show", ".modal-dialog", function(){
 });
 
 //버튼 클릭 리스너
-$(document).on("click", ".comment_button ul li button", function() {
+$(document).on("click", ".comment_button ul li button, .sub", function() {
 	modalText = $(this).text();
 	pk = $(this).closest(".comment_box").find(".comment_wr_name").attr("id");
 	pk = pk.split("_")[2];
@@ -568,7 +603,7 @@ $(document).on("click", ".auth", function(){
             if (data.result == 'success') {
             	$(".anonymous-only").hide();
             	
-            	if (modalText == "수정") {
+            	if (modalText.indexOf("수정") > -1) {
             		$(".modify-only").show();
         			$(".delete-only").hide();
         			$(".auth").text("수정하기");

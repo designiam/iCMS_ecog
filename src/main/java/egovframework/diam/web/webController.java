@@ -664,6 +664,12 @@ public class webController {
 								result.addObject("fileList", fileList);
 								result.addObject("writeVO", writeViewVO);
 								
+								JSONObject rsaObject = commonUtil.initRsa(request, "DIAM_WRITE_SECRET_RSA_KEY");
+								if ("success".equals(rsaObject.get("result"))) {
+									result.addObject("RSAModulus", rsaObject.get("RSAModulus"));
+									result.addObject("RSAExponent", rsaObject.get("RSAExponent"));
+								}
+								
 							} else {
 								result.addObject("message", "board.notfound.write");
 								result.setViewName("egovframework/diam/web/base/board/result");

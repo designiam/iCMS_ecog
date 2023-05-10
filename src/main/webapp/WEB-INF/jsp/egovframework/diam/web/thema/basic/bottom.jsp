@@ -8,7 +8,6 @@
 		</c:if>
 	</div>
 </div>
-
 <c:set value="${param.command}" var="comm"/>
 <c:set value="${pageVO.dm_page_type eq 'BOARD' ? ((!empty comm || comm eq 'list') ? true: false) : ((pageVO.dm_page_name eq '이벤트' || pageVO.dm_page_name eq '지난호 보기') ? false : true) }" var="quick"/>
 <c:if test="${pageVO.dm_main_content ne '1' && quick}">

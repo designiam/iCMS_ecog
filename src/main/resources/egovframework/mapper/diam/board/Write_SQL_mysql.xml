@@ -259,6 +259,7 @@
 		  FROM	dm_write
 		 WHERE	(wr_is_comment = 1 OR wr_reply &gt; 0)
 		   AND	wr_num = (CAST(#{wr_id} AS signed) * -1)
+		   AND  dm_delete_yn = 'N'
 	</select>
 	<sql id="selectWriteListWhereForWeb">
    		<if test='search_value != "" and search_value != null'>
