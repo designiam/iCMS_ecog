@@ -194,7 +194,7 @@ jQuery(function($) {
 														</li>
 													</c:when>
 													<c:otherwise>
-														<li><a class="" href="javascript:deniedDelete();">삭제</a>
+														<li><!-- <a class="" href="javascript:deniedDelete();">삭제</a> -->
 															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
 														</li>
 													</c:otherwise>
@@ -213,7 +213,7 @@ jQuery(function($) {
 														</li>
 													</c:when>
 													<c:otherwise>
-														<li><a class="" href="javascript:deniedDelete();">삭제</a>
+														<li><!-- <a class="" href="javascript:deniedDelete();">삭제</a> -->
 															<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
 														</li>
 													</c:otherwise>
@@ -305,6 +305,33 @@ jQuery(function($) {
 										<dt>작성일</dt>
 										<dd><c:out value='${item.wr_datetime}'/></dd>
 									</dl>
+									<div class="comment_button">
+										<button type="button"><img src="../images/ico_option.png" alt=""></button>
+										<ul>
+										<c:choose>
+											<c:when test="${item.mb_id eq '비회원'}">
+												<c:if test="${is_admin || DiamLoginVO.id eq null}">
+													<li>
+														<button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button>
+													</li>
+													<li>
+														<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+													</li>
+												</c:if>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${is_admin eq true || item.mb_id eq DiamLoginVO.id}">
+													<li>
+														<button type="button" class="" data-toggle="modal" data-target="#commentModal">수정</button>
+													</li>
+													<li>
+														<button type="button" class="" data-toggle="modal" data-target="#commentModal">삭제</button>
+													</li>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
+										</ul>
+									</div>
 								</div>
 								<div class="comment_content" id="content_<c:out value='${item.wr_id}'/>">
 									<p>
@@ -334,20 +361,6 @@ jQuery(function($) {
 								    			<a class="btn_write" data-wr_id="<c:out value='${comment.wr_id}'/>">답글</a>
 								    		</c:if>
 								    	</c:if>
-								    	<c:choose>
-								    		<c:when test="${item.mb_id eq '비회원'}">
-								    			<c:if test="${is_admin || DiamLoginVO.id eq null}">
-								    				<a class="btn_modify" href="javascript:updateComment('<c:out value="${item.wr_id}"/>', true);">댓글수정</a>
-										    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${item.wr_id}"/>', true);">댓글삭제</a>
-								    			</c:if>
-								    		</c:when>
-								    		<c:otherwise>
-								    			<c:if test="${is_admin eq true || item.mb_id eq DiamLoginVO.id}">
-								    				<a class="btn_modify" href="javascript:updateComment('<c:out value="${item.wr_id}"/>', false);">댓글수정</a>
-										    		<a class="btn_delete" href="javascript:deleteComment('<c:out value="${item.wr_id}"/>', false);">댓글삭제</a>
-								    			</c:if>
-								    		</c:otherwise>
-								    	</c:choose>	
 									</div>
 								</div>
 								<div class="comment_reply_fm<c:out value='${item.wr_id}'></c:out>"></div>

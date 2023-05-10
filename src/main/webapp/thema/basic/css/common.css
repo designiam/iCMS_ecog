@@ -1019,8 +1019,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .comment_li {  }
 .comment_li.none { text-align: center; padding: 3rem; }
 .comment_box { position: relative; padding: 1.25rem 1rem; }
-.comment_li.reply { background-color: #fbfbfb; border-color: #eee; }
-.comment_li.reply .comment_box::before { content: "\e5da"; font-size: 40px; font-weight: bold; -webkit-box-pack: end; -moz-box-pack: end; -ms-flex-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end; -webkit-box-align: start; -moz-box-align: start; -ms-flex-align: start; -webkit-align-items: flex-start; align-items: flex-start; }
+.comment_li.reply { background-color: #F7FAF9; }
 .comment_box b, 
 .comment_box strong, 
 .comment_box em, 
@@ -1040,7 +1039,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .comment_header .comment_button { position: absolute; top: 0; right: 0; }
 .comment_header .comment_button button { width: 16px; height: 20px; padding: 0; background-color: transparent; border: 0; }
 .comment_header .comment_button button img { max-width: 100%; }
-.comment_header .comment_button ul { display: none; position: absolute; top: calc(20px + 3px); right: -1rem; padding: 0.25rem 0; border-radius: 0.313rem; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.16); }
+.comment_header .comment_button ul { display: none; position: absolute; top: calc(20px + 3px); right: -1rem; padding: 0.25rem 0; background: #fff; border-radius: 0.313rem; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.16); }
 .comment_header .comment_button ul li { width: 4.375rem; height: 1.875rem; }
 .comment_header .comment_button ul li a,
 .comment_header .comment_button ul li button { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #666; font-size: 12px; transition: all .25s; }
