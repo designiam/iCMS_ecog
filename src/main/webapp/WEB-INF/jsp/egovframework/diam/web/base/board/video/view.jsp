@@ -395,10 +395,8 @@ function setList(rows) {
 			str += '<li class="swiper-slide">';
 			str += '<a href="?command=view&wr_id='+obj.wr_id+'&contentId='+obj.uid+'">';
 			str += '<div class="cell_thumb">';
-			//str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
-			//str += '<img src="'+obj.wr_path + obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
-			str += '<div class="thumb-wrap" style="background-image: url(\'${layout_path}/images/pages/sample_thumb04.jpg\');">';
-			str += '<img src="${layout_path}/images/pages/sample_thumb04.jpg" alt="" onerror="this.src=\'/images/no_image.png\'">';
+			str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
+			str += '<img src="'+obj.wr_path + obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
 			str += '</div>';
 			str += '<span class="vol">Vol.'+obj.wr_vol+'</span>';
 			str += '</div>';

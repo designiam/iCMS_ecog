@@ -69,4 +69,9 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 		return coverMapper.selectCoverByVol(vo);
 	}
 
+	@Override
+	public List<Dm_cover_vo> selectCoverCombobox() throws Exception {
+		return coverMapper.selectCoverCombobox();
+	}
+
 }

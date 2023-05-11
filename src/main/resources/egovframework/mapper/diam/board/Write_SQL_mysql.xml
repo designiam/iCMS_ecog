@@ -298,7 +298,16 @@
 			 AND  A.dm_delete_yn = 'N'
 			 AND  (A.wr_is_notice IS NULL OR A.wr_is_notice != '1')
 		<include refid="selectWriteListWhereForWeb"/>
-		ORDER BY  A.wr_is_notice DESC, A.wr_num ASC, A.wr_reply_reply *1 ASC
+		ORDER BY 
+			<choose>
+				<when test='sort == "new"'>
+					A.wr_vol DESC,
+				</when>
+				<when test='sort == "pop"'>
+					A.wr_hit DESC,
+				</when>
+			</choose>
+			A.wr_num ASC, A.wr_reply_reply *1 ASC
 		   LIMIT  #{page}, #{rows}
 	</select>
 	<select id="selectWriteCountForWeb" resultType="integer">

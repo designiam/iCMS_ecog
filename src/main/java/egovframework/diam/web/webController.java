@@ -499,7 +499,13 @@ public class webController {
 					Dm_board_vo boardVO = new Dm_board_vo();
 					boardVO.setDm_id(pageVO.getDm_board_id());
 					boardVO = boardService.selectBoard(boardVO);
-									
+					
+					if (commonUtil.isNullOrEmpty(searchDmWriteVO.getSort())) {
+						if (!boardVO.getDm_skin().equals("basic")) {
+							searchDmWriteVO.setSort("new");
+						}
+					}
+					
 					List<String> listGroupList = new ArrayList<String>(Arrays.asList(boardVO.getDm_list_group().split("\\|")));
 					List<String> readGroupList = new ArrayList<String>(Arrays.asList(boardVO.getDm_read_group().split("\\|")));
 					List<String> writeGroupList = new ArrayList<String>(Arrays.asList(boardVO.getDm_write_group().split("\\|")));
@@ -539,6 +545,8 @@ public class webController {
 								searchDmWriteVO.setSearch_board(boardVO.getDm_id());
 								searchDmWriteVO.setType("web");
 								
+								log.error("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+								log.error(searchDmWriteVO.toString());
 								//int writeListCnt = writeService.selectWriteListCnt(searchDmWriteVO);
 								int writeListCnt = writeService.selectWriteCountForWeb(searchDmWriteVO);
 								List<Dm_write_vo> writeList = writeService.selectWriteListForWeb(searchDmWriteVO);

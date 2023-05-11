@@ -41,10 +41,10 @@
 		<div class="bbs_count">
 			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
 		</div>
-		<div class="bbs_order">
+		<!-- <div class="bbs_order">
 			<button class="btn active">최신순</button>
 			<button class="btn">인기순</button>
-		</div>
+		</div> -->
 	</div>
 	<div class="bbs_listing">
 		<table class="table">

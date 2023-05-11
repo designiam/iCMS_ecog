@@ -44,7 +44,7 @@ function setList(data){
 	if (data.length > 0) {
 		$.each(data, function(i, obj) {
 			str += '<div class="event-item">';
-			str += '<a href="?contentId=257a1626ad31a8264c62ddc8ad0454247da258be5f3f6def89c5bb96d6da80bf#'+obj.dm_id+'">';
+			str += '<a href="?contentId=257a1626ad31a8264c62ddc8ad0454247da258be5f3f6def89c5bb96d6da80bf&dm_id='+obj.dm_id+'">';
 			str += '<div class="thumb-container">';
 			str += '<div class="thumb-wrap" style="background-image: url(' + "'" + obj.dm_file_path + "'" +');">';
 			str += '<img src="'+obj.dm_file_path+'" alt="" onerror="this.src=\'/images/no_image.png\'">';

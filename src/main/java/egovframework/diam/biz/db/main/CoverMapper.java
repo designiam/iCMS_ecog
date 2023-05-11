@@ -25,4 +25,6 @@ public interface CoverMapper {
 	public int deleteCover(Dm_cover_vo vo);
 	
 	public Dm_cover_vo selectCoverByVol(Dm_cover_vo vo);
+	
+	public List<Dm_cover_vo> selectCoverCombobox();
 }

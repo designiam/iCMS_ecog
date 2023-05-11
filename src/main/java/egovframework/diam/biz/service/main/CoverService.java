@@ -21,4 +21,6 @@ public interface CoverService {
 	public void deleteCover(List<Dm_cover_vo> list) throws Exception;
 	
 	public Dm_cover_vo selectCoverByVol(Dm_cover_vo vo) throws Exception;
+	
+	public List<Dm_cover_vo> selectCoverCombobox() throws Exception;
 }
