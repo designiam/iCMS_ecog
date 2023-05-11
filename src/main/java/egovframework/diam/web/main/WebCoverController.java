@@ -1,6 +1,5 @@
 package egovframework.diam.web.main;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.diam.biz.model.board.Dm_write_vo;
-import egovframework.diam.biz.model.display.Dm_menus_vo;
 import egovframework.diam.biz.model.main.Dm_cover_vo;
 import egovframework.diam.biz.service.board.WriteService;
-import egovframework.diam.biz.service.display.MenuService;
 import egovframework.diam.biz.service.main.CoverService;
 import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;
@@ -32,14 +29,13 @@ public class WebCoverController {
 
 	@Autowired private CoverService coverService;
 	@Autowired private WriteService writeService;
-	@Autowired private MenuService menuService;
 	
 	@GetMapping("/web/lastCoverList.do")
 	public ResponseEntity<?> selectLastCoverList(Dm_cover_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		try {
-			List<Dm_cover_vo> list = coverService.selectCoverList(vo);
+			List<Dm_cover_vo> list = coverService.selectCoverCombobox();
 			resultMap.put("result", "success");
 			resultMap.put("rows", list);
 		} catch (DataAccessException dae) {
@@ -58,24 +54,28 @@ public class WebCoverController {
 	@GetMapping("/web/selectSameVolWrite.do")
 	public ResponseEntity<?> selectSameVolWrite(Dm_write_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
-		CommonUtil commonUtil = new CommonUtil();
-		
+/*		CommonUtil commonUtil = new CommonUtil();
 		if (commonUtil.isNullOrEmpty(vo.getWr_id())) {
 			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
 		}
+*/		
 		
 		try {
-			Dm_write_vo se = writeService.selectWrite(vo);
+			//Dm_write_vo se = writeService.selectWrite(vo);
 			
-			if (se == null) {
+			/*if (se == null) {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
 			} else {
 				List<Dm_write_vo> list = writeService.selectSameVolWrite(se);
 				resultMap.put("result", "success");
 				resultMap.put("rows", list);
-			}
+			}*/
+			
+			List<Dm_write_vo> list = writeService.selectSameVolWrite(vo);
+			resultMap.put("result", "success");
+			resultMap.put("rows", list);
 			
 		} catch (DataAccessException dae) {
 			log.error(MessageCode.CMM_DATA_ERROR.getLog());
@@ -162,5 +162,4 @@ public class WebCoverController {
 		}
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
-	
 }

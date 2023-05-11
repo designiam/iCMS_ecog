@@ -44,8 +44,8 @@
 			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
 		</div>
 		<div class="bbs_order">
-			<button class="btn active">최신순</button>
-			<button class="btn">인기순</button>
+			<button class="btn<c:if test='${searchDmWriteVO.sort eq "new" }'> active</c:if>" data-sort="new">최신순</button>
+			<button class="btn<c:if test='${searchDmWriteVO.sort eq "pop" }'> active</c:if>" data-sort="pop">인기순</button>
 		</div>
 	</div>
 	<c:if test="${!empty noticeList }">
@@ -217,3 +217,25 @@
 <c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">
 	<c:out value="${boardVO.dm_footer_content}" escapeXml="false"/>
 </c:if>
+<script>
+	$(document).on("click", ".bbs_order button" , function(){
+		var activeStatus = $(this).attr("class").indexOf("active") > -1;
+		
+		if (activeStatus) {
+			return;
+		}
+		
+		$(this).addClass("active");
+		$(this).siblings("button").removeClass("active");
+		var sort = $(this).data("sort");
+		
+		var actionForm = $("<form></form>");
+		actionForm.attr("action", "<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${pageVO.dm_uid}'/>&command=list");
+		actionForm.attr("method", "post");
+		
+		actionForm.append('<input type="hidden" name="sort" value="'+sort+'"/>');
+		actionForm.appendTo("body");
+		
+		actionForm.submit();
+	});
+</script>

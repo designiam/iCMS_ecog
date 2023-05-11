@@ -9,7 +9,7 @@
 	</div>
 </div>
 <c:set value="${param.command}" var="comm"/>
-<c:set value="${pageVO.dm_page_type eq 'BOARD' ? ((!empty comm || comm eq 'list') ? true: false) : ((pageVO.dm_page_name eq '이벤트' || pageVO.dm_page_name eq '지난호 보기') ? false : true) }" var="quick"/>
+<c:set value="${pageVO.dm_page_type eq 'BOARD' ? ((!empty comm && comm ne 'list') ? true: false) : ((pageVO.dm_page_name eq '이벤트' || pageVO.dm_page_name eq '지난호 보기') ? false : true) }" var="quick"/>
 <c:if test="${pageVO.dm_main_content ne '1' && quick}">
 <div class="scroll_right_cont">
 	<h5>함께보는 <br><b>ECO-G</b></h5>
@@ -39,12 +39,12 @@
 
 <script>
 //url 복사
-let nowUrl = window.location.href;
+var nowUrl = window.location.href;
 
 function copyUrl(){
-    navigator.clipboard.writeText(nowUrl).then(res=>{
+    navigator.clipboard.writeText(nowUrl).then(function(res){
         alert("주소가 복사되었습니다!");
-    })
+    });
 }
 </script>
 </c:if>

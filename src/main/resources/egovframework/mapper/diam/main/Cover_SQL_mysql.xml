@@ -126,4 +126,11 @@
 		      , dm_delete_id = #{dm_delete_id}
 		 WHERE  dm_id = #{dm_id}
 	</update>
+	
+	<select id="selectCoverCombobox" resultMap="resultCoverVO">
+		  SELECT dm_id, dm_vol, dm_year, dm_month
+		    FROM dm_cover
+		   WHERE dm_delete_yn = 'N'
+		ORDER BY dm_vol DESC
+	</select>
 </mapper>

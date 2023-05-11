@@ -80,15 +80,18 @@
 </div>
 
 <script>
-let selectFlag;
-$('.custom-select').on('click', function() {
+
+var selectFlag;
+
+// select box 오픈 리스너
+$(document).on('click','.custom-select', function() {
 	$(this).toggleClass('selected');
 	if($(this).hasClass('selected')) {
 		$('.custom-select-list').slideDown();
 	} else {
 		$('.custom-select-list').slideUp();
 	}
-})
+});
 
 $('.custom-select').on('focusin', function() {
 	$('.custom-select-list').slideDown();
@@ -109,10 +112,59 @@ $('.custom-select-option').on('mouseout', function() {
 	selectFlag = false;
 });
 
-$('.custom-select-option').on('click', function() {
-	let value = $(this).attr('value');
+// 옵션 클릭 리스너
+$(document).on('click','.custom-select-option', function() {
+	var value = $(this).attr('value');
 
 	$('.custom-select-text').html($(this).html());
 	$('.custom-select-list').slideUp();
+	
+	getWriteList($(this).data("vol"));
 });
+
+var getWriteList = function(uniq) {
+	$.ajax({
+		url : "/web/selectSameVolWrite.do",
+		data : {
+			wr_vol : uniq
+		},
+		type : "get"
+	}).done(function(response){
+		console.log(response);
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+
+$(function() {
+	getComboList();
+});
+
+var getComboList = function() {
+	$.ajax({
+		url : "/web/lastCoverList.do",
+		type: "get"
+	}).done(function(response){
+		if (response.result == "success") {
+			setComboList(response.rows)
+		}
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+
+var setComboList = function (rows) {
+	var str = "";
+	if (rows.length > 0) {
+		$.each(rows, function(i, obj){
+			str += '<li data-vol="'+obj.dm_vol+'" value="selectOption'+(i + 1)+'" class="custom-select-option"><strong>Vol.'+(obj.dm_vol.length < 2 ? '0'+obj.dm_vol : obj.dm_vol)+'</strong>'+obj.dm_year + "." + obj.dm_month +'</li>';
+		});
+	} else {
+		str += '<li value="selectOption1" class="custom-select-option">데이터가 없습니다.</li>';
+	}
+	
+	$(".custom-select-list").empty().append(str);
+	
+	$(".custom-select-list").find("li").eq(0).trigger("click");
+}
 </script>

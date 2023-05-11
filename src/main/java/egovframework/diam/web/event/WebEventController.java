@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import egovframework.diam.biz.model.event.Dm_event_vo;
 import egovframework.diam.biz.service.event.EventService;
+import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;
 import lombok.extern.log4j.Log4j2;
 
@@ -65,8 +66,22 @@ public class WebEventController {
 	@GetMapping("/web/selectEvent.do")
 	public ResponseEntity<?> selectEvent(Dm_event_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
-		
+		CommonUtil commonUtil = new CommonUtil();
 		try {
+			
+			if (commonUtil.isNullOrEmpty(vo.getDm_id())) {
+				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+				return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+			}
+			
+			vo = eventService.selectEvent(vo);
+			if (vo == null) {
+				resultMap.put("result", "fail");
+				resultMap.put("notice", MessageCode.CMS_SELECT_NODATA.getMessage());
+			} else {
+				resultMap.put("result", "success");
+				resultMap.put("rows", vo);
+			}
 			
 		} catch (DataAccessException dae) {
 			log.error(MessageCode.CMM_DATA_ERROR.getLog());

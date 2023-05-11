@@ -219,6 +219,8 @@ public class Dm_write_vo implements Serializable{
 	
 	private String type;
 	
+	private String sort;
+	
 	private String uid;
 	
 	private List<Dm_write_vo> children = new ArrayList<>();
