@@ -556,14 +556,19 @@ html #ft #ft_goto.fixed #shortcut { opacity: 1; visibility: visible; }
 /* 반응형 기본 */
 /* Media Query - PC First */
 /* https://getbootstrap.com/docs/4.6/layout/overview/ */
+@media (max-width: 1680px) {
+  #gnb_wrap #gnb_container.gnb-on::before { left: calc(-100% - 7rem); }
+  #gnb_wrap #gnb_container.gnb-on::after { display: none; }  
+}
 @media (max-width: 1560px) {
-	#hd_logo a { left: 2rem; transform: translateY(-50%); }
+  #hd_logo a { left: 2rem; transform: translateY(-50%); }
 }
 @media (max-width: 1500px) {
   #hd_wrap, #ft_wrap, #container, #vis #titler .leader { padding: 0 2rem; }
   #hd_user { right: 3rem; } 
   #hd_button,  #hd_toggle, #hd_wrap .btn-wrap { right: 2rem; }
   #gnb { right: 13rem; }
+  #gnb_wrap #gnb_container.gnb-on::before { left: calc(-100% - 3rem); }
   #gnb_1dul .gnb_1dli { flex: 1 0 140px; }
   
 }
