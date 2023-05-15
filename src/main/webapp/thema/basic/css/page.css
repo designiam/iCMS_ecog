@@ -38,7 +38,7 @@
 .custom-select-text { position: absolute; bottom: 0; left: 10px; cursor: pointer; }
 .custom-select-text strong { margin-right: 15px; color: #000; font-size: 35px; font-weight: 800; }
 .custom-select-arrow { position: absolute; top: 15px; right: 10px; }
-.custom-select-list { position: absolute; width: 100%; border: 1px solid #ddd; border-radius: 0 0 5px 5px; background: #fff; text-align: left; z-index: 15; }
+.custom-select-list { position: absolute; width: 100%; max-height: 275px; border: 1px solid #ddd; border-radius: 0 0 5px 5px; background: #fff; text-align: left; z-index: 1; overflow-y: scroll; }
 .custom-select-option { display: flex; justify-content: flex-start; align-items: flex-end; height: 55px; padding: 0 20px 15px; border-bottom: 1px solid #ddd; color: #999; font-size: 14px; font-weight: 300; letter-spacing: 0.05em; cursor: pointer; }
 .custom-select-option:last-child { border: none; }
 .custom-select-option strong { margin-right: 15px; color: #000; font-size: 18px; font-weight: 800; }
