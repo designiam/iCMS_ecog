@@ -22,13 +22,11 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="#;">
-						<div class="img">
-							<img src="${layout_path}/images/main/thumb_best01.jpg" alt="">
-						</div>
+						<div class="img"></div>
 						<div class="txt">
-							<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요! 광주환경공단, 하천 화장실 '안심'하고 이용 하세요!</p>
-							<p class="content">광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨 광주환경공단(이사장 김성환)이 오늘(15일)부터 오는 17일까지 3일간 광주천 등에 설치된 국가하천 공중화장실 21개소에 대해 자체 점검반을 구성, 비상벨</p>
-							<p class="date">2023-03-14</p>
+							<p class="subject"></p>
+							<p class="content"></p>
+							<p class="date"></p>
 						</div>
 					</a>
 				</div>
@@ -120,7 +118,7 @@
 		
 	<div class="inner">
 		<div class="tabContent-wrap">
-			<div class="tabContent" data-target="1">
+			<div class="tabContent">
 				<div class="masonry">
 					<div class="masonry-item">
 						<a href="#;">
@@ -179,6 +177,14 @@
 		
 		<div class="swiper-container" id="snsSlider">
 			<div class="swiper-wrapper">
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
 			</div>
 			<div class="swiper-controller">
 				<div class="swiper-button-next"></div>
@@ -206,6 +212,31 @@ var getCrawlData = function(){
 		setInstagram(response.insta);
 	}).fail(function(response, status, error){
 		alert(response.responseJSON.notice);
+	}).then(function(){
+		//SNS 슬라이드
+		var snsSlider = new Swiper("#snsSlider", {
+			slidesPerView: 'auto',
+			spaceBetween: 10,
+			centeredSlides: true,
+			slideToClickedSlide : true,
+			autoplay: {
+				delay: 3500,
+				disableOnInteraction: false,
+			},
+			loop : true,
+			loopAdditionalSlides : 1,
+			observer: true,
+			observeParents: true,
+			navigation: {
+				nextEl: "#snsSlider .swiper-button-next",
+				prevEl: "#snsSlider .swiper-button-prev",
+			},
+			breakpoints: {
+				768: {
+					spaceBetween: 25,
+				},
+			},
+		});
 	});
 }
 
@@ -276,15 +307,15 @@ $(".tabMenu").on("click",function(){
 	if ($(this).attr("class").indexOf("on") > -1) {
 		$(this).removeClass("on").attr("title", "");
 	} else {
-	    $(".on").removeClass("on").attr("title", "");
-	    $(this).addClass("on").attr("title", "선택됨");
+		$(".on").removeClass("on").attr("title", "");
+		$(this).addClass("on").attr("title", "선택됨");
 	}
 	
-    var menuArr = new Array();
-    var menuId = $(".on").data("id");
-    
-    if (menuId == "" || menuId == null) {
-    	getMenuContents(getMenuId());
+	var menuArr = new Array();
+	var menuId = $(".on").data("id");
+
+	if (menuId == "" || menuId == null) {
+		getMenuContents(getMenuId());
 	} else {
 		menuArr.push(menuId);
 		getMenuContents(menuArr);
@@ -310,7 +341,7 @@ function getMenuContents(arr) {
 		return;
 	}
 	
-    var set = {
+	var set = {
        	url: "/web/selectChildMenuBoard.do",
        	type: "get",
        	data: {
@@ -335,7 +366,6 @@ function getMenuContents(arr) {
 }
 // eco-g now 리스트 세팅
 function setNowList(rows){
-	
 	var target = $(".masonry");
 	var str = "";
 	$.each(rows, function(i, obj){
@@ -390,29 +420,4 @@ function setNowList(rows){
 //		},
 //	},
 //});
-
-
-//SNS 슬라이드
-var snsSlider = new Swiper("#snsSlider", {
-	slidesPerView: 'auto',
-	spaceBetween: 10,
-	centeredSlides: true,
-	slideToClickedSlide : true,
-	//autoplay: {
-	//	delay: 3500,
-	//	disableOnInteraction: false,
-	//},
-	loop : true,
-	loopAdditionalSlides : 1,
-	navigation: {
-		nextEl: "#snsSlider .swiper-button-next",
-		prevEl: "#snsSlider .swiper-button-prev",
-	},
-	breakpoints: {
-		768: {
-			spaceBetween: 25,
-		},
-	},
-});
-
 </script>
