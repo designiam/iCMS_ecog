@@ -3,30 +3,30 @@
 <!-- 이벤트 뷰 페이지 -->
 <div class="event-view">
 	<div class="title-wrap">
-		<h3>텀블러 이용하GO, 커피도 받GO!텀블러 이용하GO, 커피도 받GO!텀블러 이용하GO, 커피도 받GO!</h3>
-		<div class="label upcoming">진행예정</div>
+		<h3></h3>
+		<div class="label upcoming"></div>
 	</div>
 	<div class="info-wrap wide_con">
 		<div class="info">
 			<dl>
 				<dt>응모기간</dt>
-				<dd id="period">2023. 04. 26. ~ 2023. 05. 01</dd>
+				<dd id="period"></dd>
 			</dl>
 			<dl>
 				<dt>결과발표</dt>
-				<dd id="announce">2023. 05. 02.</dd>
+				<dd id="announce"></dd>
 			</dl>
 			<dl>
 				<dt>참여대상</dt>
-				<dd id="target">누구나</dd>
+				<dd id="target"></dd>
 			</dl>
 			<dl>
 				<dt>주최</dt>
-				<dd id="host">광주광역시 대변인실</dd>
+				<dd id="host"></dd>
 			</dl>
 			<dl>
 				<dt>문의처</dt>
-				<dd id="inquiry">운영사무국 070-5165-7520</dd>
+				<dd id="inquiry"></dd>
 			</dl>
 		</div>
 	</div>
