@@ -555,7 +555,7 @@
 	</select>
 	
 	<select id="selectSameVolWrite" resultMap="resultWriteVO">
-		   SELECT A.*, B.dm_uid AS uid
+		   SELECT A.*, B.dm_uid AS uid, B.dm_page_name AS type
 		  	 FROM dm_write AS A
 		LEFT JOIN dm_pages AS B
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
