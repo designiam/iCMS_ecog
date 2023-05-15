@@ -1,11 +1,5 @@
 package egovframework.diam.cmm.selenium;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,8 +54,16 @@ public class CrawlingUtil {
 
 	public List<Dm_crawl_vo> crawlInstagram() throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
-
-		System.setProperty("webdriver.chrome.driver", "D:\\Util\\chromedriver_win32\\chromedriver.exe");
+		
+		String mode = System.getProperty("globals.properties.mode");
+		String driverPath = "";
+		if(mode.equals("dev")) {
+			driverPath = "D:\\Util\\chromedriver_win32\\chromedriver.exe";
+		} else {
+			driverPath = "/usr/local/bin/chromedriver";
+		}
+		
+		System.setProperty("webdriver.chrome.driver", driverPath);
 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("headless"); // GUI 없이 실행

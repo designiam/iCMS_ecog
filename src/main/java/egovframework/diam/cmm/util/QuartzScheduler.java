@@ -34,10 +34,8 @@ public class QuartzScheduler implements ServletContextAware {
 	@Autowired
 	private CrawlService crawlService;
 	
-	@Scheduled(cron="0 0 9 1 * *")
+	@Scheduled(cron="0 10 9 1 * *")
 	public void resetNewHitCount() {
-		
-		log.error("조회수 스케쥴러 실행..");
 		
 		try {
 			writeService.updateNewHitCountReset();

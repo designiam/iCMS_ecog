@@ -242,7 +242,6 @@ var getCrawlData = function(){
 		});
 	});
 }
-
 function setInstagram(rows) {
 	var target = $("#snsSlider").find(".swiper-wrapper");
 	if (rows.length > 0) {
@@ -254,6 +253,7 @@ function setInstagram(rows) {
 		target.append(str);
 	}
 }
+
 
 function setYoutube(data) {
 	if (data.dm_href != "" && data.dm_href != null) {
@@ -423,6 +423,5 @@ function setNowList(rows){
 //		},
 //	},
 //});
-
 AOS.init();
 </script>

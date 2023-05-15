@@ -78,6 +78,13 @@
 	                </dd>
 	            </dl>
 	            <dl>
+	                <dt>모바일 이미지 파일<span class="required_value">*</span></dt>
+	                <dd id="image_m">
+	                    <input type="file" name="multifile2" id="multifile2" accept=".jpg, .jpeg, .gif, .png">
+	                    <p class="noty">.jpg, .jpeg, .gif, .png 확장자 파일만 업로드 가능합니다.</p>
+	                </dd>
+	            </dl>
+	            <dl>
 	                <dt>게시 기간<span class="required_value">*</span></dt>
 	                <dd>
 	                	<div class="during">
@@ -190,6 +197,10 @@ $(document).ready(function(){
 					
 					if (data.rows.dm_visual_name != null && data.rows.dm_visual_name != "") {
 			        	$("#image").append('<img src="/resources/main/'+data.rows.dm_visual_name+'" style="margin-top:8px;"/><div><label><input type="checkbox" name="dm_del_image" value="'+data.rows.dm_visual_name+'"/>삭제('+data.rows.dm_visual_name_ori+')</label></div>');            	
+			        }
+					
+					if (data.rows.dm_visual_name_m != null && data.rows.dm_visual_name_m != "") {
+			        	$("#image_m").append('<img src="/resources/main/'+data.rows.dm_visual_name_m+'" style="margin-top:8px;"/><div><label><input type="checkbox" name="dm_del_image_m" value="'+data.rows.dm_visual_name_m+'"/>삭제('+data.rows.dm_visual_name_ori_m+')</label></div>');            	
 			        }
 					$("#dm_order").val(data.rows.dm_order);
 					$("#dm_status").combobox('reload',  '/adm/select_code.do?dm_code_group=1001&selected='+data.rows.dm_status);

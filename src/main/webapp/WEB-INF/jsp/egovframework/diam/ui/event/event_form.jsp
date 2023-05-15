@@ -80,13 +80,13 @@ function setValue(rows) {
 	$("#dm_event_start").datebox("setValue", rows.dm_event_start);
 	$("#dm_event_end").datebox("setValue", rows.dm_event_end);
 	$("#dm_announce").datebox("setValue", rows.dm_announce);
-	$("#dm_twitter").val(rows.dm_twitter);
+/* 	$("#dm_twitter").val(rows.dm_twitter);
 	$("#dm_instagram").val(rows.dm_instagram);
 	$("#dm_naver").val(rows.dm_naver);
 	$("#dm_facebook").val(rows.dm_facebook);
 	$("#dm_youtube").val(rows.dm_youtube);
 	$("#dm_kakao").val(rows.dm_kakao);
-	$("#dm_etc").val(rows.dm_etc);
+	$("#dm_etc").val(rows.dm_etc); */
 
 	$("#dm_status").combobox({
 		onLoadSuccess: function(){
@@ -260,7 +260,7 @@ function fnSave() {
 	            		<textarea id="dm_content" name="dm_content"></textarea>
 	            	</dd>
 	            </dl>
-	            <dl>
+<!-- 	            <dl>
 	            	<dt>트위터 링크</dt>
 	            	<dd>
 	            		<input type="text" name="dm_twitter" id="dm_twitter" autocomplete="off"/>
@@ -295,7 +295,7 @@ function fnSave() {
 	            	<dd>
 	            		<input type="text" name="dm_etc" id="dm_etc" autocomplete="off"/>	            	
 	            	</dd>
-	            </dl>
+	            </dl> -->
 	        </div>
 	    </form>
     </div>    
