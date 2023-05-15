@@ -53,6 +53,12 @@ public class Dm_main_visual_vo implements Serializable {
 	
 	/** 메인비주얼 이미지 원파일명 */
 	private String dm_visual_name_ori;
+	
+	/** 메인비주얼 이미지 임시파일명 */
+	private String dm_visual_name_m;
+	
+	/** 메인비주얼 이미지 원파일명 */
+	private String dm_visual_name_ori_m;
 		
 	/** 메인비주얼 링크 */
 	@Pattern(regexp="^(https?://)(www.)?([a-zA-Z0-9]+)\\.[a-z]+([a-zA-Z0-9가-힣/+?=#&-_]+)?", message="연결할 링크는 http 프로토콜을 포함한 URL 형식이어야 합니다.")
@@ -111,8 +117,11 @@ public class Dm_main_visual_vo implements Serializable {
 	/** 메인비주얼  업로드 파일 */
 	private MultipartFile multifile1;
 	
+	private MultipartFile multifile2;
+	
 	/** 메인비주얼 삭제파일명 */
 	private String dm_del_image;
+	private String dm_del_image_m;
 	
 	/** 메인비주얼 도메인명 */
 	private String dm_domain_text;

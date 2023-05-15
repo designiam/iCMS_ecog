@@ -248,6 +248,10 @@ public class MainVisualController {
 				}
 				
 				boolean chkImageExt = commonUtil.imageExtCheck(mainVisualVO.getMultifile1());
+				if (chkImageExt) {
+					chkImageExt = commonUtil.imageExtCheck(mainVisualVO.getMultifile2());
+					
+				}
 				if (!chkImageExt) {
 					resultMap.put("result", "fail");
 					resultMap.put("notice", "jpg,jpeg,gif,png 확장자 파일만 업로드 가능합니다.");
@@ -258,7 +262,7 @@ public class MainVisualController {
 				
 				if (commonUtil.isNullOrEmpty(mainVisualVO.getDm_id())) {
 					
-					if (mainVisualVO.getMultifile1().getSize() > 0) {
+					if (mainVisualVO.getMultifile1().getSize() > 0 && !mainVisualVO.getMultifile2().isEmpty()) {
 						uploadMainVisualFile(mainVisualVO, null, FILE_PATH);
 						
 						mainVisualVO.setDm_create_id(loginVO.getId());
@@ -285,15 +289,31 @@ public class MainVisualController {
 						if (!commonUtil.isNullOrEmpty(mainVisualVO.getDm_del_image())) {
 				        	if (mainVisualVO.getMultifile1().getSize() > 0) {
 				        		File file = new File(FILE_PATH+mainVisualVO.getDm_del_image()); 
+				        		
 								if( file.exists() ){
 									FileDelete(file);
 								}
+								
 				        	} else {
 				        		resultMap.put("result", "fail");
 								resultMap.put("notice", "메인비주얼 이미지를 등록해주세요.");
 								return new ResponseEntity<>(resultMap, HttpStatus.OK);
 				        	}							
 						}
+						
+						if (!commonUtil.isNullOrEmpty(mainVisualVO.getDm_del_image_m())) {
+							if (mainVisualVO.getMultifile2().getSize() > 0) {
+								File file2 = new File(FILE_PATH+mainVisualVO.getDm_del_image_m());
+								if (file2.exists()) {
+									FileDelete(file2);
+								}
+							} else {
+				        		resultMap.put("result", "fail");
+								resultMap.put("notice", "메인비주얼 이미지를 등록해주세요.");
+								return new ResponseEntity<>(resultMap, HttpStatus.OK);
+				        	}		
+						}
+						
 						uploadMainVisualFile(mainVisualVO, checkVO, FILE_PATH);		
 						
 						mainVisualVO.setDm_modify_id(loginVO.getId());
@@ -357,6 +377,19 @@ public class MainVisualController {
 				mainVisualVO.setDm_visual_name_ori(checkVO.getDm_visual_name_ori());
 			}
 		}
+    	
+    	if (mainVisualVO.getMultifile2().getSize() > 0 ) {
+    		mainVisualVO.setDm_visual_name_ori_m(mainVisualVO.getMultifile2().getOriginalFilename());
+    		String ext = mainVisualVO.getMultifile2().getOriginalFilename().substring(mainVisualVO.getMultifile2().getOriginalFilename().indexOf(".") + 1);
+    		String upload_visual = today + "_" + commonUtil.convertSHA256(mainVisualVO.getMultifile2().getOriginalFilename()) + "." + ext;
+    		mainVisualVO.getMultifile2().transferTo(new File(file_path + upload_visual));
+    		mainVisualVO.setDm_visual_name_m(upload_visual);
+    	} else {
+    		if (checkVO != null && (mainVisualVO.getDm_del_image_m() == null || mainVisualVO.getDm_del_image_m().isEmpty())) {
+    			mainVisualVO.setDm_visual_name_m(checkVO.getDm_visual_name_m());
+    			mainVisualVO.setDm_visual_name_ori_m(checkVO.getDm_visual_name_ori_m());
+    		}
+    	}
 	}
 	
 

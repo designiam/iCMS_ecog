@@ -21,7 +21,6 @@ import egovframework.diam.biz.model.main.Dm_cover_vo;
 import egovframework.diam.biz.service.board.WriteService;
 import egovframework.diam.biz.service.main.CoverService;
 import egovframework.diam.cmm.model.Dm_crawl_vo;
-import egovframework.diam.cmm.selenium.CrawlingUtil;
 import egovframework.diam.cmm.service.CrawlService;
 import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;

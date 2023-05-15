@@ -63,6 +63,8 @@
 		  	 ,	dm_visual_alt
 		  	 ,	dm_visual_name
 		  	 ,	dm_visual_name_ori
+		  	 ,	dm_visual_name_m
+		  	 ,	dm_visual_name_ori_m
 		  	 ,	dm_visual_link
 		  	 ,	dm_visual_link_type
 		  	 ,	dm_start_dt
@@ -78,6 +80,8 @@
 		 	 ,	#{dm_visual_alt}
 		 	 ,	#{dm_visual_name}
 		 	 ,	#{dm_visual_name_ori}
+		 	 ,	#{dm_visual_name_m}
+		 	 ,	#{dm_visual_name_ori_m}
 		 	 ,	#{dm_visual_link}
 		 	 ,	#{dm_visual_link_type}
 		 	 ,	#{dm_start_dt}
@@ -102,6 +106,8 @@
 		   SET	dm_visual_alt = #{dm_visual_alt}
 		     ,	dm_visual_name = #{dm_visual_name}
 		     ,	dm_visual_name_ori = #{dm_visual_name_ori}
+		     ,	dm_visual_name_m = #{dm_visual_name_m}
+		     ,	dm_visual_name_ori_m = #{dm_visual_name_ori_m}
 		     ,	dm_visual_link = #{dm_visual_link}
 		     ,	dm_visual_link_type = #{dm_visual_link_type}
 		     ,	dm_start_dt = #{dm_start_dt}
@@ -137,6 +143,8 @@
 			 ,	A.dm_visual_alt
 			 ,	A.dm_visual_name
 			 ,	A.dm_visual_name_ori
+			 ,	A.dm_visual_name_m
+			 ,	A.dm_visual_name_ori_m
 			 ,	A.dm_visual_link
 			 ,	A.dm_visual_link_type
 			 ,	DATE_FORMAT(A.dm_start_dt, '%Y-%m-%d %H:%i:%s') as dm_start_dt
