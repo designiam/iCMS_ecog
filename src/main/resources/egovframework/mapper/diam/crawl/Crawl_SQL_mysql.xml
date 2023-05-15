@@ -25,4 +25,18 @@
 		WHERE dm_href = #{dm_href}
 	</select>
 	
+	<select id="selectCrawlData" resultMap="resultCrawlVO">
+		  SELECT * FROM dm_crawl
+		   WHERE 1 = 1
+		     AND dm_type = #{dm_type}
+		ORDER BY dm_create_dt DESC, dm_id DESC
+		<choose>
+			<when test='dm_type == "1"'>
+				LIMIT 12
+			</when>
+			<otherwise>
+				LIMIT 1
+			</otherwise>
+		</choose>
+	</select>
 </mapper>

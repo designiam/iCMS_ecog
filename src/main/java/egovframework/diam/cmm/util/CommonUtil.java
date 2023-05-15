@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Paths;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -21,6 +22,8 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -857,5 +860,48 @@ public class CommonUtil {
 			domain = configVO.getDm_url().contains("/") ? "/" + configVO.getDm_url().split("/")[configVO.getDm_url().split("/").length -1] : "";
 		}
 		return domain;
+	}
+	
+	public String downloadImage(String strUrl, String path) throws IOException {
+		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		URL url = null;
+		InputStream in = null;
+		OutputStream out = null;
+		String fileName = "";
+		try {
+			File folder = new File(path);
+			if (!folder.exists()) {
+				folder.mkdirs();
+				Thread.sleep(1000);
+			}
+			
+			url = new URL(strUrl);
+			fileName = today + "_" + Paths.get(url.getPath()).getFileName().toString();
+			
+			in = url.openStream();
+			out = new FileOutputStream(path + fileName); // 저장경로
+			while (true) {
+				// 이미지를 읽어온다.
+				int data = in.read();
+				if (data == -1) {
+					break;
+				}
+				// 이미지를 쓴다.
+				out.write(data);
+			}
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (out != null) {
+				out.close();
+			}
+		}
+		
+		return fileName;
 	}
 }

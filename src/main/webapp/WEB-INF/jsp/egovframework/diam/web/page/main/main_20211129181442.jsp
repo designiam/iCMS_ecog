@@ -168,7 +168,7 @@
 		<div>
 			<div class="video-container">
 				<div class="video-wrap">
-					<iframe src="https://www.youtube-nocookie.com/embed/r_UU_ssSoMg?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<iframe title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 				</div>
 			</div>
 			<div class="txt">
@@ -179,12 +179,6 @@
 		
 		<div class="swiper-container" id="snsSlider">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample01.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample02.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample03.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample04.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample05.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="${layout_path}/images/main/slideSample06.jpg" alt=""></div>
 			</div>
 			<div class="swiper-controller">
 				<div class="swiper-button-next"></div>
@@ -200,7 +194,39 @@
 $(function(){
 	getPopularData();
 	getMenuContents(getMenuId());
+	getCrawlData();
 });
+
+var getCrawlData = function(){
+	$.ajax({
+		url : "/web/selectCrawlData.do",
+		type: "get"
+	}).done(function(response){
+		setYoutube(response.youtube);
+		setInstagram(response.insta);
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+
+function setInstagram(rows) {
+	var target = $("#snsSlider").find(".swiper-wrapper");
+	if (rows.length > 0) {
+		target.empty();
+		var str = "";
+		$.each(rows, function(i,obj){
+			str += '<div class="swiper-slide"><a target="_blank" href="'+obj.dm_href+'"><img src="'+obj.dm_src+'" alt="인스타그램 게시물"></a></div>';
+		});
+		target.append(str);
+	}
+}
+
+function setYoutube(data) {
+	if (data.dm_href != "" && data.dm_href != null) {
+		var uniq = data.dm_href.split("?v=")[1];
+		$(".video-wrap").children("iframe").attr("src","https://www.youtube-nocookie.com/embed/"+uniq+"?controls=0");
+	}
+}
 
 //월간 BEST
 function getPopularData() {

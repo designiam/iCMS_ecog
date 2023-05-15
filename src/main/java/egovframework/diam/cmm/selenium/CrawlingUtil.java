@@ -1,5 +1,11 @@
 package egovframework.diam.cmm.selenium;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,42 +23,46 @@ import egovframework.diam.cmm.model.Dm_crawl_vo;
 import egovframework.diam.cmm.util.CommonUtil;
 
 public class CrawlingUtil {
-	
+
 	public Dm_crawl_vo crawlYoutube() throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
 
 		System.setProperty("webdriver.chrome.driver", "D:\\Util\\chromedriver_win32\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("headless"); // GUI 없이 실행
-		
+
 		WebDriver driver = new ChromeDriver(options);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		
+
 		driver.get("https://www.youtube.com/@ecogj/videos");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		
-		WebElement eleWrap = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='dismissible'][1]//a[@id='thumbnail']")));
+
+		WebElement eleWrap = wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.xpath("//div[@id='dismissible'][1]//a[@id='thumbnail']")));
 		eleWrap.click();
-		
-		try { Thread.sleep(5000); } catch (Exception e) {}
-		
+
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+		}
+
 		String currentUrl = driver.getCurrentUrl();
-		
+
 		driver.quit();
-		
+
 		if (!commonUtil.isNullOrEmpty(currentUrl)) {
 			return Dm_crawl_vo.builder().dm_type("2").dm_href(currentUrl).build();
 		} else {
 			return null;
 		}
-		
+
 	}
 
-	public List<Dm_crawl_vo> crawlInstagram() throws Exception{
+	public List<Dm_crawl_vo> crawlInstagram() throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
 
 		System.setProperty("webdriver.chrome.driver", "D:\\Util\\chromedriver_win32\\chromedriver.exe");
-		
+
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("headless"); // GUI 없이 실행
 		WebDriver driver = new ChromeDriver(options);
@@ -71,7 +81,10 @@ public class CrawlingUtil {
 		WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
 		loginButton.click();
 
-		try { Thread.sleep(5000); } catch (Exception e) {}
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+		}
 
 		// 로그인 후, 프로필 페이지로 이동
 		String profileUrl = "https://www.instagram.com/ecogwangju_official/";
@@ -82,7 +95,7 @@ public class CrawlingUtil {
 				.findElements(By.xpath("//main[@role='main']//*[self::article]//*[@role='link']"));
 
 		List<Dm_crawl_vo> list = new ArrayList<>();
-		
+
 		for (WebElement post : feed) {
 			// 각 포스트의 href 속성
 			String href = post.getAttribute("href");
@@ -91,19 +104,16 @@ public class CrawlingUtil {
 			String src = img.getAttribute("src");
 			
 			if (!commonUtil.isNullOrEmpty(href) && !commonUtil.isNullOrEmpty(src)) {
-				list.add(Dm_crawl_vo.builder()
-						.dm_type("1")
-						.dm_href(href)
-						.dm_src(src)
-						.build());
+				list.add(Dm_crawl_vo.builder().dm_type("1").dm_href(href).dm_src(src).build());
 			}
 		}
 		driver.quit();
-		
+
 		if (list.size() > 0) {
 			Collections.reverse(list);
 		}
-		
+
 		return list;
 	}
+
 }
