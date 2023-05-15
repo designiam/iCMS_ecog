@@ -20,7 +20,9 @@ import egovframework.diam.biz.model.board.Dm_write_vo;
 import egovframework.diam.biz.model.main.Dm_cover_vo;
 import egovframework.diam.biz.service.board.WriteService;
 import egovframework.diam.biz.service.main.CoverService;
+import egovframework.diam.cmm.model.Dm_crawl_vo;
 import egovframework.diam.cmm.selenium.CrawlingUtil;
+import egovframework.diam.cmm.service.CrawlService;
 import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;
 import lombok.extern.log4j.Log4j2;
@@ -31,6 +33,7 @@ public class WebCoverController {
 
 	@Autowired private CoverService coverService;
 	@Autowired private WriteService writeService;
+	@Autowired private CrawlService crawlService;
 	
 	@GetMapping("/web/lastCoverList.do")
 	public ResponseEntity<?> selectLastCoverList(Dm_cover_vo vo, HttpServletRequest request) {
@@ -138,6 +141,36 @@ public class WebCoverController {
 				resultMap.put("notice", MessageCode.CMS_SELECT_NODATA.getMessage());				
 			}
 		
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+	
+	@GetMapping("/web/selectCrawlData.do")
+	public ResponseEntity<?> selectCrawlData() {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		try {
+			
+			Dm_crawl_vo vo = new Dm_crawl_vo();
+			vo.setDm_type("1");
+			List<Dm_crawl_vo> list = crawlService.selectCrawlData(vo);
+			resultMap.put("insta", list);
+			
+			vo.setDm_type("2");
+			list = crawlService.selectCrawlData(vo);
+			if (list != null) {
+				resultMap.put("youtube", list.get(0));				
+			}
+			
+			
 		} catch (DataAccessException dae) {
 			log.error(MessageCode.CMM_DATA_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
