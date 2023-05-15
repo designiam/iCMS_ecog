@@ -3,6 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <section class="main-section sec-best">
 	<div class="side-content">
 		<div class="title">
@@ -18,7 +21,7 @@
 	<!-- //.side-content -->
 		
 	<div class="inner">
-		<div class="" id="bestSlider">
+		<div class="" id="bestSlider" data-aos="fade-up">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="#;">
@@ -118,8 +121,8 @@
 		
 	<div class="inner">
 		<div class="tabContent-wrap">
-			<div class="tabContent">
-				<div class="masonry">
+			<div class="tabContent" data-aos="fade-up">
+				<div class="masonry" >
 					<div class="masonry-item">
 						<a href="#;">
 							<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>
@@ -175,7 +178,7 @@
 			</div>
 		</div>
 		
-		<div class="swiper-container" id="snsSlider">
+		<div class="swiper-container" id="snsSlider" data-aos="fade-up" data-aos-anchor-placement="top-center">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
 				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
@@ -274,7 +277,7 @@ function getPopularData() {
 			var str = '<ul class="">';
 			
 			$.each(data.rows, function(i, obj){
-				str +='<li class="">';
+				str +='<li class=" ">';
 				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 				str +='<div class="img">';
 				str +='<img src="'+obj.wr_path+obj.wr_thumb+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
@@ -420,4 +423,6 @@ function setNowList(rows){
 //		},
 //	},
 //});
+
+AOS.init();
 </script>
