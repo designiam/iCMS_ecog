@@ -299,7 +299,7 @@ function getMenuContents(arr) {
 			setNowList(data.rows);
 		} else {
 			var target = $(".masonry");
-			var str = '<div><img src="'+'<c:out value="${layout_path}" />'+'/images/noimage.jpg" /></div>';
+			var str = '<div><img src="'+'<c:out value="${layout_path}" />'+'/images/noimg_main.jpg" /></div>';
 			target.empty();
 			target.append(str);
 		}
@@ -327,7 +327,7 @@ function setNowList(rows){
 		}
 		str += '<div class="masonry-item">';
 		str += '<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
-		str += '<div class="img"><img src="'+obj.wr_path+obj.wr_thumb+'" alt=""></div>';
+		str += '<div class="img"><img src="'+obj.wr_path+obj.wr_thumb+'" alt="" onerror="this.src=\'/images/no_image.png\'"></div>';
 		str += '<div class="txt">';
 		str += '<p class="subject">'+obj.wr_subject+'</p>';
 		str += '<p class="cate">'+cate+'</p>';

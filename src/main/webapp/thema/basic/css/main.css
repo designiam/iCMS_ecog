@@ -207,6 +207,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
    최신글 영역
 ================================================================*/
 .sec-now .tabMenu-wrap { margin-top: 3rem; }
+.sec-now .tabContent-wrap { min-height: 34rem; }
 
 .masonry { columns: 3; column-gap: 1.875rem; }
 .masonry .masonry-item { margin-bottom: 2.5rem; break-inside: avoid; }
