@@ -144,7 +144,7 @@
 <section class="main-section sec-sns">
 	<div class="side-content">
 		<div class="title">
-			<div>소통해요 <p><b>#SNS</b></p></div>
+			<h2>소통해요 <p><b>#SNS</b></p></h2>
 		</div>
 		<div class="txt">
 			<p>
