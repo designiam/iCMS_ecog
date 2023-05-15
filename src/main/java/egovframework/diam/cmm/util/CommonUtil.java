@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -34,12 +37,19 @@ import org.apache.commons.io.FilenameUtils;
 import org.codehaus.jettison.json.JSONObject;
 import org.imgscalr.Scalr;
 import org.jasypt.contrib.org.apache.commons.codec_1_3.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ibatis.common.logging.Log;
 import com.nhncorp.lucy.security.xss.XssSaxFilter;
 
 import egovframework.diam.biz.model.config.Dm_config_vo;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @Class Name : CommonUtil.java
@@ -49,6 +59,7 @@ import egovframework.diam.biz.model.config.Dm_config_vo;
  * @version 1.0
  */
 
+@Log4j2
 public class CommonUtil {
 	
 	public boolean isNullOrEmpty(String str) {

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import egovframework.diam.biz.model.board.Dm_write_vo;
 import egovframework.diam.biz.model.main.Dm_cover_vo;
 import egovframework.diam.biz.service.board.WriteService;
 import egovframework.diam.biz.service.main.CoverService;
+import egovframework.diam.cmm.selenium.CrawlingUtil;
 import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;
 import lombok.extern.log4j.Log4j2;
@@ -31,7 +33,7 @@ public class WebCoverController {
 	@Autowired private WriteService writeService;
 	
 	@GetMapping("/web/lastCoverList.do")
-	public ResponseEntity<?> selectLastCoverList(Dm_cover_vo vo) {
+	public ResponseEntity<?> selectLastCoverList(Dm_cover_vo vo, HttpServletRequest request) {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		try {
@@ -43,6 +45,7 @@ public class WebCoverController {
 			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,25 +57,9 @@ public class WebCoverController {
 	@GetMapping("/web/selectSameVolWrite.do")
 	public ResponseEntity<?> selectSameVolWrite(Dm_write_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
-/*		CommonUtil commonUtil = new CommonUtil();
-		if (commonUtil.isNullOrEmpty(vo.getWr_id())) {
-			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
-			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
-		}
-*/		
 		
 		try {
-			//Dm_write_vo se = writeService.selectWrite(vo);
-			
-			/*if (se == null) {
-				resultMap.put("result", "fail");
-				resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
-			} else {
-				List<Dm_write_vo> list = writeService.selectSameVolWrite(se);
-				resultMap.put("result", "success");
-				resultMap.put("rows", list);
-			}*/
-			
+
 			List<Dm_write_vo> list = writeService.selectSameVolWrite(vo);
 			resultMap.put("result", "success");
 			resultMap.put("rows", list);

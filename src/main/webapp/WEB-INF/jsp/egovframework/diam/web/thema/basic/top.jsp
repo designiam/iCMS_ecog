@@ -421,12 +421,12 @@
 		<c:forEach items="${menuList}" var="item">
 			<c:if test="${pageVO.dm_uid eq item.dm_link_data }">
 				<c:if test="${item.dm_depth eq 2 }">
-					<c:set var="name" value="0<c:out value='${item.dm_menu_order }'/>"/>				
+					<c:set var="name" value="0${item.dm_menu_order }"/>				
 				</c:if>
 				<c:if test="${item.dm_depth eq 3 }">
 					<c:forEach items="${menuList }" var="sub">
 						<c:if test="${item.dm_parent_id eq sub.dm_id }">
-							<c:set var="name" value="0<c:out value='${item.dm_menu_order }'/>"/>
+							<c:set var="name" value="0${sub.dm_menu_order }"/>
 						</c:if>
 					</c:forEach>
 				</c:if>
@@ -435,7 +435,7 @@
 						<c:if test="${item.dm_parent_id  eq sub.dm_id}">
 							<c:forEach items="${menuList }" var="subsub">
 								<c:if test="${sub.dm_parent_id eq subsub.dm_id}">
-									<c:set var="name" value="0<c:out value='${item.dm_menu_order }'/>"/>
+									<c:set var="name" value="0${subsub.dm_menu_order }"/>
 								</c:if>
 							</c:forEach>
 						</c:if>
@@ -443,22 +443,20 @@
 				</c:if>
 			</c:if>
 		</c:forEach>
-		
 		<!-- 메뉴별 비주얼 이미지 설정 -->
-		<%-- <c:if test="${pageVO.dm_main_content ne '1'}">
+		<c:if test="${pageVO.dm_main_content ne '1'}">
 			<c:if test="${empty name}">
 				<c:set var="name" value="00"/>
 			</c:if>
 			<c:catch var="e">
 				<c:import url="/thema/basic/images/title/${name}.jpg" var="imgUrl" />
 			</c:catch>
-		</c:if> --%>
-		
+		</c:if>
 		<c:choose>
 			<c:when test="${pageVO.dm_main_content ne '1'}">
 				<!-- 메뉴별 비주얼 이미지 설정 -->
-				<%-- <div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/${empty imgUrl ? '00' : name}.jpg');"> --%>
-				<div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/00.jpg');">
+				<div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/${empty imgUrl ? '00' : name}.jpg');">
+				<!-- <div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/00.jpg');"> -->
 				<c:forEach items="${menuList}" var="item">
 					<c:if test="${item.dm_link_data eq pageVO.dm_uid}">
 						<c:set var="exist" value="exist"/>

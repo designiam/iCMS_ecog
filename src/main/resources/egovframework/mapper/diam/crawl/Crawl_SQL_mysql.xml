@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.diam.cmm.db.CrawlMapper">
+	<resultMap id="resultCrawlVO" type="egovframework.diam.cmm.model.Dm_crawl_vo"/>
+
+	<insert id="insertCrawlResult">
+		INSERT INTO dm_crawl
+			( dm_id
+			, dm_href
+			, dm_src
+			, dm_type
+			, dm_create_dt
+			)
+		VALUES
+			( #{dm_id}
+			, #{dm_href}
+			, #{dm_src}
+			, #{dm_type}
+			, now()
+			)
+	</insert>
+	
+	<select id="selectDupCrawlResult" resultMap="resultCrawlVO">
+		SELECT * FROM dm_crawl
+		WHERE dm_href = #{dm_href}
+	</select>
+	
+</mapper>
