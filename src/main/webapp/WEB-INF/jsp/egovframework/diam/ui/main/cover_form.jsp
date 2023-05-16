@@ -51,7 +51,8 @@ function selectCover(dm_id){
 
 $(function() {
 	createSE();
-	
+	setYear();
+	setMonth();
 	var dm_id = "<c:out value='${dm_id}'/>";
 	if (dm_id != "") {
 		selectCover(dm_id);
@@ -75,8 +76,10 @@ function setValue(rows) {
 	
 	$("#dm_title").val(rows.dm_title);
 	$("#dm_vol").val(rows.dm_vol);
-	$("#dm_year").val(rows.dm_year);
-	$("#dm_month").val(rows.dm_month);
+	/* $("#dm_year").val(rows.dm_year);
+	$("#dm_month").val(rows.dm_month); */
+	$("#dm_year").val(rows.dm_year).prop("selected", true);
+	$("#dm_month").val(rows.dm_month).prop("selected", true);
 	$("#dm_status").combobox({
 		onLoadSuccess: function(){
 			$("#dm_status").combobox("setValue", rows.dm_status);
@@ -124,6 +127,27 @@ function fnSave() {
         }
     });
 }
+
+function setYear() {
+	var i = 2022;
+	var str = "";
+	while (i <= 2035) {
+		str += '<option value="'+i+'">'+i+'</option>';
+		i++;
+	}
+	$("#dm_year").empty().append(str).css("width", "100%");
+}
+
+function setMonth(){
+	var i = 1;
+	var str = "";
+	while (i < 13) {
+		var j = i < 10 ? "0"+i : i;
+		str += '<option value="'+j+'">'+j+'</option>'
+		i++;
+	}
+	$("#dm_month").empty().append(str).css("width", "100%");
+}
 </script>
 <div class="easyui-layout">
     <div id="form_wrap">
@@ -158,13 +182,15 @@ function fnSave() {
 	            <dl>
 	                <dt>발행연도<span class="required_value">*</span></dt>
 	                <dd>
-	                	<input name="dm_year" id="dm_year" onkeyup="setNumberPattern(this);" type="text" maxlength="4" autocomplete="off" >
-	                	<p class="noty">4자리 숫자만 입력가능합니다.</p>
+	                	<!-- <input name="dm_year" id="dm_year" type="text" maxlength="4" autocomplete="off" > -->
+	                	<select name="dm_year" id="dm_year">
+	                	</select>
 	                </dd>
 	                <dt>발행월<span class="required_value">*</span></dt>
 	                <dd>
-	                	<input name="dm_month" id="dm_month" onkeyup="setNumberPattern(this);" type="text" maxlength="2" autocomplete="off">
-	                	<p class="noty">2자리 숫자만 입력가능합니다.</p>
+	                	<!-- <input name="dm_month" id="dm_month" onkeyup="setNumberPattern(this);" type="text" maxlength="2" autocomplete="off"> -->
+	                	<select name="dm_month" id="dm_month">
+	                	</select>
 	                </dd>
 	            </dl>
 	            <dl>
