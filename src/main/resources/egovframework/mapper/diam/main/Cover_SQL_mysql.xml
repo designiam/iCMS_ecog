@@ -41,6 +41,7 @@
 		WHERE 1 = 1
 		AND A.dm_delete_yn = 'N'
 		<include refid="selectWhere"/>
+		ORDER BY A.dm_vol * 1 DESC
 		<if test='page > -1 and rows > 0'>
 			LIMIT #{page}, #{rows}
 		</if>
