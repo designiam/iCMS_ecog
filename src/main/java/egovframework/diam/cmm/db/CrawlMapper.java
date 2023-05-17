@@ -13,4 +13,8 @@ public interface CrawlMapper {
 	public Dm_crawl_vo selectDupCrawlResult(Dm_crawl_vo vo);
 	
 	public List<Dm_crawl_vo> selectCrawlData(Dm_crawl_vo vo);
+	
+	public int selectCrawlListCount(Dm_crawl_vo vo);
+	
+	public List<Dm_crawl_vo> selectCrawlList(Dm_crawl_vo vo);
 }

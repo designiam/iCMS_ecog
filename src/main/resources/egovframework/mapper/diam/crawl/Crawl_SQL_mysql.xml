@@ -39,4 +39,27 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<select id="selectCrawlList" resultMap="resultCrawlVO">
+			SELECT  A.*
+				  , B.dm_code_name as dm_type 
+			  FROM  dm_crawl AS A
+		INNER JOIN  dm_common_code AS B
+			    ON  A.dm_type = B.dm_code_value AND B.dm_code_group = '3004'
+			 WHERE  1=1
+		<if test='dm_status != "" and dm_status != null'>
+			AND A.dm_status = #{dm_status}
+		</if>
+		  ORDER BY  A.dm_create_dt DESC, A.dm_id DESC
+			 LIMIT  #{page}, #{rows}
+	</select>
+	
+	<select id="selectCrawlListCount" resultType="integer">
+			SELECT  COUNT(A.dm_id)
+			  FROM  dm_crawl AS A
+			 WHERE  1=1
+		<if test='dm_status != "" and dm_status != null'>
+			AND A.dm_status = #{dm_status}
+		</if>
+	</select>
 </mapper>

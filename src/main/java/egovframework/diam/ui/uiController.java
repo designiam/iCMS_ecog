@@ -642,4 +642,9 @@ public class uiController {
 		return "egovframework/diam/ui/event/event_form";
 	}
 	
+	@RequestMapping("/adm/crawling.do")
+	public String crawl() {
+		return "egovframework/diam/ui/main/crawling";
+	}
+	
 }

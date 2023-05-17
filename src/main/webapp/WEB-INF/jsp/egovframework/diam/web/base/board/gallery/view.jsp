@@ -217,7 +217,7 @@ function deleteWrite() {
 					</c:forEach>
 				</c:if>
 			</c:if>
-			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "<br/>")}' escapeXml="false"/>
+			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "")}' escapeXml="false"/>
 		</div>
 		
 		<div class="bbs_view_writer">
