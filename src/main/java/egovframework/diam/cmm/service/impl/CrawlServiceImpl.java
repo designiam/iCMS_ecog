@@ -31,6 +31,7 @@ public class CrawlServiceImpl extends EgovAbstractServiceImpl implements CrawlSe
 						item.setDm_src("/resources/crawl/"+newName);
 					}
 					
+					System.out.println(item.toString());
 					if (crawlMapper.insertCrawlResult(item) < 1) {
 						throw new RuntimeException(MessageCode.CMM_TRANSACTION_FAIL.getLog());
 					}
@@ -42,5 +43,15 @@ public class CrawlServiceImpl extends EgovAbstractServiceImpl implements CrawlSe
 	@Override
 	public List<Dm_crawl_vo> selectCrawlData(Dm_crawl_vo vo) throws Exception {
 		return crawlMapper.selectCrawlData(vo);
+	}
+
+	@Override
+	public int selectCrawlListCount(Dm_crawl_vo vo) throws Exception {
+		return crawlMapper.selectCrawlListCount(vo);
+	}
+
+	@Override
+	public List<Dm_crawl_vo> selectCrawlList(Dm_crawl_vo vo) throws Exception {
+		return crawlMapper.selectCrawlList(vo);
 	}
 }

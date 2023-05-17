@@ -9,4 +9,8 @@ public interface CrawlService {
 	public void insertCrawlResult(List<Dm_crawl_vo> list, String path) throws Exception;
 
 	public List<Dm_crawl_vo> selectCrawlData(Dm_crawl_vo vo) throws Exception;
+	
+	public int selectCrawlListCount(Dm_crawl_vo vo) throws Exception;
+	
+	public List<Dm_crawl_vo> selectCrawlList(Dm_crawl_vo vo) throws Exception;
 }

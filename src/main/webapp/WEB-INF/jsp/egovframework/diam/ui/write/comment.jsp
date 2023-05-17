@@ -18,7 +18,7 @@ function formatDetail(value,row){
 }
 
 function formatDetail2(value, row) {
-	var href = "javascript:modify('"+row.wr_id+"', '"+row.wr_content+"', '"+row.wr_option+"')";
+	var href = "javascript:modify('"+row.wr_id+"')";
 	var str = '<a class="btn bt08" href="'+href+'">수정</a>';
 	return str;
 }
@@ -136,8 +136,13 @@ $(document).on("click", ".reComment", function(){
 });
 
 //댓글 수정
-function modify(id, con, option) {
-	$("#wr_content").val(con);
+function modify(id){
+	var tg = $('#tt');
+	var opts = tg.treegrid('options');
+	var row = tg.treegrid('find', id);  // find the row by id
+	var option = row.wr_option;
+	
+	$("#wr_content").val(unescapeHtml(row.wr_content));
 	$("#wr_id").val(id);
 	$("#wr_parent").val("");
 	if (option == "secret") {

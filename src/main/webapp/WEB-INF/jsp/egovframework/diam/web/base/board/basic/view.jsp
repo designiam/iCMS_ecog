@@ -361,6 +361,8 @@ function deleteWrite() {
 						$(".delete-only").show();
 						$(".auth").addClass("d_confirm");
 					} else {
+						alert("인증되었습니다.");
+						$(".modal-footer button").eq(1).trigger("click");
 						location.href = "/index.do?command=modify&wr_id=<c:out value='${writeVO.wr_id}' />&"+unescapeHtml("<c:out value='${writeSearchQueryString}' escapeXml='false'/>");
 					}
 					
@@ -379,6 +381,8 @@ function deleteWrite() {
 	$("#commentModal").on("hidden.bs.modal", function(){
 		$(".modal-footer button").eq(0).attr("id", "");
 		$("#pwd").val("");
+		$(".anonymous-only").show();
+		$(".delete-only").hide();
 	});
 	
 	$(document).on("click", ".d_confirm", function(){

@@ -15,4 +15,7 @@ public class Dm_crawl_vo {
 	private String dm_href;
 	private String dm_src;
 	private String dm_create_dt;
+	
+	private int rows;
+	private int page;
 }

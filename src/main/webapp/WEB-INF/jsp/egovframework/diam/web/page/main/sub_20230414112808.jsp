@@ -31,11 +31,11 @@ $(document).on('click','.custom-select', function() {
 	}
 });
 
-$('.custom-select').on('focusin', function() {
+$(document).on('focusin','.custom-select', function() {
 	$('.custom-select-list').slideDown();
 });
 
-$('.custom-select').on('focusout', function() {
+$(document).on('focusout','.custom-select', function() {
 	if(!selectFlag) {
 		$('.custom-select-list').slideUp();
 	}
@@ -51,7 +51,7 @@ $(document).on('mouseout','.custom-select-option', function() {
 });
 
 // 옵션 클릭 리스너
-$(document).on('click','.custom-select-option', function() {
+$(document).on('click','.custom-select-list li', function() {
 	var value = $(this).attr('value');
 
 	$('.custom-select-text').html($(this).html());
@@ -68,7 +68,6 @@ var getWriteList = function(uniq) {
 		},
 		type : "get"
 	}).done(function(response){
-		console.log(response);
 		setWriteList(response.rows);
 	}).fail(function(response, status, error){
 		alert(response.responseJSON.notice);

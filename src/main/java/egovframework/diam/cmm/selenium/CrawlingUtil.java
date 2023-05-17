@@ -20,10 +20,23 @@ public class CrawlingUtil {
 
 	public Dm_crawl_vo crawlYoutube() throws Exception {
 		CommonUtil commonUtil = new CommonUtil();
+		
+		String mode = System.getProperty("globals.properties.mode");
+		String driverPath = "";
+		if(mode.equals("dev")) {
+			driverPath = "D:\\Util\\chromedriver_win32\\chromedriver.exe";
+		} else {
+			driverPath = "/usr/local/bin/chromedriver";
+		}
 
-		System.setProperty("webdriver.chrome.driver", "D:\\Util\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", driverPath);
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless"); // GUI 없이 실행
+		// GUI 없이 실행
+		options.addArguments("headless"); 
+		// "no sandbox" 옵션 추가
+        options.addArguments("--no-sandbox");
+        // "disable-gpu" 옵션 추가
+        options.addArguments("--disable-gpu");
 
 		WebDriver driver = new ChromeDriver(options);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -35,10 +48,7 @@ public class CrawlingUtil {
 				.presenceOfElementLocated(By.xpath("//div[@id='dismissible'][1]//a[@id='thumbnail']")));
 		eleWrap.click();
 
-		try {
-			Thread.sleep(5000);
-		} catch (Exception e) {
-		}
+		Thread.sleep(5000);
 
 		String currentUrl = driver.getCurrentUrl();
 
@@ -66,42 +76,55 @@ public class CrawlingUtil {
 		System.setProperty("webdriver.chrome.driver", driverPath);
 
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless"); // GUI 없이 실행
+		// GUI 없이 실행
+		options.addArguments("headless"); 
+		// "no sandbox" 옵션 추가
+        options.addArguments("--no-sandbox");
+        // "disable-gpu" 옵션 추가
+        options.addArguments("--disable-gpu");
+        
+        System.out.println("chrome 드라이버 실행.......");
+		
 		WebDriver driver = new ChromeDriver(options);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 
 		driver.get("https://www.instagram.com/accounts/login/");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		
+		System.out.println("로그인 페이지 진입.........");
 		// 인스타그램 로그인 페이지에서 로그인하는 코드
 		// 아이디와 비밀번호 입력
-		WebElement username = driver.findElement(By.name("username"));
+		WebElement username = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("username")));
 		username.sendKeys("ecogwangju_official");
+		System.out.println("아이디 입력..........");
+		
 		WebElement password = driver.findElement(By.name("password"));
 		password.sendKeys("ecog5274!!");
+		System.out.println("패스워드 입력...........");
 
 		// 로그인 버튼 클릭
 		WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
 		loginButton.click();
+		
+		System.out.println("로그인 버튼 클릭..........");
 
-		try {
-			Thread.sleep(5000);
-		} catch (Exception e) {
-		}
+		Thread.sleep(5000);
 
 		// 로그인 후, 프로필 페이지로 이동
 		String profileUrl = "https://www.instagram.com/ecogwangju_official/";
 		driver.get(profileUrl);
 
+		System.out.println("환경공단 피드로 이동...........");
 		WebElement mainEle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//main[@role='main']")));
 		List<WebElement> feed = mainEle
 				.findElements(By.xpath("//main[@role='main']//*[self::article]//*[@role='link']"));
 
 		List<Dm_crawl_vo> list = new ArrayList<>();
+		System.out.println("게시글 목록 담기............");
 
 		for (WebElement post : feed) {
 			// 각 포스트의 href 속성
 			String href = post.getAttribute("href");
-			// 각 포스트의 내용을 파싱하는 코드
 			WebElement img = post.findElement(By.tagName("img"));
 			String src = img.getAttribute("src");
 			
@@ -113,6 +136,10 @@ public class CrawlingUtil {
 
 		if (list.size() > 0) {
 			Collections.reverse(list);
+			
+			list.forEach(item -> {
+				System.out.println(item.toString());
+			});
 		}
 
 		return list;
