@@ -20,7 +20,8 @@ public class CrawlServiceImpl extends EgovAbstractServiceImpl implements CrawlSe
 
 	@Override
 	@Transactional
-	public void insertCrawlResult(List<Dm_crawl_vo> list, String path) throws Exception {
+	public int insertCrawlResult(List<Dm_crawl_vo> list, String path) throws Exception {
+		int result = 0;
 		CommonUtil commonUtil = new CommonUtil();
 		if (list.size() > 0) {
 			for (Dm_crawl_vo item : list) {
@@ -31,13 +32,17 @@ public class CrawlServiceImpl extends EgovAbstractServiceImpl implements CrawlSe
 						item.setDm_src("/resources/crawl/"+newName);
 					}
 					
-					System.out.println(item.toString());
-					if (crawlMapper.insertCrawlResult(item) < 1) {
+					int subResult = crawlMapper.insertCrawlResult(item);
+					
+					if (subResult < 1) {
 						throw new RuntimeException(MessageCode.CMM_TRANSACTION_FAIL.getLog());
+					} else {
+						result ++;
 					}
 				}
 			}
-		}		
+		}
+		return result;
 	}
 
 	@Override
@@ -53,5 +58,15 @@ public class CrawlServiceImpl extends EgovAbstractServiceImpl implements CrawlSe
 	@Override
 	public List<Dm_crawl_vo> selectCrawlList(Dm_crawl_vo vo) throws Exception {
 		return crawlMapper.selectCrawlList(vo);
+	}
+
+	@Override
+	public Dm_crawl_vo selectByPK(Dm_crawl_vo vo) throws Exception {
+		return crawlMapper.selectByPK(vo);
+	}
+
+	@Override
+	public int updateCrawlStatus(Dm_crawl_vo vo) throws Exception {
+		return crawlMapper.updateCrawlStatus(vo);
 	}
 }
