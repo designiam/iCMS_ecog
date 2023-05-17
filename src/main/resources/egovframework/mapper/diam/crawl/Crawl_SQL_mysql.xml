@@ -41,8 +41,12 @@
 	</select>
 	
 	<select id="selectCrawlList" resultMap="resultCrawlVO">
-			SELECT  A.*
-				  , B.dm_code_name as dm_type 
+			SELECT  A.dm_id
+				  , A.dm_src
+				  , A.dm_status
+				  , A.dm_href
+				  , A.dm_create_dt
+				  , B.dm_code_name as dm_type
 			  FROM  dm_crawl AS A
 		INNER JOIN  dm_common_code AS B
 			    ON  A.dm_type = B.dm_code_value AND B.dm_code_group = '3004'
@@ -62,4 +66,15 @@
 			AND A.dm_status = #{dm_status}
 		</if>
 	</select>
+	
+	<select id="selectByPK" resultMap="resultCrawlVO">
+		SELECT * FROM dm_crawl
+		WHERE dm_id = #{dm_id}
+	</select>
+	
+	<update id="updateCrawlStatus">
+		UPDATE dm_crawl
+		   SET dm_status = #{dm_status}
+		 WHERE dm_id = #{dm_id}
+	</update>
 </mapper>
