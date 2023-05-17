@@ -641,7 +641,7 @@
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${fn:length(mainVisualList) > 0}">
-						<div class="swiper-container" id="mainSlider">
+						<div class="swiper-container main-slide pc" id="">
 							<ul class="swiper-wrapper">
 								<c:forEach var="result" items="${mainVisualList}" varStatus="status">
 									<c:choose>
@@ -655,6 +655,28 @@
 										<c:otherwise>
 											<li class="swiper-slide" style="background-image: url(<c:url value='/resources/main/${result.dm_visual_name}' />);">
 												<img src="<c:url value='/resources/main/${result.dm_visual_name}' />" alt="<c:out value='${result.dm_visual_alt}' />">
+											</li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</ul>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+						</div>
+						<div class="swiper-container main-slide mobile" id="">
+							<ul class="swiper-wrapper">
+								<c:forEach var="result" items="${mainVisualList}" varStatus="status">
+									<c:choose>
+										<c:when test="${result.dm_visual_link ne null && not empty result.dm_visual_link}">
+											<li class="swiper-slide" style="background-image: url(<c:url value='/resources/main/${result.dm_visual_name_m}' />);">
+												<a href="<c:out value='${result.dm_visual_link}'/>" target="<c:out value='${result.dm_visual_link_type}'/>">
+													<img src="<c:url value='/resources/main/${result.dm_visual_name_m}' />" alt="<c:out value='${result.dm_visual_alt}' />" >
+												</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="swiper-slide" style="background-image: url(<c:url value='/resources/main/${result.dm_visual_name_m}' />);">
+												<img src="<c:url value='/resources/main/${result.dm_visual_name_m}' />" alt="<c:out value='${result.dm_visual_alt}' />">
 											</li>
 										</c:otherwise>
 									</c:choose>

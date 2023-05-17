@@ -312,9 +312,9 @@ a:hover { color: #111; text-decoration: none; }
 #vis #mainSlider .swiper-slide { background-position: center; background-size: cover; background-repeat: no-repeat; }
 #vis_wrap .no-img { width: 100%; height: 100%; }
 #vis_wrap .no-img img { opacity: 0; visibility: hidden; display: block; width: 100%; margin: auto; }
-#vis #mainSlider .swiper-slide { background-position: center; background-size: cover; background-repeat: no-repeat; }
-#vis #mainSlider .swiper-slide a { display: block; width: 100%; height: 100%; }
-#vis #mainSlider .swiper-slide img { opacity: 0; visibility: hidden; display: block; width: 100%; margin: auto; }
+#vis .main-slide .swiper-slide { background-position: center; background-size: cover; background-repeat: no-repeat; }
+#vis .main-slide .swiper-slide a { display: block; width: 100%; height: 100%; }
+#vis .main-slide .swiper-slide img { opacity: 0; visibility: hidden; display: block; width: 100%; margin: auto; }
 
 #vis #titler { position: relative; max-width: 1370px; margin: 3.75rem auto 0; background-position: right center; background-repeat: no-repeat; background-size: cover; }
 #vis #titler .leader,

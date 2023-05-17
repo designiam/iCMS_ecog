@@ -220,7 +220,7 @@ $(function() {
 //메인 슬라이드
 $(function() {
     var sliderAnimation = new SwiperAnimation();
-    var mainSlider = new Swiper('#mainSlider', {
+    var mainSlider = new Swiper('.main-slide', {
     	slidesPerView: 1,
         centeredSlides: true,
         setWrapperSize: true,
@@ -230,8 +230,8 @@ $(function() {
         observeParents: true,
         watchOverflow: true,  //슬라이드 한 개 일 때, 버튼 사라짐
         navigation: {
-            nextEl: "#mainSlider .swiper-button-next",
-            prevEl: "#mainSlider .swiper-button-prev",
+            nextEl: ".main-slide .swiper-button-next",
+            prevEl: ".main-slide .swiper-button-prev",
         },
         autoplay: {
             delay: 4000,

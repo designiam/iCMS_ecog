@@ -3,9 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <section class="main-section sec-best">
 	<div class="side-content">
 		<div class="title">
@@ -121,7 +118,7 @@
 		
 	<div class="inner">
 		<div class="tabContent-wrap">
-			<div class="tabContent" data-aos="fade-up">
+			<div class="tabContent" data-aos="fade-up" data-aos-anchor-placement="top-center">
 				<div class="masonry" >
 					<div class="masonry-item">
 						<a href="#;">

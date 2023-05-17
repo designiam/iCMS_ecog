@@ -136,11 +136,15 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
    비주얼 슬라이드
 ================================================================*/
 #vis_wrap { position: relative; height: 100vh; }
-#mainSlider { width: 100%; height: 100%; }
-@media (max-width: 768px) {
-  #vis_wrap, #mainSlider { height: 460px; }
+.main-slide { width: 100%; height: 100%; }
+.main-slide.mobile { display: none; }
+@media (max-width: 992px) {
+  #vis_wrap { height: auto; }
 }
-
+@media (max-width: 768px) {
+  .main-slide.pc { display: none; }
+  .main-slide.mobile { display: block; }
+}
 
 /*================================================================
    월간 BEST

@@ -36,6 +36,7 @@
 <link rel="stylesheet" href="<c:url value='/js/egovframework/diam/jquery-ui-1.12.1/jquery-ui.css'/>"/>
 <link rel="stylesheet" href="<c:url value='/js/egovframework/diam/bootstrap-4.6.0/css/bootstrap.min.css'/>"/>
 <link rel="stylesheet" href="<c:url value='/js/egovframework/diam/swiper-5.4.5/swiper.min.css'/>"/>
+<link rel="stylesheet" href="<c:url value='/js/egovframework/diam/aos/aos.css'/>"/>
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/common.css' />">
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/base.css' />">
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/diam.css' />">
@@ -50,7 +51,7 @@
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/swiper-5.4.5/swiper.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/swiper-5.4.5/swiper-animation.umd.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/validator.js'/>"></script>
-
+<script type="text/javascript" src="<c:url value='/js/egovframework/diam/aos/aos.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/base.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/diam.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/main.js'/>"></script>
