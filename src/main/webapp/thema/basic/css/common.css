@@ -378,7 +378,7 @@ caption { display: none; }
 .table { border-top: 2px solid #555; }
 .table thead th { border-bottom: 1px solid #dee2e6; }
 .table td, .table th { padding: 0.75rem 0.75rem; line-height: 1.25; border-top: 0; border-bottom: 1px solid #dee2e6; text-align: center; word-break: break-all; font-weight: normal; }
-.table td:not(.text-left), .table th:not(.text-left) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* .table td:not(.text-left), .table th:not(.text-left) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } */
 .table-form { width: 100%; border-spacing: 0; border-collapse: collapse; border-top: 2px solid #6c757d; }
 .table-form tr {}
 .table-form th,
@@ -791,6 +791,7 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs_listing .td_link,
 .bbs_listing .td_content,
 .bbs_listing .td_subject { text-align: left !important; }
+.bbs_listing .td_subject a { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
 .bbs_listing .td_content {}
 .bbs_listing .td_name { width: 170px; }
 .bbs_listing .td_date { width: 170px; }
