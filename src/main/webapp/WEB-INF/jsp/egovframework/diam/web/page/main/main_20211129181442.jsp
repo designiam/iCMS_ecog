@@ -170,8 +170,8 @@
 				</div>
 			</div>
 			<div class="txt">
-				<div class="subject">광주환경공단 홍보영상</div>
-				<div class="content">보이지 않는 곳에서 일하는 사람들이 있습니다. <br> 광주의 환경을 지키는 아름다운 사람들의 이야기, 우리는 광주환경공단입니다.</div>
+				<div class="subject">광주환경공단 유튜브영상</div>
+				<div class="content"></div>
 			</div>
 		</div>
 		
