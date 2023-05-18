@@ -464,19 +464,19 @@ var createSE = function() {
 				    <dd></dd>
 				</dl>
 				<dl class="not_basic">
-				    <dt>작가</dt>
+				    <dt>저자</dt>
 				    <dd>
 				        <input type="text" name="wr_writer" id="wr_writer" autocomplete="off"/>
 				    </dd>
 				</dl>
 				<dl class="not_basic">
-				    <dt>작가 이메일</dt>
+				    <dt>저자 이메일</dt>
 				    <dd>
 				        <input type="text" name="wr_writer_mail" id="wr_writer_mail" autocomplete="off"/>
 				    </dd>
 				</dl>
 				<dl class="not_basic">
-				    <dt>Pictured by</dt>
+				    <dt>사진</dt>
 				    <dd>
 				        <input type="text" name="wr_pictured" id="wr_pictured" autocomplete="off"/>
 				    </dd>
