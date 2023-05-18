@@ -81,7 +81,12 @@ var setWriteList = function(rows) {
 			str += '<li class="cell col">';
 			str += '<a href="?contentId='+obj.uid+'&command=view&wr_id='+obj.wr_id+'">';
 			str += '<div class="cell_thumb">';
-			str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
+			if (obj.wr_thumb_sub == null) {
+				str += '<div class="thumb-wrap" style="background-image: url(\'/images/no_image.png\');">';				
+			} else {
+				str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';				
+			}
+			//str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
 			str += '<img src="'+ obj.wr_path + obj.wr_thumb_sub +'" alt="" onerror="this.src=\'/images/no_image.png\'">';
 			str += '</div>';
 			str += '<span class="vol">Vol.'+obj.wr_vol+'</span>';

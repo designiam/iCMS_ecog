@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="layer_popup"></div>
-<c:if test="${pageVO.dm_main_content eq '1'}">
+<c:if test="${pageVO.dm_main_content eq '1' && !empty mainWrite}">
 	<div class="video-banner">
 		<div id="preview">
 			<div class="preview-wrap">
@@ -788,20 +788,12 @@
 	// 영문(영어) 체크
 	function checkEng(str){
 	    var regExp = /^[a-z|A-Z|\-]+$/; // 영어
-	    if(regExp.test(str)){
-	        return true;
-	    }else{
-	        return false;
-	    }
+	    return regExp.test(str) ? true : false;
 	}
 	// 한글 체크
 	function checkKor(str) {
-	    var regExp = /^[가-힣|\-]+$/; 
-	    if(regExp.test(str)){
-	        return true;
-	    }else{
-	        return false;
-	    }
+	    var regExp = /^[가-힣|\-]+$/;
+	    return regExp.test(str) ? true : false;
 	}
 	
 </script>

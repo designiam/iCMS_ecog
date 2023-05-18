@@ -12,7 +12,7 @@
 $(document).on("click", ".Srchbox dl button", function(){
 	var type = $(this).data("type");
 	var typeText = type == "1" ? "인스타그램" : "유튜브";
-	if (confirm(typeText + " 데이터 크롤링을 시작하시겠습니까?\n작업은 최대 1분까지 소요될 수 있습니다.")) {
+	if (confirm(typeText + " 데이터 크롤링을 시작하시겠습니까?\n작업은 최대 수 분 소요될 수 있습니다.")) {
 		$.ajax({
 			url: "/adm/startCrawling.do",
 			data: {
@@ -153,7 +153,8 @@ $(document).ready(function() {
     <div data-options="region:'center', border:false" class="Contents">
         <table id="dg"
                class="easyui-datagrid" fit="true" border="false"
-               data-options="pagePosition:'top',pagination:true,singleSelect:true,url:'/adm/selectCrawlData.do',method:'post',fitColumns:true,striped:false,selectOnCheck:false,checkOnSelect:false" pageList="[10]" pageSize="10" fit="true">
+               data-options="pagePosition:'top',rownumbers:true,pagination:true, url:'/adm/selectCrawlData.do',method:'post',fitColumns:true,striped:false,footer:'#ft'"
+               pageList="[10]" pageSize="10" fit="true">
             <thead>
 	            <tr>
 	                <th data-options="field:'dm_type',width:70,align:'center'">타입</th>

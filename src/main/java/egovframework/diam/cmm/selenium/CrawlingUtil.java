@@ -84,32 +84,39 @@ public class CrawlingUtil {
         options.addArguments("--disable-gpu");
         
 		WebDriver driver = new ChromeDriver(options);
+		System.out.println("connection chrome driver.......");
+		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 
 		driver.get("https://www.instagram.com/accounts/login/");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		System.out.println("get instagram login page......");
 		
 		// 인스타그램 로그인 페이지에서 로그인하는 코드
 		// 아이디와 비밀번호 입력
 		WebElement username = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("username")));
 		username.sendKeys("ecogwangju_official");
+		System.out.println("set username................");
 		
 		WebElement password = driver.findElement(By.name("password"));
 		password.sendKeys("ecog5274!!");
+		System.out.println("set password................");
 		// 로그인 버튼 클릭
 		WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
 		loginButton.click();
+		System.out.println("signing ....................");
 		
 		Thread.sleep(5000);
 
 		// 로그인 후, 프로필 페이지로 이동
 		String profileUrl = "https://www.instagram.com/ecogwangju_official/";
 		driver.get(profileUrl);
+		System.out.println("get feed list.................");
 
 		WebElement mainEle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//main[@role='main']")));
 		List<WebElement> feed = mainEle
 				.findElements(By.xpath("//main[@role='main']//*[self::article]//*[@role='link']"));
-
+		System.out.println("find post.......................");
 		List<Dm_crawl_vo> list = new ArrayList<>();
 
 		for (WebElement post : feed) {
@@ -122,6 +129,7 @@ public class CrawlingUtil {
 				list.add(Dm_crawl_vo.builder().dm_type("1").dm_href(href).dm_src(src).build());
 			}
 		}
+		System.out.println("chromedriver quit.....................");
 		driver.quit();
 
 		if (list.size() > 0) {

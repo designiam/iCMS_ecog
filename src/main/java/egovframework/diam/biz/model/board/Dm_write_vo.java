@@ -262,8 +262,13 @@ public class Dm_write_vo implements Serializable{
 	private String wr_thumb_sub;
 	
 	private MultipartFile banner;
+	
 	private MultipartFile background;
+	
 	private MultipartFile thumbnail;
+	
 	private MultipartFile head;
+	
 	private MultipartFile thumbnail_sub;
+	
 }
