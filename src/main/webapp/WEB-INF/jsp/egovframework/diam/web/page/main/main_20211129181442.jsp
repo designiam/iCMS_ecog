@@ -175,7 +175,7 @@
 			</div>
 		</div>
 		
-		<div class="swiper-container" id="snsSlider" data-aos="fade-up" data-aos-anchor-placement="top-center">
+		<div class="swiper-container" id="snsSlider" data-aos="fade-up">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
 				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
