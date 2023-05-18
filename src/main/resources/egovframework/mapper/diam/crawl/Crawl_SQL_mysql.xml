@@ -29,6 +29,7 @@
 		  SELECT * FROM dm_crawl
 		   WHERE 1 = 1
 		     AND dm_type = #{dm_type}
+		     AND dm_status = 1
 		ORDER BY dm_create_dt DESC, dm_id DESC
 		<choose>
 			<when test='dm_type == "1"'>

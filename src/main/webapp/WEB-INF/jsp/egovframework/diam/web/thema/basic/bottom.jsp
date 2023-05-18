@@ -15,7 +15,7 @@
 	<h5>함께보는 <br><b>ECO-G</b></h5>
 	<ul>
 		<li class="float01">
-			<a href="https://up.gjto.or.kr/" target="_blank">
+			<a href="https://pf.kakao.com/_lxegxnxb" target="_blank">
 				<img src="${layout_path}/images/icon_quick01.png" alt="카카오톡 채널" />
 			</a>
 		</li>

@@ -165,7 +165,7 @@
 	<div class="inner">
 		<div>
 			<div class="video-container">
-				<div class="video-wrap">
+				<div class="video-wrap" id="setYoutube">
 					<iframe title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 				</div>
 			</div>
@@ -253,9 +253,10 @@ function setInstagram(rows) {
 
 
 function setYoutube(data) {
+	console.log(data);
 	if (data.dm_href != "" && data.dm_href != null) {
 		var uniq = data.dm_href.split("?v=")[1];
-		$(".video-wrap").children("iframe").attr("src","https://www.youtube-nocookie.com/embed/"+uniq+"?controls=0");
+		$("#setYoutube").children("iframe").attr("src","https://www.youtube-nocookie.com/embed/"+uniq+"?controls=0");
 	}
 }
 

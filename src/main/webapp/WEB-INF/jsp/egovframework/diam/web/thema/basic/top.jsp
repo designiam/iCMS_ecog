@@ -21,7 +21,7 @@
 								<c:if test="${stat.last}">
 									<c:set var="uniqId" value="${i}"/>
 								</c:if>
-							</c:forEach>
+							</c:forEach>							
 							<iframe src="https://www.youtube-nocookie.com/embed/<c:out value='${uniqId }'/>?controls=0&autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 						</div>
 						<!-- //.video-wrap -->
@@ -763,7 +763,46 @@
 				$(target[i]).remove();
 			}
 		}
+		
+		setFont($("#gnb_1dul").find("li a span, li a"));
+		setFont($(".dep-wrap").find("li a"));
+		setFont($("#off_1dul").find("li a"));
+		
 	});
+	
+	function setFont(data) {
+		$.each(data, function(i, obj){
+			var txt = $(obj).text();
+			txt = txt.replace(/\s/g, "");
+			if (checkEng(txt)) {
+				$(obj).css("font-family", "'Poppins',sans-serif");
+			} else if (checkKor(txt)) {
+				$(obj).css("font-family", "'Pretendard',sans-serif");
+			} else {
+				//디폴트 font
+				$(obj).css("font-family", "'Pretendard',sans-serif");
+			}
+		});
+	}
+	
+	// 영문(영어) 체크
+	function checkEng(str){
+	    var regExp = /^[a-z|A-Z|\-]+$/; // 영어
+	    if(regExp.test(str)){
+	        return true;
+	    }else{
+	        return false;
+	    }
+	}
+	// 한글 체크
+	function checkKor(str) {
+	    var regExp = /^[가-힣|\-]+$/; 
+	    if(regExp.test(str)){
+	        return true;
+	    }else{
+	        return false;
+	    }
+	}
 	
 </script>
 
