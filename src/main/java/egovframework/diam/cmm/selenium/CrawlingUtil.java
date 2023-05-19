@@ -40,18 +40,27 @@ public class CrawlingUtil {
 
 		WebDriver driver = new ChromeDriver(options);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		System.out.println("connection chrome driver.......");
 
 		driver.get("https://www.youtube.com/@ecogj/videos");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		
+		System.out.println("get ecog youtube page........");
 
 		WebElement eleWrap = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("//div[@id='dismissible'][1]//a[@id='thumbnail']")));
 		eleWrap.click();
+		
+		System.out.println("get newest video.............");
 
 		Thread.sleep(5000);
 
+		System.out.println("set this url................");
 		String currentUrl = driver.getCurrentUrl();
+		
 
+		System.out.println("chromedriver quit.....................");
 		driver.quit();
 
 		if (!commonUtil.isNullOrEmpty(currentUrl)) {
