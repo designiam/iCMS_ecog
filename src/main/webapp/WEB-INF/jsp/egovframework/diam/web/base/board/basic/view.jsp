@@ -298,7 +298,7 @@ function deleteWrite() {
 						<tr class="anonymous-only">
 							<th><label for="">비밀번호</label></th>
 							<td>
-								<form action="/write/delete_write.do" method="post" id="frm">
+								<form method="post" id="frm" onsubmit="return false;">
 									<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 									<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 									<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." />
