@@ -842,10 +842,10 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs_gallist ul li .thumb-wrap { position: relative; width: 100%; padding-top: 59.82%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; }
 .bbs_gallist ul li .thumb-wrap img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 .bbs_gallist ul li .cell_txt { padding: 1.875rem 1.25rem 3.75rem; }
-.bbs_gallist ul li .cell_cate { color: #3DBBA6; font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.bbs_gallist ul li .cell_cate { color: #3DBBA6; font-size: 1rem; font-weight: 600; letter-spacing: 0; }
 .bbs_gallist ul li .cell_subject { margin-top: 1rem; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em; word-break: break-all;
 overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3.125rem; }
-.bbs_gallist ul li .cell_content { margin-top: 1rem; color: #999; font-size: 14px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.5; word-break: break-all;
+.bbs_gallist ul li .cell_content { margin-top: 1rem; color: #999; font-size: 1rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1.5; word-break: break-all;
 overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 42px; }
 .bbs_gallist .empty { text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 0.25rem; -ms-flex: 1 0 auto; flex: 1 0 auto;  display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: nowrap; flex-wrap: nowrap; min-height: 200px; }
 .bbs_gallist .empty img { max-width: 100%; }
