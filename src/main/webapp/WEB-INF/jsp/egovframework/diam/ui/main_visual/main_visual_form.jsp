@@ -78,7 +78,7 @@
 	                </dd>
 	            </dl>
 	            <dl>
-	                <dt>모바일 이미지 파일<span class="required_value">*</span></dt>
+	                <dt>모바일 이미지 파일</dt>
 	                <dd id="image_m">
 	                    <input type="file" name="multifile2" id="multifile2" accept=".jpg, .jpeg, .gif, .png">
 	                    <p class="noty">.jpg, .jpeg, .gif, .png 확장자 파일만 업로드 가능합니다.</p>
