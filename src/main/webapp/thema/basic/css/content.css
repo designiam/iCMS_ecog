@@ -52,7 +52,7 @@
 .bbs_view_slide h6 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.06em; }
 .vol-slider { position: relative; margin-top: 1.875rem; }
 .vol-slider li > a { display: block; width: 100%; height: 100%; }
-.vol-slider li .cell_thumb { position: relative; width: 100%; margin: 0 auto; border-radius: 0.625rem; overflow: hidden; }
+.vol-slider li .cell_thumb { position: relative; width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 0.625rem; overflow: hidden; }
 .vol-slider li .cell_thumb .vol { position: absolute; bottom: 0; left: 0; display: inline-flex; justify-content: center; align-items: center; min-width: 70px; height: 26px; background: #3DBBA6; border-radius: 0 1.25rem 0 0; color: #fff; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0; line-height: 1; }
 .vol-slider li .thumb-wrap { position: relative; width: 100%; padding-top: 60.71%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; transition: all .25s; }
 .vol-slider li .thumb-wrap img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }

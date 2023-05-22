@@ -21,7 +21,7 @@
 								<c:if test="${stat.last}">
 									<c:set var="uniqId" value="${i}"/>
 								</c:if>
-							</c:forEach>							
+							</c:forEach>
 							<iframe src="https://www.youtube-nocookie.com/embed/<c:out value='${uniqId }'/>?controls=0&autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 						</div>
 						<!-- //.video-wrap -->
@@ -649,12 +649,14 @@
 											<li class="swiper-slide" style="background-image: url(<c:url value='/resources/main/${result.dm_visual_name}' />);">
 												<a href="<c:out value='${result.dm_visual_link}'/>" target="<c:out value='${result.dm_visual_link_type}'/>">
 													<img src="<c:url value='/resources/main/${result.dm_visual_name}' />" alt="<c:out value='${result.dm_visual_alt}' />" >
+													<div class="main-slide-txt"><img src="${layout_path}/images/main/main_ban_txt.png" alt="" ></div>
 												</a>
 											</li>
 										</c:when>
 										<c:otherwise>
 											<li class="swiper-slide" style="background-image: url(<c:url value='/resources/main/${result.dm_visual_name}' />);">
 												<img src="<c:url value='/resources/main/${result.dm_visual_name}' />" alt="<c:out value='${result.dm_visual_alt}' />">
+												<div class="main-slide-txt"><img src="${layout_path}/images/main/main_ban_txt.png" alt="" ></div>
 											</li>
 										</c:otherwise>
 									</c:choose>
