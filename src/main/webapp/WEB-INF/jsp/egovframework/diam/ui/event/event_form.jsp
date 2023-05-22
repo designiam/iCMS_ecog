@@ -99,8 +99,8 @@ function setValue(rows) {
 		$("#file").toggle();
 		$("#file").after(
 				'<div><p><img src="'+rows.dm_file_path+'" style="width: 30%;"></p>'+
-				'<input type="hidden" name="dm_file_path" value="'+rows.dm_file_path+'">'+
-				'<input type="hidden" name="dm_file_name" value="'+rows.dm_file_name+'">'+
+				'<input type="hidden" name="dm_file_path" id="dm_file_path" value="'+rows.dm_file_path+'">'+
+				'<input type="hidden" name="dm_file_name" id="dm_file_name" value="'+rows.dm_file_name+'">'+
 				rows.dm_file_name +'<button type="button" class="btn btn-08 reset" style="float:right;">수정/삭제</button></div>'
 		);
 	}
