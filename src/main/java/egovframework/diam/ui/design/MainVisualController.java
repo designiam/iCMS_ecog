@@ -262,7 +262,7 @@ public class MainVisualController {
 				
 				if (commonUtil.isNullOrEmpty(mainVisualVO.getDm_id())) {
 					
-					if (mainVisualVO.getMultifile1().getSize() > 0 && !mainVisualVO.getMultifile2().isEmpty()) {
+					if (mainVisualVO.getMultifile1().getSize() > 0) {
 						uploadMainVisualFile(mainVisualVO, null, FILE_PATH);
 						
 						mainVisualVO.setDm_create_id(loginVO.getId());
@@ -307,11 +307,7 @@ public class MainVisualController {
 								if (file2.exists()) {
 									FileDelete(file2);
 								}
-							} else {
-				        		resultMap.put("result", "fail");
-								resultMap.put("notice", "메인비주얼 이미지를 등록해주세요.");
-								return new ResponseEntity<>(resultMap, HttpStatus.OK);
-				        	}		
+							}
 						}
 						
 						uploadMainVisualFile(mainVisualVO, checkVO, FILE_PATH);		
