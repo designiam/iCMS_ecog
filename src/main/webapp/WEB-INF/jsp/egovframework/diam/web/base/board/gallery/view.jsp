@@ -86,9 +86,11 @@ function deleteWrite() {
 		</c:if>
 	</c:if>
 	<div class="bbs_viewing">
-		<div class="bbs_view_header" style="background-image: url('${writeVO.wr_path}${writeVO.wr_head}');">
-			<img src="<c:out value='${writeVO.wr_path}${writeVO.wr_head}'/>">
-		</div>
+		<c:if test="${!empty writeVO.wr_head }">
+			<div class="bbs_view_header" style="background-image: url('${writeVO.wr_path}${writeVO.wr_head}');">
+				<img src="<c:out value='${writeVO.wr_path}${writeVO.wr_head}'/>">
+			</div>		
+		</c:if>
 	
 		<div class="bbs_view_title">
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
