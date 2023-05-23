@@ -162,8 +162,8 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url('<c:out value='${result.wr_path}${result.wr_thumb}'/>');">
-												<img src="<c:out value='${result.wr_path}${result.wr_thumb}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
+											<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
+												<img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
 											</div>
 										</c:otherwise>
 									</c:choose>
