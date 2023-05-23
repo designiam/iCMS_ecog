@@ -118,7 +118,7 @@
 		
 	<div class="inner">
 		<div class="tabContent-wrap">
-			<div class="tabContent" data-aos="fade-up" data-aos-anchor-placement="top-center">
+			<div class="tabContent" data-aos="fade-up">
 				<div class="masonry" >
 					<div class="masonry-item">
 						<a href="#;">
