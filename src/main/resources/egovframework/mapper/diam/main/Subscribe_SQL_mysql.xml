@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.diam.biz.db.main.SubscribeMapper">
+	<resultMap type="egovframework.diam.biz.model.main.Dm_subscribe_vo" id="resultSubscribeVO"/>
+	
+	<sql id="selectWhere">
+		<if test='dm_status != "" and dm_status != null'>
+			AND A.dm_status = #{dm_status}
+		</if>
+		<if test='search_value != null and search_value != ""'>
+			<choose>
+				<when test='search_type == "dm_email"'>
+					AND A.dm_email LIKE CONCAT('%',#{search_value},'%')
+				</when>
+				<when test='search_type == "dm_name"'>
+					AND A.dm_name LIKE CONCAT('%',#{search_value},'%')
+				</when>
+				<otherwise>
+					AND (
+						A.dm_email LIKE CONCAT('%',#{search_value},'%') OR
+						A.dm_name LIKE CONCAT('%',#{search_value},'%')
+					)
+				</otherwise>
+			</choose>
+		</if>
+	</sql>
+	
+	<select id="selectSubsList" resultMap="resultSubscribeVO">
+			SELECT  A.*
+				  , B.dm_code_name AS status_text
+			  FROM  dm_subscribe AS A
+		INNER JOIN  dm_common_code AS B
+				ON  A.dm_status = B.dm_code_value AND B.dm_code_group = '3005'
+			 WHERE  1 = 1
+		<include refid="selectWhere"/>
+		  ORDER BY  A.dm_create_dt DESC
+			 LIMIT  #{page}, #{rows}
+	</select>
+	
+	<select id="selectSubsListCount" resultType="integer">
+		SELECT COUNT(A.dm_id)
+		  FROM dm_subscribe AS A
+		 WHERE 1 = 1
+		<include refid="selectWhere"/>
+	</select>
+	
+	<select id="selectByPk" resultMap="resultSubscribeVO">
+		SELECT * FROM dm_subscribe WHERE dm_id = #{dm_id}
+	</select>
+	
+	<update id="deleteSubscribe">
+		DELETE FROM dm_subscribe
+		WHERE dm_id = #{dm_id}
+	</update>
+	
+	<select id="selectByEmail" resultMap="resultSubscribeVO">
+		SELECT * FROM dm_subscribe WHERE dm_email = #{dm_email}
+	</select>
+	
+	<insert id="insertSubscribe">
+		INSERT INTO 
+			dm_subscribe
+		VALUES (
+			  null
+			, #{dm_email}
+			, #{dm_name}
+			, #{dm_status}
+			, now()
+		)
+	</insert>
+</mapper>
