@@ -253,7 +253,6 @@ function setInstagram(rows) {
 
 
 function setYoutube(data) {
-	console.log(data);
 	if (data.dm_href != "" && data.dm_href != null) {
 		var uniq = data.dm_href.split("?v=")[1];
 		$("#setYoutube").children("iframe").attr("src","https://www.youtube-nocookie.com/embed/"+uniq+"?controls=0");
