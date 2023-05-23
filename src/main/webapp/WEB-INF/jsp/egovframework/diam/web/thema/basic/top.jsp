@@ -77,7 +77,7 @@
 
 <header id="hd">
 	<div class="m-vol">
-		<div class="subject">월간 <b>ECO-G</b></div>
+		<div class="subject">계간 <b>ECO-G</b></div>
 		<div class="d-flex">
 			<div class="volume mr20">Vol. <b class="ml10"><c:out value="${cover.dm_vol}"/></b></div>
 			<div class="date"><c:out value="${cover.dm_year }.${cover.dm_month }"/></div>
@@ -696,7 +696,7 @@
 				</c:choose>
 				<div class="side-content">
 					<div class="title">
-						<div>월간 <b>ECO-G</b></div>
+						<div>계간 <b>ECO-G</b></div>
 						<div style="letter-spacing: 0.1em;">Vol. <span class="vol"><c:out value="${cover.dm_vol }"/></span> <span class="date"><c:out value="${cover.dm_year }.${cover.dm_month }"/></span></div>
 						<c:out value="" escapeXml=""/>
 						<div class="logo">

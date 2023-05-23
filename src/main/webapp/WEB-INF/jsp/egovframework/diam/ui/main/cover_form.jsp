@@ -74,10 +74,9 @@ $(function() {
 
 function setValue(rows) {
 	
+	$("#dm_content").val(rows.dm_content);
 	$("#dm_title").val(rows.dm_title);
 	$("#dm_vol").val(rows.dm_vol);
-	/* $("#dm_year").val(rows.dm_year);
-	$("#dm_month").val(rows.dm_month); */
 	$("#dm_year").val(rows.dm_year).prop("selected", true);
 	$("#dm_month").val(rows.dm_month).prop("selected", true);
 	$("#dm_status").combobox({
@@ -85,10 +84,7 @@ function setValue(rows) {
 			$("#dm_status").combobox("setValue", rows.dm_status);
 		}
 	});
-	$("#dm_content").val(rows.dm_content);
-	
-	//oEditors.getById["dm_content"].exec("SET_IR", [""]); //내용초기화
-	//oEditors.getById["dm_content"].exec("PASTE_HTML", [rows.dm_content]);
+	oEditors.getById["dm_content"].exec("PASTE_HTML", [$("#dm_content").val()]);
 }
 
 
@@ -214,6 +210,6 @@ function setMonth(){
 	            </dl>
 	        </div>
 	    </form>
-    </div>    
+    </div>
 </div>
 <c:import url="/adm/page_bottom.do"/>
