@@ -647,4 +647,9 @@ public class uiController {
 		return "egovframework/diam/ui/main/crawling";
 	}
 	
+	@RequestMapping("/adm/subscribe.do")
+	public String subscribe() {
+		return "egovframework/diam/ui/main/subscribe";
+	}
+	
 }

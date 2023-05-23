@@ -267,11 +267,10 @@ function deleteWrite() {
 				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
 			</dl>
 		</div>
-		<c:if test="${sessionScope.vol eq writeVO.wr_vol && writeVO.wr_main eq 'Y'}">
-			<c:if test="${boardVO.dm_is_comment eq 1}">
-				<c:if test="${writeVO.wr_reply eq '0'}">
-					<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
-				</c:if>	
+<%-- 		<c:if test="${sessionScope.vol eq writeVO.wr_vol && writeVO.wr_main eq 'Y'}"> --%>
+		<c:if test="${boardVO.dm_is_comment eq 1}">
+			<c:if test="${writeVO.wr_reply eq '0'}">
+				<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
 			</c:if>
 		</c:if>
 		
