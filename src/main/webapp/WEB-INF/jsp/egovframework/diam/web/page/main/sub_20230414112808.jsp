@@ -4,7 +4,7 @@
 
 <div class="area-custom-select">
 	<div class="custom-select" tabindex="0">
-		<span class="custom-select-text"><strong>Vol.02</strong>2023.05</span>
+		<span class="custom-select-text"><strong>Vol.</strong></span>
 		<img src="${layout_path}/images/pages/select_arrow.png" class="custom-select-arrow">
 	</div>
 	<ul class="custom-select-list" style="display:none;">

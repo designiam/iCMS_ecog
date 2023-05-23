@@ -15,6 +15,9 @@
 	<h5>함께보는 <br><b>ECO-G</b></h5>
 	<ul>
 		<li class="float01">
+			<button type="button" class="" data-toggle="modal" data-target="#Modal">구독 신청</button>
+		</li>
+		<li class="float01">
 			<a href="https://pf.kakao.com/_lxegxnxb" target="_blank">
 				<img src="${layout_path}/images/icon_quick01.png" alt="카카오톡 채널" />
 			</a>
@@ -226,6 +229,60 @@ function copyUrl(){
 		Copyright (c) 2023, (주)디자인아이엠. All Rights Reserved.
 	</div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">구독 신청</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div>
+				<div class="form-group">
+					<label for="dm_name">이름 <span class="required">필수</span></label>
+					<input type="text" name="dm_name" id="dm_name" value="최은빈" class="form-control" maxlength="30" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="dm_email1">이메일<span class="required">필수</span></label>
+					<div class="form-row align-items-center">
+						<div class="col col-4">
+							<label for="dm_email1" class="sr-only">메일 아이디</label>
+							<input type="text" id="dm_email1" class="form-control">
+						</div>
+						<div class="col-auto">@</div>
+						<div class="col">
+							<label for="dm_email2" class="sr-only">메일주소</label>
+							<input type="text" id="dm_email2" class="form-control">
+						</div>
+						<input type="hidden" id="dm_email" name="dm_email">
+					</div>
+				</div>
+			</div>
+			<div class="mb_agree">
+				<div class="agree_docs">
+					<h4 class="">개인정보처리방침<span class="required">필수</span></h4>
+					<div class="agree_text clause">${CONFIG_INFO.dm_private_text}</div>
+					<div class="custom-control custom-checkbox agree_check">
+						<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
+						<label for="dm_agree2" class="custom-control-label" >위 개인정보처리방침에 동의합니다.</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="">보내기</button>
+			<button type="button" class="" data-dismiss="modal">취소</button>
+		</div>
+    </div>
+  </div>
+</div>
+
+
 
 
 </body>
