@@ -245,28 +245,22 @@ function copyUrl(){
 			<div>
 				<div class="form-group">
 					<label for="dm_name">이름 <span class="required">필수</span></label>
-					<input type="text" name="dm_name" id="dm_name" value="최은빈" class="form-control" maxlength="30" readonly="readonly">
+					<input type="text" name="dm_name" id="dm_name" value="최은빈" class="form-control" maxlength="30" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label for="dm_email1">이메일<span class="required">필수</span></label>
 					<div class="form-row align-items-center">
-						<div class="col col-4">
-							<label for="dm_email1" class="sr-only">메일 아이디</label>
-							<input type="text" id="dm_email1" class="form-control">
-						</div>
-						<div class="col-auto">@</div>
 						<div class="col">
-							<label for="dm_email2" class="sr-only">메일주소</label>
-							<input type="text" id="dm_email2" class="form-control">
+							<label for="dm_email1" class="sr-only">메일 아이디</label>
+							<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off">
 						</div>
-						<input type="hidden" id="dm_email" name="dm_email">
 					</div>
 				</div>
 			</div>
 			<div class="mb_agree">
 				<div class="agree_docs">
 					<h4 class="">개인정보처리방침<span class="required">필수</span></h4>
-					<div class="agree_text clause">${CONFIG_INFO.dm_private_text}</div>
+					<div class="agree_text clause"><c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/></div>
 					<div class="custom-control custom-checkbox agree_check">
 						<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
 						<label for="dm_agree2" class="custom-control-label" >위 개인정보처리방침에 동의합니다.</label>
@@ -275,15 +269,87 @@ function copyUrl(){
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="">보내기</button>
-			<button type="button" class="" data-dismiss="modal">취소</button>
+			<button type="button" class="submit" data-val="Y">구독신청</button>
+			<button type="button" class="submit" data-val="N">구독해지</button>
 		</div>
     </div>
   </div>
 </div>
-
-
-
-
 </body>
+<script>
+$(function(){
+	// modal fade in 리스너
+	$("#Modal").on("show.bs.modal", function(){
+		$("#dm_name").val("");
+		$("#dm_email").val("");
+		$("#dm_agree2").prop("checked", false);
+	});
+	
+	//제출 리스너
+	$(".submit").on("click", function(){
+		var txt = $(this).text();
+		var type = $(this).data("val");
+		
+		if (type == "" || type == null) {
+			alert("잘못된 접근입니다. 새로고침 후 다시 시도해주세요.");
+			location.reload();
+		}
+		//동의
+		var agr = $("#dm_agree2").prop("checked");
+		if (!agr) {
+			alert("개인정보 처리방침 동의 후 이용가능합니다.");
+			return;
+		}
+		
+		//이름
+		var name = $.trim($("#dm_name").val());
+		if (name == "") {
+			alert("이름은 필수 입력입니다.");
+			$("#dm_name").focus();
+			return;
+		}
+		
+		// 이메일 유효성
+		var mail = $.trim($("#dm_email").val());
+		var emailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
+		var dotCount = mail.match(/\./g);
+		if (!emailChk.test(mail) || dotCount == null || dotCount.length > 2) {
+			alert("이메일 형식이 잘못됐습니다.");
+			$("#dm_email").focus();
+			return;
+		}
+		
+		var conf = confirm(txt + " 하시겠습니까?");
+		
+		if (conf) {
+			var setting = {
+				url : "/web/requestSubscribe.do",
+				data : {
+					dm_name : name,
+					dm_email : mail,
+					dm_status : type
+				},
+				type : "post"
+			}
+			
+			sendRequest(setting);
+		}
+	});
+});
+
+//async 함수
+var sendRequest = function(set) {
+	
+	$.ajax(set).done(function(response){
+		alert(response.notice);
+		if (response.result == "success") {
+			$(".close").trigger("click");
+		}
+		
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+
+</script>
 </html>
