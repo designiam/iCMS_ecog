@@ -25,8 +25,8 @@
 			</a>
 		</li>
 		<li class="float03">
-			<a href="https://twitter.com/kecotwt"  target="_blank">
-				<img src="${layout_path}/images/icon_quick03.png" alt="트위터">
+			<a href="https://www.instagram.com/ecogwangju_official"  target="_blank">
+				<img src="${layout_path}/images/icon_quick08.png" alt="인스타그램">
 			</a>
 		</li>
 		<li class="float04">
@@ -59,7 +59,7 @@ function copyUrl(){
 				</button>
 			</li>
 			<li class="float02">
-				<a href="https://www.facebook.com/ecogwangju" target="_blank">
+				<a href="?contentId=8180651d8a732fbb4725b901344c433690e13340dae9f2585414d363ee17aaf0">
 					<img src="${layout_path}/images/icon_quick06.png" alt="" />
 					<span><small>구독자 의견</small>바로가기</span>
 				</a>
