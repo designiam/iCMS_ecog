@@ -223,7 +223,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .sec-now .tabContent-wrap { min-height: 34rem; }
 .masonry { columns: 3; column-gap: 1.875rem; }
 .masonry .masonry-item { margin-bottom: 2.5rem; break-inside: avoid; }
-.masonry .masonry-item .img { border: 1px solid #ddd; border-radius: 1.25rem; overflow: hidden; }
+.masonry .masonry-item .img { border: 1px solid #ddd; border-radius: 0.625rem; overflow: hidden; }
 .masonry .masonry-item .img img { width: 100%; transition: all .25s; }
 .masonry .masonry-item .txt { padding-top: 1.25rem; }
 .masonry .masonry-item .subject { font-size: 1.125rem; font-weight: 700; transition: all .25s; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; height: 1.438rem; }
