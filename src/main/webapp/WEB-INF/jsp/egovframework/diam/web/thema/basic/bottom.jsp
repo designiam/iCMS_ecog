@@ -263,7 +263,7 @@ function copyUrl(){
 			<div>
 				<div class="form-group">
 					<label for="dm_name">이름 <span class="required">필수</span></label>
-					<input type="text" name="dm_name" id="dm_name" value="최은빈" class="form-control" maxlength="30" autocomplete="off">
+					<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label for="dm_email1">이메일<span class="required">필수</span></label>
