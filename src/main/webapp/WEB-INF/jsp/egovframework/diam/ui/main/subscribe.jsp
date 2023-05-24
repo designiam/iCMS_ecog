@@ -10,13 +10,11 @@
 </style>
 <script>
 function doSearch() {
-    var search_status = $('#search_status').combobox('getValue');
     var search_type = $('#search_type').val();
     var search_value = $('#stx').val();
     
    	$('#dg').datagrid('load',
         {
-         	dm_status : search_status,
          	search_type : search_type,
          	search_value : search_value
         }
@@ -25,7 +23,6 @@ function doSearch() {
 
 function allList() {
     $("#dg").datagrid('load', {
-        dm_status: '',
         search_type : '',
      	search_value : ''
     });
@@ -99,18 +96,6 @@ $(document).ready(function() {
         <div class="Srchbox">
             <div>
                 <dl>
-                    <dt><strong>상태</strong></dt>
-                    <dd>
-                        <select id="search_status" class="easyui-combobox" panelHeight="auto"
-                                data-options="url: '/adm/select_code.do?dm_code_group=3005&search=1',
-                                            method: 'get',
-                                            valueField: 'dm_code_value',
-                                            textField: 'dm_code_name',
-                                            editable: false">
-                        </select>
-                    </dd>
-                </dl>
-                <dl>
                     <dt><strong>통합검색</strong></dt>
                     <dd>
                         <select name="search_type" id="search_type">
@@ -136,9 +121,7 @@ $(document).ready(function() {
 	                <th data-options="field:'dm_name',width:100,align:'center'">이름</th>
 	                <th data-options="field:'dm_email',width:150,align:'center'">이메일</th>
 	                <th data-options="field:'status_text',width:70,align:'center'">상태</th>
-	                <th data-options="field:'dm_create_dt',width:100,align:'center'">등록일</th>
-	                <th data-options="field:'dm_modify_dt',width:100,align:'center'">수정일</th>
-	                <th data-options="field:'dm_modify_id',width:100,align:'center'">수정인</th>
+	                <th data-options="field:'dm_create_dt',width:100,align:'center'">구독일</th>
 	                <th field ="detail" width="50" formatter="formatDetail" align="center">관리</th>
 	            </tr>
             </thead>
