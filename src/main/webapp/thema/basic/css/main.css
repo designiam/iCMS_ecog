@@ -270,6 +270,8 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 }
 
 /* sns 슬라이드 */
+.insta-txt { margin-top: 0.313rem; padding-left: 2.063rem; background: url('../images/main/ico_instagram.png') left top / 1.688rem no-repeat; color: #555; font-family: 'Poppins'; font-size: 1.125rem; font-weight: 500; letter-spacing: 0; line-height: 1.5; text-transform: uppercase; }
+
 #snsSlider { margin-top: 3.75rem; }
 #snsSlider .swiper-wrapper { align-items: flex-end; }
 #snsSlider .swiper-slide { width: 13.75rem; cursor: pointer; }

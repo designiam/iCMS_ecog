@@ -175,6 +175,8 @@
 			</div>
 		</div>
 		
+		<div class="insta-txt">INSTAGRAM</div>
+		
 		<div class="swiper-container" id="snsSlider" data-aos="fade-up">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
