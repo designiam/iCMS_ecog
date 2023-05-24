@@ -287,4 +287,26 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 }
 
 
+/*================================================================
+   퀵메뉴
+================================================================*/
+.scroll_right_cont { padding: 0; background: transparent; border: 0; }
+.scroll_right_cont ul { margin-top: 0; }
+.scroll_right_cont li { width: 7.813rem; height: 7.813rem; border: 0.25rem solid #fff; }
+.scroll_right_cont li a, .scroll_right_cont li button { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; }
+.scroll_right_cont li img { width: 2.813rem; }
+.scroll_right_cont li span { text-align: center; color: #fff; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; line-height: 1.125; }
+.scroll_right_cont li span small { display: block; font-size: 14px; }
+.scroll_right_cont li.float01 { background: #54B01F; }
+.scroll_right_cont li.float02 { background: #1FB075; }
+.scroll_right_cont li.float03 { background: #138976; }
+@media (max-width: 768px) {
+  .scroll_right_cont ul { flex-wrap: nowrap; }
+  .scroll_right_cont li { flex: 0 0 33.33%; height: auto; margin: 0; padding: 1rem 0.5rem; border: 0; border-radius: 0; }
+  .scroll_right_cont li a, .scroll_right_cont li button { flex-direction: initial; }
+  .scroll_right_cont li span { margin-left: 0.25rem; text-align: left; }
+}
+@media (hover: hover), (-ms-high-contrast:none) {
+  .scroll_right_cont li:hover { border-color: #fff; }
+}
 

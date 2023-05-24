@@ -15,9 +15,6 @@
 	<h5>함께보는 <br><b>ECO-G</b></h5>
 	<ul>
 		<li class="float01">
-			<button type="button" class="" data-toggle="modal" data-target="#Modal">구독 신청</button>
-		</li>
-		<li class="float01">
 			<a href="https://pf.kakao.com/_lxegxnxb" target="_blank">
 				<img src="${layout_path}/images/icon_quick01.png" alt="카카오톡 채널" />
 			</a>
@@ -50,6 +47,31 @@ function copyUrl(){
     });
 }
 </script>
+</c:if>
+
+<c:if test="${pageVO.dm_main_content eq '1'}">
+	<div class="scroll_right_cont main">
+		<ul>
+			<li class="float01">
+				<button type="button" class="" data-toggle="modal" data-target="#Modal">
+					<img src="${layout_path}/images/icon_quick05.png" alt="" />
+					<span><small>ECO-G 웹진</small>정기구독</span>
+				</button>
+			</li>
+			<li class="float02">
+				<a href="https://www.facebook.com/ecogwangju" target="_blank">
+					<img src="${layout_path}/images/icon_quick06.png" alt="" />
+					<span><small>구독자 의견</small>바로가기</span>
+				</a>
+			</li>
+			<li class="float03">
+				<a href="https://www.eco-g.or.kr/" target="_blank">
+					<img src="${layout_path}/images/icon_quick07.png" alt="">
+					<span><small>ECO-G</small>바로가기</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 </c:if>
 
 <footer id="ft">
@@ -94,9 +116,9 @@ function copyUrl(){
 								<dt>주소</dt>
 								<dd>
 									<c:out value="${CONFIG_INFO.dm_zip}" escapeXml="false"/>
-					    			<c:out value="${CONFIG_INFO.dm_addr1}" escapeXml="false"/>
-					    			<c:out value="${CONFIG_INFO.dm_addr2}" escapeXml="false"/>
-					    			<c:out value="${CONFIG_INFO.dm_addr3}" escapeXml="false"/>
+									<c:out value="${CONFIG_INFO.dm_addr1}" escapeXml="false"/>
+									<c:out value="${CONFIG_INFO.dm_addr2}" escapeXml="false"/>
+									<c:out value="${CONFIG_INFO.dm_addr3}" escapeXml="false"/>
 								</dd>
 							</dl>
 						</li>
@@ -172,10 +194,6 @@ function copyUrl(){
 	</div>
 	
 	<div id="ft_goto">
-		<a href="https://www.eco-g.or.kr/" target="_blank" id="shortcut">
-			<img src="${layout_path}/images/logo_ecog.png" alt="">
-			<p><small>ECO-G</small>바로가기</p>
-		</a>
 		<a href="#root" id="totop" class="totop" title="페이지의 최상단으로 이동"><i class="di di-arr-top"></i></a>
 	</div>
 </footer>
