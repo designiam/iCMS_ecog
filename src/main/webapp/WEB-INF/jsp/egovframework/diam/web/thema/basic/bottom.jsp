@@ -251,55 +251,60 @@ function copyUrl(){
 
 <!-- Modal -->
 <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title">구독 신청</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			<div class="modal-form">
-				<div class="form-group">
-					<label class="sr-only" for="dm_name">이름 <span class="required">필수</span></label>
-					<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off" placeholder="이름">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title logo-title">
+					<div class="logo"><img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/></div>
+					<div>
+						지금 <b>환경공단웹진</b>을 <b>구독해보세요!</b>
+						<small>간편하게 만나는 함께그린광주</small>
+					</div>
+				</h5>
+				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+			</div>
+			<div class="modal-body">
+				<div class="modal-form">
+					<div class="form-group">
+						<label class="sr-only" for="dm_name">이름 <span class="required">필수</span></label>
+						<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off" placeholder="이름">
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="dm_email1">이메일<span class="required">필수</span></label>
+						<div class="form-row align-items-center">
+							<div class="col">
+								<label for="dm_email1" class="sr-only">이메일</label>
+								<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off" placeholder="이메일">
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					<label class="sr-only" for="dm_email1">이메일<span class="required">필수</span></label>
-					<div class="form-row align-items-center">
-						<div class="col">
-							<label for="dm_email1" class="sr-only">이메일</label>
-							<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off" placeholder="이메일">
+				<div class="mb_agree">
+					<div class="agree_docs">
+						<h4>개인정보 수집 및 활용 동의<span class="required">필수</span></h4>
+						<div class="agree_text clause">
+							<%-- <c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/> --%>
+							개인정보 수집목적: 광주환경공단 ‘함께green광주’ 웹진 발송 <br>
+							개인정보 수집내용: 이름, 이메일 <br>
+							개인정보 이용기간: 별도의 개인정보 삭제 요청시까지(구독해지) <br>
+							<br>
+							개인정보 수집 및 이용을 거부할 수 있습니다. 다만, 관련 서비스 이용에 제한이 있을 수 있습니다.
+						</div>
+						<div class="custom-control custom-checkbox agree_check">
+							<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
+							<label for="dm_agree2" class="custom-control-label" >개인정보 수집 및 이용에 동의합니다.</label>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="mb_agree">
-				<div class="agree_docs">
-					<h4>개인정보 수집 및 활용 동의<span class="required">필수</span></h4>
-					<div class="agree_text clause">
-						<%-- <c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/> --%>
-						개인정보 수집목적: 광주환경공단 ‘함께green광주’ 웹진 발송 <br>
-						개인정보 수집내용: 이름, 이메일 <br>
-						개인정보 이용기간: 별도의 개인정보 삭제 요청시까지(구독해지) <br>
-						<br>
-						개인정보 수집 및 이용을 거부할 수 있습니다. 다만, 관련 서비스 이용에 제한이 있을 수 있습니다.
-					</div>
-					<div class="custom-control custom-checkbox agree_check">
-						<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
-						<label for="dm_agree2" class="custom-control-label" >개인정보 수집 및 이용에 동의합니다.</label>
-					</div>
-				</div>
+			<div class="modal-footer">
+				<button type="button" class="submit btn-lg btn-fill-03" data-val="Y">구독신청</button>
+				<button type="button" class="submit btn-lg btn-fill-04" data-val="N">구독해지</button>
 			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" class="submit" data-val="Y">구독신청</button>
-			<button type="button" class="submit" data-val="N">구독해지</button>
-		</div>
-    </div>
-  </div>
+	</div>
 </div>
+
 </body>
 <script>
 $(function(){

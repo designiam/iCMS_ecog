@@ -95,7 +95,7 @@ h5 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.028rem; }
 .btn-wrap button { margin: 0.5rem; border-radius: 0; border: 0; font-family: 'Pretendard','Noto Sans KR',sans-serif; }
 .btn-wrap a { display: inline-flex; justify-content: center; align-items: center; }
 
-.btn-lg { min-width: 18.75rem; height: 65px; padding: 0.5rem; font-size: 1.125rem; font-weight: 700; letter-spacing: 0; }
+.btn-lg { display: inline-flex; justify-content: center; align-items: center; min-width: 180px; height: 50px; padding: 0.5rem; border: 0; border-radius: 0.313rem; font-size: 1rem; font-weight: 500; letter-spacing: -0.05em; }
 .btn-md { min-width: 12rem; padding: 0.86rem 0; font-size: 1.125rem; letter-spacing: -0.034rem; }
 .btn-sm { min-width: 90px; min-height: 45px; padding: 0.25rem; border-radius: 0.313rem; font-size: 1rem; font-weight: 400; letter-spacing: 0; }
 
@@ -104,19 +104,22 @@ h5 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.028rem; }
 .btn-line-02 { border-color: #111; }
 .btn-line-02 img { transition: all .25s; }
 .btn-line-03 { border-color: #138976; }
-.btn-fill-01 { background-color: #666; color: #fff; }
-.btn-fill-02 { background-color: #111; color: #fff; }
+.btn-fill-01,
+.btn-fill-01:hover { background-color: #666; color: #fff; }
+.btn-fill-02,
+.btn-fill-02:hover { background-color: #111; color: #fff; }
 .btn-fill-03,
-.btn-fill-03:hover { background-color: #138976; color: #fff; font-weight: 700; }
+.btn-fill-03:hover { background-color: #138976; color: #fff; }
+.btn-fill-04,
+.btn-fill-04:hover { background-color: #E6EBEA; color: #999; }
 @media (max-width: 768px) {
-  .btn-lg { min-width: 12rem; height: 55px; font-size: 1rem; }
+  .btn-lg { min-width: 130px; height: 45px; }
   .btn-sm { min-width: 80px; min-height: 40px; }
 }
 @media (hover: hover), (-ms-high-contrast:none) {
   .btn-line-02:hover { background: #fff; border-color: #3DBBA6; }
   .btn-line-02:hover img { margin-left: 25px; }
   .btn-line-03:hover { color: #138976; }
-  .btn-fill-03:hover { background-color: #117a69; }
 }
 
 
@@ -368,7 +371,7 @@ table.b-tdCenter tbody tr td { text-align: center; }
 .scroll_right_cont { position: fixed; top: 50%; right: 1.389rem; transform: translateY(-50%); padding: 1.563rem 1.25rem; background: #fff; border: 1px solid #ddd; border-radius: 5px; z-index: 999; }
 .scroll_right_cont h5 { padding-bottom: 1.25rem; border-bottom: 1px solid #ddd; color: #222; font-size: 1.125rem; font-weight: 400; }
 .scroll_right_cont ul { margin-top: 1.25rem; }
-.scroll_right_cont li { position: relative; width: 2.813rem; height: 2.813rem; margin: 0 auto 1.25rem; border: 1px solid #ddd; border-radius: 50%; transition: all .25s; }
+.scroll_right_cont li { position: relative; width: 2.813rem; height: 2.813rem; margin: 0 auto 1.25rem; border: 1px solid #ddd; border-radius: 50%; box-shadow: 0.188rem 0.313rem 0.313rem rgba(0,0,0,0.16); transition: all .25s; }
 .scroll_right_cont li a,
 .scroll_right_cont li button { padding: 0; background: transparent; border: 0; }
 .scroll_right_cont li img { width: 100%; }
@@ -392,9 +395,28 @@ table.b-tdCenter tbody tr td { text-align: center; }
 /*================================================================
     모달
 ================================================================*/
+#Modal .modal-content { padding: 2.875rem 2.75rem; border-radius: 1.25rem; border: 0; }
 #Modal .modal-dialog { max-width: 670px; }
-#Modal .modal-form { display: flex; gap: 2.063rem; margin-bottom: 2.188rem; }
+#Modal .modal-form { display: flex; gap: 2.063rem; margin-bottom: 1.563rem; }
 #Modal .modal-form .form-group { width: 100%; }
 #Modal .mb_agree .required { width: auto; height: auto; transform: translateY(2px); margin-left: 0.375rem; padding-left: 0.75rem; color: #138976; font-size: 0.938rem; font-weight: 700; text-indent: 0; }
 #Modal .mb_agree .required:before { top: -3px; left: 3px; }
+#Modal .mb_agree .agree_text { overflow: hidden; }
 
+#Modal .modal-header { margin-bottom: 1.5rem; padding: 0; border: 0; }
+#Modal .logo-title { display: flex; align-items: center; gap: 1.375rem; font-size: 1.563rem; font-weight: 400; letter-spacing: -0.05em; }
+#Modal .logo-title .logo { flex: 0 0 auto; width: 230px; }
+#Modal .logo-title .logo img { width: 100%; }
+#Modal .logo-title small { display: block; font-size: 14px; font-weight: 400; letter-spacing: 0; }
+
+#Modal .modal-body { padding: 0; overflow: hidden; }
+#Modal .modal-footer { justify-content: flex-start; margin-top: 1.875rem; padding: 0; border: 0; }
+
+@media (max-width: 768px) {
+  #Modal .modal-content { padding: 2rem 1.5rem; }
+  #Modal .logo-title { font-size: 1.25rem; line-height: 1.25; }
+  #Modal .logo-title .logo { width: 100px; }
+  #Modal .modal-form { gap: 1.25rem; }
+  #Modal .mb_agree .agree_text { overflow-y: scroll; }
+  #Modal .modal-footer { margin-top: 1rem; }
+}
