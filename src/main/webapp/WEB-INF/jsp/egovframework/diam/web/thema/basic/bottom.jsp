@@ -260,28 +260,35 @@ function copyUrl(){
 			</button>
 		</div>
 		<div class="modal-body">
-			<div>
+			<div class="modal-form">
 				<div class="form-group">
-					<label for="dm_name">이름 <span class="required">필수</span></label>
-					<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off">
+					<label class="sr-only" for="dm_name">이름 <span class="required">필수</span></label>
+					<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off" placeholder="이름">
 				</div>
 				<div class="form-group">
-					<label for="dm_email1">이메일<span class="required">필수</span></label>
+					<label class="sr-only" for="dm_email1">이메일<span class="required">필수</span></label>
 					<div class="form-row align-items-center">
 						<div class="col">
-							<label for="dm_email1" class="sr-only">메일 아이디</label>
-							<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off">
+							<label for="dm_email1" class="sr-only">이메일</label>
+							<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off" placeholder="이메일">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="mb_agree">
 				<div class="agree_docs">
-					<h4 class="">개인정보처리방침<span class="required">필수</span></h4>
-					<div class="agree_text clause"><c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/></div>
+					<h4>개인정보 수집 및 활용 동의<span class="required">필수</span></h4>
+					<div class="agree_text clause">
+						<%-- <c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/> --%>
+						개인정보 수집목적: 광주환경공단 ‘함께green광주’ 웹진 발송 <br>
+						개인정보 수집내용: 이름, 이메일 <br>
+						개인정보 이용기간: 별도의 개인정보 삭제 요청시까지(구독해지) <br>
+						<br>
+						개인정보 수집 및 이용을 거부할 수 있습니다. 다만, 관련 서비스 이용에 제한이 있을 수 있습니다.
+					</div>
 					<div class="custom-control custom-checkbox agree_check">
 						<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
-						<label for="dm_agree2" class="custom-control-label" >위 개인정보처리방침에 동의합니다.</label>
+						<label for="dm_agree2" class="custom-control-label" >개인정보 수집 및 이용에 동의합니다.</label>
 					</div>
 				</div>
 			</div>

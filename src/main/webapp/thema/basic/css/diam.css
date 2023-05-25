@@ -7,13 +7,12 @@
 ================================================================*/
 input[type="text"], input[type="password"], textarea { transition: all .25s; }
 input[type="text"]:focus-visible, input[type="password"]:focus-visible, textarea:focus-visible { border-color: #555; }
-input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder { color: #999; font-size: 15px; font-weight: 400; letter-spacing: -0.03em; }
+input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder { color: #666; font-size: 1rem; font-weight: 400; letter-spacing: -0.05em; }
 select {appearance:none;-webkit-appearance:none;-moz-appearance:none;background:url('../images/select_arrow.png') no-repeat right 9px center; cursor: pointer; }
 select::-ms-expand {display:none;}
 
-
 .form-style { background-color: #f9f9f9; padding: 3.125rem 2.188rem; }
-.form-control { height: calc(1.5em + .75rem + 14px); border: 1px solid #ddd; border-radius: 0; color: inherit; }
+.form-control { height: calc(1.5em + .75rem + 4px); padding: 0.625rem; border: 1px solid #ddd; border-width: 0 0 1px 0; border-radius: 0; color: inherit; }
 .form-control:focus { border-color: #555; }
 .form-group > label { margin-bottom: 0.5rem; font-weight: 600; user-select: none; }
 
@@ -50,14 +49,14 @@ textarea.form-control::-webkit-scrollbar-thumb:hover { background: #aaa; }
 .custom-radio .custom-control-input:checked~.custom-control-label::after { background: #214397; border-radius: 50%; }
 
 /* 체크 박스 */
-.custom-checkbox { padding-left: 2rem; }
+.custom-checkbox { padding-left: 1.5rem; }
 .custom-checkbox .custom-control-input,
 .custom-checkbox .custom-control-label::before , 
 custom-checkbox .custom-control-label::after,
-.custom-checkbox .custom-control-input:checked~.custom-control-label::after { top: -0.15rem; left: -2rem; width: 1.667rem; height: 1.667rem; border-radius: 0; }
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after { top: 0; left: -1.5rem; width: 1.25rem; height: 1.25rem; border-radius: 3px; border-color: #707070; }
 
 .custom-checkbox .custom-control-label::after { left: -1.65rem; }
-.custom-checkbox .custom-control-label::before { border: 1px solid #ddd; }
+.custom-checkbox .custom-control-label::before { border: 1px solid #707070; }
 .custom-control-input:checked~.custom-control-label::before { background-color: #3DBBA6; border-color: #3DBBA6; }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after { background: url("../images/icon_checkbox.png") center no-repeat; }
 
@@ -388,4 +387,14 @@ table.b-tdCenter tbody tr td { text-align: center; }
 @media (hover: hover), (-ms-high-contrast:none) {
   .scroll_right_cont li:hover { border-color: #138976; }
 }
+
+
+/*================================================================
+    모달
+================================================================*/
+#Modal .modal-dialog { max-width: 670px; }
+#Modal .modal-form { display: flex; gap: 2.063rem; margin-bottom: 2.188rem; }
+#Modal .modal-form .form-group { width: 100%; }
+#Modal .mb_agree .required { width: auto; height: auto; transform: translateY(2px); margin-left: 0.375rem; padding-left: 0.75rem; color: #138976; font-size: 0.938rem; font-weight: 700; text-indent: 0; }
+#Modal .mb_agree .required:before { top: -3px; left: 3px; }
 

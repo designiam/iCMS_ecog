@@ -7,6 +7,9 @@
 
 /* 컨테이너 */
 #container { max-width: 900px; }
+@media (max-width: 992px) {
+  #container { padding: 0 1rem; }
+}
 
 /* 헤더 이미지 */
 .bbs_view_header { position: relative; left: 50%; transform: translateX(-50%); width: 100vw; height: 260px;  background-position: center; background-size: cover; background-repeat: no-repeat; }
