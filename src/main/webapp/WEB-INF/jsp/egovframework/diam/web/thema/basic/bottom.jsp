@@ -250,7 +250,7 @@ function copyUrl(){
 
 
 <!-- Modal -->
-<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+<div class="modal fade subscribe" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -304,6 +304,22 @@ function copyUrl(){
 		</div>
 	</div>
 </div>
+
+<div class="modal fade subscribe" id="subModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="logo">
+					<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
+				</div>
+				<p></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-lg btn-fill-03" data-dismiss="modal">확인</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 <script>
@@ -365,19 +381,26 @@ $(function(){
 			sendRequest(setting);
 		}
 	});
+
 });
 
 //async 함수
+var subModal = $("#subModal .modal-body p");
 var sendRequest = function(set) {
-	
 	$.ajax(set).done(function(response){
-		alert(response.notice);
-		if (response.result == "success") {
-			$(".close").trigger("click");
-		}
+		//alert(response.notice);
+		$('#Modal').modal('hide');
+		subModal.html(response.notice);
+		setTimeout(function(){
+			$('#subModal').modal('show');
+		},500);
+		
+		//if (response.result == "success") {
+		//	$(".close").trigger("click");
+		//}
 		
 	}).fail(function(response, status, error){
-		alert(response.responseJSON.notice);
+		//alert(response.responseJSON.notice);
 	});
 }
 

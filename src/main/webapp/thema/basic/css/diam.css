@@ -395,28 +395,35 @@ table.b-tdCenter tbody tr td { text-align: center; }
 /*================================================================
     모달
 ================================================================*/
-#Modal .modal-content { padding: 2.875rem 2.75rem; border-radius: 1.25rem; border: 0; }
-#Modal .modal-dialog { max-width: 670px; }
-#Modal .modal-form { display: flex; gap: 2.063rem; margin-bottom: 1.563rem; }
-#Modal .modal-form .form-group { width: 100%; }
-#Modal .mb_agree .required { width: auto; height: auto; transform: translateY(2px); margin-left: 0.375rem; padding-left: 0.75rem; color: #138976; font-size: 0.938rem; font-weight: 700; text-indent: 0; }
-#Modal .mb_agree .required:before { top: -3px; left: 3px; }
-#Modal .mb_agree .agree_text { overflow: hidden; }
+.modal.subscribe .modal-content { padding: 2.875rem 2.75rem; border-radius: 1.25rem; border: 0; }
+.modal.subscribe .modal-dialog { max-width: 670px; }
+.modal.subscribe .modal-form { display: flex; gap: 2.063rem; margin-bottom: 1.563rem; }
+.modal.subscribe .modal-form .form-group { width: 100%; }
+.modal.subscribe .mb_agree .required { width: auto; height: auto; transform: translateY(2px); margin-left: 0.375rem; padding-left: 0.75rem; color: #138976; font-size: 0.938rem; font-weight: 700; text-indent: 0; }
+.modal.subscribe .mb_agree .required:before { top: -3px; left: 3px; }
+.modal.subscribe .mb_agree .agree_text { overflow: hidden; }
 
-#Modal .modal-header { margin-bottom: 1.5rem; padding: 0; border: 0; }
-#Modal .logo-title { display: flex; align-items: center; gap: 1.375rem; font-size: 1.563rem; font-weight: 400; letter-spacing: -0.05em; }
-#Modal .logo-title .logo { flex: 0 0 auto; width: 230px; }
-#Modal .logo-title .logo img { width: 100%; }
-#Modal .logo-title small { display: block; font-size: 14px; font-weight: 400; letter-spacing: 0; }
+.modal.subscribe .modal-header { position: relative; margin-bottom: 1.5rem; padding: 0; border: 0; }
+.modal.subscribe .logo-title { display: flex; align-items: center; gap: 1.375rem; font-size: 1.563rem; font-weight: 400; letter-spacing: -0.05em; }
+.modal.subscribe .logo { flex: 0 0 auto; width: 230px; }
+.modal.subscribe .logo img { width: 100%; }
+.modal.subscribe .logo-title small { display: block; font-size: 14px; font-weight: 400; letter-spacing: 0; }
+.modal.subscribe .close { position: absolute; top: -1.5rem; right: -1.5rem; }
 
-#Modal .modal-body { padding: 0; overflow: hidden; }
-#Modal .modal-footer { justify-content: flex-start; margin-top: 1.875rem; padding: 0; border: 0; }
+.modal.subscribe .modal-body { padding: 0; overflow: hidden; }
+.modal.subscribe .modal-footer { justify-content: flex-start; margin-top: 1.875rem; padding: 0; border: 0; }
 
 @media (max-width: 768px) {
-  #Modal .modal-content { padding: 2rem 1.5rem; }
-  #Modal .logo-title { font-size: 1.25rem; line-height: 1.25; }
-  #Modal .logo-title .logo { width: 100px; }
-  #Modal .modal-form { gap: 1.25rem; }
-  #Modal .mb_agree .agree_text { overflow-y: scroll; }
-  #Modal .modal-footer { margin-top: 1rem; }
+  .modal.subscribe .modal-content { padding: 2rem 1.5rem; }
+  .modal.subscribe .logo-title { font-size: 1.25rem; line-height: 1.25; }
+  .modal.subscribe .logo-title .logo { width: 100px; }
+  .modal.subscribe .modal-form { gap: 1.25rem; }
+  .modal.subscribe .mb_agree .agree_text { overflow-y: scroll; }
+  .modal.subscribe .modal-footer { margin-top: 1rem; }
 }
+
+
+/* 서브모달 */
+#subModal .modal-content { align-items: center; text-align: center; }
+#subModal .modal-content p { margin-top: 1.875rem; font-size: 1.25rem; letter-spacing: -0.05em; }
+
