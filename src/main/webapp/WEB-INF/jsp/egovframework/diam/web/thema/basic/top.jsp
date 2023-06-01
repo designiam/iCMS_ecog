@@ -88,14 +88,22 @@
 		<div id="hd_logo">
 			<c:choose>
 				<c:when test="${CONFIG_INFO.dm_top_logo ne null && not empty CONFIG_INFO.dm_top_logo}">
-					<a class="hd_logo_bk" href="<c:out value='${param.root }'/>/index.do">
-						<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
-					</a>
+					<c:choose>
+						<c:when test="${pageVO.dm_main_content eq '1'}">
+							<a class="hd_logo_bk" href="<c:out value='${param.root }'/>/index.do">
+								<img src="${layout_path}/images/main/logo_ecog.png" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" />
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a class="hd_logo_bk" href="<c:out value='${param.root }'/>/index.do">
+								<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
+							</a>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<a href="<c:out value='${param.root }'/>/index.do">
 						<img src="<c:out value='${layout_path}'/>/images/logo.png" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>">
-						
 					</a>
 				</c:otherwise>
 			</c:choose>

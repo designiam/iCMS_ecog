@@ -565,6 +565,7 @@ html #ft #ft_goto.fixed #shortcut { opacity: 1; visibility: visible; }
 }
 @media (max-width: 1500px) {
   #hd_wrap, #ft_wrap, #container, #vis #titler .leader { padding: 0 2rem; }
+  #hd_logo a { left: 0; }
   #hd_user { right: 3rem; } 
   #hd_button,  #hd_toggle, #hd_wrap .btn-wrap { right: 2rem; }
   #gnb { right: 13rem; }
