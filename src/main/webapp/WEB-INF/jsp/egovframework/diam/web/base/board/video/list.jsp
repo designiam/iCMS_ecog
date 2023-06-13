@@ -155,9 +155,20 @@
 							<c:set var="linkData" value="${fn:substring(result.wr_link1, 17, -1) }"/>
  							<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
 								<div class="cell_thumb">
-									<div class="thumb-wrap" style="background-image: url('https://img.youtube.com/vi/${linkData}/mqdefault.jpg');">
-										<img src="https://img.youtube.com/vi/${linkData}/mqdefault.jpg" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
-									</div>
+									<c:choose>
+										<c:when test="${result.wr_thumb_sub ne null}">
+											<div class="thumb-wrap" style="background-image: url('${result.wr_path}${result.wr_thumb_sub}');">
+												<img src="${result.wr_path}${result.wr_thumb_sub}" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>">
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="cell_thumb">
+												<div class="thumb-wrap" style="background-image: url('https://img.youtube.com/vi/${linkData}/mqdefault.jpg');">
+													<img src="https://img.youtube.com/vi/${linkData}/mqdefault.jpg" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
 									<span class="vol">Vol.<c:out value="${result.wr_vol}" escapeXml='false'/></span>
 								</div>
 								<!-- //.cell_thumb -->
