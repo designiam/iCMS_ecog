@@ -92,7 +92,7 @@
 ================================================================*/
 .video-banner #preview { position: relative; background: rgba(0,0,0,0.35); transition: all .45s; overflow: hidden; z-index: 1; }
 .video-banner #preview .preview-wrap { position: relative; top: 0; left: 0; right: 0; height: 267px; transform-origin: 50% 0; transition: all .45s; z-index: -1; }
-.video-banner #preview .preview-wrap::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(6, 40, 8, 0.4); }
+.video-banner #preview .preview-wrap::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgb(18 22 18 / 40%); }
 .video-banner #preview video { display: block; height: 100%; }
 .video-banner #preview > p { position: absolute; top: 3.75rem; left: 50%; transform: translateX(-50%); display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; height: 110px; padding: 0 2rem; color: #fff; font-size: 2.813rem; font-weight: 800; letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; word-break: break-all; }
 .video-banner #preview > button { content: ""; position: absolute; bottom: 0.75rem; left: 50%; transform: translateX(-50%); background: transparent; border: 0; color: #fff; font-size: 1.875rem; transition: all .45s; }
