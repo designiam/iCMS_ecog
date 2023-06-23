@@ -32,7 +32,6 @@
 	</div>
 	
 	<div class="event-content">
-		<img style="max-width:100%;" src="/images/noimg_content.jpg" alt="콘텐츠가 없습니다.">
 	</div>
 	
 	<div class="btn-wrap text-center mt55">
