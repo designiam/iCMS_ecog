@@ -586,9 +586,12 @@ $(document).on("click", ".auth", function(){
 	var inputPwd = $("#pwd").val();
 	
 	if (inputPwd != "") {
+		console.log("a");
 		var rsa = new RSAKey();
 		rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
+		console.log("b");
 		$("#pwd").val(rsa.encrypt(inputPwd));
+		console.log("c");
 	}
 	
 	$.ajax({

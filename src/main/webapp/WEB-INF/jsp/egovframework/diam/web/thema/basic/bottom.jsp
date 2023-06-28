@@ -323,7 +323,7 @@ function copyUrl(){
 
 </body>
 <script>
-$(function(){
+$(function(){	
 	// modal fade in 리스너
 	$("#Modal").on("show.bs.modal", function(){
 		$("#dm_name").val("");
