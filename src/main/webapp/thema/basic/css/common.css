@@ -1067,7 +1067,9 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .comment_write_info .cmf_name {}
 .comment_write_info .cmf_name input[type="text"][readonly] { border-color: transparent; }
 .comment_write_info .cmf_pass {}
-.comment_write_info .cmf_secret { margin-left: auto; margin-right: 0; }
+.comment_write_info .cmf_secret { margin-left: 0; margin-right: auto; }
+.comment_write_info .cmf_secret .custom-checkbox .custom-control-label { color: #666; }
+.comment_write_info .cmf_secret .custom-checkbox .custom-control-label::before { border-color: #ddd; }
 .comment_write_form { margin: 10px 0; }
 .comment_write_btn { position: absolute; top: 1rem; right: 1.25rem; text-align: center; }
 .comment_write_btn .btn_comment { width: 95px; }
@@ -1075,6 +1077,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
   .comment_form { padding: 1rem 0.5rem; }
   .comment_write_btn { position: static; }
 }
+
 
 /* 게시판 읽기: 이전글/다음글 */
 .nb_ul { margin: 40px 0; padding: 0; list-style: none; position: relative; clear: both; text-align: left; border-top: 1px solid #ddd; overflow: hidden; max-width: 100%; }

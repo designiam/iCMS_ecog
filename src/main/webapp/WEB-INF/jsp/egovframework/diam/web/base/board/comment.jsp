@@ -446,9 +446,9 @@ jQuery(function($) {
 					<c:if test="${writeVO.mb_id ne '비회원'}">
 						<dl class="cmf_secret">
 							<dt><label for="wr_option">비밀댓글</label></dt>
-							<dd>
-								<input type="checkbox" id="comment_secret" name="wr_option" value="secret"/>
-								<label for="comment_secret">비밀댓글</label>
+							<dd class="custom-control custom-checkbox agree_check">
+								<input type="checkbox" id="comment_secret" name="wr_option" value="secret" class="custom-control-input dm_check"/>
+								<label for="comment_secret" class="custom-control-label">비밀댓글</label>
 							</dd>
 						</dl>
 					</c:if>
