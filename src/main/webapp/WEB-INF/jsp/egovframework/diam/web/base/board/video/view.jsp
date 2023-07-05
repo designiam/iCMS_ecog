@@ -258,14 +258,18 @@ function deleteWrite() {
 		</div>
 
 		<div class="bbs_view_writer">
+			<c:if test="${not empty writeVO.wr_writer}">
 			<dl class="writer">
 				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
 				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
 			</dl>
+			</c:if>
+			<c:if test="${not empty writeVO.wr_pictured}">
 			<dl class="picture">
 				<dt>사진</dt>
 				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
 			</dl>
+			</c:if>
 		</div>
 <%-- 		<c:if test="${sessionScope.vol eq writeVO.wr_vol && writeVO.wr_main eq 'Y'}"> --%>
 		<c:if test="${boardVO.dm_is_comment eq 1}">
