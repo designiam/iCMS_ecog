@@ -213,7 +213,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 /*================================================================
    배너존
 ================================================================*/
-.main-banner { margin: 2.25rem 0 0; }
+.banner-slide { margin: 2.25rem 0 0; }
 .banner-slide li { background-position: center; background-size: cover; background-repeat: no-repeat; }
 .banner-slide li img { width: 100%; }
 #banSlider { display: block; }

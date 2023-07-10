@@ -47,16 +47,20 @@
 				<c:forEach var="result" items ="${bannerList}" varStatus="index">
 					<c:choose>
 						<c:when test="${result.dm_link ne null && not empty result.dm_link}">
+							<c:if test="${result.dm_status eq 1 }">
 							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
 								<a href="${result.dm_link}" target="${result.dm_link_type}">
 									<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
 								</a>
 							</li>
+							</c:if>
 						</c:when>
 						<c:otherwise>
+							<c:if test="${result.dm_status eq 1 }">
 							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
 								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
 							</li>
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -83,11 +87,6 @@
 				</ul>
 			</div>
 		</c:when>
-		<c:otherwise>
-			<div class="no-img" style="background-image: url('/images/no_image.png');">
-				<img src="/images/no_image.png" alt="등록된 배너가 없습니다."/>
-			</div>
-		</c:otherwise>
 	</c:choose>
 </section>
 <!-- //.main-banner -->
