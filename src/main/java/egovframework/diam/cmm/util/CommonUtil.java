@@ -543,6 +543,17 @@ public class CommonUtil {
 		return result;
 	}
 	
+	public boolean pdfExtCheck(MultipartFile file) {
+		boolean result = true;
+		final String[] ext_arr = {"pdf", "PDF"};
+		if (file != null && file.getSize() > 0) {
+			String file_name = file.getOriginalFilename();
+			String ext = file_name.substring(file_name.lastIndexOf(".") + 1);
+			result = Arrays.asList(ext_arr).contains(ext);
+		}
+		return result;
+	}
+	
 	public boolean videoExtCheck(MultipartFile file) {
 		boolean result = true;
 		final String[] ext_arr = {"wmv","mp4","m4v","avi","WMV","MP4","M4V","AVI"};

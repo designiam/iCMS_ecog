@@ -652,4 +652,13 @@ public class uiController {
 		return "egovframework/diam/ui/main/subscribe";
 	}
 	
+	@RequestMapping("/adm/file.do")
+	public String file() {
+		return "egovframework/diam/ui/file/file";
+	}
+	
+	@RequestMapping("/adm/file_form.do")
+	public String file_form() {
+		return "egovframework/diam/ui/file/file_form";
+	}
 }
