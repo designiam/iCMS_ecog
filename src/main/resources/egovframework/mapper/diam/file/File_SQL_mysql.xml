@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.diam.biz.db.file.FileMapper">
+	<resultMap id="resultFileVO" type="egovframework.diam.biz.model.file.Dm_file_vo"/>
+	<sql id="selectWhere">
+		<if test='search_value != "" and search_value != null'>
+			<choose>
+				<when test='search_type == "dm_org_name"'>
+					AND A.dm_title LIKE CONCAT('%',#{search_value},'%')
+				</when>
+				<when test='search_type == "dm_etc"'>
+					AND A.dm_content LIKE CONCAT('%',#{search_value},'%')				
+				</when>
+				<otherwise>
+					AND (
+						A.dm_org_name = #{search_value}
+						OR
+						A.dm_etc LIKE CONCAT('%',#{search_value},'%')
+					)
+				</otherwise>
+			</choose>
+		</if>
+		<if test='search_start_date != null and search_start_date != ""'>
+			<![CDATA[
+				AND	STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') <= DATE_FORMAT(A.dm_create_dt, '%Y-%m-%d')
+			]]>
+		</if>
+		<if test='search_end_date != null and search_end_date != ""'>
+			<![CDATA[
+				AND	STR_TO_DATE(#{search_end_date}, '%Y-%m-%d') >= DATE_FORMAT(A.dm_create_dt, '%Y-%m-%d')
+			]]>
+		</if>
+	</sql>
+	<select id="selectFileList" resultMap="resultFileVO">
+		SELECT  *
+		  FROM  dm_file A
+		 WHERE  1=1
+		 <include refid="selectWhere"/>
+	  ORDER BY  A.dm_id desc
+	     LIMIT  #{page}, #{rows}
+	</select>
+	
+	<select id="selectfileListCount" resultType="int">
+		SELECT  COUNT(*)
+		  FROM  dm_file
+		 WHERE  1=1
+	</select>
+	
+	<insert id="createFile">
+		INSERT
+		  INTO  dm_file
+		  	 (
+				dm_file_name
+			 ,	dm_org_name
+			 ,  dm_path
+			 ,	dm_size
+			 ,	dm_type
+			 ,	dm_ext
+			 ,	dm_etc
+			 ,	dm_create_dt
+			 ,	dm_create_id
+		  	 )
+		VALUES
+			 (
+			 	#{dm_file_name}
+			 ,	#{dm_org_name}
+			 ,  #{dm_path}
+			 ,  #{dm_size}
+			 ,  #{dm_type}
+			 ,  #{dm_ext}
+			 ,  #{dm_etc}
+			 ,  now()
+			 ,  #{dm_create_id}
+			 )
+		
+	</insert>
+	
+	<select id="selectFile" resultMap="resultFileVO">
+		SELECT  *
+		  FROM  dm_file
+		 WHERE  1=1
+		   AND  dm_id = #{dm_id}
+	</select>
+</mapper>
+	
