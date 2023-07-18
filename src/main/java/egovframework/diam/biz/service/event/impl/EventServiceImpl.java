@@ -47,4 +47,19 @@ public class EventServiceImpl extends EgovAbstractServiceImpl implements EventSe
 			});
 		}
 	}
+
+	@Override
+	public List<Dm_event_vo> selectTargetEvent(Dm_event_vo vo) throws Exception {
+		return eventMapper.selectTargetEvent(vo);
+	}
+
+	@Override
+	@Transactional
+	public void updateEventStatus(List<Dm_event_vo> list) throws Exception {
+		if (list.size() > 0) {
+			list.forEach(item -> {
+				if (eventMapper.updateEventStatus(item) < 1) throw new RuntimeException(MessageCode.CMM_TRANSACTION_FAIL.getLog());
+			});
+		}
+	}
 }
