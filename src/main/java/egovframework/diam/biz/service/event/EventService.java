@@ -16,4 +16,7 @@ public interface EventService {
 	
 	public void deleteEvent(List<Dm_event_vo> list) throws Exception;
 
+	public List<Dm_event_vo> selectTargetEvent(Dm_event_vo vo) throws Exception;
+	
+	public void updateEventStatus(List<Dm_event_vo> list) throws Exception;
 }

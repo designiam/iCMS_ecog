@@ -17,5 +17,9 @@ public interface EventMapper {
 	public Dm_event_vo selectEvent(Dm_event_vo vo);
 	
 	public int deleteEvent(Dm_event_vo vo);
+	
+	public List<Dm_event_vo> selectTargetEvent(Dm_event_vo vo);
+	
+	public int updateEventStatus(Dm_event_vo vo);
 
 }

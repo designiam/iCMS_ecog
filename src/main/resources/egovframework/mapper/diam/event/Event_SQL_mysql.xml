@@ -152,4 +152,23 @@
 		      , dm_delete_dt = now()
 		 WHERE  dm_id = #{dm_id}
 	</update>
+	
+	<select id="selectTargetEvent" resultMap="resultEventVO">
+		SELECT *
+		  FROM dm_event
+		 WHERE 1=1
+		   AND dm_delete_yn = 'N'
+		 <if test='command == "start"'>
+		 	AND dm_event_start = DATE_FORMAT(now(), '%Y-%m-%d')
+		 </if>
+		 <if test='command == "end"'>
+		 	AND dm_event_end = DATE_FORMAT(DATE_SUB(now(), INTERVAL 1 DAY), '%Y-%m-%d')
+		 </if>
+	</select>
+	
+	<update id="updateEventStatus">
+		UPDATE dm_event
+		   SET dm_status = #{dm_status}
+		 WHERE dm_id = #{dm_id}
+	</update>
 </mapper>
