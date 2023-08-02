@@ -2,7 +2,6 @@ package egovframework.diam.cmm.util;
 
 import java.util.List;
 
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.annotation.Scheduled;
