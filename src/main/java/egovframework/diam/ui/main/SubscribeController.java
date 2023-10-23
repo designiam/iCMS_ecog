@@ -1,9 +1,24 @@
 package egovframework.diam.ui.main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -92,6 +107,107 @@ public class SubscribeController {
 		}
 		
 		return new ResponseEntity<>(resultMap,HttpStatus.OK);
+	}
+	
+	@GetMapping("/adm/getSubscribeExcel.do")
+	public ResponseEntity<?> reserveExcel(Dm_subscribe_vo vo, HttpServletRequest request) {
+		List<Dm_subscribe_vo> infoList = new ArrayList<>();
+		Map<String, String> resultMap = new HashMap<>();
+		String[] headerList = {"번호","이름","이메일","구독 상태","구독일"};
+		String excel_title = "구독자";
+		try {
+			
+			infoList = subscribeService.selectSubsList(vo);
+
+			XSSFWorkbook workbook = new XSSFWorkbook();
+			XSSFSheet sheet = workbook.createSheet(excel_title + "리스트");
+			XSSFRow row = sheet.createRow(0);
+			XSSFCell cell = null;
+			CellStyle style = workbook.createCellStyle();
+			style.setBorderRight(XSSFCellStyle.BORDER_THIN);
+			style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+			style.setBorderTop(XSSFCellStyle.BORDER_THIN);
+			style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+						
+			for (int i = 0 ; i < headerList.length ; i++) {
+				cell = row.createCell(i);
+				cell.setCellStyle(style);
+				cell.setCellValue(headerList[i]);
+				//sheet.autoSizeColumn(i);
+			}
+			
+			for (int i = 0 ; i < infoList.size() ; i++) {
+				row = sheet.createRow(i+1);
+				
+				int cellCnt = 0 ;
+				cell = row.createCell(cellCnt);
+				cell.setCellStyle(style);
+				cellCnt++;
+				cell.setCellValue(i+1);
+				
+				cell = row.createCell(cellCnt);
+				cell.setCellStyle(style);
+				cellCnt++;
+				cell.setCellValue(infoList.get(i).getDm_name());
+											
+				cell = row.createCell(cellCnt);
+				cell.setCellStyle(style);
+				cellCnt++;
+				cell.setCellValue(infoList.get(i).getDm_email());
+				
+				cell = row.createCell(cellCnt);
+				cell.setCellStyle(style);
+				cellCnt++;
+				cell.setCellValue(infoList.get(i).getStatus_text());
+				
+				cell = row.createCell(cellCnt);
+				cell.setCellStyle(style);
+				cellCnt++;
+				cell.setCellValue(infoList.get(i).getDm_create_dt());
+						
+			}
+						
+			for (int i = 0 ; i < headerList.length ; i++) {
+				sheet.autoSizeColumn(i);
+				sheet.setColumnWidth(i, (sheet.getColumnWidth(i)+1024));
+			}
+			
+			String path = request.getServletContext().getRealPath("/resources/excel/");
+			String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
+			String filename = excel_title+"목록_"+time + ".xlsx";
+			File folder = new File(path);
+			if (!folder.exists()) {
+				folder.mkdirs();			
+			}
+			File save = new File(path + filename);
+			FileOutputStream fos = new FileOutputStream(save);
+			workbook.write(fos);
+			if (save.exists()) {
+				resultMap.put("result", "success");
+				resultMap.put("rows", "/resources/excel/" + filename);
+			} else {
+				throw new FileNotFoundException();
+			}
+			
+		} catch(FileNotFoundException e) {
+			log.error("File not found Exception");
+			resultMap.put("notice", "엑셀 파일을 찾을 수 없습니다.");
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(DataAccessException dae) {
+			log.error("data access exception");
+			resultMap.put("notice", "SQL 구문 오류가 발생했습니다.");
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (IOException e) {
+			log.error("IO exception");
+			resultMap.put("notice", "엑셀파일 생성 중 오류가 발생했습니다.");
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(Exception e) {
+			log.error("system error");
+			resultMap.put("notice", "시스템 오류가 발생했습니다. 관리자에게 문의주세요");
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
 
 }
