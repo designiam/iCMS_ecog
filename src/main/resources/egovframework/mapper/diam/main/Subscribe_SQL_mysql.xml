@@ -34,7 +34,9 @@
 			 WHERE  1 = 1
 		<include refid="selectWhere"/>
 		  ORDER BY  A.dm_create_dt DESC
-			 LIMIT  #{page}, #{rows}
+		<if test="rows > 0">
+			 LIMIT  #{page}, #{rows}		
+		</if>
 	</select>
 	
 	<select id="selectSubsListCount" resultType="integer">

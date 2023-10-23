@@ -83,6 +83,29 @@ $(document).ready(function() {
         displayMsg : "검색 <strong>{to}</strong> 개 / 전체 <strong>{total}</strong> 개"
     });
 
+    $("#fnExcel").off().on('click', function () {
+		$.messager.confirm("엑셀다운로드", "엑셀 다운로드를 하시겠습니까?<br> 데이터의 크기에 따라 시간이 <br>소요될 수있습니다.<br>", function (r) {
+			if(r){
+	            $.ajax({
+	            	url : "/adm/getSubscribeExcel.do",
+	            	data : {},
+	            	type : "get",
+	            	success: function(data){
+	            		if (data.result == "success") {
+	            			var downloadLink = document.createElement("a");
+	           	          	downloadLink.href = data.rows;
+	
+	           	          	document.body.appendChild(downloadLink);
+	           	          	downloadLink.click();
+	           	         	document.body.removeChild(downloadLink);
+						}
+	            	}, error: function(request, status, error) {
+        				$.messager.alert("error", request.responseJSON.notice, "warning");
+	            	}
+	            });
+			}
+		});
+	});
 });
 </script>
 <div id="load">
@@ -127,5 +150,12 @@ $(document).ready(function() {
             </thead>
         </table>
     </div>
+    <div data-options="region:'south'">
+	    <dl class="Tbottom">
+	        <dd>
+                <button class="btn excel" id="fnExcel">엑셀다운로드</button>
+            </dd>
+	    </dl>
+	</div>
 </div>
 <c:import url="/adm/page_bottom.do" />
