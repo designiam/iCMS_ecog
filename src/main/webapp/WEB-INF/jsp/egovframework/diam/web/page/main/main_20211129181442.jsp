@@ -3,7 +3,197 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<section class="main-section sec-best">
+
+<!-- 최신 발행호 중 3개 콘텐츠 슬라이드// -->
+<!-- topSlider// -->
+<div id="topSlider">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide"> 
+			<a href="#" target="#">
+				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
+			</a>
+		</div>
+		<div class="swiper-slide"> 
+			<a href="#" target="#">
+				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
+			</a>
+		</div>
+		<div class="swiper-slide"> 
+			<a href="#" target="#">
+				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
+			</a>
+		</div>
+	</div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+</div>
+<!-- //topSlider -->
+<!-- //최신 발행호 중 3개 콘텐츠 슬라이드 -->
+
+<!-- guick_banner// -->
+<div id="guick_banner">
+	<div class="inner">
+		<ul class="quick_list">
+			<li><a href="https://www.instagram.com/ecogwangju_official/" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="instagram"></i><span class="hidden">인스타그램</span></a></li>
+			<li><a href="https://blog.naver.com/ecogj" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="blog"></i><span class="hidden">네이버블로그</span></a></li>
+			<li><a href="https://www.facebook.com/ecogwangju" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="facebook"></i><span class="hidden">페이스북</span></a></li>
+			<li><a href="https://www.youtube.com/channel/UCCd9MhX9BrrS-vIbevOvo7w" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="youtube"></i><span class="hidden">유튜브</span></a></li>
+			<li><a href="https://pf.kakao.com/_lxegxnxb" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="kakao"></i><span class="hidden">카카오채널</span></a></li>
+			<li><a href="?contentId=8180651d8a732fbb4725b901344c433690e13340dae9f2585414d363ee17aaf0"><i class="opinion"></i><span>의견게시판</span></a></li>
+		</ul>
+	</div>
+</div>
+<!-- //guick_banner -->
+
+<!-- 추천콘텐츠, 월간베스트, 최신콘텐츠// -->
+<div id="top_con_slide">
+	<!-- .inner// -->
+	<div class="inner">
+		<div class="tabMenu-wrap tab-style-03">
+			<ul>
+				<li class="tabMenu" data-value="1" data-id="">추천 콘텐츠</li>
+				<li class="tabMenu" data-value="2" data-id="">월간 BEST</li>
+				<li class="tabMenu" data-value="3" data-id="">최신 콘텐츠</li>
+			</ul>
+		</div>
+		<!-- //.tabMenu-wrap -->
+	
+		<div class="tabContent-wrap">
+			<div class="tabContent" data-aos="fade-up">
+			
+			
+			
+				<div class="top_con_box top_con_swiper swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="img_con">
+								<p class="img"><img src="/thema/basic/images/main/img_test.jpg" alt="" /></p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="img_con">
+								<p class="img"><img src="/thema/basic/images/main/img_test1111.jpg" alt="" /></p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="img_con">
+								<p class="img"><img src="/thema/basic/images/main/img_test.jpg" alt="" /></p>
+							</div>
+						</div>
+					</div>
+					<div class="control-wrap">
+						<div class="swiper-pagination"></div>
+						<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
+						<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
+						<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
+						<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
+					</div>
+				</div>
+				<div class="gallery-thumb-box gallery-thumb-swiper swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="thumb_img"><img src="/thema/basic/images/main/img_test2.jpg" alt="" /></div>
+							<div class="thumb_txt">
+								<p class="cate type_1">Article</p>
+								<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="thumb_img"><img src="/thema/basic/images/main/img_test2.jpg" alt="" /></div>
+							<div class="thumb_txt">
+								<p class="cate type_2">People</p>
+								<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="thumb_img"><img src="/thema/basic/images/main/img_test2.jpg" alt="" /></div>
+							<div class="thumb_txt">
+								<p class="cate type_3">함께G</p>
+								<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+					$(function(e) {					
+						var thumbSwiper = new Swiper('.gallery-thumb-swiper', {
+							spaceBetween: 0,
+							slidesPerView: 1,
+							speed: 3000,
+							freeMode: true,
+							watchSlidesVisibility: true,
+							watchSlidesProgress: true,
+							observer: true,
+							observeParents: true,
+							breakpoints: {
+								1024: {
+									slidesPerView: 3
+								},
+								768: {
+									slidesPerView: 3
+								},
+								486: {
+									slidesPerView: 3
+								}
+							}
+						});
+						var mainSwiper = new Swiper('.top_con_swiper', {
+							effect: 'fade',
+							spaceBetween: 0,
+							loop: true,
+							slidesPerView : 1,
+							slidesPerGroup : 1,
+							navigation: {
+								nextEl: '.swiper-gallery-next',
+								prevEl: '.swiper-gallery-prev',
+							},
+							pagination: {
+							  el: ".swiper-pagination",
+							  type: "fraction",
+							},
+						    autoplay : {
+						        delay : 3000, // 슬라이드 이동 시간 간격
+						        disableOnInteraction : false, // 버튼을 이용하여 컨트롤 한 이후에도 자동 재생 유지되도록
+						    },
+							thumbs: {
+								swiper: thumbSwiper
+							}
+						});
+					});
+					// 자동 재생 시작, 정지 버튼 만들기 스크립트
+					$('.top_con_swiper .swiper-gallery-pause').on('click', function() {
+					    swiper.autoplay.stop();
+					})
+					$('.top_con_swiper .swiper-gallery-play').on('click', function() {
+					    swiper.autoplay.start();
+					})
+				</script>
+				
+			</div>
+		</div>
+		<!-- //.tabContent-wrap -->
+	</div>
+	<!-- //.inner -->
+</div>
+<!-- //추천콘텐츠, 월간베스트, 최신콘텐츠 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="main-section sec-best" style="display:none;">
 	<div class="side-content">
 		<div class="title">
 			<h2>월간 <p><b>BEST</b></p></h2>
@@ -17,7 +207,7 @@
 	</div>
 	<!-- //.side-content -->
 		
-	<div class="inner">
+	<div class="inner_con">
 		<div class="" id="bestSlider" data-aos="fade-up">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
@@ -34,12 +224,12 @@
 		</div>
 		<!-- //#bestSlider -->
 	</div>
-	<!-- //.inner -->
+	<!-- //.inner_con -->
 </section>
 <!-- //.main-section.sec-best -->
 
 
-<section class="main-banner">
+<section class="main-banner" style="display:none;">
 	<c:choose>
 		<c:when test="${fn:length(bannerList) > 0}">
 			<div class="banner-slide " id="banSlider">
@@ -92,7 +282,7 @@
 <!-- //.main-banner -->
 
 
-<section class="main-section sec-now">
+<section class="main-section sec-now" style="display:none;">
 	<div class="side-content">
 		<div class="title">
 			<h2>ECO-G <p><b>NOW</b></p></h2>
@@ -115,7 +305,7 @@
 	</div>
 	<!-- //.side-content -->
 		
-	<div class="inner">
+	<div class="inner_con">
 		<div class="tabContent-wrap">
 			<div class="tabContent" data-aos="fade-up">
 				<div class="masonry" >
@@ -134,11 +324,11 @@
 		</div>
 		<!-- //.tabContent-wrap -->
 	</div>
-	<!-- //.inner -->
+	<!-- //.inner_con -->
 </section>
 <!-- //.main-section.sec-now -->
 
-<section class="main-section sec-sns">
+<section class="main-section sec-sns" style="display:none;">
 	<div class="side-content">
 		<div class="title">
 			<h2>소통해요 <p><b>#SNS</b></p></h2>
@@ -161,7 +351,7 @@
 		<!-- //.sns-wrap -->
 	</div>
 	<!-- //.side-content -->
-	<div class="inner">
+	<div class="inner_con">
 		<div>
 			<div class="video-container">
 				<div class="video-wrap" id="setYoutube">
@@ -195,8 +385,32 @@
 		</div>
 		<!-- //#snsSlider -->
 	</div>
-	<!-- //.inner -->
+	<!-- //.inner_con -->
 </section>
+
+<script>
+	$(function() {
+		//최신 발행호
+		var topSlider = new Swiper( '#topSlider', {
+			slidesPerView: 'auto',
+			speed: 3000,
+			allowTouchMove:true,
+			loop: true,
+			autoplay: {
+			delay: 3000,
+			autoplayDisableOnInteraction: false,
+			disableOnInteraction: false,
+			pauseOnMouseEnter:true,
+			},
+			
+			navigation: {
+				nextEl: '#topSlider .swiper-button-next',
+				prevEl: '#topSlider .swiper-button-prev',
+			},
+		});
+	});
+</script>
+
 <script>
 $(function(){
 	getPopularData();

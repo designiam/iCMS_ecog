@@ -88,7 +88,10 @@
 		<div id="hd_logo">
 			<c:choose>
 				<c:when test="${CONFIG_INFO.dm_top_logo ne null && not empty CONFIG_INFO.dm_top_logo}">
-					<c:choose>
+					<a class="hd_logo_bk" href="<c:out value='${param.root }'/>/index.do">
+						<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
+					</a>
+					<%-- <c:choose>
 						<c:when test="${pageVO.dm_main_content eq '1'}">
 							<a class="hd_logo_bk" href="<c:out value='${param.root }'/>/index.do">
 								<img src="${layout_path}/images/main/logo_ecog.png" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" />
@@ -99,7 +102,7 @@
 								<img src="<c:out value='${CONFIG_INFO.dm_top_logo}'/>" alt="<c:out value='${CONFIG_INFO.dm_site_name}'/>" onerror="this.src='<c:out value='${layout_path}'/>/images/logo.png'"/>
 							</a>
 						</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 				</c:when>
 				<c:otherwise>
 					<a href="<c:out value='${param.root }'/>/index.do">
@@ -210,27 +213,6 @@
 			</div>
 		</div>
 
-		<div id="hd_button">
-			<ul>
-				<li>
-					<button type="button" class="hd_button_search">
-						<i class="di di-search03" aria-hidden="true"></i>
-						<span class="sr-only">검색 열기</span>
-					</button>
-				</li>
-				<li>
-					<button type="button" class="hd_button_navbar" data-toggle="sitemap">
-						<i class="di di-menu" aria-hidden="true"></i>
-						<span class="sr-only">사이트맵 열기</span>
-					</button>
-				</li>
-			</ul>
-		</div>
-		
-		<div class="btn-wrap">
-			<a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn-sm btn-fill-02">지난호 보기</a>
-		</div>
-
         <div id="hd_mapper">
             <button type="button" data-toggle="sitemap">
                 <span class="sr-only">사이트맵 열기</span>
@@ -289,6 +271,28 @@
 			<!-- //#gnb_wrap -->
 		</div>
 		<!-- //#gnb -->
+
+		<div id="hd_button">
+			<ul>
+				<li>
+					<button type="button" class="hd_button_search">
+						<i aria-hidden="true"></i>
+						<span class="sr-only">검색 열기</span>
+					</button>
+				</li>
+				<%-- <li>
+					<button type="button" class="hd_button_navbar" data-toggle="sitemap">
+						<i class="di di-menu" aria-hidden="true"></i>
+						<span class="sr-only">사이트맵 열기</span>
+					</button>
+				</li> --%>
+			</ul>
+		</div>
+		
+		<div class="btn-wrap2">
+			<a href="#" data-toggle="modal" data-target="#Modal" class="btn_b subscribe">구독하기</a>
+			<!-- <a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn-sm btn-fill-02">지난호 보기</a> -->
+		</div>
 		
 	</div>
 	<!-- //#hd_wrap -->
@@ -424,6 +428,7 @@
 	<div id="pop_wrap">
 	</div>
 </div>
+
 <div id="vis">
 	<div id="vis_wrap">
 		<c:forEach items="${menuList}" var="item">
@@ -787,10 +792,10 @@
 			if (checkEng(txt)) {
 				$(obj).css("font-family", "'Poppins',sans-serif");
 			} else if (checkKor(txt)) {
-				$(obj).css("font-family", "'Pretendard',sans-serif");
+				$(obj).css("font-family", "'Poppins',sans-serif");
 			} else {
 				//디폴트 font
-				$(obj).css("font-family", "'Pretendard',sans-serif");
+				$(obj).css("font-family", "'Poppins',sans-serif");
 			}
 		});
 	}

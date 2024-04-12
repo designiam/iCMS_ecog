@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/common.css' />">
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/base.css' />">
 <link rel="stylesheet" href="<c:url value='${layout_path}/css/diam.css' />">
+<link rel="stylesheet" href="<c:url value='${layout_path}/css/layout.css' />">
 
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/jquery/jquery-1.12.4.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/jquery-scrolla/js/jquery.scrolla.min.js' />"></script>
