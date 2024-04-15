@@ -49,7 +49,7 @@ function copyUrl(){
 </script>
 </c:if>
 
-<c:if test="${pageVO.dm_main_content eq '1'}">
+<%-- <c:if test="${pageVO.dm_main_content eq '1'}">
 	<div class="scroll_right_cont main">
 		<ul>
 			<li class="float01">
@@ -72,7 +72,7 @@ function copyUrl(){
 			</li>
 		</ul>
 	</div>
-</c:if>
+</c:if> --%>
 
 <footer id="ft">
 	<div id="ft_wrap">
