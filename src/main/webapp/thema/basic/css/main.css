@@ -6,12 +6,9 @@
 /* 최신 발행호 */
 #topSlider.hidden{opacity:0;overflow:hidden;visibility:hidden;} 
 #topSlider{ position:relative; width:100%; margin-left:auto;margin-right:auto;height:inherit;z-index:1;transition:height .1s, opacity .2s;display:block;visibility:visible;opacity:1;}
-#topSlider::before{content:'';background:url(../images/main/shadow.png) repeat-x 0 50%;position:absolute;top:0;left:0;right:0;bottom:0;opacity:.6;z-index:2;}
 #topSlider .swiper-wrapper {position: relative;z-index:1}
-#topSlider .swiper-slide{display:flex;justify-content:center;height:0;padding-top:350px;position:relative;overflow:hidden;z-index:2}
-#topSlider .swiper-slide::before{display: none;content:'';background:url(../images/main/shadow.png) repeat-x 0 50%;position:absolute;top:0;left:0;right:0;bottom:0;opacity:.6;z-index:1;}
-#topSlider .swiper-slide img{position:absolute;top:50%;left:50%;right:0;bottom:0;transform:translate(-50%, -50%);width:100%;}
-#topSlider .swiper-slide img[data-device="mobile"]{opacity:0;visibility:hidden}
+#topSlider .swiper-slide{display:flex;justify-content:center;align-items:center;max-height:350px;overflow:hidden;z-index:2}
+#topSlider .swiper-slide img{width:100%;height:100%;}
 #topSlider [class*='swiper-button-']{color:rgba(255,255,255,0.5);z-index:101;}
 #topSlider .swiper-button-prev,
 #topSlider .swiper-button-next { transform:translateY(-50%); margin:0; }
@@ -34,12 +31,15 @@
 
 /* 추천콘텐츠, 월간베스트, 최신콘텐츠 */
 #top_con_slide { margin:50px 0 80px; overflow:hidden; }
-#top_con_slide .inner { max-width:800px; }
+#top_con_slide .inner { max-width:800px; padding:0; }
 #top_con_slide .tab-pane { display:none; }
 #top_con_slide .tab-pane.active { display:block; }
+#top_con_slide .tab-style-02 .nav { position:relative; margin-bottom:30px; }
+#top_con_slide .tab-style-02 .nav-item { padding:0 20px 10px 15px; border-bottom:1px solid #000; }
 .tab-style-02 .nav-item .nav-link { color:#606060; font-size:1rem; font-weight:300; letter-spacing:-0.05em; }
 .tab-style-02 .nav-item .nav-link::after { display:none; }
 .tab-style-02 .nav-item .nav-link.active { color:#000; font-weight:700; }
+#top_con_slide .tab-style-02 .nav-item:not(:last-child)::after { top:calc(50% - 5px); }
 @media (hover: hover), (-ms-high-contrast:none) {
 	.tab-style-02 .nav-item .nav-link:hover { color:#000; font-weight:700; }
 }
@@ -69,30 +69,31 @@
 #top_con_slide .top-con-thumb-swiper .thumb_txt .cate.type_1 { color:#139A43; background:#DAF5E4; }
 #top_con_slide .top-con-thumb-swiper .thumb_txt .cate.type_2 { color:#2F5DA0; background:#DFECFF; }
 #top_con_slide .top-con-thumb-swiper .thumb_txt .cate.type_3 { color:#006A97; background:#D0F7FF; }
-#top_con_slide .top-con-thumb-swiper .thumb_txt .t04 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:40px; margin-top:5px; color:#000; white-space:normal; word-wrap:break-word; text-overflow:ellipsis; overflow:hidden; }
-
+#top_con_slide .top-con-thumb-swiper .thumb_txt .t04 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:38px; margin-top:5px; color:#000; white-space:normal; word-wrap:break-word; text-overflow:ellipsis; overflow:hidden; }
 
 /* 콘텐츠 전체보기 */
 #contents_all { }
 #contents_all .tabContent-wrap { min-height:332px; margin:50px 0 0; }
-.tab_menu_con { display:flex; justify-content:center; align-items:center; width:100%; padding:10px 0; background-color:#EFEFEF; }
-.tab_menu_con > div {  }
-.tab_menu_con .tab-style-02 .nav { margin:0; }
-.tab_menu_con .last_view { }
-.tab_menu_con .last_view a { display:block; min-width:120px; height:35px; padding:9px 15px; background-color:#fff; border:1px solid var(--color-g03); border-radius:5px; }
-.tab_menu_con .last_view i { margin-left:10px; transition:all 0.3s; }
-.tab_menu_con .last_view a:hover i { transform:rotate(-90deg); }
-#contents_all .tab-style-02 .nav-item .nav-link { color:#000; letter-spacing:-0.03em; line-height:1.2; font-size:0.875rem; font-weight:500; }
-#contents_all .tab-style-02 .nav-item .nav-link.active { color:#139A43; }
+#contents_all .tab_menu_con { display:flex; justify-content:center; align-items:center; width:100%; padding:10px 0; background-color:#EFEFEF; }
+#contents_all .tab_menu_con > div {  }
+#contents_all .tab_menu_con .tab-style-02 .nav { margin:0; justify-content:space-between; gap:5px 0; }
+#contents_all .tab_menu_con .tab-style-02 .nav-item { padding:0 20px 0 15px; }
+#contents_all .tab_menu_con .tab-style-02 .nav-item .nav-link { color:#000; letter-spacing:-0.03em; line-height:1.2; font-size:0.875rem; font-weight:500; }
+#contents_all .tab_menu_con .tab-style-02 .nav-item .nav-link.active { color:#139A43; border-bottom:1px solid #139A43; }
 @media (hover: hover), (-ms-high-contrast:none) {
-	#contents_all .tab-style-02 .nav-item .nav-link:hover { color:#139A43; }
+	#contents_all .tab_menu_con .tab-style-02 .nav-item .nav-link:hover { color:#139A43; }
 }
+#contents_all .tab_menu_con .last_view { }
+#contents_all .tab_menu_con .last_view a { display:block; min-width:120px; height:35px; padding:9px 15px; background-color:#fff; border:1px solid var(--color-g03); border-radius:5px; }
+#contents_all .tab_menu_con .last_view i { margin-left:10px; transition:all 0.3s; }
+#contents_all .tab_menu_con .last_view a:hover i { transform:rotate(-90deg); }
 #contents_all .tab-pane { display:none; }
 #contents_all .tab-pane.active { display:block; }
 #contents_all .tab-pane > ul { display:flex; flex-wrap:wrap; width:calc(100% + 30px); margin-left:-15px; overflow:hidden; }
 #contents_all .tab-pane > ul > li { width:calc(33.33% - 30px); min-height:332px; margin:0 15px 80px; }
+#contents_all .tab-pane > ul > li:nth-child(n+10):nth-child(-n+12) { margin-bottom:30px; }
 #contents_all .tab-pane > ul > li > a { }
-#contents_all .tab-pane > ul > li > a .img { width:348px; height:200px; background-color:#C4C4C4; border-radius:5px 5px 0 0; overflow:hidden; }
+#contents_all .tab-pane > ul > li > a .img { /* width:348px; */ height:200px; background-color:#C4C4C4; border-radius:5px 5px 0 0; overflow:hidden; }
 #contents_all .tab-pane > ul > li > a .img img { width:100%; height:100%; transition:all .25s; }
 #contents_all .tab-pane > ul > li > a:hover .img img { transform:scale(1.1); }
 #contents_all .tab-pane .con_txt { margin:15px; }
@@ -107,7 +108,7 @@
 #contents_all .tab-pane .con_txt .bot .tag li { display:inline-block; margin-right:5px; padding:2px 6px; border:1px solid #606060; font-weight:400; letter-spacing:-0.03em; line-height:1.2; font-size:0.625rem; }
 
 /* 지난호보기 */
-#webzine_last_view { width:100%; min-height:105px; padding:15px 0 10px; background-color:#F2F2F2; }
+#webzine_last_view { width:100%; min-height:105px; margin-top:50px; padding:15px 0 10px; background-color:#F2F2F2; }
 #webzine_last_view .inner { display:flex; align-items:center; justify-content:center; }
 #webzine_last_view .con_txt { display:inline-block; position:relative; padding-right:214px; text-align:center; }
 #webzine_last_view .con_txt::before { content:''; display:block; position:absolute; bottom:0; right:0; width:188px; height:141px; background:url('../images/main/img_link.png') 0 0 no-repeat; }
@@ -120,7 +121,7 @@
 
 /* 이벤트_sns로 만나는 광주환경공단 */
 #event_sns { width:100%; padding:50px 0 60px; background-color:#F2FCF4; }
-#event_sns .inner { display:flex; justify-content:space-between; max-width:800px; }
+#event_sns .inner { display:flex; flex-wrap:wrap; justify-content:space-between; gap:15px 0; max-width:800px; }
 #event_sns .inner .tit { margin-bottom:8px; color:#000; }
 #event_sns .event_con {  }
 #event_sns .event_con .img { width:300px; height:420px; background-color:#C4C4C4; overflow:hidden; }
@@ -138,9 +139,103 @@
 #event_sns .sns_con .kakao { background-image:url('../images/main/ico_kakao_on.png'); }
 #event_sns .sns_con .blog { background-image:url('../images/main/ico_blog_on.png'); }
 
+/* 반응형 기본 */
+/* Media Query - PC First */
 
+@media (max-width: 1560px) {
+	
+}
 
+@media (max-width: 1500px) {
+	
+}
 
+@media (max-width: 1200px) {
+	
+}
+
+@media (max-width: 1100px) {
+	/* 콘텐츠 전체보기 */
+	
+}
+
+@media (max-width: 992px) {
+	/* 퀵배너 */
+	#guick_banner { padding:15px 0; }
+	#guick_banner .quick_list { gap:0 20px; }
+}
+
+@media (max-width: 800px) {
+	/* 추천콘텐츠, 월간베스트, 최신콘텐츠 */
+	#top_con_slide { margin:30px 0; }
+	#top_con_slide .inner { max-width:none; padding:0 2%; }
+	#top_con_slide .tabContent-wrap { min-height:auto; }
+	#top_con_slide .top-con-swiper { float:none; margin:0 auto; }
+	#top_con_slide .top-con-swiper .swiper-slide .img_con .img { }
+	#top_con_slide .top-con-thumb-swiper { float:none; margin:0 auto; }
+	#top_con_slide .top-con-thumb-swiper .thumb_txt .t04 { height:35px; }
+	
+	/* 콘텐츠 전체보기 */
+	#contents_all .tabContent-wrap { margin:30px 0 0 0; }
+	#contents_all .tab-pane > ul { width:calc(100% + 20px); margin-left:-10px; }
+	#contents_all .tab-pane > ul > li { width:calc(50% - 20px); margin:0 10px; }
+	
+	/* 이벤트_sns로 만나는 광주환경공단 */
+	#event_sns { padding:30px 0; }
+	#event_sns .inner { max-width:none; padding:0 2%; }
+	#event_sns .event_con { width:100%; }
+	#event_sns .event_con .img { width:100%; margin:0 auto; }
+	#event_sns .sns_con { width:100%; margin:0 auto; }
+	#event_sns .sns_con ul li a { width:100%; height:200px; }
+}
+
+@media (max-width: 768px) {
+	/* 퀵배너 */
+	#guick_banner { padding:10px 0; }
+	#guick_banner .quick_list { gap:0 10px; }
+	#guick_banner .quick_list li i { width:25px; height:25px; background-size:65% auto; }
+	#guick_banner .quick_list li .blog { background-size:75% auto; }
+	#guick_banner .quick_list li .facebook { background-size:40% auto; }
+}
+
+@media (max-width: 620px) {
+	/* 콘텐츠 전체보기 */
+	#contents_all .tab_menu_con { gap:0 10px; padding:10px; }
+	#contents_all .tab_menu_con .tab-style-02 .nav {  }
+	#contents_all .tab_menu_con .tab-style-02 .nav-item { width:50%; padding:0; }
+	#contents_all .tab_menu_con .tab-style-02 .nav-item .nav-link.active { border:0 none; }
+	.tab-style-02 .nav-item:nth-child(2)::after { display:none; }
+	#contents_all .tab_menu_con .last_view a { min-width:110px; }
+	
+}
+
+@media (max-width: 576px) {
+	/* 콘텐츠 전체보기 */
+	#contents_all .tab-pane > ul { width:100%; margin:0 auto; }
+	#contents_all .tab-pane > ul > li { width:100%; min-height:auto; margin:0 auto 10px; }
+	
+	/* 지난호보기 */
+	#webzine_last_view { margin-top:0; }
+	#webzine_last_view .con_txt { padding-right:160px; }
+	#webzine_last_view .con_txt::before { bottom:-16px; width:142px; height:120px; background-size:100% auto; }
+}
+
+@media (max-width: 486px) {
+	/* 이벤트_sns로 만나는 광주환경공단 */
+	#event_sns .sns_con ul { width:100%; margin:0; }
+	#event_sns .sns_con ul li { width:100%; margin:0 0 20px; }
+}
+
+@media (max-width: 400px) {
+	/* 콘텐츠 전체보기 */
+	#contents_all .tab_menu_con { flex-wrap:wrap; gap:10px 0; }
+}
+
+@media (max-width: 350px) {
+	/* 지난호보기 */
+	#webzine_last_view .con_txt { padding:0; }
+	#webzine_last_view .con_txt::before { display:none; }
+}
 
 
 
@@ -148,37 +243,23 @@
 
 
 /* 레이아웃 */
-#container { display: block; max-width: none; margin: 0; }
-#ft_wrap { /* left: calc(3% + 490px); */ max-width: 1100px; }
-@media (max-width: 1560px) {
+/* @media (max-width: 1560px) {
   #gnb_1dul .gnb_1dli { flex: 1 0 100px; }  
 }
-@media (max-width: 1500px) {
-  #hd_wrap { padding: 0 3%; }
-  #hd_logo a { left: 0; }
-}
-@media (max-width: 1400px) {
-  #hd_logo a { display: none; }
-  #ft_wrap { left: calc(3% + 280px); padding: 0; }
-}
-@media (max-width: 992px) {
-  #hd_wrap { top: 50px; }
-  #ft_wrap { left: auto; padding: 0 2rem; }
-}
+*/
 
 /* 공통 사용 */
 .main-section { position: relative; padding: 8.438rem 0 5.625rem; }
 .main-section .inner_con,
-#vis .main-slide .swiper-slide .main-slide-txt { padding-left: calc(3% + 445px + 4.375rem); padding-right: 9.688rem; }
+/* #vis .main-slide .swiper-slide .main-slide-txt { padding-left: calc(3% + 445px + 4.375rem); padding-right: 9.688rem; } */
 .main-section .inner_con { position: relative; }
 @media (max-width: 1500px) {
-	#container { padding: 0; }
 	.main-section .inner_con,
-    #vis .main-slide .swiper-slide .main-slide-txt { padding-right: 3rem; }
+    /* #vis .main-slide .swiper-slide .main-slide-txt { padding-right: 3rem; } */
 }
 @media (max-width: 1400px) {
 	.main-section .inner_con,
-    #vis .main-slide .swiper-slide .main-slide-txt{ padding-left: calc(3% + 280px + 2rem); }
+    /* #vis .main-slide .swiper-slide .main-slide-txt{ padding-left: calc(3% + 280px + 2rem); } */
 }
 @media (max-width: 1200px) {
 	.main-section { padding: 5rem 0; }
@@ -186,8 +267,7 @@
 @media (max-width: 992px) {
 	.main-section { padding: 2rem 0 5rem; }
 	.main-section .inner_con,
-    #vis .main-slide .swiper-slide .main-slide-txt{ padding: 0 2rem; }
-	.m-vol { display: flex; }
+    /* #vis .main-slide .swiper-slide .main-slide-txt{ padding: 0 2rem; } */
 }
 
 

@@ -8,21 +8,9 @@
 <!-- topSlider// -->
 <div id="topSlider">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"> 
-			<a href="#" target="#">
-				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
-			</a>
-		</div>
-		<div class="swiper-slide"> 
-			<a href="#" target="#">
-				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
-			</a>
-		</div>
-		<div class="swiper-slide"> 
-			<a href="#" target="#">
-				<img src="/thema/basic/images/main/img_visual_1.png" alt="">
-			</a>
-		</div>
+		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
+		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
+		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
 	</div>
 	<div class="swiper-button-prev"></div>
 	<div class="swiper-button-next"></div>
@@ -134,25 +122,26 @@
 								  el: ".swiper-pagination",
 								  type: "fraction",
 								},
-								});
-								var galleryThumbs = new Swiper('.top-con-thumb-swiper', {
-								  direction: 'vertical',
-								  slidesPerView: 3,
-								  slideToClickedSlide: true,
-								  spaceBetween: 0,
-								  loop: true,
-								  loopedSlides: 3,
-								});
-								galleryTop.controller.control = galleryThumbs;
-								galleryThumbs.controller.control = galleryTop;
+							});
+							var galleryThumbs = new Swiper('.top-con-thumb-swiper', {
+							  direction: 'vertical',
+							  slidesPerView: 3,
+							  slideToClickedSlide: true,
+							  spaceBetween: 0,
+							  loop: true,
+							  loopedSlides: 3,
+							});
+							galleryTop.controller.control = galleryThumbs;
+							galleryThumbs.controller.control = galleryTop;
+
+							// 자동 재생 시작, 정지 버튼 만들기 스크립트
+							$('.top-con-swiper .swiper-gallery-pause').on('click', function() {
+								galleryTop.autoplay.stop();
+							});
+							$('.top-con-swiper .swiper-gallery-play').on('click', function() {
+								galleryTop.autoplay.start();
+							});
 						});
-						// 자동 재생 시작, 정지 버튼 만들기 스크립트
-						$('.control-wrap .swiper-gallery-pause').on('click', function() {
-						    swiper.autoplay.stop();
-						})
-						$('.control-wrap .swiper-gallery-play').on('click', function() {
-						    swiper.autoplay.start();
-						})
 					</script>
 				</div>
 				<!-- //추천콘텐츠 -->
