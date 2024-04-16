@@ -468,8 +468,8 @@
 		<c:choose>
 			<c:when test="${pageVO.dm_main_content ne '1'}">
 				<!-- 메뉴별 비주얼 이미지 설정 -->
-				<div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/${empty imgUrl ? '00' : name}.jpg');">
-				<!-- <div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/00.jpg');"> -->
+				<div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/${empty imgUrl ? '00' : name}.png');">
+				<!-- <div class="titler" id="titler" style="background-image: url('/thema/basic/images/title/00.png');"> -->
 				<c:forEach items="${menuList}" var="item">
 					<c:if test="${item.dm_link_data eq pageVO.dm_uid}">
 						<c:set var="exist" value="exist"/>
@@ -650,6 +650,20 @@
 				<!-- //.menutab -->
 				</div>
 				<!-- //.titler -->
+				<!-- guick_banner// -->
+				<div id="guick_banner">
+					<div class="inner">
+						<ul class="quick_list">
+							<li><a href="https://www.instagram.com/ecogwangju_official/" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="instagram"></i><span class="hidden">인스타그램</span></a></li>
+							<li><a href="https://blog.naver.com/ecogj" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="blog"></i><span class="hidden">네이버블로그</span></a></li>
+							<li><a href="https://www.facebook.com/ecogwangju" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="facebook"></i><span class="hidden">페이스북</span></a></li>
+							<li><a href="https://www.youtube.com/channel/UCCd9MhX9BrrS-vIbevOvo7w" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="youtube"></i><span class="hidden">유튜브</span></a></li>
+							<li><a href="https://pf.kakao.com/_lxegxnxb" target="_blank" title="새창열림" rel="noopener noreferrer"><i class="kakao"></i><span class="hidden">카카오채널</span></a></li>
+							<li><a href="?contentId=8180651d8a732fbb4725b901344c433690e13340dae9f2585414d363ee17aaf0"><i class="opinion"></i><span>의견게시판</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- //guick_banner -->
 			</c:when>
 			<c:otherwise>
 				<c:choose>
@@ -810,9 +824,7 @@
 	    var regExp = /^[가-힣|\-]+$/;
 	    return regExp.test(str) ? true : false;
 	}
-	
 </script>
-
 <%--<div class="overlay"></div>
  <c:if test="${pageVO.dm_main_content ne '1'}">
     <c:import url="/web/frame_top.sub.do" />

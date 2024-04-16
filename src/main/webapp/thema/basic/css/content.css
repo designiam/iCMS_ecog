@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
+/* */
+.bbs_view { margin:0; }
+
 /* 제거 항목 */
-#vis #titler, .bbs_view_info, .nb_ul, .bbs_viewbtn_1 { display: none; }
+#vis #titler, .bbs_view_info, .nb_ul, .bbs_viewbtn_1, #guick_banner { display: none; }
 .bbs_viewing { border: 0; }
 .bbs_view_contents { padding: 3.125rem 0 6.25rem; }
 
 /* 컨테이너 */
-#container { max-width: 900px; }
+#container { max-width: 800px; }
 @media (max-width: 992px) {
   #container { padding: 0 1rem; }
 }
@@ -16,7 +19,7 @@
 .bbs_view_header img { opacity: 0; visibility: hidden; }
 
 @media (min-width: 1930px) {
-  .bbs_view_header { height: 360px; }
+  .bbs_view_header { height: 300px; }
 }
 @media (max-width: 992px) {
   .bbs_view_header { height: 160px; }

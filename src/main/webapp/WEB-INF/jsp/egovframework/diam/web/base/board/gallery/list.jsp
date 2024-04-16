@@ -13,11 +13,172 @@
 <c:set var="page" value="${param.page eq null ? 1 : param.page}"/>
 <c:set var="curDate" value="<%=curDate%>"/>
 <c:set var="ratio" value="${boardVO.dm_gallery_height / boardVO.dm_gallery_width * 100}"/>
+
+<!-- 인기게시물// -->
+<div class="favor_con_wrap">
+	<!-- .inner// -->
+	<div class="inner">
+		<!-- 인기검색어// -->
+		<div class="favor_keyword">
+			<p class="tit t02"># 인기검색어 <i class="fa fa-solid fa-angle-right"></i></p>
+			<ul class="keyword_list">
+				<li><a href="#">#키워드1</a></li>
+				<li><a href="#">#키워드2</a></li>
+				<li><a href="#">#키워드3</a></li>
+			</ul>
+		</div>
+		<!-- //인기검색어 -->
+		<!-- 리스트// -->
+		<div class="favor_list">
+			<ul>
+				<li>
+					<a href="#">
+						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="con_txt">
+							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
+							<div class="bot">
+								<p class="vol">vol. 70</p>
+								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="con_txt">
+							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
+							<div class="bot">
+								<p class="vol">vol. 70</p>
+								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="con_txt">
+							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
+							<div class="bot">
+								<p class="vol">vol. 70</p>
+								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- //리스트 -->
+	</div>
+	<!-- //.inner -->
+</div>
+<!-- //인기게시물 -->
+
 <c:if test="${boardVO.dm_header_content ne null && boardVO.dm_header_content ne ''}">
 	<c:out value="${boardVO.dm_header_content}" escapeXml="false"/>
 </c:if>
+
+<!-- bbs// -->
 <div class="bbs bbs_list bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
-	
+	<!-- .tabMenu-wrap// -->
+	<div class="tabMenu-wrap tab-style-02">
+		<ul class="nav">
+			<li class="nav-item"><button type="button" class="nav-link active" id="tab-con-1" data-toggle="tab" data-target="#tab-content-1" role="tab" aria-controls="tab-content-1" aria-selected="true">전체 콘텐츠 <span><c:out value='${writeListCnt}'/></span></button></li>
+			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-2" data-toggle="tab" data-target="#tab-content-2" role="tab" aria-controls="tab-content-2" aria-selected="false">최근 발행호 <span>71호</span></button></li>
+			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-3" data-toggle="tab" data-target="#tab-content-3" role="tab" aria-controls="tab-content-3" aria-selected="false">많이 본 콘텐츠 </button></li>
+			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-4" data-toggle="tab" data-target="#tab-content-4" role="tab" aria-controls="tab-content-4" aria-selected="false">공감 콘텐츠</button></li>
+			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-5" data-toggle="tab" data-target="#tab-content-5" role="tab" aria-controls="tab-content-5" aria-selected="false">최신 콘텐츠</button></li>
+		</ul>
+	</div>
+	<!-- //.tabMenu-wrap -->
+
+	<div class="tabContent-wrap">
+		<div class="tabContent">
+			<!-- 전체 콘텐츠// -->
+			<div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="tab-con-1">
+				<!-- .bbs_gallist// -->
+				<div class="bbs_gallist">
+					<c:choose>
+						<c:when test="${fn:length(writeList) > 0}">
+							<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+								<c:forEach var="result" items="${writeList}" varStatus="status">
+									<li class="cell col">
+										<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
+											<div class="img">
+												<c:choose>
+													<c:when test="${empty result.wr_thumb }">
+														<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
+															<img src="/images/no_image.png" alt="no image">
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
+															<img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src='/images/no_image.png'">
+														</div>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<!-- //.cell_thumb -->
+											<div class="con_txt">
+												<p class="tit t02"><c:out value="${result.wr_subject}" escapeXml='false'/></p>
+												<div class="bot">
+													<p class="vol">vol. <c:out value="${result.wr_vol}" escapeXml='false'/></p>
+													<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</c:forEach>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<p class="empty"><img src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></p>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<!-- //.bbs_gallist -->
+				<!-- 페이징// -->
+				<div class="bbs_paging">
+					<c:out value='${pagingStr}' escapeXml="false"/>
+				</div>
+				<!-- //페이징 -->
+			</div>
+			<!-- //전체 콘텐츠 -->
+			<!-- 최근 발행호// -->
+			<div class="tab-pane fade" id="tab-content-2" role="tabpanel" aria-labelledby="tab-con-2">
+				최근 발행호
+			</div>
+			<!-- //최근 발행호 -->
+			<!-- 많이 본 콘텐츠// -->
+			<div class="tab-pane fade" id="tab-content-3" role="tabpanel" aria-labelledby="tab-con-3">
+				많이 본 콘텐츠
+			</div>
+			<!-- //많이 본 콘텐츠 -->
+			<!-- 공감 콘텐츠// -->
+			<div class="tab-pane fade" id="tab-content-4" role="tabpanel" aria-labelledby="tab-con-4">
+				공감 콘텐츠
+			</div>
+			<!-- //공감 콘텐츠 -->
+			<!-- 최신 콘텐츠// -->
+			<div class="tab-pane fade" id="tab-content-5" role="tabpanel" aria-labelledby="tab-con-5">
+				최신 콘텐츠
+			</div>
+			<!-- //최신 콘텐츠 -->
+		</div>
+	</div>
+</div>
+<!-- //bbs -->
+
+<c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">
+	<c:out value="${boardVO.dm_footer_content}" escapeXml="false"/>
+</c:if>
+
+<%-- <c:if test="${boardVO.dm_header_content ne null && boardVO.dm_header_content ne ''}">
+	<c:out value="${boardVO.dm_header_content}" escapeXml="false"/>
+</c:if>
+<div class="bbs bbs_list bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
+
 	<c:if test="${boardVO.dm_use_list_category eq '1' && boardVO.dm_use_category eq '1'}">
 		<c:set var="category_array" value="${fn:split(boardVO.dm_category_list ,',') }"/>
 		<c:if test="${fn:length(category_array) > 0}">
@@ -39,6 +200,7 @@
 			</div>
 		</c:if>
 	</c:if>
+	
 	<div class="bbs_leadin">
 		<div class="bbs_count">
 			<span>전체 <b><c:out value='${writeListCnt}'/></b>건</span><span>(<c:out value='${page}'/>/<c:out value='${total_page}'/>page)</span>
@@ -189,7 +351,7 @@
 		<c:out value='${pagingStr}' escapeXml="false"/>
 	</div>
 	
-	<%-- <div class="bbs_search">
+	<div class="bbs_search"><!-- 기존 추석 처리 되어있었음 -->
 		<fieldset>
 			<h3>검색</h3>
 			<form id="search_form" action="<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${pageVO.dm_uid}'/>&command=list" method="post" >
@@ -205,18 +367,18 @@
 				<button type="submit" class="sch_button"><span>검색</span></button>
 			</form>
 		</fieldset>
-	</div> --%>
+	</div>
 	
-	<%-- <div class="bbs_listbtn">
+	<div class="bbs_listbtn"><!-- 기존 추석 처리 되어있었음 -->
 		<c:if test="${is_write eq true}">
 			<a href="<c:out value='${param.root }'/>/index.do?command=write&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">작성하기</a>
 		</c:if>
-	</div> --%>
+	</div>
 </div>
 
 <c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">
 	<c:out value="${boardVO.dm_footer_content}" escapeXml="false"/>
-</c:if>
+</c:if> --%>
 <script>
 	$(document).on("click", ".bbs_order button" , function(){
 		var activeStatus = $(this).attr("class").indexOf("active") > -1;

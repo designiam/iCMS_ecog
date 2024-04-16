@@ -597,7 +597,7 @@ html #ft #ft_goto.fixed #shortcut { opacity: 1; visibility: visible; }
 }
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 992px) {
-  #vis #titler { background-image: none !important; }
+  /* #vis #titler { background-image: none !important; } */
   #ft_info .ft_comp > ul { flex-direction: column; gap: 0.5rem; }
   #ft_info .ft_comp > ul > li:not(:last-child)::after { display: none; }
   #ft_goto #shortcut { width: 6rem; height: 6rem; }

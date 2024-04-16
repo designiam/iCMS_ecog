@@ -62,7 +62,8 @@
 <script type="text/javascript" src="<c:url value='${layout_path}/js/main.js'/>"></script>
 <c:choose>
 	<c:when test="${pageVO.dm_main_content ne '1'}">
-		<script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script>
+		<%-- <script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script> --%>
+		<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
 	</c:when>
 </c:choose>
 

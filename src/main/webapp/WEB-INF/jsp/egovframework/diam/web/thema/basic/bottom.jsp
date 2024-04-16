@@ -8,7 +8,22 @@
 		</c:if>
 	</div>
 </div>
-<c:set value="${param.command}" var="comm"/>
+
+<!-- 뉴스레터구독// -->
+<c:if test="${pageVO.dm_main_content ne '1'}">
+<div class="bot_subscribe">
+	<div class="inner">
+		<div class="con_txt">
+			<p class="txt">환경소식을 빠르게 만나는 방법!</p>
+			<p class="tit">함께 GREEN 광주 구독하기</p>
+			<p class="btn"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e#" class="btn_go">뉴스레터 구독 <i class="fas fa-thin fa-arrow-right"></i></a></p>
+		</div>
+	</div>
+</div>
+</c:if>
+<!-- //뉴스레터구독 -->
+		
+<%-- <c:set value="${param.command}" var="comm"/>
 <c:set value="${pageVO.dm_page_type eq 'BOARD' ? ((!empty comm && comm ne 'list') ? true: false) : ((pageVO.dm_page_name eq '이벤트' || pageVO.dm_page_name eq '지난호 보기') ? false : true) }" var="quick"/>
 <c:if test="${pageVO.dm_main_content ne '1' && quick}">
 <div class="scroll_right_cont">
@@ -47,7 +62,7 @@ function copyUrl(){
     });
 }
 </script>
-</c:if>
+</c:if> --%>
 
 <%-- <c:if test="${pageVO.dm_main_content eq '1'}">
 	<div class="scroll_right_cont main">
