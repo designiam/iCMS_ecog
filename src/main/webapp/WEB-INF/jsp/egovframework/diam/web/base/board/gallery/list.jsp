@@ -33,7 +33,9 @@
 			<ul>
 				<li>
 					<a href="#">
-						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="img">
+							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						</div>
 						<div class="con_txt">
 							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
 							<div class="bot">
@@ -45,7 +47,9 @@
 				</li>
 				<li>
 					<a href="#">
-						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="img">
+							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						</div>
 						<div class="con_txt">
 							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
 							<div class="bot">
@@ -57,7 +61,9 @@
 				</li>
 				<li>
 					<a href="#">
-						<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						<div class="img">
+							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+						</div>
 						<div class="con_txt">
 							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
 							<div class="bot">

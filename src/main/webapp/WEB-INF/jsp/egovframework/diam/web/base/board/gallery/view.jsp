@@ -92,10 +92,86 @@ function deleteWrite() {
 			</div>		
 		</c:if>
 	
+		<!-- 타이틀// -->
 		<div class="bbs_view_title">
+			<span class="type type_2">People</span>
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
-			<p><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+			<div class="pick_con">
+				<ul>
+					<li class="like">
+						<a href="#">
+							<i></i>
+							<span>좋아요</span>
+							<strong>25</strong>
+						</a>
+					</li>
+					<li class="like2">
+						<a href="#">
+							<i></i>
+							<span>공감</span>
+							<strong>58</strong>
+						</a>
+					</li>
+					<li class="share">
+						<a href="javascript:void(0);" class="ico share" title="공유">
+							<i></i>
+							<span>공유하기</span>
+						</a>
+					</li>
+				</ul>				
+				<div class="share_box">
+					<ul>
+						<li>
+							<a href="javascript:shareSns('facebook');">
+								<img src="${layout_path}/images/pages/facebook.png" alt="">
+								페이스북
+							</a>
+						</li>
+						<li>
+							<a href="javascript:shareSns('blog');">
+								<img src="${layout_path}/images/pages/blog.png" alt="">
+								블로그
+							</a>
+						</li>
+						<li>
+							<a href="javascript:shareSns('twitter');">
+								<img src="${layout_path}/images/pages/twitter.png" alt="">
+								트위터(X)
+							</a>
+						</li>
+					</ul>
+					<div>
+						<input type="url" value="" disabled />
+						<button type="button" class="share_link" title="링크 복사"><span class="sr-only">링크 복사</span></button>
+					</div>
+					<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
+				</div> <!-- //.share_box -->
+				<script>
+					$(function() {
+						var currentURL = window.location.href;
+						$('.share_box input[type="url"]').val(currentURL);
+						$('.share_box .share_link').on('click', function(){
+							$('.share_box input[type="url"]').attr('disabled', false);
+							$('.share_box input[type="url"]').select();
+							var copyURL = document.execCommand('copy');
+							if (copyURL) {
+								alert('링크가 복사되었습니다.');
+							}
+							$('.share_box input[type="url"]').attr('disabled', true);
+						});
+					
+						$('.share .share').on('click', function(){
+							$('.share_box').toggle();
+						});
+						$('.share_box .share_close').on('click', function(){
+							$('.share_box').toggle();
+						});
+					});
+				</script>
+			</div>
 		</div>
+		<!-- //타이틀 -->
 		
 		<div class="bbs_view_info">
 			<dl class="bbs_view_info_name">
@@ -222,20 +298,17 @@ function deleteWrite() {
 			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "")}' escapeXml="false"/>
 		</div>
 		
-		<div class="bbs_view_writer">
-			<c:if test="${not empty writeVO.wr_writer}">
-			<dl class="writer">
-				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
-				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
-			</dl>
-			</c:if>
-			<c:if test="${not empty writeVO.wr_pictured}">
-			<dl class="picture">
-				<dt>사진</dt>
-				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
-			</dl>
-			</c:if>
+		<!-- 태그리스트// -->
+		<div class="bbs_view_tag">
+			<ul class="tag_list">
+				<li><a href="#">#태그1</a></li>
+				<li><a href="#">#태그2</a></li>
+				<li><a href="#">#태그3</a></li>
+				<li><a href="#">#태그4</a></li>
+				<li><a href="#">#태그5</a></li>
+			</ul>
 		</div>
+		<!-- //태그리스트 -->
 		
 		<ul class="nb_ul">
 			<li class="btn_prev">
@@ -262,18 +335,6 @@ function deleteWrite() {
 			</li>
 		</ul>
 		
-		<div class="bbs_view_slide">
-			<h6>같이 보면 좋은 콘텐츠</h6>
-			<div class="vol-slider">
-				<div class="swiper-container">
-					<ul class="swiper-wrapper">
-					</ul>
-				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-		</div>
-		
 		<div class="bbs_viewbtn">
 			<div class="bbs_viewbtn_1">
 				<c:choose>
@@ -291,7 +352,7 @@ function deleteWrite() {
 			</div>
 			
 			<div class="bbs_viewbtn_2">
-				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_list">목록보기 <img src="${layout_path}/images/arrR_bk.png" alt=""></a>
+				<a href="<c:out value='${param.root }'/>/index.do?<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_list">목록보기 <%-- <img src="${layout_path}/images/arrR_bk.png" alt=""> --%></a>
 				<c:if test="${boardVO.dm_is_reply eq 1}">
 					<c:if test="${is_reply eq true}">
 						<a href="<c:out value='${param.root }'/>/index.do?command=reply&wr_id=<c:out value='${writeVO.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>" class="btn_write">답변</a>
@@ -299,6 +360,58 @@ function deleteWrite() {
 				</c:if>
 			</div>
 		</div>
+		
+		<div class="bbs_view_writer">
+			<ul>
+				<li class="vol">
+					Vol.70
+				</li>
+				<c:if test="${not empty writeVO.wr_writer}">
+				<li class="writer">
+					<span>에디터</span>
+					<strong><c:out value='${writeVO.wr_writer}' escapeXml="false"/></strong>
+					<span><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></span>
+				</li>
+				</c:if>
+				<c:if test="${not empty writeVO.wr_pictured}">
+				<li class="picture">
+					<span>사진</span>
+					<strong><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></strong>
+				</li>
+				</c:if>
+				<li class="date">
+					2024.03.05
+				</li>
+			</ul>
+		</div>
+		
+		<%-- <div class="bbs_view_writer">
+			<c:if test="${not empty writeVO.wr_writer}">
+			<dl class="writer">
+				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
+				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
+			</dl>
+			</c:if>
+			<c:if test="${not empty writeVO.wr_pictured}">
+			<dl class="picture">
+				<dt>사진</dt>
+				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
+			</dl>
+			</c:if>
+		</div> --%>
+		
+		<div class="bbs_view_slide">
+			<h6>같이 보면 좋은 콘텐츠</h6>
+			<div class="vol-slider">
+				<div class="swiper-container">
+					<ul class="swiper-wrapper">
+					</ul>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+		
 	</div>
 	<c:if test="${boardVO.dm_is_comment eq 1}">
 		<c:if test="${writeVO.wr_reply eq '0'}">

@@ -16,7 +16,7 @@
 		<div class="con_txt">
 			<p class="txt">환경소식을 빠르게 만나는 방법!</p>
 			<p class="tit">함께 GREEN 광주 구독하기</p>
-			<p class="btn"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e#" class="btn_go">뉴스레터 구독 <i class="fas fa-thin fa-arrow-right"></i></a></p>
+			<p class="btn_con"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e#" class="btn_go">뉴스레터 구독 <i class="fas fa-thin fa-arrow-right"></i></a></p>
 		</div>
 	</div>
 </div>

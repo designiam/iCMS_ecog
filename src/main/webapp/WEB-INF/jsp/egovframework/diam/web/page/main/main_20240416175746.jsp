@@ -375,7 +375,7 @@
 		<div class="con_txt">
 			<p class="txt">지난 호 콘텐츠가 궁금하다면?</p>
 			<p class="tit">지난호 보기</p>
-			<p class="btn"><a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn_go">바로가기 <i class="fas fa-thin fa-arrow-right"></i></a></p>
+			<p class="btn_con"><a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="btn_go">바로가기 <i class="fas fa-thin fa-arrow-right"></i></a></p>
 		</div>
 	</div>
 </div>

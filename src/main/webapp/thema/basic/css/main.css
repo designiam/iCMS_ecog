@@ -117,7 +117,7 @@
 #webzine_last_view .con_txt::before { content:''; display:block; position:absolute; bottom:0; right:0; width:188px; height:141px; background:url('../images/main/img_link.png') 0 0 no-repeat; }
 #webzine_last_view .con_txt .txt { color:#111; font-size:0.75rem; line-height:1.3; }
 #webzine_last_view .con_txt .tit { margin:6px 0; color:#111; font-size:1.125rem; line-height:1.3; font-weight:700; }
-#webzine_last_view .con_txt .btn { }
+#webzine_last_view .con_txt .btn_con { }
 
 /* 이벤트_sns로 만나는 광주환경공단 */
 #event_sns { width:100%; padding:50px 0 60px; background-color:#F2FCF4; }

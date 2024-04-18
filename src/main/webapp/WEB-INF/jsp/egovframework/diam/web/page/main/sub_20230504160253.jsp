@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 	.page-wrap {
-		margin-top: 30px;
+		margin: 40px 0;
 		text-align: center;
 	}
 </style>
