@@ -63,12 +63,13 @@
 <c:choose>
 	<c:when test="${pageVO.dm_main_content ne '1'}">
 		<%-- <script type="text/javascript" src="<c:url value='${layout_path}/js/page.js' />"></script> --%>
-		<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
+		<%-- <link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />"> --%>
 	</c:when>
 </c:choose>
 
 <c:choose>
 	<c:when test="${pageVO.dm_page_type eq 'BOARD'}">
+		<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
 		<link rel="stylesheet" href="<c:url value='${layout_path}/css/bbs.css' />">
 		<script type="text/javascript" src="<c:url value='${layout_path}/js/bbs.js' />"></script>
 	</c:when>

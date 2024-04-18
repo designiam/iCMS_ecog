@@ -199,7 +199,7 @@
 				<form onsubmit="return false" class="form-inline">
 					<div class="form-group m-0">
 						<label for="sch_stx" class="sr-only">검색어</label>
-						<input type="text" name="stx" id="sch_stx" maxlength="20" class="form-control" placeholder="검색어를 입력하세요." />
+						<input type="text" name="stx" id="sch_stx" maxlength="20" class="form-control" placeholder="검색어를 입력해주세요." />
 					</div>
 					<button type="submit" id="sch_submit" class="btn btn-outline-secondary ml-1" data-domain="<c:out value='${CONFIG_INFO.dm_domain_id}'/>">
 						<i class="fa fa-fw fa-search" aria-hidden="true"></i>

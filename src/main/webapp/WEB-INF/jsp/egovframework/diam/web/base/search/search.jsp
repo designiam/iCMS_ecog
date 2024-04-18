@@ -9,16 +9,122 @@
 		<c:set value="" var="root"/>
 	</c:otherwise>
 </c:choose>
+
 <div class="unified-search-result">
+	<!-- 검색결과// -->
 	<div class="search-result">
-		<h3>검색어 <strong>"<c:out value="${search_value }"/>"</strong> 에 대한 검색 결과입니다.</h3>
+		<div class="search_box">
+		    <div class="inner">
+		    	<form method="post" action="">
+			        <div class="searchG">
+			            <input type="text" placeholder="검색어를 입력해주세요." id="sch_stx" class="input_style">
+			            <input type="image" src="${layout_path}/images/common/ico_search.png" id="sch_submit" class="sch_btn" data-domain="<c:out value='${CONFIG_INFO.dm_domain_id}'/>">
+			        </div>
+			        <div class="recommendG">
+						<h3 class="tit">자주 찾는 검색어</h3>
+			            <div class="cont">
+			                <a href="#">분리배출</a>
+			                <a href="#">민원</a>
+			                <a href="#">행사</a>
+			                <a href="#">뉴스</a>
+			                <a href="#">제로웨이스트</a>
+			                <a href="#">리포트</a>
+			            </div>
+			        </div>
+		        </form>
+		        <p class="result_txt"><strong><c:out value="${search_value }"/></strong> 검색결과</p>
+		    </div>
+		</div>
+		<!--//search_box-->
 	</div>
+	<!-- //검색결과 -->
 
 	<div class="search-result-body">
+		<!-- 카테고리별 검색결과 건수// -->
+		<div class="total_result">
+			<div class="inner">
+				<ul>
+					<li>전체 콘텐츠 <span>678</span></li>
+					<li>People <span>123</span></li>
+					<li>Article <span>56</span></li>
+					<li>함께G <span>71</span></li>
+					<li>Event <span>32</span></li>
+				</ul>
+			</div>					
+		</div>
+		<!-- //카테고리별 검색결과 건수 -->
+		
 		<c:forEach items="${writeList }" var="data">
 			<c:if test="${data.total > 0 }">
 			<div class="search-result-wrap">
-				<h4><c:out value="${data.dm_subject }"/> <small>(총 <c:out value="${data.total }"/>건)</small></h4>
+			
+			
+				<!-- title_more// -->
+				<div class="title_more">
+					<p class="title"><c:out value="${data.dm_subject }"/> <span><c:out value="${data.total }"/></span></p>
+					<p class="btn_more"><a href="#">더보기</a></p>
+				</div>
+				<!-- //title_more -->
+				<!-- .bbs_gallist// -->
+				<div class="bbs_gallist">
+					<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+						<li class="cell col">
+							<a href="#">
+								<div class="img">
+									<div class="thumb-wrap">
+										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
+									</div>
+								</div>
+								<!-- //.cell_thumb -->
+								<div class="con_txt">
+									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
+									<div class="bot">
+										<p class="vol">vol. 71</p>
+										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="cell col">
+							<a href="#">
+								<div class="img">
+									<div class="thumb-wrap">
+										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
+									</div>
+								</div>
+								<!-- //.cell_thumb -->
+								<div class="con_txt">
+									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
+									<div class="bot">
+										<p class="vol">vol. 71</p>
+										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="cell col">
+							<a href="#">
+								<div class="img">
+									<div class="thumb-wrap">
+										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
+									</div>
+								</div>
+								<!-- //.cell_thumb -->
+								<div class="con_txt">
+									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
+									<div class="bot">
+										<p class="vol">vol. 71</p>
+										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- //.bbs_gallist -->
+				
+				
+				
 				<table class="table">
 					<caption><c:out value="${data.dm_subject }"/> 검색 결과 테이블</caption>
 					<thead>

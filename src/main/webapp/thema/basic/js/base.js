@@ -28,6 +28,15 @@ $(function() {
     $('.hd_button_search').on('click', function() {
         $('#sch_search').trigger('click');
     });
+    
+    $(".recommendG a").on("click", function(e) {
+    	e.preventDefault();
+    	var value = $(this).text();
+    	value = value.replace("#", '');
+    	
+    	var parent = $(this).closest(".recommendG");
+    	$(parent).siblings(".searchG").find("#sch_stx").val(value);
+    });
 
     // delegate #hd_search to .unified-search
     $('#sch_submit').on('click', function(e) {
