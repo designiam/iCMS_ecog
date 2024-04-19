@@ -272,6 +272,9 @@ public class Dm_write_vo implements Serializable{
 	/** 게시글 해시태그 */
 	private String wr_hashtag;
 	
+	private int dm_like;
+	private int dm_like2;
+	
 	private MultipartFile banner;
 	
 	private MultipartFile background;

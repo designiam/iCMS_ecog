@@ -367,4 +367,23 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 		return mapper.selectMainWrite(param);
 	}
 
+	@Override
+	public List<Dm_write_vo> selectWriteListVol(Dm_write_vo vo) throws Exception {
+		return mapper.selectWriteListVol(vo);
+	}
+	
+	@Override
+	public int selectWriteListVolCount(Dm_write_vo vo) throws Exception{
+		return mapper.selectWriteListVolCount(vo);
+	}
+
+	@Override
+	public List<Dm_write_vo> selectWriteListLike(Dm_write_vo vo) throws Exception {
+		return mapper.selectWriteListLike(vo);
+	}
+	
+	@Override
+	public int selectWriteListLikeCount(Dm_write_vo vo) throws Exception{
+		return mapper.selectWriteListLikeCount(vo);
+	}
 }

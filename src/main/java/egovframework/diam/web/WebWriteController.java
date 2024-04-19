@@ -1068,4 +1068,80 @@ public class WebWriteController {
 	private synchronized void FileDelete(File file) {
 		file.delete();
 	}
+	
+	@RequestMapping(value="web/selectWriteListForWeb.do")
+	public ResponseEntity<?> selectWriteListForWeb(Dm_write_vo vo) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+
+		int row = vo.getRows() != 0 ? vo.getRows() : 10;
+		int page = vo.getPage() != 0 ? vo.getPage() : 1;
+
+		if (row < 1 || page < 0) {
+			log.error(MessageCode.CMM_REQUEST_BADREQUEST.getLog());
+			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+		} else {
+			vo.setRows(row);
+			vo.setPage(row * (page -1));
+		}
+		int writeListCnt = writeService.selectWriteCountForWeb(vo);
+		List<Dm_write_vo> writeList = writeService.selectWriteListForWeb(vo);
+		
+		resultMap.put("total", writeListCnt);
+		resultMap.put("rows", writeList);
+		resultMap.put("result", "success");
+		
+		return ResponseEntity.ok(resultMap);
+	}
+	
+	@RequestMapping(value="/web/selectWriteListVol.do")
+	public ResponseEntity<?> selectWriteListVol(Dm_write_vo vo) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+
+		int row = vo.getRows() != 0 ? vo.getRows() : 10;
+		int page = vo.getPage() != 0 ? vo.getPage() : 1;
+
+		if (row < 1 || page < 0) {
+			log.error(MessageCode.CMM_REQUEST_BADREQUEST.getLog());
+			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+		} else {
+			vo.setRows(row);
+			vo.setPage(row * (page -1));
+		}
+		int writeListCnt = writeService.selectWriteListVolCount(vo);
+		List<Dm_write_vo> writeList = writeService.selectWriteListVol(vo);
+		
+		resultMap.put("total", writeListCnt);
+		resultMap.put("rows", writeList);
+		resultMap.put("result", "success");
+		
+		return ResponseEntity.ok(resultMap);
+	}
+
+	@RequestMapping(value="/web/selectWriteListLike.do")
+	public ResponseEntity<?> selectWriteListLike(Dm_write_vo vo) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+
+		int row = vo.getRows() != 0 ? vo.getRows() : 10;
+		int page = vo.getPage() != 0 ? vo.getPage() : 1;
+
+		if (row < 1 || page < 0) {
+			log.error(MessageCode.CMM_REQUEST_BADREQUEST.getLog());
+			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+		} else {
+			vo.setRows(row);
+			vo.setPage(row * (page -1));
+		}
+		int writeListCnt = writeService.selectWriteListLikeCount(vo);
+		List<Dm_write_vo> writeList = writeService.selectWriteListLike(vo);
+		
+		resultMap.put("total", writeListCnt);
+		resultMap.put("rows", writeList);
+		resultMap.put("result", "success");
+		
+		return ResponseEntity.ok(resultMap);
+	}
+
 }
