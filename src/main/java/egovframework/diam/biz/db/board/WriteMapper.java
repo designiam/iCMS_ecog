@@ -182,4 +182,12 @@ public interface WriteMapper {
 	public List<Dm_write_vo> selectSameVolWrite(Dm_write_vo vo);
 	
 	public List<Dm_write_vo> selectMainWrite(Map<String, Object> param);
+	
+	public List<Dm_write_vo> selectWriteListVol(Dm_write_vo vo);
+	
+	public int selectWriteListVolCount(Dm_write_vo vo) ;
+	
+	public List<Dm_write_vo> selectWriteListLike(Dm_write_vo vo);
+	
+	public int selectWriteListLikeCount(Dm_write_vo vo) ;
 }

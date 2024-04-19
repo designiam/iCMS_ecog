@@ -551,7 +551,7 @@ public class webController {
 								int writeListCnt = writeService.selectWriteCountForWeb(searchDmWriteVO);
 								List<Dm_write_vo> writeList = writeService.selectWriteListForWeb(searchDmWriteVO);
 								List<Dm_write_vo> noticeList = writeService.selectWriteNoticeForWeb(searchDmWriteVO);
-																
+
 								int doubleRows = rows;
 								int doubleCnt = writeListCnt;
 								int total_page = (int) Math.ceil((double)doubleCnt / doubleRows);
@@ -593,8 +593,22 @@ public class webController {
 								
 								if (boardVO.getDm_use_file_icon() != null && !boardVO.getDm_use_file_icon().isEmpty()) {
 									dm_file_icon = "/images/file.png";
-								}						
-															
+								}
+
+								searchDmWriteVO.setSort("pop");
+								List<Dm_write_vo> popList = writeService.selectWriteListForWeb(searchDmWriteVO);
+								
+								Dm_cover_vo coverVO = new Dm_cover_vo();
+								coverVO = coverService.selectUseCover(new Dm_cover_vo());
+								String vol = coverVO.getDm_vol();
+								searchDmWriteVO.setWr_vol(vol);
+								List<Dm_write_vo> volList = writeService.selectWriteListVol(searchDmWriteVO);				
+								int volListCnt = writeService.selectWriteListVolCount(searchDmWriteVO);
+								
+								doubleCnt = volListCnt;
+								int vol_total_page = (int) Math.ceil((double)doubleCnt / doubleRows);
+								String vol_pagingStr = commonUtil.getPaging(rows, Integer.parseInt(pageTmp), vol_total_page, param, configVO.getDm_url());
+
 								result.addObject("is_write", is_write);
 								result.addObject("page_rows", rows);
 								result.addObject("writeListCnt", writeListCnt);
@@ -602,9 +616,13 @@ public class webController {
 								result.addObject("pagingStr", pagingStr);
 								result.addObject("writeList", writeList);
 								result.addObject("noticeList", noticeList);
+								result.addObject("popList", popList);
 								result.addObject("dm_hit_url", dm_hit_url);
 								result.addObject("dm_new_url", dm_new_url);
 								result.addObject("dm_file_icon", dm_file_icon);
+								result.addObject("vol", vol);
+								result.addObject("volList", volList);
+								result.addObject("vol_pagingStr", vol_pagingStr);
 							}
 						}
 					} else if (command.equals("view")) {

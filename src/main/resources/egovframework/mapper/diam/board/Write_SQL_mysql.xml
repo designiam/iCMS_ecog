@@ -49,6 +49,8 @@
 			  	  , B.dm_subject AS dm_table_text
 			      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_reply &gt; 0 AND dm_delete_yn = 'N') AS re_count
 			      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') AS com_count
+			      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
+			      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 			  FROM  dm_write AS A
 		INNER JOIN  (SELECT dm_table, dm_subject, dm_id FROM dm_board WHERE dm_delete_yn = 'N') AS B
 				ON  A.wr_board = B.dm_id
@@ -81,6 +83,8 @@
 				  , (SELECT wr_subject FROM dm_write WHERE wr_board = A.wr_board AND wr_id = wr_parent AND wr_datetime < A.wr_datetime AND dm_delete_yn = 'N' ORDER BY wr_datetime DESC LIMIT 1) AS prev_subject
 				  , (SELECT wr_id FROM dm_write WHERE wr_board = A.wr_board AND wr_id = wr_parent AND wr_datetime > A.wr_datetime AND dm_delete_yn = 'N' ORDER BY wr_datetime ASC LIMIT 1) AS next_id
 				  , (SELECT wr_subject FROM dm_write WHERE wr_board = A.wr_board AND wr_id = wr_parent AND wr_datetime > A.wr_datetime AND dm_delete_yn = 'N' ORDER BY wr_datetime ASC LIMIT 1) AS next_subject
+			      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
+			      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 		  	  FROM	dm_write A
 		INNER JOIN  (SELECT dm_table, dm_subject, dm_id FROM dm_board WHERE dm_delete_yn = 'N') AS B
 				ON  A.wr_board = B.dm_id
@@ -313,6 +317,8 @@
 	<select id="selectWriteListForWeb" resultMap="resultWriteVO">
 		  SELECT  A.*
 		        , CASE WHEN A.wr_id = A.wr_parent THEN (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') ELSE 0 END AS com_count
+			    , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
+			    , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 		    FROM  dm_write AS A
 		   WHERE  1 = 1
 			 AND  A.wr_is_comment = 0
@@ -344,6 +350,8 @@
 		SELECT  A.*
 	          , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_reply > 0 AND dm_delete_yn = 'N') AS re_count
 		      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') AS com_count
+		      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
+		      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 	      FROM  dm_write AS A
 	     WHERE  A.wr_is_notice = '1'
 		   AND  A.dm_delete_yn = 'N'
@@ -629,6 +637,48 @@
 		       AND  A.wr_is_comment = 0
 		  ORDER BY  A.wr_datetime DESC
 		     LIMIT  #{page}, #{rows}
+	</select>
+	
+	<select id="selectWriteListVol" resultMap="resultWriteVO">
+		   SELECT A.*, B.dm_uid AS uid, B.dm_page_name AS type
+		  	 FROM dm_write AS A
+		LEFT JOIN dm_pages AS B
+			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
+			WHERE A.wr_vol = #{wr_vol}
+			  AND A.dm_delete_yn = 'N'
+			  <include refid="selectWriteListWhere"/>
+		  ORDER BY  A.wr_datetime DESC
+		     LIMIT  #{page}, #{rows}
+	</select>	
+	
+	<select id="selectWriteListVolCount" resultType="int">
+		SELECT	COUNT(A.wr_id)
+		  FROM	dm_write AS A
+		 WHERE	A.wr_vol = #{wr_vol}
+		   AND  A.dm_delete_yn = 'N'
+		   <include refid="selectWriteListWhere"/>
+	</select>
+
+	<select id="selectWriteListLike" resultMap="resultWriteVO">
+		   SELECT A.*
+		        , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
+		  	 FROM dm_write AS A
+			WHERE 1=1
+			  AND A.dm_delete_yn = 'N'
+			  <include refid="selectWriteListWhere"/>
+		  ORDER BY  dm_like2 DESC
+		     LIMIT  #{page}, #{rows}
+	</select>	
+	
+	<select id="selectWriteListLikeCount" resultType="int">
+		SELECT	COUNT(B.wr_id)
+		  FROM	dm_write AS A , dm_write_good AS B
+		 WHERE	1=1
+		   AND	A.wr_board = B.wr_board 
+		   AND  A.wr_id = B.wr_id 
+		   AND  B.dm_type = 'like2'
+		   AND  A.dm_delete_yn = 'N'
+		   <include refid="selectWriteListWhere"/>
 	</select>
 	
 </mapper>
