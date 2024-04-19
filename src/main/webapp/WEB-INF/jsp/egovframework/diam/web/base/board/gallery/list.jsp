@@ -130,7 +130,18 @@
 												<p class="tit t02"><c:out value="${result.wr_subject}" escapeXml='false'/></p>
 												<div class="bot">
 													<p class="vol">vol. <c:out value="${result.wr_vol}" escapeXml='false'/></p>
-													<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+													<c:if test="${!empty result.wr_hashtag}">
+													<p class="tag_con">
+													<c:set value="${fn:split(result.wr_hashtag, '#')}" var="hashtag"/>
+													<c:set var="tag_count" value="0"/>
+													<c:forEach items="${hashtag }" var="tag" varStatus="stat">
+													<c:if test="${!empty fn:trim(tag) and tag_count < 3 }">
+													<span class="tag">#<c:out value="${fn:trim(tag)}" escapeXml='false'/></span>
+													<c:set var="tag_count" value="${tag_count+1 }"/>
+													</c:if>
+													</c:forEach>
+													</p>
+													</c:if>
 												</div>
 											</div>
 										</a>

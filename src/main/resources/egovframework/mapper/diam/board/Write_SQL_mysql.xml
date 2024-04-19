@@ -130,6 +130,13 @@
 			wr_vol,
 			wr_writer,
 			wr_writer_mail,
+			wr_hashtag,
+			wr_start_dt,
+			wr_end_dt,
+			wr_target,
+			wr_host,
+			wr_inquiry,
+			wr_announce,
 			wr_pictured,
 			wr_thumb_sub
 		) VALUE (
@@ -172,6 +179,13 @@
 			#{wr_vol},
 			#{wr_writer},
 			#{wr_writer_mail},
+			#{wr_hashtag},
+			#{wr_start_dt},
+			#{wr_end_dt},
+			#{wr_target},
+			#{wr_host},
+			#{wr_inquiry},
+			#{wr_announce},
 			#{wr_pictured},
 			#{wr_thumb_sub}
 		)
@@ -222,6 +236,13 @@
 				wr_direct = #{wr_direct},
 				wr_writer = #{wr_writer},
 				wr_writer_mail = #{wr_writer_mail},
+				wr_hashtag = #{wr_hashtag},
+				wr_start_dt = #{wr_start_dt},
+				wr_end_dt = #{wr_end_dt},
+				wr_target = #{wr_target},
+				wr_host = #{wr_host},
+				wr_inquiry = #{wr_inquiry},
+				wr_announce = #{wr_announce},
 				wr_pictured = #{wr_pictured}
 		 WHERE	wr_id = #{wr_id}
 	</update>
