@@ -1,31 +1,32 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<style>
+	.menutab .dep-wrap { display:none; }
+	#vis #titler .leader { display:none; }
+</style>
 
 <!-- 호별선택// -->
 <div class="select_total_box">
 	<div class="inner">
 		<!-- select_con// -->
 		<div class="select_con">
-			
-			
-			
-			<div class="select_box">
-				<select name="year" id="year" class="select">
-					<option value="">2024년</option>
-				    <option value="">2023년</option>
-				</select>
-				<span class="ico_arrow"><img src="${layout_path}/images/pages/ico_arrow_sel.png" alt="버튼" /></span>
+			<div class="area-custom-select" id="year">
+				<div class="custom-select" tabindex="0">
+					<span class="custom-select-text">2024년</span>
+					<img src="${layout_path}/images/pages/ico_arrow_sel.png" class="custom-select-arrow">
+				</div>
+				<ul class="custom-select-list" style="display:none;">
+				</ul>
 			</div>
-			<div class="select_box">
-				<select name="vol" id="vol" class="select">
-					<option value="">71호</option>
-					<option value="">70호</option>
-				    <option value="">69호</option>
-				    <option value="">68호</option>
-				    <option value="">67호</option>
-				</select>
-				<span class="ico_arrow"><img src="${layout_path}/images/pages/ico_arrow_sel.png" alt="버튼" /></span>
+			<div class="area-custom-select" id="name">
+				<div class="custom-select" tabindex="0">
+					<span class="custom-select-text">71호</span>
+					<img src="${layout_path}/images/pages/ico_arrow_sel.png" class="custom-select-arrow">
+				</div>
+				<ul class="custom-select-list" style="display:none;">
+				</ul>
 			</div>
+			<!-- //.area-custom-select -->
 		</div>
 		<!-- //select_con -->
 		<!-- 전체호_최근발행호// -->
@@ -38,100 +39,14 @@
 </div>
 <!-- //호별선택 -->
 
-<!-- list// -->
-<div class="vol_list">
-	<ul>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">71</span></em><span class="date">2024-04</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">70</span></em><span class="date">2024-03</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">69</span></em><span class="date">2024-02</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">68</span></em><span class="date">2024-01</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">67</span></em><span class="date">2023-12</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">
-				<div class="info">
-					<p class="tit"><em>vol. <span class="vol_num">66</span></em><span class="date">2023-11</span></p>
-					<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>
-				</div>
-				<div class="img">
-					<div class="thumb-wrap"><img src="${layout_path}/images/main/img_test3.jpg" alt="" /></div>
-				</div>
-			</a>
-		</li>
+<div class="bbs_gallist vol_list">
+	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 	</ul>
 	<!-- 내용더보기// -->
 	<div class="more_con">
 		<a href="#"><span class="sr-only">내용 더보기</span></a>
 	</div>
 	<!-- //내용더보기 -->
-</div>
-<!-- //list -->
-
-
-
-<%-- <!-- 지난호 보기 -->
-<div class="area-custom-select">
-	<div class="custom-select" tabindex="0">
-		<span class="custom-select-text"><strong>Vol.</strong></span>
-		<img src="${layout_path}/images/pages/select_arrow.png" class="custom-select-arrow">
-	</div>
-	<ul class="custom-select-list" style="display:none;">
-	</ul>
-</div>
-<!-- //.area-custom-select -->
-
-<div class="bbs_gallist mt60">
-	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
-	</ul>
 </div>
 
 <script>
@@ -196,8 +111,13 @@ var setWriteList = function(rows) {
 	if (rows.length > 0) {
 		$.each(rows, function(i, obj) {
 			str += '<li class="cell col">';
-			str += '<a href="?contentId='+obj.uid+'&command=view&wr_id='+obj.wr_id+'">';
-			str += '<div class="cell_thumb">';
+			str += '<a href="?contentId=c2dfd5d61a93c1f65f7beb2ab4d63137a0025f4be49bdd68ec642a8cdaca0801">';
+			//str += '<a href="?contentId='+obj.uid+'&command=view&wr_id='+obj.wr_id+'">';
+			str += '<div class="info">';
+			str += '<p class="tit"><em>vol. <span class="vol_num">'+obj.wr_vol+'</span></em><span class="date">2024-04</span></p>';
+			str += '<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="함께green광주(광주환경공단이 만드는 환경저널)" /></p>';
+			str += '</div>';
+			str += '<div class="cell_thumb img">';
 			if (obj.wr_thumb_sub == null) {
 				str += '<div class="thumb-wrap" style="background-image: url(\'/images/no_image.png\');">';				
 			} else {
@@ -206,12 +126,6 @@ var setWriteList = function(rows) {
 			//str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';
 			str += '<img src="'+ obj.wr_path + obj.wr_thumb_sub +'" alt="" onerror="this.src=\'/images/no_image.png\'">';
 			str += '</div>';
-			str += '<span class="vol">Vol.'+obj.wr_vol+'</span>';
-			str += '</div>';
-			str += '<div class="cell_txt">';
-			str += '<div class="cell_cate">'+obj.type+'</div>';
-			str += '<div class="cell_subject">'+obj.wr_subject+'</div>';
-			str += '<div class="cell_content">'+obj.wr_summary+'</div>';
 			str += '</div>';
 			str += '</a>';
 			str += '</li>';
@@ -244,7 +158,7 @@ var setComboList = function (rows) {
 	var str = "";
 	if (rows.length > 0) {
 		$.each(rows, function(i, obj){
-			str += '<li data-vol="'+obj.dm_vol+'" value="selectOption'+(i + 1)+'" class="custom-select-option"><strong>Vol.'+(obj.dm_vol.length < 2 ? '0'+obj.dm_vol : obj.dm_vol)+'</strong>'+obj.dm_year + "." + obj.dm_month +'</li>';
+			str += '<li data-vol="'+obj.dm_vol+'" value="selectOption'+(i + 1)+'" class="custom-select-option">'+obj.dm_year + "년"+'</li>';
 		});
 	} else {
 		str += '<li value="selectOption1" class="custom-select-option">데이터가 없습니다.</li>';
@@ -254,4 +168,4 @@ var setComboList = function (rows) {
 	
 	$(".custom-select-list").find("li").eq(0).trigger("click");
 }
-</script> --%>
+</script>

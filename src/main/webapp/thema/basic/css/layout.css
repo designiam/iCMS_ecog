@@ -65,7 +65,8 @@
 /* header */
 #hd_wrap { position:relative; width:100%; overflow:hidden; }
 #hd_logo { height:100px; }
-#hd_logo a { /* position:static; transform:none; */ left:calc(50% - 550px + 62px); height:100px; transform:translate(calc(-50% + 0.5px), calc(-50%)); }
+#hd_logo a { /* position:static; transform:none; */ left:calc(50% - 550px + 62px); width:125px; height:100px; transform:translate(calc(-50% + 0.5px), calc(-50%)); }
+#hd_logo a img { width:100%; }
 #gnb { width:100%; right:0; left:calc(50% - 550px + 200px); }
 #gnb_1dul { justify-content:flex-start; }
 #gnb_1dul .gnb_1dli { flex:0 0 auto; }
@@ -76,8 +77,9 @@
 #hd_button { display:block; position:absolute; top:50%; right:calc(50% - 550px + 134px); }
 #hd_button > ul > li > button { width:auto; }
 #hd_search #sch_stx { width:740px; }
+#hd_toggle { width:25px; }
+.offcanvas-toggle { width:25px; }
 #hd_wrap .btn-wrap2 { position:absolute; right:calc(50% - 550px); top:50%; transform:translateY(-50%); }
-
 .btn-wrap2 button { }
 .btn-wrap2 a { display: inline-flex; justify-content: center; align-items: center; }
 
@@ -92,7 +94,7 @@
 #ft { padding:60px 80px; background-color:#141414; }
 #ft_wrap { max-width: 1100px; }
 #ft_sign { display:block; max-width:182px; margin:0 auto 30px; }
-#ft_sign img { max-height:none; }
+#ft_sign img { max-height:none; width:100%; }
 #ft_copy { display:none; }
 #ft_info .ft_comp > ul { justify-content: center; gap:0 30px; }
 #ft_info .ft_comp > ul > li { }
@@ -114,9 +116,10 @@
 @media (max-width: 1200px) {
 	/* header */
 	#hd_logo a { left:50%; height:auto; }
-	#hd_button { right:calc(1.5rem + 120px); }
+	#hd_button { right:calc(2rem + 120px); }
 	#hd_search #sch_stx { width:100%; }
-	#hd_wrap .btn-wrap2 { right:1.5rem; }
+	#hd_toggle { left:2rem; }
+	#hd_wrap .btn-wrap2 { right:2rem; }
 }
 
 @media (max-width: 1100px) {
@@ -139,12 +142,24 @@
 
 @media (max-width: 768px) {
 	/* header */
-	#hd_button { display:none; }
+	#hd_logo a { left:calc(0.5rem + 100px) }
+	#hd_button { right:calc(1rem + 110px); }
+	#hd_toggle { left:1rem; }
+	#hd_wrap .btn-wrap2 { right:1rem; }
 }
 
 @media (max-width: 486px) {
+	/* header */
+	#hd_button { display:none; }
+	
 	/* footer */
 	#ft { padding:20px; }
+	#ft_sign { max-width:120px; margin:0 auto 15px; }
 	#ft_info .ft_comp > ul > li > dl > dt,
 	#ft_info .ft_comp > ul > li > dl > dd { font-size:1rem; }
+}
+
+@media (max-width: 270px) {
+	/* footer */
+	#ft_info .ft_comp > ul { flex-wrap:wrap; justify-content:flex-start; }
 }
