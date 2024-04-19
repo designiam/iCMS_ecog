@@ -117,6 +117,7 @@
 		dm_main_use,
 		dm_main_order,
 		dm_main_count,
+		dm_use_period,
 		dm_create_dt,
 		dm_create_id
 	) VALUE (
@@ -170,6 +171,7 @@
 		#{dm_main_use},
 		#{dm_main_order},
 		#{dm_main_count},
+		#{dm_use_period},
 		now(),
 		#{dm_create_id}
 	)
@@ -225,6 +227,7 @@
 		dm_main_use = #{dm_main_use},
 		dm_main_order = #{dm_main_order},
 		dm_main_count = #{dm_main_count},
+		dm_use_period = #{dm_use_period},
 		dm_modify_dt = now(),
 		dm_modify_id = #{dm_modify_id}
 		WHERE dm_id = #{dm_id}

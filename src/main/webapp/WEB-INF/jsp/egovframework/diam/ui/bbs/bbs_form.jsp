@@ -377,7 +377,15 @@
 				        <span class="noty"><strong>최대 9개</strong>까지 설정 가능</span>
 				        <p class="noty">1부터 9까지 한자리 숫자만 입력가능합니다.</p>
 				    </dd>
-				</dl>				
+				</dl>
+				<dl>
+				    <dt>공지기간 사용</dt>
+				    <dd>
+				        <label><input type="checkbox" name="dm_use_period" value="1" id="dm_use_period">사용</label>
+				        <span class="noty">시작일과 종료일을 설정하여 게시기간 이용이 가능합니다.</span>
+				    </dd>
+				</dl>
+								
 				<dl>
 				    <dt>
 				    	<label for="bo_table">본문 설정</label>
@@ -584,6 +592,7 @@ function setBbsData(row) {
     (row.dm_use_link == "1") ? $("#dm_use_link").prop('checked', true) : $("#dm_use_link").prop('checked', false);
     (row.dm_use_file == "1") ? $("#dm_use_file").prop('checked', true) : $("#dm_use_file").prop('checked', false);
     (row.dm_use_file_icon == "1") ? $("#dm_use_file_icon").prop('checked', true) : $("#dm_use_file_icon").prop('checked', false);
+    (row.dm_use_period == "1") ? $("#dm_use_period").prop('checked', true) : $("#dm_use_period").prop('checked', false);
     
     var level_val_arr = new Array();
     level_val_arr.push(row.dm_list_level);

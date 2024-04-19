@@ -94,52 +94,20 @@ function deleteWrite() {
 	
 		<!-- 타이틀// -->
 		<div class="bbs_view_title">
-			<span class="type type_2">People</span>
+			<span class="type type_2"><c:out value='${boardVO.dm_subject }'/></span>
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
 			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
 			<div class="pick_con">
 				<ul>
-					<li class="like">
-						<a href="#">
-							<i></i>
-							<span>좋아요</span>
-							<strong>25</strong>
-						</a>
-					</li>
-					<li class="like2">
-						<a href="#">
-							<i></i>
-							<span>공감</span>
-							<strong>58</strong>
-						</a>
-					</li>
-					<li class="share">
-						<a href="javascript:void(0);" class="ico share" title="공유">
-							<i></i>
-							<span>공유하기</span>
-						</a>
-					</li>
+					<li class="like"><a href="#"><i></i><span>좋아요</span><strong>25</strong></a></li>
+					<li class="like2"><a href="#"><i></i><span>공감</span><strong>58</strong></a></li>
+					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
 				</ul>				
 				<div class="share_box">
 					<ul>
-						<li>
-							<a href="javascript:shareSns('facebook');">
-								<img src="${layout_path}/images/pages/facebook.png" alt="">
-								페이스북
-							</a>
-						</li>
-						<li>
-							<a href="javascript:shareSns('blog');">
-								<img src="${layout_path}/images/pages/blog.png" alt="">
-								블로그
-							</a>
-						</li>
-						<li>
-							<a href="javascript:shareSns('twitter');">
-								<img src="${layout_path}/images/pages/twitter.png" alt="">
-								트위터(X)
-							</a>
-						</li>
+						<li><a href="javascript:shareSns('facebook');"><img src="${layout_path}/images/pages/facebook.png" alt="">페이스북</a></li>
+						<li><a href="javascript:shareSns('blog');"><img src="${layout_path}/images/pages/blog.png" alt="">블로그</a></li>
+						<li><a href="javascript:shareSns('twitter');"><img src="${layout_path}/images/pages/twitter.png" alt="">트위터(X)</a></li>
 					</ul>
 					<div>
 						<input type="url" value="" disabled />
@@ -295,19 +263,73 @@ function deleteWrite() {
 					</c:forEach>
 				</c:if>
 			</c:if>
+			<c:set value="${writeVO.wr_link1}" var="link"/>
+			<c:set value="${fn:split(link, '/')}" var="videoId"/>
+			<c:forEach items="${videoId }" var="i" varStatus="stat">
+				<c:if test="${stat.last}">
+					<c:set var="uniqId" value="${i}"/>
+				</c:if>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${fn:contains(link, 'youtu') }">
+					<c:set var="rootSrc" value="https://www.youtube.com/embed/${uniqId}?autoplay=1&mute=1"/>
+				</c:when>
+				<c:when test="${fn:contains(link, 'vimeo') }">
+					<c:set var="rootSrc" value="https://player.vimeo.com/video/${uniqId}?autoplay=1&background=1"/>
+				</c:when>
+				<c:when test="${fn:contains(link, 'naver') }">
+					<c:set var="rootSrc" value="https://tv.naver.com/embed/${uniqId}?autoplay=1"/>
+				</c:when>
+				<c:when test="${fn:contains(link, 'kakao') }">
+					<c:set var="rootSrc" value="https://play-tv.kakao.com/embed/player/cliplink/${uniqId}?service=player_share&amp;autoplay=1"/>
+				</c:when>
+			</c:choose>
+			<c:choose>
+			<c:when test="${!empty rootSrc }">
+			<style>
+			.video-container {
+				position: relative;
+				padding-bottom: 56.25%;
+				height: 0;
+				overflow: hidden;
+			}
+			 
+			.video-container iframe,
+			.video-container object,
+			.video-container embed {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			</style>
+			<div class="video-container">
+				<iframe style="max-width:100%;" src="${rootSrc}" title="<c:out value='${writeVO.wr_subject }' escapeXml='false'/>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>				
+			</div>
+			<br>
+			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "<br/>")}' escapeXml="false"/>
+			</c:when>
+			<c:otherwise>
 			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "")}' escapeXml="false"/>
+			</c:otherwise>
+			</c:choose>
+			
 		</div>
 		
 		<!-- 태그리스트// -->
+		<c:if test="${!empty writeVO.wr_hashtag}">
 		<div class="bbs_view_tag">
 			<ul class="tag_list">
-				<li><a href="#">#태그1</a></li>
-				<li><a href="#">#태그2</a></li>
-				<li><a href="#">#태그3</a></li>
-				<li><a href="#">#태그4</a></li>
-				<li><a href="#">#태그5</a></li>
+				<c:set value="${fn:split(writeVO.wr_hashtag, '#')}" var="hashtag"/>
+				<c:forEach items="${hashtag }" var="tag" varStatus="stat">
+				<c:if test="${!empty fn:trim(tag) }">
+				<li><a href="#" onclick="unifiedSearch('<c:out value="${fn:trim(tag)}"/>',<c:out value='${CONFIG_INFO.dm_domain_id}'/>);">#<c:out value="${fn:trim(tag)}"/></a></li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
+		</c:if>
 		<!-- //태그리스트 -->
 		
 		<ul class="nb_ul">
@@ -364,7 +386,7 @@ function deleteWrite() {
 		<div class="bbs_view_writer">
 			<ul>
 				<li class="vol">
-					Vol.70
+					Vol.<c:out value='${writeVO.wr_vol}'/>
 				</li>
 				<c:if test="${not empty writeVO.wr_writer}">
 				<li class="writer">
@@ -380,25 +402,10 @@ function deleteWrite() {
 				</li>
 				</c:if>
 				<li class="date">
-					2024.03.05
+					<fmt:formatDate value="${wr_datetime}" pattern="yyyy.mm.dd"/>
 				</li>
 			</ul>
 		</div>
-		
-		<%-- <div class="bbs_view_writer">
-			<c:if test="${not empty writeVO.wr_writer}">
-			<dl class="writer">
-				<dt><span>저자</span> <b><c:out value='${writeVO.wr_writer}' escapeXml="false"/></b></dt>
-				<dd><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></dd>
-			</dl>
-			</c:if>
-			<c:if test="${not empty writeVO.wr_pictured}">
-			<dl class="picture">
-				<dt>사진</dt>
-				<dd><b><c:out value='${writeVO.wr_pictured}' escapeXml="false"/></b></dd>
-			</dl>
-			</c:if>
-		</div> --%>
 		
 		<div class="bbs_view_slide">
 			<h6>같이 보면 좋은 콘텐츠</h6>
@@ -483,10 +490,9 @@ function setList(rows) {
 			}
 			str += '<img src="'+obj.wr_path + obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
 			str += '</div>';
-			str += '<span class="vol">Vol.'+obj.wr_vol+'</span>';
-			str += '</div>';
 			str += '<div class="cell_txt">';
-			str += '<div class="cell_subject">'+obj.wr_subject+'</div>';
+			str += '<p class="type type_1">'+obj.type+'</p>';
+			str += '<p class="cell_subject">'+obj.wr_subject+'</p>';
 			str += '</div>';
 			str += '</a>';
 			str += '</li>';

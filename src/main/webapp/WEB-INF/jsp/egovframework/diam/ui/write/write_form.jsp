@@ -74,6 +74,12 @@ function fnSetData(row) {
 	    $("#notice").prop("checked", true);
 	}
 	
+	if (row.wr_is_period == "1") {
+	    $("#wr_is_period").prop("checked", true);
+	}
+	$("#wr_start_dt").val(row.wr_start_dt);
+	$("#wr_end_dt").val(row.wr_end_dt);
+
 	if (row.wr_file_array.length > 0) {
 		for (var i=0; i<row.wr_file_array.length; i++) {
 			var file_path = row.wr_file_array[i].split("/");
@@ -238,19 +244,28 @@ function setBoardForm(boardId) {
             	$("#skin").val(board_config.dm_skin);
             	switch (board_config.dm_skin) {
 					case "video":
+						$(".gallery_only").hide();
+						$(".event_only").hide();
 						$(".not_basic").show();
 						$(".video_only").show();
-						$(".gallery_only").hide();
 						break;
 					case "gallery":
 						$(".not_basic").show();
 						$(".video_only").hide();
+						$(".event_only").hide();
 						$(".gallery_only").show();
+						break;
+					case "event":
+						$(".not_basic").hide();
+						$(".video_only").hide();
+						$(".gallery_only").hide();
+						$(".event_only").show();
 						break;
 					default:
 						$(".not_basic").hide();
 						$(".video_only").hide();
 						$(".gallery_only").hide();
+						$(".event_only").hide();
 						break;
 				}
             	
@@ -267,7 +282,13 @@ function setBoardForm(boardId) {
                     $("#ca_name").combobox('setValue', '');
                 }
 				
-                if (board_config.dm_use_file == "1") {
+            	if (board_config.dm_use_period== "1") {
+                    $("#period").show();
+                } else {
+                    $("#period").hide();
+                }
+				
+            	if (board_config.dm_use_file == "1") {
                 	if (board_config.dm_upload_count > 0) {
                 		for (var i=0; i<board_config.dm_upload_count; i++) {
                             $(".file dd").append("<p class='file_td'><input type='file' name='file' id='file"+i+"' style='width:70% !important;'/></p>");
@@ -423,7 +444,7 @@ var createSE = function() {
 				        <select id="ca_name" name="ca_name" class="easyui-combobox" panelHeight="auto"></select>
 				    </dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 				    <dt>발행 호<span class="required_value">*</span></dt>
 				    <dd><input type="text" name="wr_vol" id="wr_vol" onkeyup="setNumberPattern(this);"></dd>
 				</dl>
@@ -436,7 +457,7 @@ var createSE = function() {
 				        <p class="noty">1자이상 255자 이하로 입력해 주세요.</p>
 				    </dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 				    <dt>부제목</dt>
 				    <dd>
 				        <textarea style="min-height: auto; resize: none;" name="wr_sub_subject" id="wr_sub_subject"></textarea>
@@ -455,6 +476,38 @@ var createSE = function() {
 				        <p class="noty">비밀번호를 변경시에만 입력해주세요.</p>
 				    </dd>
 				</dl>
+				<dl class="event_only" id="period">
+					<dt>게시기간</dt>
+					<dd>
+						<input type="text" class="easyui-datebox" id="wr_start_dt" name="wr_start_dt" autocomplete="off" data-options="formatter:myformatter,parser:myparser,editable:false">
+						~
+						<input type="text" class="easyui-datebox" id="wr_end_dt" name="wr_end_dt" autocomplete="off" data-options="formatter:myformatter,parser:myparser,editable:false">
+					</dd>
+				</dl>
+				<dl class="event_only">
+				    <dt>참여대상</dt>
+				    <dd>
+				        <input type="text" name="wr_target" id="wr_target" autocomplete="off"/>
+				    </dd>
+				</dl>
+				<dl class="event_only">
+				    <dt>주최</dt>
+				    <dd>
+				        <input type="text" name="wr_host" id="wr_host" autocomplete="off"/>
+				    </dd>
+				</dl>
+				<dl class="event_only">
+				    <dt>문의처</dt>
+				    <dd>
+				        <input type="text" name="wr_inquiry" id="wr_inquiry" autocomplete="off"/>
+				    </dd>
+				</dl>
+				<dl class="event_only">
+				    <dt>결과발표</dt>
+				    <dd>
+				        <input type="text" class="easyui-datebox" name="wr_announce" id="wr_announce" autocomplete="off" data-options="formatter:myformatter,parser:myparser,editable:false">
+				    </dd>
+				</dl>					
 				<dl class="link">
 					<dt>링크</dt>
 					<dd></dd>
@@ -463,19 +516,19 @@ var createSE = function() {
 				    <dt>파일첨부</dt>
 				    <dd></dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 				    <dt>저자</dt>
 				    <dd>
 				        <input type="text" name="wr_writer" id="wr_writer" autocomplete="off"/>
 				    </dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 				    <dt>저자 이메일</dt>
 				    <dd>
 				        <input type="text" name="wr_writer_mail" id="wr_writer_mail" autocomplete="off"/>
 				    </dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 				    <dt>사진</dt>
 				    <dd>
 				        <input type="text" name="wr_pictured" id="wr_pictured" autocomplete="off"/>
@@ -488,22 +541,22 @@ var createSE = function() {
 						<label><input type="radio" name="wr_main" value="Y"> 사용</label>
 					</dd>
 				</dl>
-				<dl class="video_only">
+				<dl class="gallery_only">
 				    <dt>바로가기 링크</dt>
 				    <dd>
 				    	<input type="text" name="wr_direct" id="wr_direct" maxlength="200">
 					    <p class="noty">http 프로토콜을 포함한 링크를 입력해주세요.</p>
 				    </dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only event_only">
 				    <dt>타이틀 이미지</dt>
 				    <dd><input type="file" name="head" id="head" accept="image/*"></dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only event_only">
 				    <dt>메인 썸네일</dt>
 				    <dd><input type="file" name="thumbnail" id="thumbnail" accept="image/*"></dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only event_only">
 				    <dt>리스트형 썸네일</dt>
 				    <dd><input type="file" name="thumbnail_sub" id="thumbnail_sub" accept="image/*"></dd>
 				</dl>
@@ -515,7 +568,7 @@ var createSE = function() {
 				    <dt>배너 포스터</dt>
 				    <dd><input type="file" name="background" id="background" accept="image/*"></dd>
 				</dl>
-				<dl class="not_basic">
+				<dl class="gallery_only">
 					<dt>요약</dt>
 					<dd>
 						<textarea id="wr_summary" name="wr_summary"></textarea>
@@ -525,6 +578,13 @@ var createSE = function() {
 				    <dt>내용<span class="required_value">*</span></dt>
 				    <dd>
 				    	<textarea id="wr_content" name="wr_content"></textarea>
+				    </dd>
+				</dl>
+				<dl class="gallery_only">
+				    <dt>해시태그</dt>
+				    <dd>
+				    	<textarea name="wr_hashtag" id="wr_hashtag"></textarea>
+				    	<p class="noty">#으로 구분하여 태그를 입력해주세요. 예) #광주환경공단#환경지킴이#지구의날</p>
 				    </dd>
 				</dl>
 			</div>

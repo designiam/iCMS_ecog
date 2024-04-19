@@ -261,6 +261,17 @@ public class Dm_write_vo implements Serializable{
 	
 	private String wr_thumb_sub;
 	
+	/** 게시글 게시기간 */
+	private String wr_start_dt;
+	private String wr_end_dt;
+
+	private String wr_target;
+	private String wr_host;
+	private String wr_inquiry;
+	private String wr_announce;
+	/** 게시글 해시태그 */
+	private String wr_hashtag;
+	
 	private MultipartFile banner;
 	
 	private MultipartFile background;
