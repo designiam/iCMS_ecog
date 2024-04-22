@@ -69,7 +69,143 @@ public class CommonUtil {
 		if (str == null || str.isEmpty() || str.replaceAll(" ", "").length() < 1) return true;
 		return false;
 	}
-	
+
+    /**
+     * 문자열이 null 인지 체크
+     * @param str   다상문자열
+     * @return  true 해당문자열이 null ,false 해당문자열이 null이 아님.
+     */
+    public static boolean isNull(String str){
+        if(str==null) return true;
+        return str.trim().equals("") || str.trim().equalsIgnoreCase("null");
+    }
+
+    /**
+     * 객체가 null 인지 체크
+     * @param obj   대상객체
+     * @return true 해당객체가 null ,false 해당객체가 null이 아님.
+     */
+    public boolean isNull(Object obj){
+        if(obj==null) return true;
+        if(obj instanceof String) return isNull((String)obj);
+        return false;
+    }
+
+    /**
+     *객체를 사용할수있는 문자열로 반환
+     * @param obj 해당객체
+     * @return 문자열
+     */
+    public String nullString(Object obj){
+        return isNull(obj) ? "" : (obj instanceof String) ? (String)obj : obj.toString();
+    }
+
+    /**
+     * 문자열을 사용할수있는 문자열로 반환
+     * @param szOrg 해당문자열
+     * @return 문자열
+     */
+    public static String nullString(String szOrg){
+        return isNull(szOrg) ? "" : szOrg;
+    }
+
+
+    /**
+     * 객체를 사용할수있는 int로 반환
+     * @param obj 해당객체
+     * @return 해당int, null일경우 0의 int 반환
+     */
+    public int nullInt(Object obj){
+        try{
+            return Integer.parseInt(nullString(obj, "0"));
+        }catch(NumberFormatException e){
+        	log.error("ERROR:int parse");
+            return 0;
+        }
+    }
+
+    /**
+     * 객체를 사용할수있는 double로 반환
+     * @param obj 해당객체
+     * @return 해당double, null일경우 0의 double 반환
+     */
+    public double nullDouble(Object obj){
+        try{
+            return Double.parseDouble(nullString(obj, "0"));
+        }catch(NumberFormatException e){
+        	log.error("ERROR:double parse");
+            return 0;
+        }
+    }
+    
+    /**
+     * 객체를 사용할수있는 float로 반환
+     * @param obj 해당객체
+     * @return 해당float, null일경우 0의 float 반환
+     */
+    public float nullFloat(Object obj){
+    	try{
+    		return Float.parseFloat(nullString(obj, "0"));
+    	}catch(NumberFormatException e){
+    		log.error("ERROR:double parse");
+    		return 0;
+    	}
+    }
+
+    /**
+     * 객체가 존재하지 않을경우 변환문자열 로 반환
+     * @param obj 해당객체
+     * @param szReplace 변환문자열
+     * @return 해당객체가 있을경우 해당객체문자열, 해당객체가 없을경우 반환문자열
+     */
+    public String nullString(Object obj, String szReplace){ return isNull(obj) ? szReplace : obj.toString(); }
+
+    /**
+     * 문자열이 존재하지 않을경우 변환문자열 로 반환
+     * @param szOrg 해당문자열
+     * @param szReplace 반환문자열
+     * @return 해당문자열이 있을경우 해당문자열, 해당문자열이 없을경우 반환문자열
+     */
+    public static String nullString(String szOrg, String szReplace){ return isNull(szOrg) ? szReplace : szOrg; }
+
+
+    /**
+     * object 를 String로 반환한다.
+     * @param Object
+     * @return String
+     */
+    public static String nullStringObjStr(Object obj){
+
+    	Class<? extends Object> classType = null;
+
+        if( obj == null )
+            return "";
+
+        classType = obj.getClass();
+        if( classType == java.lang.String.class )
+         return (String) obj;
+        else if( classType == java.lang.Integer.class )
+         return ( (Integer) obj ).toString();
+        else if( classType == java.lang.Float.class )
+         return ( (Integer) obj ).toString();
+        else if( classType == java.lang.Long.class )
+            return ( (Long) obj ).toString();
+        else if( classType == java.lang.Double.class )
+            return ( (Double) obj ).toString();
+        else if( classType == java.lang.Character.class )
+            return ( (Character) obj ).toString();
+
+        return obj.toString();
+    }
+
+    /**
+     * 객체가 존재하지 않을경우 반환int로 반환
+     * @param obj 해당객체
+     * @param nReplace 반환int
+     * @return 해당객체가 있을경우 해당객체int, 해당객체가 없을경우 반환int
+     */
+    public int nullInt(Object obj, int nReplace){ return isNull(obj) ? nReplace : nullInt(obj); }
+
 	/**
 	 * convertSHA256
 	 * 전달받은 문자열을 SHA-256으로 암호화 후 암호화한 값을 문자열으로 전달
