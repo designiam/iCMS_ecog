@@ -38,6 +38,9 @@
 		<if test='search_board != "" and search_board != null'>
 			AND A.wr_board = #{search_board}
 		</if>
+		<if test='wr_vol != "" and wr_vol != null'>
+			AND A.wr_vol = #{wr_vol}
+		</if>
 		<if test='search_cate != null and search_cate != ""'>
 			AND A.ca_name LIKE CONCAT('%', #{search_cate} ,'%')
 		</if>
@@ -317,8 +320,6 @@
 	<select id="selectWriteListForWeb" resultMap="resultWriteVO">
 		  SELECT  A.*
 		        , CASE WHEN A.wr_id = A.wr_parent THEN (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') ELSE 0 END AS com_count
-			    , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
-			    , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 		    FROM  dm_write AS A
 		   WHERE  1 = 1
 			 AND  A.wr_is_comment = 0
@@ -350,8 +351,6 @@
 		SELECT  A.*
 	          , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_reply > 0 AND dm_delete_yn = 'N') AS re_count
 		      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') AS com_count
-		      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like') AS dm_like
-		      , (SELECT COUNT(dm_id) FROM dm_write_good WHERE A.wr_board = wr_board AND A.wr_id = wr_id AND dm_type = 'like2') AS dm_like2
 	      FROM  dm_write AS A
 	     WHERE  A.wr_is_notice = '1'
 		   AND  A.dm_delete_yn = 'N'
@@ -584,11 +583,12 @@
 	</select>
 	
 	<select id="selectSameVolWrite" resultMap="resultWriteVO">
-		   SELECT A.*, B.dm_uid AS uid, B.dm_page_name AS type
+		   SELECT A.*, B.dm_uid AS uid, B.dm_page_name AS type, C.dm_year AS wr_year, C.dm_month AS wr_month
 		  	 FROM dm_write AS A
 		LEFT JOIN dm_pages AS B
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
-			WHERE wr_vol = #{wr_vol}
+	    LEFT JOIN dm_cover AS C ON A.wr_vol = C.dm_vol AND C.dm_delete_yn = 'N'
+			WHERE A.wr_vol = #{wr_vol}
 			  AND A.dm_delete_yn = 'N'
 			  AND A.wr_reply = 0 
 			  AND A.wr_is_comment = 0
@@ -644,7 +644,7 @@
 		  	 FROM dm_write AS A
 		LEFT JOIN dm_pages AS B
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
-			WHERE A.wr_vol = #{wr_vol}
+			WHERE 1=1
 			  AND A.dm_delete_yn = 'N'
 			  <include refid="selectWriteListWhere"/>
 		  ORDER BY  A.wr_datetime DESC
@@ -654,7 +654,7 @@
 	<select id="selectWriteListVolCount" resultType="int">
 		SELECT	COUNT(A.wr_id)
 		  FROM	dm_write AS A
-		 WHERE	A.wr_vol = #{wr_vol}
+		 WHERE	1=1
 		   AND  A.dm_delete_yn = 'N'
 		   <include refid="selectWriteListWhere"/>
 	</select>
@@ -678,6 +678,44 @@
 		   AND  A.wr_id = B.wr_id 
 		   AND  B.dm_type = 'like2'
 		   AND  A.dm_delete_yn = 'N'
+		   <include refid="selectWriteListWhere"/>
+	</select>
+	
+	<select id="selectWriteListForMain" resultMap="resultWriteVO">
+		SELECT  A.*
+		        , CASE WHEN A.wr_id = A.wr_parent THEN (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') ELSE 0 END AS com_count
+		        , C.dm_uid AS uid, C.dm_page_name AS type
+			  FROM  dm_write AS A
+		INNER JOIN dm_board AS B
+		        ON A.wr_board = B.dm_id AND B.dm_main_use = '1' AND B.dm_delete_yn = 'N'
+		LEFT JOIN dm_pages AS C
+			   ON A.wr_board = C.dm_board_id AND C.dm_delete_yn = 'N'
+			 WHERE  1 = 1
+			   AND  A.wr_is_comment = 0
+			   AND  A.dm_delete_yn = 'N'
+			   AND  (A.wr_is_notice IS NULL OR A.wr_is_notice != '1')
+		<include refid="selectWriteListWhereForWeb"/>
+		  ORDER BY 
+			<choose>
+				<when test='sort == "new"'>
+					A.wr_vol DESC,
+				</when>
+				<when test='sort == "pop"'>
+					A.wr_hit DESC,
+				</when>
+			</choose>
+			A.wr_num ASC, A.wr_reply_reply *1 ASC
+		   LIMIT  #{page}, #{rows}
+	</select>	
+	<select id="selectWriteListForMainCount" resultType="int">
+		SELECT	COUNT(A.wr_id)
+			  FROM  dm_write AS A
+		INNER JOIN dm_board AS B
+		        ON A.wr_board = B.dm_id AND B.dm_main_use = '1' AND B.dm_delete_yn = 'N'
+			 WHERE  1 = 1
+			   AND  A.wr_is_comment = 0
+			   AND  A.dm_delete_yn = 'N'
+			   AND  (A.wr_is_notice IS NULL OR A.wr_is_notice != '1')
 		   <include refid="selectWriteListWhere"/>
 	</select>
 	

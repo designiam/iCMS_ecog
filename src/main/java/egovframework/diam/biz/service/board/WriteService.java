@@ -153,7 +153,7 @@ public interface WriteService {
 	
 	public int selectWriteListVolCount(Dm_write_vo vo) throws Exception;
 
-	public List<Dm_write_vo> selectWriteListLike(Dm_write_vo vo) throws Exception;
+	public List<Dm_write_vo> selectWriteListForMain(Dm_write_vo vo) throws Exception;
 	
-	public int selectWriteListLikeCount(Dm_write_vo vo) throws Exception;
+	public int selectWriteListForMainCount(Dm_write_vo vo) throws Exception;
 }

@@ -1119,7 +1119,7 @@ public class WebWriteController {
 		return ResponseEntity.ok(resultMap);
 	}
 
-	@RequestMapping(value="/web/selectWriteListLike.do")
+	@RequestMapping(value="/web/selectWriteListForMain.do")
 	public ResponseEntity<?> selectWriteListLike(Dm_write_vo vo) throws Exception {
 		Map<String , Object> resultMap = new HashMap<>();
 
@@ -1134,8 +1134,8 @@ public class WebWriteController {
 			vo.setRows(row);
 			vo.setPage(row * (page -1));
 		}
-		int writeListCnt = writeService.selectWriteListLikeCount(vo);
-		List<Dm_write_vo> writeList = writeService.selectWriteListLike(vo);
+		int writeListCnt = writeService.selectWriteListForMainCount(vo);
+		List<Dm_write_vo> writeList = writeService.selectWriteListForMain(vo);
 		
 		resultMap.put("total", writeListCnt);
 		resultMap.put("rows", writeList);
