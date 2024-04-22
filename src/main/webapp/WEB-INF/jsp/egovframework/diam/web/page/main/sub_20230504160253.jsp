@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 	.page-wrap {
-		margin: 40px 0;
+		margin: 40px 0 0;
 		text-align: center;
 	}
 </style>
@@ -47,7 +47,8 @@ function setList(data){
 			str += '<a href="?contentId=257a1626ad31a8264c62ddc8ad0454247da258be5f3f6def89c5bb96d6da80bf&dm_id='+obj.dm_id+'">';
 			str += '<div class="thumb-container">';
 			str += '<div class="thumb-wrap" style="background-image: url(' + "'" + obj.dm_file_path + "'" +');">';
-			str += '<img src="'+obj.dm_file_path+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
+			str += '<p class="img"><img src="'+obj.dm_file_path+'" alt="" onerror="this.src=\'/images/no_image.png\'"></p>';
+			str += '<p class="label'+labelClass+'">'+obj.status_text+'</p>';
 			str += '</div>';
 			str += '</div>';
 			str += '<div class="event-txt">';

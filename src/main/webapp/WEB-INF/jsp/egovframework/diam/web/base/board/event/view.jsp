@@ -380,6 +380,9 @@ function deleteWrite() {
 		
 		<div class="bbs_view_writer">
 			<ul>
+				<li class="vol">
+					Vol.<c:out value='${writeVO.wr_vol}'/>
+				</li>
 				<c:if test="${not empty writeVO.wr_writer}">
 				<li class="writer">
 					<span>에디터</span>

@@ -39,7 +39,7 @@
 </div>
 <!-- //호별선택 -->
 
-<div class="bbs_gallist vol_view mt100">
+<div class="bbs_gallist vol_view">
 	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 	</ul>
 </div>
