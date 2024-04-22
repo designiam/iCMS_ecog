@@ -18,7 +18,7 @@
 	<c:out value="${boardVO.dm_header_content}" escapeXml="false"/>
 </c:if>
 
-<!-- bbs// -->
+<!-- bbs// --> 
 <div class="bbs bbs_list bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
 	<div class="event-wrap">
 		<div class="event-item">

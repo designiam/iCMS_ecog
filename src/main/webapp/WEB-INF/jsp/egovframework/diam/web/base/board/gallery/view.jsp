@@ -97,7 +97,7 @@ function deleteWrite() {
 			<span class="type type_2"><c:out value='${boardVO.dm_subject }'/></span>
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
 			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
-			<div class="pick_con">
+			<div class="pick_con ">
 				<ul>
 					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
 				</ul>				
