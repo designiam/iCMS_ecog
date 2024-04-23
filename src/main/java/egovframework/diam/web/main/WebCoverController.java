@@ -175,6 +175,33 @@ public class WebCoverController {
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
 
+	@GetMapping("/web/selectRecommendWrite.do")
+	public ResponseEntity<?> selectRecommendWrite(Dm_write_vo vo) {
+		Map<String, Object> resultMap = new HashMap<>();
+		CommonUtil commonUtil = new CommonUtil();
+
+		try {
+			List<Dm_write_vo> list = writeService.selectRecommendWrite(vo);
+			if (list.size() > 0) {
+				list.forEach(item -> {
+					item.setWr_content(commonUtil.removeHtml(item.getWr_content()));
+				});
+			}
+			resultMap.put("result", "success");
+			resultMap.put("rows", list);
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+
 	@GetMapping("/web/selectChildMenuBoard.do")
 	public ResponseEntity<?> selectChildMenus(@RequestParam("dm_id[]") String[] ids, @RequestParam("page") int page,
 			HttpSession session) {
