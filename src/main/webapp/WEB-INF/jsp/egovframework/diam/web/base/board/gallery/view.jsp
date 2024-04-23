@@ -94,28 +94,32 @@ function deleteWrite() {
 	
 		<!-- 타이틀// -->
 		<div class="bbs_view_title">
-			<span class="type type_2"><c:out value='${boardVO.dm_subject }'/></span>
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
 			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
-			<div class="pick_con ">
-				<ul>
-					<%-- <li class="like"><a href="#"><i></i><span>좋아요</span><strong><c:out value='${writeVO.dm_like}'/></strong></a></li>
-					<li class="like2"><a href="#"><i></i><span>공감</span><strong><c:out value='${writeVO.dm_like2}'/></strong></a></li> --%>
-					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
-				</ul>				
-				<div class="share_box">
+			<!-- type_pick_wrap// -->
+			<div class="type_pick_wrap">
+				<span class="type type_2"><c:out value='${boardVO.dm_subject }'/></span>
+				<div class="pick_con ">
 					<ul>
-						<li><a href="javascript:shareSns('facebook');"><img src="${layout_path}/images/pages/facebook.png" alt="">페이스북</a></li>
-						<li><a href="javascript:shareSns('blog');"><img src="${layout_path}/images/pages/blog.png" alt="">블로그</a></li>
-						<li><a href="javascript:shareSns('twitter');"><img src="${layout_path}/images/pages/twitter.png" alt="">트위터(X)</a></li>
-					</ul>
-					<div>
-						<input type="url" value="" disabled />
-						<button type="button" class="share_link" title="링크 복사"><span class="sr-only">링크 복사</span></button>
-					</div>
-					<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
-				</div> <!-- //.share_box -->
+						<%-- <li class="like"><a href="#"><i></i><span>좋아요</span><strong><c:out value='${writeVO.dm_like}'/></strong></a></li>
+						<li class="like2"><a href="#"><i></i><span>공감</span><strong><c:out value='${writeVO.dm_like2}'/></strong></a></li> --%>
+						<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
+					</ul>				
+					<div class="share_box">
+						<ul>
+							<li><a href="javascript:shareSns('facebook');"><img src="${layout_path}/images/pages/facebook.png" alt="">페이스북</a></li>
+							<li><a href="javascript:shareSns('blog');"><img src="${layout_path}/images/pages/blog.png" alt="">블로그</a></li>
+							<li><a href="javascript:shareSns('twitter');"><img src="${layout_path}/images/pages/twitter.png" alt="">트위터(X)</a></li>
+						</ul>
+						<div>
+							<input type="url" value="" disabled />
+							<button type="button" class="share_link" title="링크 복사"><span class="sr-only">링크 복사</span></button>
+						</div>
+						<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
+					</div> <!-- //.share_box -->
+				</div>
 			</div>
+			<!-- //type_pick_wrap -->
 		</div>
 		<!-- //타이틀 -->
 		
