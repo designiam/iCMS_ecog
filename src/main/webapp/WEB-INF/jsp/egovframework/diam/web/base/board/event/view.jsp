@@ -62,9 +62,11 @@ function deleteWrite() {
 	</c:choose>
 } 
 </script>
-
+<style>
+	#vis_wrap { display:none; }
+</style>
 <fmt:parseDate var="wr_datetime" value="${writeVO.wr_datetime}" pattern="yyyy-mm-dd"/>
-<div class="bbs bbs_view bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
+<div class="bbs bbs_view event_view bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
 	<c:if test="${boardVO.dm_use_list_category eq '1' && boardVO.dm_use_category eq '1'}">
 		<c:set var="category_array" value="${fn:split(boardVO.dm_category_list ,',') }"/>
 		<c:if test="${fn:length(category_array) > 0}">
@@ -95,59 +97,61 @@ function deleteWrite() {
 	
 		<!-- 타이틀// -->
 		<div class="bbs_view_title">
-			<c:if test="${!empty writeVO.ca_name }"><span class="cate"><c:out value='${writeVO.ca_name }'/></span></c:if>
-			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
-			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+			<div class="inner">
+				<c:if test="${!empty writeVO.ca_name }"><span class="cate"><c:out value='${writeVO.ca_name }'/></span></c:if>
+				<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
+				<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
 			
-			<div class="info">
-			<c:if test="${!empty writeVO.wr_start_dt && !empty writeVO.wr_end_dt }">
-			<dl>
-				<dt>응모기간</dt>
-				<dd id="period"><c:out value="${writeVO.wr_start_dt}"/> ~ <c:out value="${writeVO.wr_end_dt}"/></dd>
-			</dl>
-			</c:if>
-			<c:if test="${!empty writeVO.wr_announce }">
-			<dl>
-				<dt>결과발표</dt>
-				<dd id="announce"><c:out value="${writeVO.wr_announce}"/></dd>
-			</dl>
-			</c:if>
-			<c:if test="${!empty writeVO.wr_target }">
-			<dl>
-				<dt>참여대상</dt>
-				<dd id="target"><c:out value="${writeVO.wr_target }" /></dd>
-			</dl>
-			</c:if>
-			<c:if test="${!empty writeVO.wr_host }">
-			<dl>
-				<dt>주최</dt>
-				<dd id="host"><c:out value="${writeVO.wr_host }" /></dd>
-			</dl>
-			</c:if>
-			<c:if test="${!empty writeVO.wr_inquiry }">
-			<dl>
-				<dt>문의처</dt>
-				<dd id="inquiry"><c:out value="${writeVO.wr_inquiry }" /></dd>
-			</dl>
-			</c:if>
-		</div>
-		
-			<div class="pick_con">
-				<ul>
-					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
-				</ul>				
-				<div class="share_box">
+				<%-- <div class="info">
+					<c:if test="${!empty writeVO.wr_start_dt && !empty writeVO.wr_end_dt }">
+					<dl>
+						<dt>응모기간</dt>
+						<dd id="period"><c:out value="${writeVO.wr_start_dt}"/> ~ <c:out value="${writeVO.wr_end_dt}"/></dd>
+					</dl>
+					</c:if>
+					<c:if test="${!empty writeVO.wr_announce }">
+					<dl>
+						<dt>결과발표</dt>
+						<dd id="announce"><c:out value="${writeVO.wr_announce}"/></dd>
+					</dl>
+					</c:if>
+					<c:if test="${!empty writeVO.wr_target }">
+					<dl>
+						<dt>참여대상</dt>
+						<dd id="target"><c:out value="${writeVO.wr_target }" /></dd>
+					</dl>
+					</c:if>
+					<c:if test="${!empty writeVO.wr_host }">
+					<dl>
+						<dt>주최</dt>
+						<dd id="host"><c:out value="${writeVO.wr_host }" /></dd>
+					</dl>
+					</c:if>
+					<c:if test="${!empty writeVO.wr_inquiry }">
+					<dl>
+						<dt>문의처</dt>
+						<dd id="inquiry"><c:out value="${writeVO.wr_inquiry }" /></dd>
+					</dl>
+					</c:if>
+				</div> --%>
+			
+				<%-- <div class="pick_con">
 					<ul>
-						<li><a href="javascript:shareSns('facebook');"><img src="${layout_path}/images/pages/facebook.png" alt="">페이스북</a></li>
-						<li><a href="javascript:shareSns('blog');"><img src="${layout_path}/images/pages/blog.png" alt="">블로그</a></li>
-						<li><a href="javascript:shareSns('twitter');"><img src="${layout_path}/images/pages/twitter.png" alt="">트위터(X)</a></li>
-					</ul>
-					<div>
-						<input type="url" value="" disabled />
-						<button type="button" class="share_link" title="링크 복사"><span class="sr-only">링크 복사</span></button>
-					</div>
-					<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
-				</div> <!-- //.share_box -->
+						<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
+					</ul>				
+					<div class="share_box">
+						<ul>
+							<li><a href="javascript:shareSns('facebook');"><img src="${layout_path}/images/pages/facebook.png" alt="">페이스북</a></li>
+							<li><a href="javascript:shareSns('blog');"><img src="${layout_path}/images/pages/blog.png" alt="">블로그</a></li>
+							<li><a href="javascript:shareSns('twitter');"><img src="${layout_path}/images/pages/twitter.png" alt="">트위터(X)</a></li>
+						</ul>
+						<div>
+							<input type="url" value="" disabled />
+							<button type="button" class="share_link" title="링크 복사"><span class="sr-only">링크 복사</span></button>
+						</div>
+						<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
+					</div> <!-- //.share_box -->
+				</div> --%>
 			</div>
 		</div>
 		<!-- //타이틀 -->
@@ -285,7 +289,7 @@ function deleteWrite() {
 			</div>
 		</div>
 		
-		<div class="pick_con bot">
+		<%-- <div class="pick_con bot">
 			<ul>
 				<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
 			</ul>				
@@ -301,7 +305,7 @@ function deleteWrite() {
 				</div>
 				<button type="button" class="share_close"><span class="sr-only">공유하기 닫기</span></button>
 			</div> <!-- //.share_box -->
-		</div>
+		</div> --%>
 		
 		<div class="bbs_view_writer">
 			<ul>
