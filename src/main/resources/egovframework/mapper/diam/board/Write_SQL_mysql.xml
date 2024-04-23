@@ -118,6 +118,7 @@
 			wr_link2,
 			wr_hit,
 			wr_is_notice,
+			wr_is_recommend,
 			mb_id,
 			reply_mb_id,
 			wr_password,
@@ -167,6 +168,7 @@
 			#{wr_link2},
 			'0',
 			#{wr_is_notice},
+			#{wr_is_recommend},
 			#{mb_id},
 			#{reply_mb_id},
 			#{wr_password},
@@ -227,6 +229,7 @@
 				wr_link1 = #{wr_link1}, 
 				wr_link2 = #{wr_link2}, 
 				wr_is_notice = #{wr_is_notice}, 
+				wr_is_recommend = #{wr_is_recommend}, 
 				<if test='wr_password != null and wr_password != ""'>
 				wr_password = #{wr_password}, 
 				</if>
@@ -598,7 +601,7 @@
 	</select>
 	
 	<select id="selectPopularWrite" resultMap="resultWriteVO">
-		    SELECT A.*, C.dm_uid AS uid
+		    SELECT A.*, C.dm_uid AS uid, C.dm_page_name AS type
 		      FROM dm_write AS A
 		INNER JOIN dm_board AS B
 		        ON A.wr_board = B.dm_id AND (B.dm_skin = 'gallery' OR B.dm_skin = 'video')
@@ -609,6 +612,22 @@
 		       AND A.wr_reply = 0 
 		       AND A.wr_is_comment = 0
 		  ORDER BY A.wr_new_hit DESC
+		     LIMIT 3
+	</select>
+	
+	<select id="selectRecommendWrite" resultMap="resultWriteVO">
+		    SELECT A.*, C.dm_uid AS uid, C.dm_page_name AS type
+		      FROM dm_write AS A
+		INNER JOIN dm_board AS B
+		        ON A.wr_board = B.dm_id AND (B.dm_skin = 'gallery' OR B.dm_skin = 'video')
+		 LEFT JOIN dm_pages AS C
+			    ON B.dm_id = C.dm_board_id AND C.dm_page_type = 'BOARD' AND C.dm_delete_yn = 'N'
+		     WHERE A.dm_delete_yn = 'N'
+		       AND A.wr_vol = #{wr_vol}
+		       AND A.wr_is_recommend = '1'
+		       AND A.wr_reply = 0 
+		       AND A.wr_is_comment = 0
+		  ORDER BY A.wr_datetime DESC
 		     LIMIT 3
 	</select>
 	

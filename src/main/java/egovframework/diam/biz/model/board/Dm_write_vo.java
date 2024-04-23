@@ -113,6 +113,10 @@ public class Dm_write_vo implements Serializable {
 	@Pattern(regexp = "^$|^1$", message = "올바르지 않은 공지사항 옵션값입니다.")
 	private String wr_is_notice;
 
+	/** 게시글 추천 여부 */
+	@Pattern(regexp = "^$|^1$", message = "올바르지 않은 추천 옵션값입니다.")
+	private String wr_is_recommend;
+
 	/** 게시글 등록자 */
 	private String mb_id;
 

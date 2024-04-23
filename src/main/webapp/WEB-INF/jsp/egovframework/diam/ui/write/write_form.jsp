@@ -73,6 +73,10 @@ function fnSetData(row) {
 	if (row.wr_is_notice == "1") {
 	    $("#notice").prop("checked", true);
 	}
+
+	if (row.wr_is_recommend == "1") {
+	    $("#recommend").prop("checked", true);
+	}
 	
 	if (row.wr_is_period == "1") {
 	    $("#wr_is_period").prop("checked", true);
@@ -453,6 +457,7 @@ var createSE = function() {
 				    <dd>
 				        <input type="text" name="wr_subject" id="wr_subject" class="wd80">
 				        <label><input type="checkbox" name="wr_is_notice" value="1" id="notice">공지</label>
+				        <label><input type="checkbox" name="wr_is_recommend" value="1" id="recommend">추천</label>
 				        <label id="secret"><input type="checkbox" id="secret_option" name="wr_option" value="secret">비밀글</label>
 				        <p class="noty">1자이상 255자 이하로 입력해 주세요.</p>
 				    </dd>

@@ -205,7 +205,7 @@ function fnSetData(tab, rows) {
 			html += '<li class="cell col">';
 			html += '<a href="${param.root }/index.do?command=view&wr_id='+obj.wr_id+'&amp;${writeSearchQueryString}">';
 			html += '<div class="img">';
-			if(obj.wr_thumb) {
+			if(obj.wr_thumb_sub) {
 				html += '<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
 			} else {
 				html += '<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url(\'/images/no_image.png\');"><img src="/images/no_image.png" alt="no image"></div>';

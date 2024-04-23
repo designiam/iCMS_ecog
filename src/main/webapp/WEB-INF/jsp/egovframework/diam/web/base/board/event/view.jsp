@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <%@ include file="base.jsp"%>
+
+<link rel="stylesheet" href="<c:url value='${layout_path}/css/content.css' />">
+
 <script type="text/javascript" src="/js/egovframework/diam/rsa/rsa.js"></script>
 <script type="text/javascript" src="/js/egovframework/diam/rsa/jsbn.js"></script>
 <script type="text/javascript" src="/js/egovframework/diam/rsa/prng4.js"></script>

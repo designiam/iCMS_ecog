@@ -7,13 +7,10 @@
 <!-- 최신 발행호 중 3개 콘텐츠 슬라이드// -->
 <!-- topSlider// -->
 <div id="topSlider">
-	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
-		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
-		<div class="swiper-slide"><img src="/thema/basic/images/main/img_visual_1.png" alt=""></div>
-	</div>
-	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
+	<c:import url="/portlet.do">
+		<c:param name="MODE" value="mainVisual" />
+		<c:param name="VIEW" value="portlet/mainVisual" />
+	</c:import>
 </div>
 <!-- //topSlider -->
 <!-- //최신 발행호 중 3개 콘텐츠 슬라이드 -->
@@ -41,34 +38,21 @@
 	<div class="inner">
 		<div class="tabMenu-wrap tab-style-02">
 			<ul class="nav">
-				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con1-1" data-toggle="tab" data-target="#tab-content-1-1" role="tab" aria-controls="tab-content-1-1" aria-selected="true">추천콘텐츠</button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con1-2" data-toggle="tab" data-target="#tab-content-1-2" role="tab" aria-controls="tab-content-1-2" aria-selected="false">월간 BEST</button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con1-3" data-toggle="tab" data-target="#tab-content-1-3" role="tab" aria-controls="tab-content-1-3" aria-selected="false">최신 콘텐츠</button></li>
+				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con1-1" data-toggle="tab" data-target="#tab-content-1-1" role="tab" aria-controls="tab-content-1-1" aria-selected="true">월간 BEST</button></li>
+				<li class="nav-item"><button type="button" class="nav-link" id="tab-con1-2" data-toggle="tab" data-target="#tab-content-1-2" role="tab" aria-controls="tab-content-1-2" aria-selected="false">추천콘텐츠</button></li>
 			</ul>
 		</div>
 		<!-- //.tabMenu-wrap -->
 	
 		<div class="tabContent-wrap">
 			<div class="tabContent">
-				<!-- 추천콘텐츠// -->
+				<!-- 월간 BEST// -->
 				<div class="tab-pane fade show active" id="tab-content-1-1" role="tabpanel" aria-labelledby="tab-con1-1">
 					<div class="top-con-swiper swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/video/20231222142028_maxresdefault (30).jpg');"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
 						</div>
 						<div class="control-wrap">
 							<div class="swiper-pagination"></div>
@@ -81,31 +65,22 @@
 					<div class="top-con-thumb-swiper swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_1">Article</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_1">People</p><p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p></div>
 							</div>
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_2">People</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_2">Article</p><p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p></div>
 							</div>
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_3">함께G</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_1">People</p><p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p></div>
 							</div>
 						</div>
 					</div>
 					<script>
 						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-1 .top-con-swiper', {
+							var galleryTop = new Swiper('#tab-content-1-1 > .top-con-swiper', {
 								//effect: 'fade',
 								slidesPerView: 1,  
 								loop: true,
@@ -123,7 +98,7 @@
 								  type: "fraction",
 								},
 							});
-							var galleryThumbs = new Swiper('#tab-content-1-1 .top-con-thumb-swiper', {
+							var galleryThumbs = new Swiper('#tab-content-1-1 > .top-con-thumb-swiper', {
 							  direction: 'vertical',
 							  slidesPerView: 3,
 							  slideToClickedSlide: true,
@@ -143,27 +118,16 @@
 							});
 						});
 					</script>
+					
 				</div>
-				<!-- //추천콘텐츠 -->
-				<!-- 월간베스트// -->
+				<!-- //월간 BEST -->
+				<!-- 추천콘텐츠// -->
 				<div class="tab-pane fade" id="tab-content-1-2" role="tabpanel" aria-labelledby="tab-con1-2">
 					<div class="top-con-swiper swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/video/20231222142028_maxresdefault (30).jpg');"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
 						</div>
 						<div class="control-wrap">
 							<div class="swiper-pagination"></div>
@@ -176,31 +140,22 @@
 					<div class="top-con-thumb-swiper swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_2">People</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_1">People</p><p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p></div>
 							</div>
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_1">Article</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_2">Article</p><p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p></div>
 							</div>
 							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_3">함께G</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
+								<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></div>
+								<div class="thumb_txt"><p class="type type_1">People</p><p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p></div>
 							</div>
 						</div>
 					</div>
 					<script>
 						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-2 .top-con-swiper', {
+							var galleryTop = new Swiper('#tab-content-1-2 > .top-con-swiper', {
 								//effect: 'fade',
 								slidesPerView: 1,  
 								loop: true,
@@ -220,7 +175,7 @@
 								observer: true,
 								observeParents: true,
 							});
-							var galleryThumbs = new Swiper('#tab-content-1-2 .top-con-thumb-swiper', {
+							var galleryThumbs = new Swiper('#tab-content-1-2 > .top-con-thumb-swiper', {
 							  direction: 'vertical',
 							  slidesPerView: 3,
 							  slideToClickedSlide: true,
@@ -241,108 +196,9 @@
 								galleryTop.autoplay.start();
 							});
 						});
-					</script>
+					</script>					
 				</div>
-				<!-- //월간베스트 -->
-				<!-- 최신콘텐츠// -->
-				<div class="tab-pane fade" id="tab-content-1-3" role="tabpanel" aria-labelledby="tab-con1-3">
-					<div class="top-con-swiper swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="img_con">
-									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="control-wrap">
-							<div class="swiper-pagination"></div>
-							<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
-							<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
-							<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
-							<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
-						</div>
-					</div>
-					<div class="top-con-thumb-swiper swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_3">함께G</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_2">People</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="thumb_txt">
-									<p class="type type_1">Article</p>
-									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<script>
-						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-3 .top-con-swiper', {
-								//effect: 'fade',
-								slidesPerView: 1,  
-								loop: true,
-								loopedSlides: 3,
-								autoplay: {
-							        delay: 3000,
-							        disableOnInteraction: false,
-							    },
-								navigation: {
-									nextEl: '.swiper-gallery-next',
-									prevEl: '.swiper-gallery-prev',
-								},
-								pagination: {
-								  el: ".swiper-pagination",
-								  type: "fraction",
-								},
-								observer: true,
-								observeParents: true,
-							});
-							var galleryThumbs = new Swiper('#tab-content-1-3 .top-con-thumb-swiper', {
-							  direction: 'vertical',
-							  slidesPerView: 3,
-							  slideToClickedSlide: true,
-							  spaceBetween: 0,
-							  loop: true,
-							  loopedSlides: 3,
-							  observer: true,
-							  observeParents: true,
-							});
-							galleryTop.controller.control = galleryThumbs;
-							galleryThumbs.controller.control = galleryTop;
-
-							// 자동 재생 시작, 정지 버튼 만들기 스크립트
-							$('#tab-content-1-3 .top-con-swiper .swiper-gallery-pause').on('click', function() {
-								galleryTop.autoplay.stop();
-							});
-							$('#tab-content-1-3 .top-con-swiper .swiper-gallery-play').on('click', function() {
-								galleryTop.autoplay.start();
-							});
-						});
-					</script>
-				</div>
-				<!-- //최신콘텐츠 -->
+				<!-- //추천콘텐츠 -->
 			</div>
 		</div>
 		<!-- //.tabContent-wrap -->
@@ -472,7 +328,120 @@ $(function() {
 </script>
 
 <script>
+//월간 BEST
+function getPopularData() {
+	$.ajax({
+		url: "/web/selectPopularWrite.do",
+		data: {wr_vol : "${sessionScope.vol}"},
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {		
+				if (res.rows.length > 0) {
+					var slide_con1 = '';
+					var slide_con2 = '';
+					
+					$.each(res.rows, function(i, obj){
+						var typeClass = "";
+						switch(obj.wr_board) {
+						case "43":
+							typeClass = "type_1";
+							break;
+						case "56":
+							typeClass = "type_2";
+							break;
+						case "44":
+							typeClass = "type_3";
+							break;
+						}
+						
+						slide_con1 +='<div class="swiper-slide">';
+						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
+						slide_con1 +='<div class="img_con">';
+						slide_con1 +='<p class="img" style="width: 100%; padding-top:59.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
+						slide_con1 +='</div>';
+						slide_con1 +='</a>';
+						slide_con1 +='</div>';
+		
+						
+						slide_con2 +='<div class="swiper-slide">';
+						slide_con2 +='<div class="thumb_img"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
+						slide_con2 +='<div class="thumb_txt"><p class="type '+typeClass+'">'+obj.type+'</p>';
+						slide_con2 +='<p class="t04">'+obj.wr_subject+'</p>';
+						slide_con2 +='</div>';
+						slide_con2 +='</div>';
+					});
+		
+					$("#tab-content-1-1 > .top-con-swiper > .swiper-wrapper").empty().append(slide_con1);
+					$("#tab-content-1-1 > .top-con-thumb-swiper > .swiper-wrapper").empty().append(slide_con2);
+				}
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+
+//추천 콘텐츠
+function getRecommendData() {
+	$.ajax({
+		url: "/web/selectRecommendWrite.do",
+		data: {wr_vol : "${sessionScope.vol}"},
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {		
+				if (res.rows.length > 0) {
+					var slide_con1 = '';
+					var slide_con2 = '';
+					
+					$.each(res.rows, function(i, obj){
+						var typeClass = "";
+						switch(obj.wr_board) {
+						case "43":
+							typeClass = "type_1";
+							break;
+						case "56":
+							typeClass = "type_2";
+							break;
+						case "44":
+							typeClass = "type_3";
+							break;
+						}
+						
+						slide_con1 +='<div class="swiper-slide">';
+						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
+						slide_con1 +='<div class="img_con">';
+						slide_con1 +='<p class="img" style="width: 100%; padding-top:59.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
+						slide_con1 +='</div>';
+						slide_con1 +='</a>';
+						slide_con1 +='</div>';
+		
+						
+						slide_con2 +='<div class="swiper-slide">';
+						slide_con2 +='<div class="thumb_img"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
+						slide_con2 +='<div class="thumb_txt"><p class="type '+typeClass+'">'+obj.type+'</p>';
+						slide_con2 +='<p class="t04">'+obj.wr_subject+'</p>';
+						slide_con2 +='</div>';
+						slide_con2 +='</div>';
+					});
+		
+					$("#tab-content-1-2 > .top-con-swiper > .swiper-wrapper").empty().append(slide_con1);
+					$("#tab-content-1-2 > .top-con-thumb-swiper > .swiper-wrapper").empty().append(slide_con2);
+				}
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+</script>
+
+<script>
 $(function () {
+	getPopularData();
+	getRecommendData();
+	
 	getContentsList("tab-content-2-1", 1);
 	getContentsList("tab-content-2-2", 1);
 	getContentsList("tab-content-2-3", 1);
@@ -570,7 +539,7 @@ function fnSetData(tab, rows) {
 			html += '<li class="cell col">';
 			html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 			html += '<div class="img">';
-			if(obj.wr_thumb) {
+			if(obj.wr_thumb_sub) {
 				html += '<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
 			} else {
 				html += '<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url(\'/images/no_image.png\');"><img src="/images/no_image.png" alt="no image"></div>';
