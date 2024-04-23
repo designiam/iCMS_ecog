@@ -80,7 +80,7 @@
 					</div>
 					<script>
 						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-1 > .top-con-swiper', {
+							var galleryTop = new Swiper('#tab-content-1-1 .top-con-swiper', {
 								//effect: 'fade',
 								slidesPerView: 1,  
 								loop: true,
@@ -97,14 +97,18 @@
 								  el: ".swiper-pagination",
 								  type: "fraction",
 								},
+								observer: true,
+								observeParents: true,
 							});
-							var galleryThumbs = new Swiper('#tab-content-1-1 > .top-con-thumb-swiper', {
+							var galleryThumbs = new Swiper('#tab-content-1-1 .top-con-thumb-swiper', {
 							  direction: 'vertical',
 							  slidesPerView: 3,
 							  slideToClickedSlide: true,
 							  spaceBetween: 0,
 							  loop: true,
 							  loopedSlides: 3,
+							  observer: true,
+							  observeParents: true,
 							});
 							galleryTop.controller.control = galleryThumbs;
 							galleryThumbs.controller.control = galleryTop;
@@ -118,7 +122,6 @@
 							});
 						});
 					</script>
-					
 				</div>
 				<!-- //월간 BEST -->
 				<!-- 추천콘텐츠// -->
@@ -155,7 +158,7 @@
 					</div>
 					<script>
 						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-2 > .top-con-swiper', {
+							var galleryTop = new Swiper('#tab-content-1-2 .top-con-swiper', {
 								//effect: 'fade',
 								slidesPerView: 1,  
 								loop: true,
@@ -175,7 +178,7 @@
 								observer: true,
 								observeParents: true,
 							});
-							var galleryThumbs = new Swiper('#tab-content-1-2 > .top-con-thumb-swiper', {
+							var galleryThumbs = new Swiper('#tab-content-1-2 .top-con-thumb-swiper', {
 							  direction: 'vertical',
 							  slidesPerView: 3,
 							  slideToClickedSlide: true,
@@ -196,7 +199,7 @@
 								galleryTop.autoplay.start();
 							});
 						});
-					</script>					
+					</script>
 				</div>
 				<!-- //추천콘텐츠 -->
 			</div>
