@@ -99,6 +99,8 @@ function deleteWrite() {
 			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
 			<div class="pick_con ">
 				<ul>
+					<%-- <li class="like"><a href="#"><i></i><span>좋아요</span><strong><c:out value='${writeVO.dm_like}'/></strong></a></li>
+					<li class="like2"><a href="#"><i></i><span>공감</span><strong><c:out value='${writeVO.dm_like2}'/></strong></a></li> --%>
 					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
 				</ul>				
 				<div class="share_box">
