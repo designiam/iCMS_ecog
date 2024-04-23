@@ -4,9 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <%@ include file="base.jsp"%>
-
-<link rel="stylesheet" href="<c:url value='${layout_path}/css/content.css' />">
-
+<script type="text/javascript" src="/js/egovframework/diam/rsa/rsa.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/jsbn.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/prng4.js"></script>
+<script type="text/javascript" src="/js/egovframework/diam/rsa/rng.js"></script>
 <script>
 $(function(){
 	$("#modifyWrite").on('click', function(){
@@ -94,9 +95,43 @@ function deleteWrite() {
 	
 		<!-- 타이틀// -->
 		<div class="bbs_view_title">
-			<span class="type type_2"><c:out value='${boardVO.dm_subject }'/></span>
+			<c:if test="${!empty writeVO.ca_name }"><span class="cate"><c:out value='${writeVO.ca_name }'/></span></c:if>
 			<h4><c:out value='${fn:replace(writeVO.wr_subject, "&nbsp;", "<br>")}' escapeXml="false"/></h4>
 			<p class="sub_txt"><c:out value='${writeVO.wr_sub_subject}' escapeXml="false"/></p>
+			
+			<div class="info">
+			<c:if test="${!empty writeVO.wr_start_dt && !empty writeVO.wr_end_dt }">
+			<dl>
+				<dt>응모기간</dt>
+				<dd id="period"><c:out value="${writeVO.wr_start_dt}"/> ~ <c:out value="${writeVO.wr_end_dt}"/></dd>
+			</dl>
+			</c:if>
+			<c:if test="${!empty writeVO.wr_announce }">
+			<dl>
+				<dt>결과발표</dt>
+				<dd id="announce"><c:out value="${writeVO.wr_announce}"/></dd>
+			</dl>
+			</c:if>
+			<c:if test="${!empty writeVO.wr_target }">
+			<dl>
+				<dt>참여대상</dt>
+				<dd id="target"><c:out value="${writeVO.wr_target }" /></dd>
+			</dl>
+			</c:if>
+			<c:if test="${!empty writeVO.wr_host }">
+			<dl>
+				<dt>주최</dt>
+				<dd id="host"><c:out value="${writeVO.wr_host }" /></dd>
+			</dl>
+			</c:if>
+			<c:if test="${!empty writeVO.wr_inquiry }">
+			<dl>
+				<dt>문의처</dt>
+				<dd id="inquiry"><c:out value="${writeVO.wr_inquiry }" /></dd>
+			</dl>
+			</c:if>
+		</div>
+		
 			<div class="pick_con">
 				<ul>
 					<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
@@ -116,65 +151,7 @@ function deleteWrite() {
 			</div>
 		</div>
 		<!-- //타이틀 -->
-		
-		<div class="bbs_view_info">
-			<dl class="bbs_view_info_name">
-				<dt>작성자</dt>
-				<dd>
-					<b>
-						<c:choose>
-							<c:when test='${boardVO.dm_writer_type eq "name"}'>
-								 <c:choose>
-									<c:when test="${boardVO.dm_writer_secret eq '2' }">
-										<c:out value="${fn:substring(writeVO.wr_name, 0, fn:length(writeVO.wr_name) - 1)}"/>*
-									</c:when>
-									<c:when test="${boardVO.dm_writer_secret eq '3' }">
-										<c:out value="${fn:substring(writeVO.wr_name, 0, 1)}"/><c:forEach begin="0" end="${fn:length(writeVO.wr_name) - 2}">*</c:forEach>
-									</c:when>
-									<c:when test="${boardVO.dm_writer_secret eq '4' }">
-										<c:out value="${fn:substring(writeVO.wr_name, 0 , fn:length(writeVO.wr_name) - 2)}"/>**
-									</c:when>
-									<c:otherwise>
-										<c:out value="${writeVO.wr_name}"/>
-									</c:otherwise>
-								</c:choose>
-							</c:when>
-							<c:otherwise>
-								<c:choose>
-									<c:when test="${boardVO.dm_writer_secret eq '2' }">
-										<c:out value="${fn:substring(writeVO.mb_id, 0, fn:length(writeVO.mb_id) - 1)}"/>*
-									</c:when>
-									<c:when test="${boardVO.dm_writer_secret eq '3' }">
-										<c:out value="${fn:substring(writeVO.mb_id, 0, 1)}"/><c:forEach begin="0" end="${fn:length(writeVO.mb_id) - 2}">*</c:forEach>
-									</c:when>
-									<c:when test="${boardVO.dm_writer_secret eq '4' }">
-										<c:out value="${fn:substring(writeVO.mb_id, 0 , fn:length(writeVO.mb_id) - 2)}"/>**
-									</c:when>
-									<c:otherwise>
-										<c:out value="${writeVO.mb_id}"/>
-									</c:otherwise>
-								</c:choose>
-							</c:otherwise>
-						</c:choose>
-					</b>
-				</dd>
-			</dl>
-			<dl class="bbs_view_info_date">
-				<dt>작성일</dt>
-				<dd><b><fmt:formatDate value="${wr_datetime}" pattern="yyyy-mm-dd"/></b></dd>
-			</dl>
-			<dl class="bbs_view_info_hit">
-				<dt>조회 수</dt>
-				<dd><b><c:out value='${writeVO.wr_hit}'/>회</b></dd>
-			</dl>
-			<c:if test="${boardVO.dm_is_comment eq 1}">
-			<dl class="bbs_view_info_cmt">
-				<dt>댓글 수</dt>
-				<dd><b><c:out value='${writeVO.com_count}'/>개</b></dd>
-			</dl>
-			</c:if>
-		</div>
-		
+
 		<c:if test="${boardVO.dm_use_link eq 1}">
 			<c:if test="${(writeVO.wr_link1 ne null && not empty writeVO.wr_link1) ||  (writeVO.wr_link2 ne null && not empty writeVO.wr_link2)}">
 				<dl class="bbs_view_link">
@@ -239,58 +216,7 @@ function deleteWrite() {
 					</c:forEach>
 				</c:if>
 			</c:if>
-			<c:set value="${writeVO.wr_link1}" var="link"/>
-			<c:set value="${fn:split(link, '/')}" var="videoId"/>
-			<c:forEach items="${videoId }" var="i" varStatus="stat">
-				<c:if test="${stat.last}">
-					<c:set var="uniqId" value="${i}"/>
-				</c:if>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${fn:contains(link, 'youtu') }">
-					<c:set var="rootSrc" value="https://www.youtube.com/embed/${uniqId}?autoplay=1&mute=1"/>
-				</c:when>
-				<c:when test="${fn:contains(link, 'vimeo') }">
-					<c:set var="rootSrc" value="https://player.vimeo.com/video/${uniqId}?autoplay=1&background=1"/>
-				</c:when>
-				<c:when test="${fn:contains(link, 'naver') }">
-					<c:set var="rootSrc" value="https://tv.naver.com/embed/${uniqId}?autoplay=1"/>
-				</c:when>
-				<c:when test="${fn:contains(link, 'kakao') }">
-					<c:set var="rootSrc" value="https://play-tv.kakao.com/embed/player/cliplink/${uniqId}?service=player_share&amp;autoplay=1"/>
-				</c:when>
-			</c:choose>
-			<c:choose>
-			<c:when test="${!empty rootSrc }">
-			<style>
-			.video-container {
-				position: relative;
-				padding-bottom: 56.25%;
-				height: 0;
-				overflow: hidden;
-			}
-			 
-			.video-container iframe,
-			.video-container object,
-			.video-container embed {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
-			</style>
-			<div class="video-container">
-				<iframe style="max-width:100%;" src="${rootSrc}" title="<c:out value='${writeVO.wr_subject }' escapeXml='false'/>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>				
-			</div>
-			<br>
 			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "<br/>")}' escapeXml="false"/>
-			</c:when>
-			<c:otherwise>
-			<c:out value='${fn:replace(writeVO.wr_content, newLineChar, "")}' escapeXml="false"/>
-			</c:otherwise>
-			</c:choose>
-			
 		</div>
 		
 		<!-- 태그리스트// -->
@@ -308,7 +234,7 @@ function deleteWrite() {
 		</c:if>
 		<!-- //태그리스트 -->
 		
-		<ul class="nb_ul">
+		<ul class="nb_ul" style="display:none">
 			<li class="btn_prev">
 				<span class="nb_tit"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글</span>
 				<c:choose>
@@ -322,7 +248,7 @@ function deleteWrite() {
 			</li>
 			<li class="btn_next">
 				<span class="nb_tit"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글</span>
-				<c:choose>
+				<c:choose>             
 					<c:when test="${writeVO.next_id ne null }">
 						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.next_id }' />"><c:out value="${writeVO.next_subject }" /></a>
 					</c:when>
@@ -361,7 +287,6 @@ function deleteWrite() {
 		
 		<div class="pick_con bot">
 			<ul>
-				<li class="vol">Vol.<c:out value='${writeVO.wr_vol}'/></li>
 				<li class="share"><a href="javascript:void(0);" class="ico share" title="공유"><i></i><span>공유하기</span></a></li>
 			</ul>				
 			<div class="share_box">
@@ -380,14 +305,45 @@ function deleteWrite() {
 		
 		<div class="bbs_view_writer">
 			<ul>
-				<li class="vol">
-					Vol.<c:out value='${writeVO.wr_vol}'/>
-				</li>
-				<c:if test="${not empty writeVO.wr_writer}">
+				<c:if test="${not empty writeVO.wr_name}">
 				<li class="writer">
 					<span>에디터</span>
-					<strong><c:out value='${writeVO.wr_writer}' escapeXml="false"/></strong>
-					<span><c:out value='${writeVO.wr_writer_mail}' escapeXml="false"/></span>
+					<strong>
+						<c:choose>
+							<c:when test='${boardVO.dm_writer_type eq "name"}'>
+								 <c:choose>
+									<c:when test="${boardVO.dm_writer_secret eq '2' }">
+										<c:out value="${fn:substring(writeVO.wr_name, 0, fn:length(writeVO.wr_name) - 1)}"/>*
+									</c:when>
+									<c:when test="${boardVO.dm_writer_secret eq '3' }">
+										<c:out value="${fn:substring(writeVO.wr_name, 0, 1)}"/><c:forEach begin="0" end="${fn:length(writeVO.wr_name) - 2}">*</c:forEach>
+									</c:when>
+									<c:when test="${boardVO.dm_writer_secret eq '4' }">
+										<c:out value="${fn:substring(writeVO.wr_name, 0 , fn:length(writeVO.wr_name) - 2)}"/>**
+									</c:when>
+									<c:otherwise>
+										<c:out value="${writeVO.wr_name}"/>
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${boardVO.dm_writer_secret eq '2' }">
+										<c:out value="${fn:substring(writeVO.mb_id, 0, fn:length(writeVO.mb_id) - 1)}"/>*
+									</c:when>
+									<c:when test="${boardVO.dm_writer_secret eq '3' }">
+										<c:out value="${fn:substring(writeVO.mb_id, 0, 1)}"/><c:forEach begin="0" end="${fn:length(writeVO.mb_id) - 2}">*</c:forEach>
+									</c:when>
+									<c:when test="${boardVO.dm_writer_secret eq '4' }">
+										<c:out value="${fn:substring(writeVO.mb_id, 0 , fn:length(writeVO.mb_id) - 2)}"/>**
+									</c:when>
+									<c:otherwise>
+										<c:out value="${writeVO.mb_id}"/>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+					</strong>
 				</li>
 				</c:if>
 				<c:if test="${not empty writeVO.wr_pictured}">
@@ -401,19 +357,6 @@ function deleteWrite() {
 				</li>
 			</ul>
 		</div>
-		
-		<div class="bbs_view_slide">
-			<h6>같이 보면 좋은 콘텐츠</h6>
-			<div class="vol-slider">
-				<div class="swiper-container">
-					<ul class="swiper-wrapper">
-					</ul>
-				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-		</div>
-		
 	</div>
 	<c:if test="${boardVO.dm_is_comment eq 1}">
 		<c:if test="${writeVO.wr_reply eq '0'}">
@@ -423,103 +366,24 @@ function deleteWrite() {
 </div>
 
 <script>
-	$(function() {
-		var currentURL = window.location.href;
-		$('.share_box input[type="url"]').val(currentURL);
-		$('.share_box .share_link').on('click', function(){
-			$('.share_box input[type="url"]').attr('disabled', false);
-			$('.share_box input[type="url"]').select();
-			var copyURL = document.execCommand('copy');
-			if (copyURL) {
-				alert('링크가 복사되었습니다.');
-			}
-			$('.share_box input[type="url"]').attr('disabled', true);
-		});
-	
-		$('.share .share').on('click', function(){
-			$('.share_box').toggle();
-		});
-		$('.share_box .share_close').on('click', function(){
-			$('.share_box').toggle();
-		});
-	});
-</script>
-
-<script>
-//해당 호수 콘텐츠 슬라이드
-var volSwiper = new Swiper(".vol-slider .swiper-container", {
-	slidesPerView: 2,
-	spaceBetween: 15,
-	observer: true,
-	observeParents: true,
-	autoplay: {
-		delay: 3500,
-		disableOnInteraction: false,
-	},
-	navigation: {
-		nextEl: ".vol-slider .swiper-button-next",
-		prevEl: ".vol-slider .swiper-button-prev",
-	},
-	breakpoints: {
-		576: {
-			slidesPerView: 3,
-			spaceBetween: 30,
-		},
-	}
-});
-
-$(function(){
-	var vol = "<c:out value='${writeVO.wr_vol}'/>";
-	var pk = "<c:out value='${writeVO.wr_id}'/>";
-	
-	$.ajax({
-		url: "/web/selectSameVolWrite.do",
-		data: {
-			wr_id: pk,
-			wr_vol: vol
-		},
-		type: "get"
-	}).done(function(response){
-		if (response.result == "success") {
-			setList(response.rows);
-		} else {
-			alert(response.notice);
+$(function() {
+	var currentURL = window.location.href;
+	$('.share_box input[type="url"]').val(currentURL);
+	$('.share_box .share_link').on('click', function() {
+		$('.share_box input[type="url"]').attr('disabled', false);
+		$('.share_box input[type="url"]').select();
+		var copyURL = document.execCommand('copy');
+		if (copyURL) {
+			alert('링크가 복사되었습니다.');
 		}
-	}).fail(function(request, status, error){
-		alert(request.responseJSON.notice);
+		$('.share_box input[type="url"]').attr('disabled', true);
+	});
+
+	$('.share .share').on('click', function(){
+		$('.share_box').toggle();
+	});
+	$('.share_box .share_close').on('click', function(){
+		$('.share_box').toggle();
 	});
 });
-
-
-function setList(rows) {
-	var target = $(".swiper-wrapper");
-	
-	var str = "";
-	if (rows.length > 0) {
-		$.each(rows, function(i, obj) {
-			
-			str += '<li class="swiper-slide">';
-			str += '<a href="?command=view&wr_id='+obj.wr_id+'&contentId='+obj.uid+'">';
-			str += '<div class="cell_thumb">';
-			if (obj.wr_thumb_sub == null) {
-				str += '<div class="thumb-wrap" style="background-image: url(\'/images/no_image.png\');">';				
-			} else {
-				str += '<div class="thumb-wrap" style="background-image: url(\''+obj.wr_path + obj.wr_thumb_sub+'\');">';				
-			}
-			str += '<img src="'+obj.wr_path + obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
-			str += '</div>';
-			str += '<div class="cell_txt">';
-			str += '<p class="type type_1">'+obj.type+'</p>';
-			str += '<p class="cell_subject">'+obj.wr_subject+'</p>';
-			str += '</div>';
-			str += '</a>';
-			str += '</li>';
-		});
-	} else {
-		str += '<li style="max-width: 100%; flex: 100%;"><img style="max-width:100%;" src="/images/noimg_content.jpg" alt="콘텐츠가 없습니다."></li>';
-	}
-	target.empty();
-	target.append(str);
-	
-}
 </script>
