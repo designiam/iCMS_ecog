@@ -30,57 +30,19 @@
 		<!-- //인기검색어 -->
 		<!-- 리스트// -->
 		<div class="favor_list">
-			<ul>
-				<li>
-					<a href="#">
-						<div class="img">
-							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-						</div>
-						<div class="con_txt">
-							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-							<div class="bot">
-								<p class="vol">vol. 70</p>
-								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="img">
-							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-						</div>
-						<div class="con_txt">
-							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-							<div class="bot">
-								<p class="vol">vol. 70</p>
-								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="img">
-							<div class="thumb-wrap"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-						</div>
-						<div class="con_txt">
-							<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-							<div class="bot">
-								<p class="vol">vol. 70</p>
-								<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-							</div>
-						</div>
-					</a>
-				</li>
-			</ul>
+			<c:import url="/portlet.do">
+				<c:param name="MODE" value="board" />
+				<c:param name="LAST" value="3" />
+				<c:param name="SORT" value="pop" />
+				<c:param name="ID" value="${boardVO.dm_id }" />
+				<c:param name="VIEW" value="portlet/gallery" />
+			</c:import>
 		</div>
 		<!-- //리스트 -->
 	</div>
 	<!-- //.inner -->
 </div>
 <!-- //인기게시물 -->
-
 <c:if test="${boardVO.dm_header_content ne null && boardVO.dm_header_content ne ''}">
 	<c:out value="${boardVO.dm_header_content}" escapeXml="false"/>
 </c:if>
@@ -93,8 +55,7 @@
 			<li class="nav-item"><button type="button" class="nav-link active" id="tab-con-1" data-toggle="tab" data-target="#tab-content-1" role="tab" aria-controls="tab-content-1" aria-selected="true">전체 콘텐츠 <span><c:out value='${writeListCnt}'/></span></button></li>
 			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-2" data-toggle="tab" data-target="#tab-content-2" role="tab" aria-controls="tab-content-2" aria-selected="false">최근 발행호 <span><c:out value="${vol}"/>호</span></button></li>
 			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-3" data-toggle="tab" data-target="#tab-content-3" role="tab" aria-controls="tab-content-3" aria-selected="false">많이 본 콘텐츠 </button></li>
-			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-4" data-toggle="tab" data-target="#tab-content-4" role="tab" aria-controls="tab-content-4" aria-selected="false">공감 콘텐츠</button></li>
-			<li class="nav-item"><button type="button" class="nav-link" id="tab-con-5" data-toggle="tab" data-target="#tab-content-5" role="tab" aria-controls="tab-content-5" aria-selected="false">최신 콘텐츠</button></li>
+			<!-- <li class="nav-item"><button type="button" class="nav-link" id="tab-con-4" data-toggle="tab" data-target="#tab-content-4" role="tab" aria-controls="tab-content-4" aria-selected="false">공감 콘텐츠</button></li> -->
 		</ul>
 	</div>
 	<!-- //.tabMenu-wrap -->
@@ -120,17 +81,11 @@
 			</div>
 			<!-- //많이 본 콘텐츠 -->
 			<!-- 공감 콘텐츠// -->
-			<div class="tab-pane fade" id="tab-content-4" role="tabpanel" aria-labelledby="tab-con-4">
+			<!-- <div class="tab-pane fade" id="tab-content-4" role="tabpanel" aria-labelledby="tab-con-4">
 				<div class="bbs_gallist"></div>
 				<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
-			</div>
+			</div> -->
 			<!-- //공감 콘텐츠 -->
-			<!-- 최신 콘텐츠// -->
-			<div class="tab-pane fade" id="tab-content-5" role="tabpanel" aria-labelledby="tab-con-5">
-				<div class="bbs_gallist"></div>
-				<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
-			</div>
-			<!-- //최신 콘텐츠 -->
 		</div>
 	</div>
 </div>
@@ -143,8 +98,7 @@ $(function () {
 	getContentsList("tab-content-1", 1);
 	getContentsList("tab-content-2", 1);
 	getContentsList("tab-content-3", 1);
-	getContentsList("tab-content-4", 1);
-	getContentsList("tab-content-5", 1);
+	//getContentsList("tab-content-4", 1);
 });
 //			
 var dataPerPage = <c:out value="${boardVO.dm_page_rows}" />;
@@ -158,7 +112,8 @@ function getContentsList(tab, page) {
 			data: {
 				"search_board" : "${boardVO.dm_id}",
 				"rows" : dataPerPage,
-				"page" : page
+				"page" : page,
+				"sort" : "new"
 			},
 			type: "get",
 			dataType : "json",
@@ -218,7 +173,7 @@ function getContentsList(tab, page) {
 				}
 			});
 			break;
-	  case "tab-content-4":
+	 /*  case "tab-content-4":
 		$.ajax({
 			url: "/web/selectWriteListLike.do",
 			data: {
@@ -238,29 +193,7 @@ function getContentsList(tab, page) {
 				alert(request.responseJSON.notice);
 			}
 		});
-		break;
-	  case "tab-content-5":
-		$.ajax({
-			url: "/web/selectWriteListForWeb.do",
-			data: {
-				"search_board" : "${boardVO.dm_id}",
-				"rows" : dataPerPage,
-				"page" : page,
-				"sort" : "new"
-			},
-			type: "get",
-			dataType : "json",
-			success : function (res) {
-				if(res.result == "success") {
-					var totalCount = res.total;
-					fnSetData(tab, res.rows);
-					paging(tab, totalCount, dataPerPage, pageCount, page);
-				}
-			}, error:function(request,status,error) {
-				alert(request.responseJSON.notice);
-			}
-		});
-		break;	
+		break; */
 	}	
 }
 
@@ -280,7 +213,7 @@ function fnSetData(tab, rows) {
 			html += '</div>';
 			html += '<div class="con_txt"><p class="tit t02">'+obj.wr_subject+'</p>';
 			html += '<div class="bot"><p class="vol">vol. '+obj.wr_vol+'</p>';
-			if(obj.hashtag) {
+			if(obj.wr_hashtag) {
 				html += '<p class="tag_con">';
 				var hashtag = obj.wr_hashtag.split('#');
 				var tagcount = 0;
@@ -306,8 +239,8 @@ function fnSetData(tab, rows) {
 /* 페이징 처리 함수  ****************************************************************************************************************************/
 function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
 
-    var totalPage = Math.ceil(totalCount/dataPerPage);    // 총 페이지 수
-    var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+    var totalPage = Math.ceil(totalCount / dataPerPage);// 총 페이지 수
+    var pageGroup = Math.ceil(currentPage / pageCount);// 페이지 그룹
 	
    // $("#currentPage").text(totalCount == 0 ? 0 : currentPage);
    // $("#totalPage").text(totalPage);
@@ -362,3 +295,4 @@ function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
     });
 }
 </script>
+

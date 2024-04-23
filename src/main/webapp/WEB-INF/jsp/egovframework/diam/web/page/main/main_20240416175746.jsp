@@ -105,7 +105,7 @@
 					</div>
 					<script>
 						$(function(e) {					
-							var galleryTop = new Swiper('.top-con-swiper', {
+							var galleryTop = new Swiper('#tab-content-1-1 .top-con-swiper', {
 								//effect: 'fade',
 								slidesPerView: 1,  
 								loop: true,
@@ -123,7 +123,7 @@
 								  type: "fraction",
 								},
 							});
-							var galleryThumbs = new Swiper('.top-con-thumb-swiper', {
+							var galleryThumbs = new Swiper('#tab-content-1-1 .top-con-thumb-swiper', {
 							  direction: 'vertical',
 							  slidesPerView: 3,
 							  slideToClickedSlide: true,
@@ -135,10 +135,10 @@
 							galleryThumbs.controller.control = galleryTop;
 
 							// 자동 재생 시작, 정지 버튼 만들기 스크립트
-							$('.top-con-swiper .swiper-gallery-pause').on('click', function() {
+							$('#tab-content-1-1 .top-con-swiper .swiper-gallery-pause').on('click', function() {
 								galleryTop.autoplay.stop();
 							});
-							$('.top-con-swiper .swiper-gallery-play').on('click', function() {
+							$('#tab-content-1-1 .top-con-swiper .swiper-gallery-play').on('click', function() {
 								galleryTop.autoplay.start();
 							});
 						});
@@ -147,12 +147,200 @@
 				<!-- //추천콘텐츠 -->
 				<!-- 월간베스트// -->
 				<div class="tab-pane fade" id="tab-content-1-2" role="tabpanel" aria-labelledby="tab-con1-2">
-					월간베스트
+					<div class="top-con-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="control-wrap">
+							<div class="swiper-pagination"></div>
+							<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
+							<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
+							<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
+							<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
+						</div>
+					</div>
+					<div class="top-con-thumb-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_1">Article</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_2">People</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_3">함께G</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						$(function(e) {					
+							var galleryTop = new Swiper('#tab-content-1-2 .top-con-swiper', {
+								//effect: 'fade',
+								slidesPerView: 1,  
+								loop: true,
+								loopedSlides: 3,
+								autoplay: {
+							        delay: 3000,
+							        disableOnInteraction: false,
+							    },
+								navigation: {
+									nextEl: '.swiper-gallery-next',
+									prevEl: '.swiper-gallery-prev',
+								},
+								pagination: {
+								  el: ".swiper-pagination",
+								  type: "fraction",
+								},
+								observer: true,
+								observeParents: true,
+							});
+							var galleryThumbs = new Swiper('#tab-content-1-2 .top-con-thumb-swiper', {
+							  direction: 'vertical',
+							  slidesPerView: 3,
+							  slideToClickedSlide: true,
+							  spaceBetween: 0,
+							  loop: true,
+							  loopedSlides: 3,
+							  observer: true,
+							  observeParents: true,
+							});
+							galleryTop.controller.control = galleryThumbs;
+							galleryThumbs.controller.control = galleryTop;
+
+							// 자동 재생 시작, 정지 버튼 만들기 스크립트
+							$('#tab-content-1-2 .top-con-swiper .swiper-gallery-pause').on('click', function() {
+								galleryTop.autoplay.stop();
+							});
+							$('#tab-content-1-2 .top-con-swiper .swiper-gallery-play').on('click', function() {
+								galleryTop.autoplay.start();
+							});
+						});
+					</script>
 				</div>
 				<!-- //월간베스트 -->
 				<!-- 최신콘텐츠// -->
 				<div class="tab-pane fade" id="tab-content-1-3" role="tabpanel" aria-labelledby="tab-con1-3">
-					최신콘텐츠
+					<div class="top-con-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="img_con">
+									<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="control-wrap">
+							<div class="swiper-pagination"></div>
+							<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
+							<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
+							<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
+							<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
+						</div>
+					</div>
+					<div class="top-con-thumb-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_1">Article</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_2">People</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
+								<div class="thumb_txt">
+									<p class="type type_3">함께G</p>
+									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						$(function(e) {					
+							var galleryTop = new Swiper('#tab-content-1-3 .top-con-swiper', {
+								//effect: 'fade',
+								slidesPerView: 1,  
+								loop: true,
+								loopedSlides: 3,
+								autoplay: {
+							        delay: 3000,
+							        disableOnInteraction: false,
+							    },
+								navigation: {
+									nextEl: '.swiper-gallery-next',
+									prevEl: '.swiper-gallery-prev',
+								},
+								pagination: {
+								  el: ".swiper-pagination",
+								  type: "fraction",
+								},
+								observer: true,
+								observeParents: true,
+							});
+							var galleryThumbs = new Swiper('#tab-content-1-3 .top-con-thumb-swiper', {
+							  direction: 'vertical',
+							  slidesPerView: 3,
+							  slideToClickedSlide: true,
+							  spaceBetween: 0,
+							  loop: true,
+							  loopedSlides: 3,
+							  observer: true,
+							  observeParents: true,
+							});
+							galleryTop.controller.control = galleryThumbs;
+							galleryThumbs.controller.control = galleryTop;
+
+							// 자동 재생 시작, 정지 버튼 만들기 스크립트
+							$('#tab-content-1-3 .top-con-swiper .swiper-gallery-pause').on('click', function() {
+								galleryTop.autoplay.stop();
+							});
+							$('#tab-content-1-3 .top-con-swiper .swiper-gallery-play').on('click', function() {
+								galleryTop.autoplay.start();
+							});
+						});
+					</script>
 				</div>
 				<!-- //최신콘텐츠 -->
 			</div>
@@ -163,16 +351,14 @@
 </div>
 <!-- //추천콘텐츠, 월간베스트, 최신콘텐츠 -->
 
-
 <!-- 콘텐츠 전체보기// -->
 <div id="contents_all">
 	<div class="tab_menu_con">
 		<div class="tabMenu-wrap tab-style-02">
 			<ul class="nav">
-				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con2-1" data-toggle="tab" data-target="#tab-content-2-1" role="tab" aria-controls="tab-content-2-1" aria-selected="true">전체 콘텐츠 <span>3,187</span></button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con2-2" data-toggle="tab" data-target="#tab-content-2-2" role="tab" aria-controls="tab-content-2-2" aria-selected="false">최근 발행호 <span>71호</span></button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con2-3" data-toggle="tab" data-target="#tab-content-2-3" role="tab" aria-controls="tab-content-2-3" aria-selected="false">많이 본 콘텐츠 <span>2,796</span></button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con2-4" data-toggle="tab" data-target="#tab-content-2-4" role="tab" aria-controls="tab-content-2-4" aria-selected="false">최신 콘텐츠 순 <span>258</span></button></li>
+				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con2-1" data-toggle="tab" data-target="#tab-content-2-1" role="tab" aria-controls="tab-content-2-1" aria-selected="true">전체 콘텐츠</button></li>
+				<li class="nav-item"><button type="button" class="nav-link" id="tab-con2-2" data-toggle="tab" data-target="#tab-content-2-2" role="tab" aria-controls="tab-content-2-2" aria-selected="false">최근 발행호 <span>${sessionScope.vol}호</span></button></li>
+				<li class="nav-item"><button type="button" class="nav-link" id="tab-con2-3" data-toggle="tab" data-target="#tab-content-2-3" role="tab" aria-controls="tab-content-2-3" aria-selected="false">많이 본 콘텐츠</button></li>
 			</ul>
 		</div>
 		<!-- //.tabMenu-wrap -->
@@ -185,181 +371,22 @@
 			<div class="tabContent">
 				<!-- 전체 콘텐츠// -->
 				<div class="tab-pane fade show active" id="tab-content-2-1" role="tabpanel" aria-labelledby="tab-con2-1">
-					<ul>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_1">Aticle</p>
-									<p class="tit t02">우~우~ 풍문으로 들었소,</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_2">People</p>
-									<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_3">함께G</p>
-									<p class="tit t02">세상에 나쁜 쓰레기는 없다! 일상생활 속 올바른 쓰레기 처리법 & 재활용법</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_1">Aticle</p>
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_2">People</p>
-									<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_3">함께G</p>
-									<p class="tit t02">세상에 나쁜 쓰레기는 없다! 일상생활 속 올바른 쓰레기 처리법 & 재활용법</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_1">Aticle</p>
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_2">People</p>
-									<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_3">함께G</p>
-									<p class="tit t02">세상에 나쁜 쓰레기는 없다! 일상생활 속 올바른 쓰레기 처리법 & 재활용법</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_1">Aticle</p>
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_2">People</p>
-									<p class="tit t02">장애인 직업 재화지원과 지원순환을 위한 페토너 카트리지 기부</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
-								<div class="con_txt">
-									<p class="type type_3">함께G</p>
-									<p class="tit t02">세상에 나쁜 쓰레기는 없다! 일상생활 속 올바른 쓰레기 처리법 & 재활용법</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
+					<div class="bbs_gallist"></div>
+					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //전체 콘텐츠 -->
 				<!-- 최근 발행호// -->
 				<div class="tab-pane fade" id="tab-content-2-2" role="tabpanel" aria-labelledby="tab-con2-2">
-					최근 발행호
+					<div class="bbs_gallist"></div>
+					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //최근 발행호 -->
 				<!-- 많이 본 콘텐츠// -->
 				<div class="tab-pane fade" id="tab-content-2-3" role="tabpanel" aria-labelledby="tab-con2-3">
-					많이 본 콘텐츠
+					<div class="bbs_gallist"></div>
+					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //많이 본 콘텐츠 -->
-				<!-- 최신 콘텐츠 순// -->
-				<div class="tab-pane fade" id="tab-content-2-4" role="tabpanel" aria-labelledby="tab-con2-4">
-					최신 콘텐츠 순
-				</div>
-				<!-- //최신 콘텐츠 순 -->
 			</div>
 		</div>
 		<!-- //.tabContent-wrap -->
@@ -421,472 +448,214 @@
 </div>
 <!-- //이벤트_sns로 만나는 광주환경공단 -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="main-section sec-best" style="display:none;">
-	<div class="side-content">
-		<div class="title">
-			<h2>월간 <p><b>BEST</b></p></h2>
-		</div>
-		<div class="txt">
-			<p>
-				광주환경공단이 <br>
-				엄선한 콘텐츠들을 한눈에 볼 수 있습니다.
-			</p>
-		</div>
-	</div>
-	<!-- //.side-content -->
-		
-	<div class="inner_con">
-		<div class="" id="bestSlider" data-aos="fade-up">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<a href="#;">
-						<div class="img"></div>
-						<div class="txt">
-							<p class="subject"></p>
-							<p class="content"></p>
-							<p class="date"></p>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		<!-- //#bestSlider -->
-	</div>
-	<!-- //.inner_con -->
-</section>
-<!-- //.main-section.sec-best -->
-
-
-<section class="main-banner" style="display:none;">
-	<c:choose>
-		<c:when test="${fn:length(bannerList) > 0}">
-			<div class="banner-slide " id="banSlider">
-				<ul class="pc-banner">
-				<c:forEach var="result" items ="${bannerList}" varStatus="index">
-					<c:choose>
-						<c:when test="${result.dm_link ne null && not empty result.dm_link}">
-							<c:if test="${result.dm_status eq 1 }">
-							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
-								<a href="${result.dm_link}" target="${result.dm_link_type}">
-									<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
-								</a>
-							</li>
-							</c:if>
-						</c:when>
-						<c:otherwise>
-							<c:if test="${result.dm_status eq 1 }">
-							<li class="" style="background-image: url('/resources/banner/${result.dm_banner_img}');">
-								<img src="/resources/banner/${result.dm_banner_img}" alt="${result.dm_banner_nm}">
-							</li>
-							</c:if>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				</ul>
-			</div>
-			<div class="banner-slide " id="m-banSlider">
-				<ul class="m-banner">
-					<c:forEach var="result" items ="${bannerList}" varStatus="index">
-						<c:choose>
-							<c:when test="${result.dm_link ne null && not empty result.dm_link}">
-							<li class="" style="background-image: url('/resources/banner/${result.dm_mbanner_img}');">
-								<a href="${result.dm_link}" target="${result.dm_link_type}">
-									<img src="/resources/banner/${result.dm_mbanner_img}" alt="${result.dm_banner_nm}">
-								</a>
-							</li>
-							</c:when>
-							<c:otherwise>
-								<li class="" style="background-image: url('/resources/banner/${result.dm_mbanner_img}');">
-									<img src="/resources/banner/${result.dm_mbanner_img}" alt="${result.dm_banner_nm}">
-								</li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</ul>
-			</div>
-		</c:when>
-	</c:choose>
-</section>
-<!-- //.main-banner -->
-
-
-<section class="main-section sec-now" style="display:none;">
-	<div class="side-content">
-		<div class="title">
-			<h2>ECO-G <p><b>NOW</b></p></h2>
-		</div>
-		<div class="txt">
-			<p>
-				광주환경공단 <br>
-				주요소식을 전합니다.
-			</p>
-		</div>
-		
-		<div class="tabMenu-wrap tab-style-03">
-			<ul>
-				<li class="tabMenu" data-value="1" data-id="271">Contents</li>
-				<li class="tabMenu" data-value="2" data-id="272">Article</li>
-				<li class="tabMenu" data-value="3" data-id="273">Life</li>
-			</ul>
-		</div>
-		<!-- //.tabMenu-wrap -->
-	</div>
-	<!-- //.side-content -->
-		
-	<div class="inner_con">
-		<div class="tabContent-wrap">
-			<div class="tabContent" data-aos="fade-up">
-				<div class="masonry" >
-					<div class="masonry-item">
-						<a href="#;">
-							<div class="img"><img src="${layout_path}/images/main/sample01.jpg" alt=""></div>
-							<div class="txt">
-								<p class="subject">광주환경공단, 하천 화장실 '안심'하고 이용하세요.</p>
-								<p class="cate">Contents</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!-- //.masonry -->
-			</div>
-		</div>
-		<!-- //.tabContent-wrap -->
-	</div>
-	<!-- //.inner_con -->
-</section>
-<!-- //.main-section.sec-now -->
-
-<section class="main-section sec-sns" style="display:none;">
-	<div class="side-content">
-		<div class="title">
-			<h2>소통해요 <p><b>#SNS</b></p></h2>
-		</div>
-		<div class="txt">
-			<p>
-				광주환경공단이 <br>
-				엄선한 콘텐츠들을 한눈에 볼 수 있습니다.
-			</p>
-		</div>
-		<div class="sns-wrap">
-			<ul>
-				<li class="sns-blog"><a href="https://blog.naver.com/ecogj" target="_blank"><span class="sr-only">네이버 블로그</span></a></li>
-				<li class="sns-youtube"><a href="https://www.youtube.com/channel/UCCd9MhX9BrrS-vIbevOvo7w" target="_blank"><span class="sr-only">유튜브</span></a></li>
-				<li class="sns-instagram"><a href="https://www.instagram.com/ecogwangju_official/" target="_blank"><span class="sr-only">인스타그램</span></a></li>
-				<li class="sns-facebook"><a href="https://www.facebook.com/ecogwangju" target="_blank"><span class="sr-only">페이스북</span></a></li>
-				<li class="sns-kakao"><a href="https://pf.kakao.com/_lxegxnxb" target="_blank"><span class="sr-only">카카오톡 채널</span></a></li>
-			</ul>
-		</div>
-		<!-- //.sns-wrap -->
-	</div>
-	<!-- //.side-content -->
-	<div class="inner_con">
-		<div>
-			<div class="video-container">
-				<div class="video-wrap" id="setYoutube">
-					<iframe title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				</div>
-			</div>
-			<div class="txt">
-				<div class="subject">광주환경공단 유튜브영상</div>
-				<div class="content"></div>
-			</div>
-		</div>
-		
-		<div class="insta-txt">INSTAGRAM</div>
-		
-		<div class="swiper-container" id="snsSlider" data-aos="fade-up">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-				<div class="swiper-slide"><a target="_blank" href=""><img src="" alt="인스타그램 게시물"></a></div>
-			</div>
-			<div class="swiper-controller">
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-			<!-- //.swiper-controller -->
-		</div>
-		<!-- //#snsSlider -->
-	</div>
-	<!-- //.inner_con -->
-</section>
-
 <script>
-	$(function() {
-		//최신 발행호
-		var topSlider = new Swiper( '#topSlider', {
-			slidesPerView: 'auto',
-			speed: 3000,
-			allowTouchMove:true,
-			loop: true,
-			autoplay: {
-			delay: 3000,
-			autoplayDisableOnInteraction: false,
-			disableOnInteraction: false,
-			pauseOnMouseEnter:true,
-			},
-			
-			navigation: {
-				nextEl: '#topSlider .swiper-button-next',
-				prevEl: '#topSlider .swiper-button-prev',
-			},
-		});
+$(function() {
+	//최신 발행호
+	var topSlider = new Swiper( '#topSlider', {
+		slidesPerView: 'auto',
+		speed: 3000,
+		allowTouchMove:true,
+		loop: true,
+		autoplay: {
+		delay: 3000,
+		autoplayDisableOnInteraction: false,
+		disableOnInteraction: false,
+		pauseOnMouseEnter:true,
+		},
+		
+		navigation: {
+			nextEl: '#topSlider .swiper-button-next',
+			prevEl: '#topSlider .swiper-button-prev',
+		},
 	});
+});
 </script>
 
 <script>
-$(function(){
-	getPopularData();
-	getMenuContents(getMenuId());
-	getCrawlData();
+$(function () {
+	getContentsList("tab-content-2-1", 1);
+	getContentsList("tab-content-2-2", 1);
+	getContentsList("tab-content-2-3", 1);
 });
 
-var getCrawlData = function(){
-	$.ajax({
-		url : "/web/selectCrawlData.do",
-		type: "get"
-	}).done(function(response){
-		setYoutube(response.youtube);
-		setInstagram(response.insta);
-	}).fail(function(response, status, error){
-		alert(response.responseJSON.notice);
-	}).then(function(){
-		//SNS 슬라이드
-		var snsSlider = new Swiper("#snsSlider", {
-			slidesPerView: 'auto',
-			spaceBetween: 10,
-			centeredSlides: true,
-			slideToClickedSlide : true,
-			autoplay: {
-				delay: 3500,
-				disableOnInteraction: false,
+var dataPerPage = 12;
+var pageCount = 5;
+
+function getContentsList(tab, page) {
+	switch(tab) {
+	  case "tab-content-2-1": default:
+		$.ajax({
+			url: "/web/selectWriteListForMain.do",
+			data: {
+				"rows" : dataPerPage,
+				"page" : page,
+				"sort" : "new"
 			},
-			loop : true,
-			loopAdditionalSlides : 1,
-			observer: true,
-			observeParents: true,
-			navigation: {
-				nextEl: "#snsSlider .swiper-button-next",
-				prevEl: "#snsSlider .swiper-button-prev",
+			type: "get",
+			dataType : "json",
+			success : function (res) {
+				if(res.result == "success") {
+					var totalCount = res.total;
+					fnSetData(tab, res.rows);
+					paging(tab, totalCount, dataPerPage, pageCount, page);
+				}
+			}, error:function(request,status,error) {
+				alert(request.responseJSON.notice);
+			}
+		});
+		break;
+	  case "tab-content-2-2":
+		$.ajax({
+			url: "/web/selectWriteListVol.do",
+			data: {
+				"wr_vol" : "${sessionScope.vol}",
+				"rows" : dataPerPage,
+				"page" : page
 			},
-			breakpoints: {
-				768: {
-					spaceBetween: 25,
+			type: "get",
+			dataType : "json",
+			success : function (res) {
+				if(res.result == "success") {
+					var totalCount = res.total;
+					fnSetData(tab, res.rows);
+					paging(tab, totalCount, dataPerPage, pageCount, page);
+				}
+			}, error:function(request,status,error) {
+				alert(request.responseJSON.notice);
+			}
+		});
+		break;
+
+	  case "tab-content-2-3":
+			$.ajax({
+				url: "/web/selectWriteListForMain.do",
+				data: {
+					"rows" : dataPerPage,
+					"page" : page,
+					"sort" : "pop"
 				},
-			},
-		});
-	});
-}
-function setInstagram(rows) {
-	var target = $("#snsSlider").find(".swiper-wrapper");
-	if (rows.length > 0) {
-		target.empty();
-		var str = "";
-		$.each(rows, function(i,obj){
-			str += '<div class="swiper-slide"><a target="_blank" href="'+obj.dm_href+'"><img src="'+obj.dm_src+'" alt="인스타그램 게시물"></a></div>';
-		});
-		target.append(str);
-	}
-}
-
-
-function setYoutube(data) {
-	if (data.dm_href != "" && data.dm_href != null) {
-		var uniq = data.dm_href.split("?v=")[1];
-		$("#setYoutube").children("iframe").attr("src","https://www.youtube-nocookie.com/embed/"+uniq+"?controls=0");
-	}
-}
-
-//월간 BEST
-function getPopularData() {
-	var set = {
-		url: "/web/selectPopularWrite.do",
-		data: {wr_vol : "${sessionScope.vol}"},
-		type: "get"
-	}
-	
-	asyncFunc(set)
-	.done(function(data){
-		
-		if (data.rows.length > 0) {
-			var str = '<ul class="">';
-			
-			$.each(data.rows, function(i, obj){
-				str +='<li class=" ">';
-				str +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
-				str +='<div class="img">';
-				str +='<img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="" onerror="this.src=\'/images/no_image.png\'">';
-				str +='</div>';
-				str +='<div class="txt">';
-				str +='<p class="subject">'+obj.wr_subject+'</p>';
-				str +='<p class="content">'+obj.wr_summary+'</p>';
-				str +='<p class="date">'+obj.wr_datetime.substring(0,10)+'</p>';
-				str +='</div>';
-				str +='</a>';
-				str +='</li>';
+				type: "get",
+				dataType : "json",
+				success : function (res) {
+					if(res.result == "success") {
+						var totalCount = res.total;
+						fnSetData(tab, res.rows);
+						paging(tab, totalCount, dataPerPage, pageCount, page);
+					}
+				}, error:function(request,status,error) {
+					alert(request.responseJSON.notice);
+				}
 			});
-			str += '</ul>';
-			var target = $("#bestSlider");
-			target.empty();
-			target.append(str);
-		}
-	}).fail(function(request, status, error){
-		alert(request.responseJSON.notice);
-	});
+			break;
+	}	
 }
 
-//ajax 함수
-function asyncFunc(set) {
-	return $.ajax(set);
-}
-
-//탭 레이아웃 리스너
-$(".tabMenu").on("click",function(){
-	if ($(this).attr("class").indexOf("on") > -1) {
-		$(this).removeClass("on").attr("title", "");
+function fnSetData(tab, rows) {
+	var html = '';
+	if (rows.length > 0) {
+		html += '<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">';
+		$.each(rows, function(i, obj) {
+			var typeClass = "";
+			switch(obj.wr_board) {
+			case "43":
+				typeClass = "type_1";
+				break;
+			case "56":
+				typeClass = "type_2";
+				break;
+			case "44":
+				typeClass = "type_3";
+				break;
+			}
+			html += '<li class="cell col">';
+			html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
+			html += '<div class="img">';
+			if(obj.wr_thumb) {
+				html += '<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
+			} else {
+				html += '<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url(\'/images/no_image.png\');"><img src="/images/no_image.png" alt="no image"></div>';
+			}
+			html += '</div>';
+			html += '<div class="con_txt">';
+			html += '<p class="type '+typeClass+'">'+obj.type+'</p>';
+			html += '<p class="tit t02">'+obj.wr_subject+'</p>';
+			html += '<div class="bot"><p class="vol">vol. '+obj.wr_vol+'</p>';
+			if(obj.wr_hashtag) {
+				html += '<p class="tag_con">';
+				var hashtag = obj.wr_hashtag.split('#');
+				var tagcount = 0;
+				$.each(hashtag, function(j, tag) {
+					if($.trim(tag)!='' && tagcount < 3) {
+						html +='<span class="tag">#'+$.trim(tag)+'</span>';
+						tagcount++;
+					}
+				});
+				html += '</p>';
+			}
+			html += '</div></div>';
+			html += '</a>';
+			html += '</li>';
+		});
+		html += '</ul>';
 	} else {
-		$(".on").removeClass("on").attr("title", "");
-		$(this).addClass("on").attr("title", "선택됨");
+		html += '<p class="empty"><img src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></p>';
 	}
-	
-	var menuArr = new Array();
-	var menuId = $(".on").data("id");
-
-	if (menuId == "" || menuId == null) {
-		getMenuContents(getMenuId());
-	} else {
-		menuArr.push(menuId);
-		getMenuContents(menuArr);
-	}
-});
-//1차 메뉴 아이디 get 함수
-function getMenuId(){
-	
-	var menuArr = new Array();
-	var tabs = $(".tabMenu");
-	$.each(tabs, function(i, obj){
-		menuArr.push($(obj).data("id"));
-	});
-	
-	return menuArr;
+	$("#"+tab+" > .bbs_gallist").empty().append(html);
 }
-//메뉴 아이디로 게시글 get 함수
-function getMenuContents(arr) {
+
+/* 페이징 처리 함수  ****************************************************************************************************************************/
+function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
+
+    var totalPage = Math.ceil(totalCount / dataPerPage);
+    var pageGroup = Math.ceil(currentPage / pageCount);
 	
-	if (arr.length < 1) {
-		alert("잘못된 접근입니다. 새로고침 후 이용해주세요.");
-		location.reload();
-		return;
-	}
-	
-	var set = {
-       	url: "/web/selectChildMenuBoard.do",
-       	type: "get",
-       	data: {
-       			dm_id : arr,
-       			page : 1
-       		}
-       }
+    var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+
+    if(last > totalPage)
+        last = totalPage;
+    var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+
+    if( first <= 0 ) first = 1;	// 화면에 보여질 개수보다 작은 경우 1 로 세팅
+
+    var next = last+1;
+    var prev = first-1;
+    var $pagingView = $("#"+tab+" > .bbs_paging > .pg_wrap > .pg");
+
+    var html = '';
+
+    if(prev > 0) {
+    	html += '<a href="javascript:void(0);" id="pageFirst" class="pg_page pg_start">처음</a>';
+    	html += '<a href="javascript:void(0);" id="pagePrev" class="pg_page pg_prev pg_must"><span>이전</span><page-number>'+prev+'</page-number><span>페이지</span></a>';
+    }
     
-  	asyncFunc(set)
-	.done(function(data){
-		if (data.result == "success") {
-			setNowList(data.rows);
-		} else {
-			var target = $(".masonry");
-			var str = '<div><img src="'+'<c:out value="${layout_path}" />'+'/images/noimg_main.jpg" /></div>';
-			target.empty();
-			target.append(str);
-		}
-	}).fail(function(request, status, error){
-		alert(request.responseJSON.notice);
-   	});
-}
-// eco-g now 리스트 세팅
-function setNowList(rows){
-	var target = $(".masonry");
-	var str = "";
-	$.each(rows, function(i, obj){
-		var cate = "";
-		switch (obj.type) {
-			case "271":
-				cate = "Contents";
-				break;
-			case "272":
-				cate = "Article";
-				break;
-			default:
-				cate = "Life";
-				break;
-		}
-		str += '<div class="masonry-item">';
-		str += '<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
-		str += '<div class="img"><img src="'+obj.wr_path+obj.wr_thumb+'" alt="" onerror="this.src=\'/images/no_image.png\'"></div>';
-		str += '<div class="txt">';
-		str += '<p class="subject">'+obj.wr_subject+'</p>';
-		str += '<p class="cate">'+cate+'</p>';
-		str += '</div>';
-		str += '</a>';
-		str += '</div>';
-	});
-	target.empty();
-	target.append(str);
-}
+    for(var i=first; i <= last; i++) {
+    	if(i == currentPage) {
+            html += '<span class="pg_current pg_must"><span class="sr-only">열린</span><page-number>'+i+'</page-number><span class="sr-only">페이지</span></span>';
+    	} else {
+            html += '<a href="javascript:void(0);" id="'+i+'" class="pg_page pg_must"><page-number>'+i+'</page-number><span class="sr-only">페이지</span></a>';
+    	}
+    }
 
-//인기 게시글 슬라이드
-//var bestSlider = new Swiper("#bestSlider", {
-//	slidesPerView: 2,
-//	spaceBetween: 20,
-//	autoplay: {
-//		delay: 3500,
-//		disableOnInteraction: false,
-//	},
-//	loop : false,
-//	loopAdditionalSlides : 1,
-//	breakpoints: {
-//		768: {
-//			slidesPerView: 3,
-//			spaceBetween: 20,
-//		},
-//		1600: {
-//			slidesPerView: 3,
-//			spaceBetween: 40,
-//		},
-//		2200: {
-//			slidesPerView: 4,
-//			spaceBetween: 60,
-//		},
-//	},
-//});
-AOS.init();
+    if(last < totalPage) {
+    	html += '<a href="javascript:void(0);" id="pageNext" class="pg_page pg_next"><span>다음&gt;</span><page-number>'+next+'</page-number><span>페이지</span></a>';
+    	html += '<a href="javascript:void(0);" id="pageLast" class="pg_page pg_end">맨끝</a>';
+    }
+    
+    $pagingView.html(html);    // 페이지 목록 생성
+
+	$pagingView.children("a").click(function() {
+        var $item = $(this);
+        var $id = $item.attr("id");
+        var selectedPage = $id; //$item.children('page-number').text();
+
+        if($id == "pageNext")    selectedPage = next;
+        else if($id == "pagePrev")    selectedPage = prev;
+        else if($id == "pageFirst")   selectedPage = 1;
+        else if($id == "pageLast")   selectedPage = totalPage;
+
+        getContentsList(tab, selectedPage);
+
+        return false;
+    });
+}
 </script>

@@ -13,8 +13,8 @@ import egovframework.diam.cmm.util.MessageCode;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 @Service("coverService")
-public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverService{
-	
+public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverService {
+
 	@Autowired
 	private CoverMapper coverMapper;
 
@@ -60,7 +60,8 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 	@Transactional
 	public void deleteCover(List<Dm_cover_vo> list) throws Exception {
 		list.forEach(item -> {
-			if (coverMapper.deleteCover(item) < 1) throw new RuntimeException(MessageCode.CMM_TRANSACTION_FAIL.getLog());
+			if (coverMapper.deleteCover(item) < 1)
+				throw new RuntimeException(MessageCode.CMM_TRANSACTION_FAIL.getLog());
 		});
 	}
 
@@ -72,6 +73,16 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 	@Override
 	public List<Dm_cover_vo> selectCoverCombobox() throws Exception {
 		return coverMapper.selectCoverCombobox();
+	}
+
+	@Override
+	public List<Dm_cover_vo> selectCoverComboboxYear() throws Exception {
+		return coverMapper.selectCoverComboboxYear();
+	}
+
+	@Override
+	public List<Dm_cover_vo> selectCoverComboboxVol(Dm_cover_vo vo) throws Exception {
+		return coverMapper.selectCoverComboboxVol(vo);
 	}
 
 }

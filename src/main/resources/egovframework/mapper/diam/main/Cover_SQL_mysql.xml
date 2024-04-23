@@ -134,4 +134,19 @@
 		   WHERE dm_delete_yn = 'N'
 		ORDER BY dm_vol DESC
 	</select>
+	<select id="selectCoverComboboxYear" resultMap="resultCoverVO">
+		  SELECT dm_year
+		    FROM dm_cover
+		   WHERE dm_delete_yn = 'N'
+		GROUP BY dm_year DESC
+	</select>
+	<select id="selectCoverComboboxVol" resultMap="resultCoverVO">
+		  SELECT dm_id, dm_vol, dm_year, dm_month
+		    FROM dm_cover
+		   WHERE dm_delete_yn = 'N'
+		<if test='dm_year != null and dm_year != ""'>
+			AND dm_year = #{dm_year}
+		</if>
+		GROUP BY dm_vol DESC
+	</select>
 </mapper>
