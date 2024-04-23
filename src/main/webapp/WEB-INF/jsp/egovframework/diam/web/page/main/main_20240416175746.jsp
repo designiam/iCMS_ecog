@@ -178,14 +178,14 @@
 							<div class="swiper-slide">
 								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
 								<div class="thumb_txt">
-									<p class="type type_1">Article</p>
+									<p class="type type_2">People</p>
 									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
 								</div>
 							</div>
 							<div class="swiper-slide">
 								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
 								<div class="thumb_txt">
-									<p class="type type_2">People</p>
+									<p class="type type_1">Article</p>
 									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
 								</div>
 							</div>
@@ -277,7 +277,7 @@
 							<div class="swiper-slide">
 								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
 								<div class="thumb_txt">
-									<p class="type type_1">Article</p>
+									<p class="type type_3">함께G</p>
 									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
 								</div>
 							</div>
@@ -291,7 +291,7 @@
 							<div class="swiper-slide">
 								<div class="thumb_img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></div>
 								<div class="thumb_txt">
-									<p class="type type_3">함께G</p>
+									<p class="type type_1">Article</p>
 									<p class="t04">장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부 장애인 직업 재활지원과 자원순환을 위한 폐토너 카트리지 기부</p>
 								</div>
 							</div>

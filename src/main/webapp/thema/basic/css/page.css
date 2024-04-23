@@ -97,24 +97,6 @@
 .tab-pane > ul > li > a .img { /* width:348px; */ height:200px; background-color:#C4C4C4; border-radius:5px 5px 0 0; overflow:hidden; }
 .tab-pane > ul > li > a .img img { width:100%; height:100%; transition:all .25s; }
 .tab-pane > ul > li > a:hover .img img { transform:scale(1.1); }
-.bbs_gallist .con_txt { padding:15px; }
-.bbs_gallist .con_txt .tit { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:40px; margin:10px 0; color:#000; white-space:normal; word-wrap:break-word; text-overflow:ellipsis; overflow:hidden; }
-.bbs_gallist .con_txt .bot { display:flex; flex-wrap:wrap; align-items:center; gap:5px 0; }
-.bbs_gallist .con_txt .bot .vol { margin-right:10px; color:#139A43; font-weight:700; letter-spacing:-0.03em; line-height:1; font-size:0.813rem; }
-.bbs_gallist .con_txt .bot .tag_con { }
-.bbs_gallist .con_txt .bot .tag { margin:0 5px 0 0; }
-.bbs_gallist ul li > a { border:0 none; /* border-radius:0; */ }
-.bbs_gallist ul li:hover > a { border:0 none; box-shadow:none; }
-.bbs_gallist ul li .thumb-wrap { /* background-color:#C4C4C4; */ }
-
-/* bbs_paging */
-.pg_page, .pg_current { border:0 none; border-radius:50%; font-size:0.813rem; }
-.pg_current { background-color:#0A1106; }
-.pg_start, .pg_prev, .pg_next, .pg_end { width:calc(0.72rem + 1.5em + 1px); height:calc(0.72rem + 1.5em + 1px); }
-.pg_next { background-image:url('../images/pages/btn_bbs_next.png'); }
-.pg_prev { background-image:url('../images/pages/btn_bbs_prev.png'); }
-.pg_start { background-image:url('../images/pages/btn_bbs_first.png'); }
-.pg_end { background-image:url('../images/pages/btn_bbs_last.png'); }
 
 /* people_Article_함께G : view */
 .pick_con { position:relative; margin-top:25px; }
@@ -216,7 +198,7 @@
 .select_total_box .total_latest .total_vol { margin-right:20px; }
 .select_total_box .total_latest .latest_vol { position:relative; padding-left:20px; }
 .select_total_box .total_latest .latest_vol::before { content:''; display:block; position:absolute; top:50%; left:0; transform:translateY(-50%); width:1px; height:13px; background-color:#606060; }
-.bbs_gallist ul li { margin-bottom:0; }
+/* .bbs_gallist ul li { margin-bottom:0; } */
 .vol_list { max-width:800px; margin:10px auto 0; }
 .vol_list ul { /* display:flex; flex-wrap:wrap; width:calc(100% + 26px); margin-left:-13px; */ }
 .vol_list ul li { margin-top:2.5rem; /* margin-bottom:40px; */ /* width:calc(33.33% - 26px); margin:0 13px 26px; */ }

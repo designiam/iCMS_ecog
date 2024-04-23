@@ -111,7 +111,7 @@
 #contents_all .tab-pane .con_txt .bot .tag_con { }
 
 /* 지난호보기 */
-#webzine_last_view { width:100%; min-height:105px; margin-top:50px; padding:15px 0 10px; background-color:#F2F2F2; }
+#webzine_last_view { width:100%; min-height:105px; margin-top:90px; padding:15px 0 10px; background-color:#F2F2F2; }
 #webzine_last_view .inner { display:flex; align-items:center; justify-content:center; }
 #webzine_last_view .con_txt { display:inline-block; position:relative; padding-right:214px; text-align:center; }
 #webzine_last_view .con_txt::before { content:''; display:block; position:absolute; bottom:0; right:0; width:188px; height:141px; background:url('../images/main/img_link.png') 0 0 no-repeat; }
