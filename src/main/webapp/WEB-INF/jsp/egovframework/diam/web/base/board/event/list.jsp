@@ -6,7 +6,7 @@
 <%@ page import="java.text.*" %>
 <%
 	Date today = new Date();
-	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 	String curDate = transFormat.format(today);
 %>
 <%@ include file="base.jsp"%>
@@ -20,166 +20,86 @@
 
 <!-- bbs// --> 
 <div class="bbs bbs_list bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
+<c:choose>
+	<c:when test="${fn:length(writeList) > 0}">	
 	<div class="event-wrap">
-		<div class="event-item">
-			<a href="#">
-				<div class="thumb-container">
-					<div class="thumb-wrap" style="background-image: url('/thema/basic/images/pages/sample_event.jpg');">
-						<p class="img"><img src="/thema/basic/images/pages/sample_event.jpg" alt="" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
-						<p class="label proceed"></p>
-					</div>
-				</div>
-				<div class="event-txt">
-					<div class="title">이벤트</div>
-					<div class="subject"><span class="label">[진행중]</span>ACC & V&A 국제교육협력 글로벌 전문인력워크숍</div>
-				</div>
-			</a>
-		</div>
-		<div class="event-item">
-			<a href="#">
-				<div class="thumb-container">
-					<div class="thumb-wrap" style="background-image: url('/thema/basic/images/pages/sample_event.jpg');">
-						<p class="img"><img src="/thema/basic/images/pages/sample_event.jpg" alt="" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
-						<p class="label">종 료</p>
-					</div>
-				</div>
-				<div class="event-txt">
-					<div class="title">당첨자발표</div>
-					<div class="subject"><span class="label">[종료]</span>2023 ACC아시아콘텐츠 공연개발 시범공연 《식탁과 기억》 -식탁은...</div>
-				</div>
-			</a>
-		</div>
-		<div class="event-item">
-			<a href="#">
-				<div class="thumb-container">
-					<div class="thumb-wrap" style="background-image: url('/thema/basic/images/pages/sample_event.jpg');">
-						<p class="img"><img src="/thema/basic/images/pages/sample_event.jpg" alt="" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
-						<p class="label upcoming"></p>
-					</div>
-				</div>
-				<div class="event-txt">
-					<div class="title">이벤트</div>
-					<div class="subject"><span class="label">[당첨자발표]</span>2023년 아시아 공예 레지던시 프로그램 공예워크숍</div>
-				</div>
-			</a>
-		</div>
+		<c:forEach var="result" items="${writeList}" varStatus="status">
+		<c:choose>
+			<c:when test="${!empty result.wr_start_dt && !empty result.wr_end_dt }">
+				<c:choose>
+					<c:when test='${curDate ge result.wr_start_dt && curDate le result.wr_end_dt }'>
+						<c:set var="status_name" value="진행중" />
+						<c:set var="status_class" value=" proceed" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="status_name" value="종료" />
+						<c:set var="status_class" value="" />
+						<c:set var="status_label" value="종료" />
+					</c:otherwise>
+				</c:choose>
+				<div class="event-item">
+					<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
+						<div class="thumb-container">
+						<c:choose>
+							<c:when test="${empty result.wr_thumb }">
+								<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
+									<p class="img"><img src="/images/no_image.png" alt="no image"></p>
+									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_label}"/></p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="thumb-wrap" style="background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
+									<p class="img"><img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
+									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_label}"/></p>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						</div>
+						<div class="event-txt">
+							<div class="title"><c:out value='${result.ca_name}'/></div>
+							<div class="subject"><c:if test="${!empty status_name }"><span class="label">[<c:out value="${status_name }"/>]</span> </c:if><c:out value="${result.wr_subject}" escapeXml='false'/></div>
+						</div>
+					</a>
+				</div>				
+			</c:when>
+			<c:otherwise>
+				<div class="event-item">
+					<a href="<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value='${result.wr_id}'/>&<c:out value='${writeSearchQueryString}' escapeXml='false'/>">
+						<div class="thumb-container">
+							<c:choose>
+							<c:when test="${empty result.wr_thumb }">
+								<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
+									<p class="img"><img src="/images/no_image.png" alt="no image"></p>
+									<p class="label"></p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="thumb-wrap" style="background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
+									<p class="img"><img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
+									<p class="label"></p>
+								</div>
+							</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="event-txt">
+							<div class="title"><c:out value='${result.ca_name}'/></div>
+							<div class="subject"><c:out value="${result.wr_subject}" escapeXml='false'/></div>
+						</div>
+					</a>
+				</div>			
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
 	</div>
-	<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
+	<div class="bbs_paging"><c:out value='${pagingStr}' escapeXml="false"/></div>
+	</c:when>
+	<c:otherwise>
+		<p class="empty"><img src="../images/noimg_content.jpg" alt="콘텐츠가 없습니다."></p>
+	</c:otherwise>
+</c:choose>
+
 </div>
 <!-- //bbs -->
 <c:if test="${boardVO.dm_footer_content ne null && boardVO.dm_footer_content ne ''}">
 	<c:out value="${boardVO.dm_footer_content}" escapeXml="false"/>
 </c:if>
-<!-- <script>		
-	$(function(){
-		getList(1);
-	});
-	
-	function getList(page) {
-		$.ajax({
-			url: "/web/selectEventList.do",
-			type: "get",
-			data: {
-				page: page
-			}
-		}).done(function(response){
-			setList(response.rows);
-			
-			if (response.total > 0) {
-				getPaging(page, response.total);
-			}
-			
-		}).fail(function(request, status, error){
-			alert(request.responseJSON.notice);
-		});
-	}
-	
-	function setList(data){
-		var target = $(".event-wrap");
-		target.empty();
-		
-		var str = "";
-		
-		if (data.length > 0) {
-			$.each(data, function(i, obj) {
-				str += '<div class="event-item">';
-				str += '<a href="${param.root }/index.do?command=view&wr_id='+obj.wr_id+'&amp;${writeSearchQueryString}">';
-				str += '<div class="thumb-container">';
-				str += '<div class="thumb-wrap" style="background-image: url(' + "'" + obj.dm_file_path + "'" +');">';
-				str += '<p class="img"><img src="'+obj.dm_file_path+'" alt="" onerror="this.src=\'/images/no_image.png\'"></p>';
-				str += '<p class="label'+labelClass+'">'+obj.status_text+'</p>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="event-txt">';
-				var labelClass = "";
-				switch (obj.dm_status) {
-				case "1":
-					labelClass = " proceed";
-					break;
-				case "2":
-					labelClass = " upcoming";
-					break;
-				default: 
-					labelClass = "";
-					break;
-				}
-				str += '<div class="label'+labelClass+'">'+obj.status_text+'</div>';
-				str += '<div class="subject">'+obj.dm_title+'</div>';
-				str += '</div>';
-				str += '</a>';
-				str += '</div>';
-			});
-		} else {
-			// 릳스트 없을때
-		}
-		
-		target.append(str);
-	}
-	
-	function getPaging(page, total){
-		
-		var url = "";
-		var element = $(".page-wrap");
-		element.empty();
-		var pageCount = Math.ceil(total / 6);
-		
-		var pageSection = page % 10 == 0;
-		if (pageSection) {
-			pageSection = page / 10;
-		} else {
-			pageSection = page / 10 + 1;
-		}
-		pageSection = parseInt(pageSection);
-		
-		var startPage = pageSection * 10 - 9;
-	 	var str = "";
-		if (pageSection != 1) {
-			str += '<a class="pg_page pg_prev" data-page="'+(startPage - 1) + '"></a>';
-		}
-		
-		for (var i = startPage; i <= pageCount; i++) {
-			if (i > pageSection * 10) {
-				break;
-			}
-			if (i == page) {
-				str += '<span class="pg_current"><page-number>'+i+'</page-number></span>';
-			} else {
-				str += '<a class="pg_page" data-page="'+i+'"><page-number>'+i+'</page-number><span class="sr-only">페이지</span></a>';
-			}
-		}
-		if (pageSection * 10 < pageCount) {
-			str += '<a class="pg_page pg_next" data-page="' +(pageSection * 10 + 1)+ '"></a>';
-		}
-		element.append(str);
-	}
-	
-	$(document).on("click", ".pg_page", function(e) {
-		e.preventDefault();
-		
-		var thisPage = $(this).data("page");
-		getList(thisPage);
-		
-		$("html, body").animate({scrollTop: 0}, 300);
-	    return false;
-	});
-</script> -->
