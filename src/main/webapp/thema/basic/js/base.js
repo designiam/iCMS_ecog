@@ -127,22 +127,25 @@ $(function() {
 });
 
 function unifiedSearch(value, domain) {
-	
-	$.ajax({
-		url: "/web/selectSearchPage.do",
-		type: "get",
-		data: {dm_domain : domain, dm_page_type : "SEARCH"},
-		success: function(data){
-			if (data.result == "success") {
-				location.href = '?contentId='+data.rows+'&search_value='+encodeURIComponent(value);
-			} else {
-				location.href= "/404_error";
-			}
-		}, error: function(request, status, error) {
-            alert(request.responseJSON.notice);
-        }
-	});
-
+	if(value == "") {
+		alert("검색어를 입력하시기 바랍니다.");
+		return false;
+	} else {
+		$.ajax({
+			url: "/web/selectSearchPage.do",
+			type: "get",
+			data: {dm_domain : domain, dm_page_type : "SEARCH"},
+			success: function(data){
+				if (data.result == "success") {
+					location.href = '?contentId='+data.rows+'&search_value='+encodeURIComponent(value);
+				} else {
+					location.href= "/404_error";
+				}
+			}, error: function(request, status, error) {
+	            alert(request.responseJSON.notice);
+	        }
+		});		
+	}
 }
 
 $(function () {

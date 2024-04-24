@@ -7,15 +7,23 @@
 	</resultMap>
 	<resultMap id="pageVOResultMap" type="egovframework.diam.biz.model.display.Dm_pages_vo">
 	</resultMap>
+	<resultMap id="searchVOResultMap" type="egovframework.diam.cmm.model.Dm_search_vo">
+	</resultMap>
 	
 	<sql id="selectWriteListWhere">
-		AND (wr_subject LIKE CONCAT('%', #{search_value}, '%') OR wr_content LIKE CONCAT('%', #{search_value}, '%') OR wr_name LIKE CONCAT('%', #{search_value}, '%'))
+		AND (wr_subject LIKE CONCAT('%', #{search_value}, '%') OR wr_content LIKE CONCAT('%', #{search_value}, '%') OR wr_name LIKE CONCAT('%', #{search_value}, '%') OR wr_hashtag LIKE CONCAT('%', #{search_value}, '%'))
 		ORDER BY wr_datetime DESC
 	</sql>
 	
 	<select id="selectBoardList" resultMap="boardVOResultMap">
 		SELECT  a.*
 			 ,	b.dm_uid
+ 			 , CASE WHEN a.dm_id=43 THEN 1
+					WHEN a.dm_id=56 THEN 2
+					WHEN a.dm_id=44 THEN 3
+					WHEN a.dm_id=50 THEN 4
+					ELSE 5
+				END AS board_sort			 
 		  FROM  dm_board a, dm_pages b
 		 WHERE  1=1
 		   AND  a.dm_id = b.dm_board_id
@@ -24,6 +32,7 @@
 		   AND  a.dm_delete_yn = 'N'
 		   AND  b.dm_delete_yn = 'N'
 		   AND  a.dm_domain = #{dm_domain}
+		   ORDER BY board_sort
 	</select>
 	
 	<select id="selectWriteList" resultMap="writeVOResultMap">
@@ -36,7 +45,11 @@
 	            a.wr_hit as wr_hit, 
 	            a.wr_is_comment as wr_is_comment,
 	            a.wr_option as wr_option,
-	            a.wr_parent as wr_parent
+	            a.wr_parent as wr_parent,
+	            a.wr_path as wr_path,
+	            a.wr_thumb_sub as wr_thumb_sub,
+	            a.wr_vol as wr_vol,
+	            a.wr_hashtag as wr_hashtag
 		  FROM  dm_write a
 		 WHERE  1=1
 		   AND  a.dm_delete_yn = 'N'
@@ -57,4 +70,47 @@
 		   AND  a.wr_board = #{dm_id}
 		 <include refid="selectWriteListWhere"/>
 	</select>
-</mapper>
+	
+	<select id="selectSearchWordCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM dm_search_word
+		 WHERE dm_domain = #{dm_domain}
+		   AND dm_word = #{dm_word}
+	</select>
+	
+	<insert id="insertSearchWord">
+		INSERT 
+		  INTO	dm_search_word 
+		  	 (	dm_domain
+		  	 ,	dm_word
+		  	 ,	dm_count
+		  	 ,	dm_sort
+		  	 ,	dm_create_dt
+		  	 )
+		 VALUE
+		 	 (	#{dm_domain}
+		 	 ,	#{dm_word}
+		 	 ,	1
+		 	 ,	0
+		 	 ,	now()
+		 	 )		
+	</insert>
+	
+	<update id="updateSearchWordCount">
+		UPDATE	dm_search_word 
+		   SET	dm_count = dm_count + 1
+		     ,	dm_modify_dt = now()
+		 WHERE dm_domain = #{dm_domain}
+		   AND dm_word = #{dm_word}
+
+	</update>
+	
+	<select id="selectPopularWord" resultMap="searchVOResultMap">
+		SELECT  *
+		  FROM  dm_search_word
+		 WHERE  1=1
+		   AND  dm_domain = #{dm_domain}
+		   ORDER BY dm_sort ASC, dm_count DESC
+		   LIMIT 6
+	</select>
+</mapper>	

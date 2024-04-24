@@ -15,20 +15,17 @@
 	<div class="search-result">
 		<div class="search_box">
 		    <div class="inner">
-		    	<form method="post" action="">
+		    	<form method="post" onsubmit="return unifiedSearch(this.search_value.value, <c:out value='${CONFIG_INFO.dm_domain_id}'/>);">
 			        <div class="searchG">
-			            <input type="text" placeholder="검색어를 입력해주세요." id="sch_stx" class="input_style">
-			            <input type="image" src="${layout_path}/images/common/ico_search.png" id="sch_submit" class="sch_btn" data-domain="<c:out value='${CONFIG_INFO.dm_domain_id}'/>">
+			            <input type="text" name="search_value" placeholder="검색어를 입력해주세요." id="sch_stx" class="input_style">
+			            <input type="image" src="${layout_path}/images/common/ico_search.png" class="sch_btn" data-domain="<c:out value='${CONFIG_INFO.dm_domain_id}'/>">
 			        </div>
 			        <div class="recommendG">
 						<h3 class="tit">자주 찾는 검색어</h3>
 			            <div class="cont">
-			                <a href="#">분리배출</a>
-			                <a href="#">민원</a>
-			                <a href="#">행사</a>
-			                <a href="#">뉴스</a>
-			                <a href="#">제로웨이스트</a>
-			                <a href="#">리포트</a>
+			            <c:forEach items="${searchPopList }" var="data">
+			                <a href="javascript:;" onclick="unifiedSearch('<c:out value="${data.dm_word }"/>',<c:out value="${CONFIG_INFO.dm_domain_id}"/>)"><c:out value='${data.dm_word }'/></a>
+			            </c:forEach>
 			            </div>
 			        </div>
 		        </form>
@@ -44,155 +41,78 @@
 		<div class="total_result">
 			<div class="inner">
 				<ul>
-					<li>전체 콘텐츠 <span>678</span></li>
-					<li>People <span>123</span></li>
-					<li>Article <span>56</span></li>
-					<li>함께G <span>71</span></li>
-					<li>Event <span>32</span></li>
+					<c:out value="${total_result }"  escapeXml="false"/>
 				</ul>
 			</div>					
 		</div>
 		<!-- //카테고리별 검색결과 건수 -->
-		
 		<c:forEach items="${writeList }" var="data">
 			<c:if test="${data.total > 0 }">
 			<div class="search-result-wrap">
 			
-			
 				<!-- title_more// -->
 				<div class="title_more">
 					<p class="title"><c:out value="${data.dm_subject }"/> <span><c:out value="${data.total }"/></span></p>
-					<p class="btn_more"><a href="#">더보기</a></p>
+					<c:if test="${data.total > 3 }"><p class="btn_more" id="btn_more<c:out value='${data.dm_table }'/>"><a href="javascript:;" onclick="data_more('<c:out value="${data.dm_table }"/>',<c:out value="${data.total }"/>);">더보기</a></p></c:if>
 				</div>
 				<!-- //title_more -->
 				<!-- .bbs_gallist// -->
 				<div class="bbs_gallist">
-					<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
-						<li class="cell col">
-							<a href="#">
+					<ul id="<c:out value="data_${data.dm_table }"/>" class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+					<c:forEach items="${data.write }" var="item" varStatus="loop">
+						<li class="cell col"<c:if test="${loop.index > 2 }"> style="display:none"</c:if>>
+							<a href="<c:out value='${root }'/>/index.do?command=view&contentId=<c:out value='${data.dm_uid }'/>&wr_id=<c:out value='${item.wr_id}'/>">
 								<div class="img">
-									<div class="thumb-wrap">
-										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
+								<c:choose>
+									<c:when test="${!empty item.wr_thumb_sub}">
+									<div class="thumb-wrap" style="width: 100%; background-image: url('<c:out value="${item.wr_path }"/><c:out value="${item.wr_thumb_sub }" escapeXml="false"/>');">
+										<img src="<c:out value="${item.wr_path }"/><c:out value="${item.wr_thumb_sub }"/>" alt="<c:out value="${item.wr_subject }" escapeXml="false"/>" />
 									</div>
+									</c:when>
+									<c:otherwise>
+									<div class="thumb-wrap noimg" style="width: 100%; background-image: url('${layout_path}/images/pages/no_image.png');">
+										<img src="${layout_path}/images/pages/no_image.png" alt="no image">
+									</div>
+									</c:otherwise>
+								</c:choose>
 								</div>
 								<!-- //.cell_thumb -->
 								<div class="con_txt">
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
+									<p class="tit t02"><c:out value="${item.wr_subject }" escapeXml="false"/></p>
 									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
+										<c:if test="${!empty item.wr_vol}"><p class="vol">vol. <c:out value="${item.wr_vol }"/></p></c:if>
+										<c:if test="${!empty item.wr_hashtag}"><p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p></c:if>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li class="cell col">
-							<a href="#">
-								<div class="img">
-									<div class="thumb-wrap">
-										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
-									</div>
-								</div>
-								<!-- //.cell_thumb -->
-								<div class="con_txt">
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li class="cell col">
-							<a href="#">
-								<div class="img">
-									<div class="thumb-wrap">
-										<img src="/img_test.jpg" alt="우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!" />
-									</div>
-								</div>
-								<!-- //.cell_thumb -->
-								<div class="con_txt">
-									<p class="tit t02">우~우~ 풍문으로 들었소, 광주환경공단 업무가 아니라는 사실을!</p>
-									<div class="bot">
-										<p class="vol">vol. 71</p>
-										<p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p>
-									</div>
-								</div>
-							</a>
-						</li>
+					</c:forEach>	
 					</ul>
 				</div>
 				<!-- //.bbs_gallist -->
-				
-				
-				
-				<table class="table">
-					<caption><c:out value="${data.dm_subject }"/> 검색 결과 테이블</caption>
-					<thead>
-						<tr>
-							<!-- <th>구분</th> -->
-							<th class="td_subject">제목</th>
-							<th>작성자</th>
-							<th>내용</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${data.write }" var="item">
-							<c:choose>
-								<c:when test="${item.wr_is_comment eq 1 }">
-									<c:set var="comment" value="댓글"/>
-								</c:when>
-								<c:otherwise>
-									<c:set var="comment" value="게시글"/>
-								</c:otherwise>
-							</c:choose>
-							<tr>
-								<%-- <td class="td_type">${comment}</td> --%>
-								<td class="td_subject"><a href="<c:out value='${root }'/>/index.do?command=view&contentId=<c:out value='${data.dm_uid }'/>&wr_id=<c:out value='${item.wr_id}'/>"><c:out value="${item.wr_subject }"/></a></td>
-								<td class="td_content"><c:out value="${item.wr_content }"/></td>
-								<td class="td_name">
-									<c:choose>
-										<c:when test='${data.dm_writer_type eq "name"}'>
-											 <c:choose>
-												<c:when test="${data.dm_writer_secret eq '2' }">
-													<c:out value="${fn:substring(item.wr_name, 0, fn:length(item.wr_name) - 1)}"/>*
-												</c:when>
-												<c:when test="${data.dm_writer_secret eq '3' }">
-													<c:out value="${fn:substring(item.wr_name, 0, 1)}"/><c:forEach begin="0" end="${fn:length(item.wr_name) - 2}">*</c:forEach>
-												</c:when>
-												<c:when test="${data.dm_writer_secret eq '4' }">
-													<c:out value="${fn:substring(item.wr_name, 0 , fn:length(item.wr_name) - 2)}"/>**
-												</c:when>
-												<c:otherwise>
-													<c:out value="${item.wr_name}"/>
-												</c:otherwise>
-											</c:choose>
-										</c:when>
-										<c:otherwise>
-											<c:choose>
-												<c:when test="${data.dm_writer_secret eq '2' }">
-													<c:out value="${fn:substring(item.mb_id, 0, fn:length(item.mb_id) - 1)}"/>*
-												</c:when>
-												<c:when test="${data.dm_writer_secret eq '3' }">
-													<c:out value="${fn:substring(item.mb_id, 0, 1)}"/><c:forEach begin="0" end="${fn:length(item.mb_id) - 2}">*</c:forEach>
-												</c:when>
-												<c:when test="${data.dm_writer_secret eq '4' }">
-													<c:out value="${fn:substring(item.mb_id, 0 , fn:length(item.mb_id) - 2)}"/>**
-												</c:when>
-												<c:otherwise>
-													<c:out value="${item.mb_id}"/>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</td>
-								<td class="td_date"><c:out value="${item.wr_datetime }"/></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
 			</div>
 			</c:if>
 		</c:forEach>
 	</div>
 </div>
+<script>
+function data_more(board, total) {
+	var cnt = 0;
+	var visible_cnt = 0;
+	$("#data_"+board).children().each(function() {
+		if($(this).is(":hidden")) {
+			 if(cnt < 3) {
+				$(this).css("display","");
+				cnt++;
+			 }
+		} else {
+			visible_cnt++;
+		}
+	});
+	
+	if(cnt + visible_cnt == total) {
+		$("#btn_more"+board).css("display", "none");
+	}
+	
+}
+</script>
