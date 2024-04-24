@@ -22,9 +22,11 @@
 		<div class="favor_keyword">
 			<p class="tit t02"># 인기검색어 <i class="fa fa-solid fa-angle-right"></i></p>
 			<ul class="keyword_list">
-				<li><a href="#">#키워드1</a></li>
-				<li><a href="#">#키워드2</a></li>
-				<li><a href="#">#키워드3</a></li>
+			<c:forEach items="${keywordList }" var="data" varStatus="loop">
+				<c:if test="${loop.index < 3 }">
+                <li><a href="javascript:;" onclick="unifiedSearch('<c:out value="${data.dm_word }"/>',<c:out value="${CONFIG_INFO.dm_domain_id}"/>)"><c:out value='${data.dm_word }'/></a></li>
+                </c:if>
+            </c:forEach>
 			</ul>
 		</div>
 		<!-- //인기검색어 -->
@@ -79,13 +81,6 @@
 				<div class="bbs_gallist"></div>
 				<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 			</div>
-			<!-- //많이 본 콘텐츠 -->
-			<!-- 공감 콘텐츠// -->
-			<!-- <div class="tab-pane fade" id="tab-content-4" role="tabpanel" aria-labelledby="tab-con-4">
-				<div class="bbs_gallist"></div>
-				<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
-			</div> -->
-			<!-- //공감 콘텐츠 -->
 		</div>
 	</div>
 </div>
@@ -98,7 +93,6 @@ $(function () {
 	getContentsList("tab-content-1", 1);
 	getContentsList("tab-content-2", 1);
 	getContentsList("tab-content-3", 1);
-	//getContentsList("tab-content-4", 1);
 });
 //			
 var dataPerPage = <c:out value="${boardVO.dm_page_rows}" />;
@@ -173,27 +167,6 @@ function getContentsList(tab, page) {
 				}
 			});
 			break;
-	 /*  case "tab-content-4":
-		$.ajax({
-			url: "/web/selectWriteListLike.do",
-			data: {
-				"search_board" : "${boardVO.dm_id}",
-				"rows" : dataPerPage,
-				"page" : page
-			},
-			type: "get",
-			dataType : "json",
-			success : function (res) {
-				if(res.result == "success") {
-					var totalCount = res.total;
-					fnSetData(tab, res.rows);
-					paging(tab, totalCount, dataPerPage, pageCount, page);
-				}
-			}, error:function(request,status,error) {
-				alert(request.responseJSON.notice);
-			}
-		});
-		break; */
 	}	
 }
 

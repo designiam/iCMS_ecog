@@ -56,6 +56,7 @@ import egovframework.diam.biz.service.main.CoverService;
 import egovframework.diam.biz.service.member.MemberConfigService;
 import egovframework.diam.biz.service.member.MemberService;
 import egovframework.diam.cmm.model.Dm_common_code_vo;
+import egovframework.diam.cmm.model.Dm_search_vo;
 import egovframework.diam.cmm.model.LoginVO;
 import egovframework.diam.cmm.service.CommonCodeService;
 import egovframework.diam.cmm.service.SearchService;
@@ -454,10 +455,28 @@ public class webController {
 					break;
 				case "SEARCH":
 					String search_value = request.getParameter("search_value");
+					//검색어 등록
+					Dm_search_vo searchVO = new Dm_search_vo();
+					if(!commonUtil.isNullOrEmpty(search_value)) {
+						searchVO.setDm_domain(configVO.getDm_domain_id());
+						searchVO.setDm_word(search_value);
+						if(searchService.selectSearchWordCount(searchVO) > 0) {
+							//검색횟수 업데이트
+							searchService.updateSearchWordCount(searchVO);
+						} else {
+							//검색어 등록
+							searchService.insertSearchWord(searchVO);
+						}
+					}
+					//자주 찾는 검색어 조회
+					List<Dm_search_vo> searchList = searchService.selectPopularWord(searchVO);
+					
 					List<Dm_board_vo> boardList = searchService.selectBoardList(pageVO);
 					Dm_write_vo vo = new Dm_write_vo();
 					List<Object> list = new ArrayList<>();
 					if(boardList.size() > 0) {
+						String total_result = "";
+						int total_cnt = 0;
 						vo.setSearchBoardList(boardList);
 						for(int i=0; i<vo.getSearchBoardList().size(); i++) {
 							Map<String, Object> boardMap = new HashMap<>();
@@ -468,15 +487,20 @@ public class webController {
 							for(int j=0; j<writeList.size(); j++) {
 								Map<String, Object> writeMap = new HashMap<>();
 								writeMap.put("wr_subject", writeList.get(j).getWr_subject());
-								writeMap.put("wr_content", commonUtil.removeHtml(writeList.get(j).getWr_content()));
-								writeMap.put("wr_name", writeList.get(j).getWr_name());
-								writeMap.put("mb_id", writeList.get(j).getMb_id());
 								writeMap.put("wr_id", writeList.get(j).getWr_id());
-								writeMap.put("wr_datetime", writeList.get(j).getWr_datetime());
-								writeMap.put("wr_hit", writeList.get(j).getWr_hit());
-								writeMap.put("wr_is_comment", writeList.get(j).getWr_is_comment());
+								writeMap.put("wr_vol", writeList.get(j).getWr_vol());
+								writeMap.put("wr_hashtag", writeList.get(j).getWr_hashtag());
+								writeMap.put("wr_path", writeList.get(j).getWr_path());
+								writeMap.put("wr_thumb_sub", writeList.get(j).getWr_thumb_sub());
 								writeMap.put("wr_option", writeList.get(j).getWr_option());
 								writeMap.put("wr_parent", writeList.get(j).getWr_parent());
+								// writeMap.put("wr_content",
+								// commonUtil.removeHtml(writeList.get(j).getWr_content()));
+								// writeMap.put("wr_name", writeList.get(j).getWr_name());
+								// writeMap.put("mb_id", writeList.get(j).getMb_id());
+								// writeMap.put("wr_datetime", writeList.get(j).getWr_datetime());
+								// writeMap.put("wr_hit", writeList.get(j).getWr_hit());
+								// writeMap.put("wr_is_comment", writeList.get(j).getWr_is_comment());
 								arr.add(writeMap);
 							}
 							boardMap.put("dm_table", vo.getSearchBoardList().get(i).getDm_table());
@@ -487,9 +511,16 @@ public class webController {
 							boardMap.put("dm_writer_secret", vo.getSearchBoardList().get(i).getDm_writer_secret());
 							boardMap.put("total", cnt);
 							boardMap.put("write", arr);
+							total_cnt += cnt;
+							total_result += "<li>"+vo.getSearchBoardList().get(i).getDm_subject()+" <span>"+cnt+"</span></li>";
+							//int ratio = Integer.parseInt(vo.getSearchBoardList().get(i).getDm_gallery_height()) / Integer.parseInt(vo.getSearchBoardList().get(i).getDm_gallery_width()) * 100;
+							//boardMap.put("ratio", ratio);
 							list.add(boardMap);
 						}
+						total_result = "<li>전체 콘텐츠 <span>"+total_cnt+"</span></li>" + total_result;
+						result.addObject("total_result", total_result);
 						result.addObject("writeList", list);
+						result.addObject("searchPopList", searchList);
 						result.addObject("search_value", search_value);
 						result.setViewName("egovframework/diam/web/base/search/search");
 					}
@@ -624,6 +655,11 @@ public class webController {
 								result.addObject("volList", volList);
 								result.addObject("vol_pagingStr", vol_pagingStr);
 							}
+							//자주 찾는 검색어 조회
+							Dm_search_vo searchVO1 = new Dm_search_vo();
+							searchVO1.setDm_domain(configVO.getDm_domain_id());
+							List<Dm_search_vo> keywordList = searchService.selectPopularWord(searchVO1);
+							result.addObject("keywordList", keywordList);
 						}
 					} else if (command.equals("view")) {
 						if (!is_read) {
