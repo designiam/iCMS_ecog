@@ -19,7 +19,7 @@
 }
 
 /* 콘텐츠 타이틀 */
-#vis #titler { max-width:none; width:100%; min-height:200px; margin:0; background-color:#139A43; background-position:center center; }
+#vis #titler { max-width:none; width:100%; min-height:200px; margin:0; background-color:#139A43; background-position:center center; background-size:cover; background-repeat:no-repeat; }
 #contentId-af37e186ed8eda7c2304608ca6aa8f6f13003a08d0df7815786ae86b11deccf1 #vis_wrap,
 #contentId-0dcb43c4b9e37f2a428c9675b11b1a97d60108a3b8e809a7f138d8de284cf8ca #vis_wrap,
 #contentId-06ac1cf157950d1c7483eec804d80af3dec6d0c2909f9c38675a34e9cc840547 #vis_wrap { display: none; }
@@ -180,7 +180,8 @@
 /* 옵션박스 */
 .area-custom-select { position: relative; width:120px; margin:0 20px 0 auto; }
 .custom-select { position:relative; width:100%; height:35px; border-radius:5px; border:1px solid var(--color-g03); background:#fff; color:#000; letter-spacing:-0.03em; line-height:1.2; font-size:0.875rem; cursor:pointer; }
-.custom-select-text { position:absolute; top:50%; left:15px; transform:translateY(-50%); cursor:pointer; }
+.custom-select-text,
+.custom-select-text-vol { position:absolute; top:50%; left:15px; transform:translateY(-50%); cursor:pointer; }
 .custom-select-arrow { position:absolute; top:50%; right:15px; transform:translateY(-50%); }
 .custom-select-list { position:absolute; width:100%; max-height:120px; border:1px solid #ddd; border-radius:0 0 5px 5px; background:#fff; text-align:left; z-index:1; overflow-y:scroll; }
 .custom-select-option { display:flex; justify-content:flex-start; align-items:flex-end; width:100%; height:35px; line-height:35px; padding:0 15px; border-bottom:1px solid #ddd; color:#000; letter-spacing:-0.03em; font-size:0.875rem; cursor:pointer; }
@@ -296,9 +297,10 @@
 .event-content { min-height: 400px; padding-top: 3rem; } */
 
 /* 상세 화면 */
-.event_view.bbs_view { width:800px; margin:0 auto; }
-.event_view .bbs_view_title { width:100vw; margin-left:calc(-50vw + 50%); margin-bottom:0; padding:40px 0; background-color:#F3F3F3; text-align:center; }
-.event_view .bbs_view_title .cate { display:inline-block; margin-bottom:10px; color:#2950E0; font-size:1rem; line-height:1.4; letter-spacing:-0.02em; font-weight:600; }
+.event_view.bbs_view { max-width:800px; margin:0 auto 50px; }
+.event_view .bbs_view_title { margin:0; }
+.event_view .bbs_view_title { width:100vw; margin-left:calc(-50vw + 50%); margin-bottom:0; padding:40px 0 15px; background-color:#F3F3F3; text-align:center; }
+.event_view .bbs_view_title .cate { display:inline-block; color:#2950E0; font-size:1rem; line-height:1.4; letter-spacing:-0.02em; font-weight:600; }
 .event_view .bbs_view_title h4 { color:#000; font-size:1.875rem; line-height:1.4; letter-spacing:-0.02em; font-weight:700; }
 .event_view .bbs_viewing { border:0 none; }
 /* 목록 버튼 */ 
@@ -308,7 +310,9 @@
 .event_view .bbs_viewbtn .btn_list:hover { background: #fff; border-color: #3DBBA6; }
 .event_view .bbs_viewbtn .btn_list:hover img { margin-left: 25px; }
 @media (max-width: 768px) {
-	.event_view .bbs_viewbtn { padding:20px 0; }
+	.event_view .bbs_view_title { padding:20px 0 5px; }
+	.event_view .bbs_viewbtn { padding:20px; }
+	.event_view .bbs_view_title h4 { font-size:1.5rem; }
 }
 /* 콘텐츠 작가 표시 */
 .event_view .bbs_view_writer { display: flex; justify-content: center; padding:0 0 30px; border-bottom:1px solid #000; }
@@ -330,11 +334,11 @@
 }
 
 @media (max-width: 1500px) {
-	
+	#container { padding:0; }
 }
 
 @media (max-width: 1200px) {
-	
+	#container { padding:0 20px; }
 }
 
 @media (max-width: 1100px) {
@@ -391,16 +395,11 @@
 }
 
 @media (max-width: 620px) {
-	/* people_Article_함께G : list */
-	.tab-style-02 .nav { justify-content:space-between; }
-	.tab-style-02 .nav-item { width:50%; padding:0; }
-	.tab-style-02 .nav-item .nav-link.active { border:0 none; }
-	.tab-style-02 .nav-item:nth-child(even)::after { display:none; }
 }
 
 @media (max-width: 576px) {	
 	/* 뉴스레터 구독 */
-	.bot_subscribe { min-height:auto; }
+	.bot_subscribe { min-height:auto; margin-top:30px; }
 	.bot_subscribe .con_txt {  }
 	.bot_subscribe .con_txt::before {  }
 	
@@ -417,6 +416,9 @@
 }
 
 @media (max-width: 486px) {
+	/* 뉴스레터 구독 */
+	.bot_subscribe .con_txt { padding:20px 0; }
+	.bot_subscribe .con_txt::after { display:none; }
 }
 
 @media (max-width: 353px) {
@@ -424,10 +426,12 @@
 	.favor_keyword .tit i { transform:rotate(90deg); }
 }
 
-@media (max-width: 350px) {
-	/* 뉴스레터 구독 */
-	.bot_subscribe .con_txt { padding:20px 0; }
-	.bot_subscribe .con_txt::before { display:none; }
+@media (max-width: 350px) {	
+	/* people_Article_함께G : list */
+	.tab-style-02 .nav { justify-content:space-between; }
+	.tab-style-02 .nav-item { width:50%; padding:0; }
+	.tab-style-02 .nav-item .nav-link.active { border:0 none; }
+	.tab-style-02 .nav-item:nth-child(even)::after { display:none; }
 }
 
 

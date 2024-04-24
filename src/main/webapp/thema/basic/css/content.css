@@ -6,12 +6,15 @@
 /* 제거 항목 */
 #vis #titler, .bbs_view_info, .nb_ul, .bbs_viewbtn_1, #guick_banner { display: none; }
 .bbs_viewing { border: 0; }
-.bbs_view_contents { padding:0; }
+.bbs_view_contents { padding:0; border-bottom:0 none; }
+@media (max-width: 1100px) {
+	.event_view.bbs_view { padding: 0; }
+}
 
 /* 컨테이너 */
 #container { max-width: 1100px; }
 @media (max-width: 992px) {
-  #container { padding: 0 1rem; }
+  #container { padding: 0 20px; }
 }
 
 /* 헤더 이미지 */
@@ -93,7 +96,8 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .vol-slider .swiper-button-prev { left: calc(-34px - 28px); background-image: url("../images/pages/arrL_swiper_bl.png"); }
 .vol-slider .swiper-button-next { right: calc(-34px - 28px); background-image: url("../images/pages/arrR_swiper_bl.png"); }
 @media (max-width: 1200px) {
-  .vol-slider .swiper-button-prev, .vol-slider .swiper-button-next { display: none; }
+	.vol-slider { width:100%; }
+	.vol-slider .swiper-button-prev, .vol-slider .swiper-button-next { display: none; }
 }
 @media (max-width: 768px) {
   .bbs_view_slide { margin:30px 0; }

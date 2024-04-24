@@ -861,7 +861,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 
 @media (max-width: 992px) {
   .bbs_gallist ul { margin: 0 -10px; }
-  .bbs_gallist ul li.cell { margin-bottom: 2.5rem; padding: 0 10px; } 
+  .bbs_gallist ul li.cell { margin-bottom: 2.5rem; padding: 0 10px; }
   .bbs_gallist ul li .cell_thumb .vol { min-width: 80px; height: 35px; font-size: 1rem; } 
 }
 @media (max-width: 768px) {
@@ -954,6 +954,9 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 .pg_search { border-color: #3f51b5; background-color: #eee; }
 .pg_search.pg_prev {}
 .pg_search.pg_next {}
+@media (max-width: 992px) {
+  .bbs_paging { margin:0; }
+}
 @media (max-width: 576px) {
   .pg_start, .pg_end { display: none; }
   .pg_page:not(.pg_must) { display: none; }
