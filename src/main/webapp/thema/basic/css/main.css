@@ -69,6 +69,7 @@
 /* #top_con_slide .top-con-swiper .control-wrap .swiper-gallery-prev.swiper-button-disabled,
 #top_con_slide .top-con-swiper .control-wrap .swiper-gallery-next.swiper-button-disabled { opacity:0.75; } */
 #top_con_slide .top-con-thumb-swiper { float:right; max-width:480px; margin:0; height:330px; }
+#top_con_slide .top-con-thumb-swiper .swiper-wrapper { }
 #top_con_slide .top-con-thumb-swiper .swiper-slide { display:flex; align-items:center; justify-content:center; box-sizing:border-box; cursor:pointer; }
 #top_con_slide .top-con-thumb-swiper .swiper-slide-active { }
 #top_con_slide .top-con-thumb-swiper .swiper-slide:hover { }
