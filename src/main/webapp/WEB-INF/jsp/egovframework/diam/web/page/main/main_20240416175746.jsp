@@ -50,9 +50,9 @@
 				<div class="tab-pane fade show active" id="tab-content-1-1" role="tabpanel" aria-labelledby="tab-con1-1">
 					<div class="top-con-swiper swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
-							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/video/20231222142028_maxresdefault (30).jpg');"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
-							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
 						</div>
 						<div class="control-wrap">
 							<div class="swiper-pagination"></div>
@@ -128,9 +128,9 @@
 				<div class="tab-pane fade" id="tab-content-1-2" role="tabpanel" aria-labelledby="tab-con1-2">
 					<div class="top-con-swiper swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
-							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/video/20231222142028_maxresdefault (30).jpg');"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
-							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img" style="width: 100%; padding-top: %; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2629&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=e5c5f25d3d1e93829f71441d3ec436ae70e0cb676decb6fadc29d5d75177f231&amp;wr_id=2636&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/video/20231222142028_maxresdefault (30).jpg" alt="[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?" onerror="this.src='/images/no_image.png'"></p></div></a></div>
+							<div class="swiper-slide"><a href="?contentId=049e472d605b6d6b2b6e1b43ad8fdb399c1907d47b71712f9a29d70b902f8c5e&amp;wr_id=2632&amp;command=view"><div class="img_con"><p class="img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="‘가족애’를 이야기하는 동화 작가, 김숙 주임" onerror="this.src='/images/no_image.png'"></p></div></a></div>
 						</div>
 						<div class="control-wrap">
 							<div class="swiper-pagination"></div>
@@ -361,7 +361,7 @@ function getPopularData() {
 						slide_con1 +='<div class="swiper-slide">';
 						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 						slide_con1 +='<div class="img_con">';
-						slide_con1 +='<p class="img" style="width: 100%; padding-top:59.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
+						slide_con1 +='<p class="img" style="width: 100%; padding-top:56.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
 						slide_con1 +='</div>';
 						slide_con1 +='</a>';
 						slide_con1 +='</div>';
@@ -415,7 +415,7 @@ function getRecommendData() {
 						slide_con1 +='<div class="swiper-slide">';
 						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 						slide_con1 +='<div class="img_con">';
-						slide_con1 +='<p class="img" style="width: 100%; padding-top:59.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
+						slide_con1 +='<p class="img" style="width: 100%; padding-top:56.82%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></p>';
 						slide_con1 +='</div>';
 						slide_con1 +='</a>';
 						slide_con1 +='</div>';
