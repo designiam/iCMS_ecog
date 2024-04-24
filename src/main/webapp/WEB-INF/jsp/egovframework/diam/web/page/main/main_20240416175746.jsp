@@ -201,19 +201,19 @@
 				<!-- 전체 콘텐츠// -->
 				<div class="tab-pane fade show active" id="tab-content-2-1" role="tabpanel" aria-labelledby="tab-con2-1">
 					<div class="bbs_gallist"></div>
-					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
+					<div class="bbs_paging mt0"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //전체 콘텐츠 -->
 				<!-- 최근 발행호// -->
 				<div class="tab-pane fade" id="tab-content-2-2" role="tabpanel" aria-labelledby="tab-con2-2">
 					<div class="bbs_gallist"></div>
-					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
+					<div class="bbs_paging mt0"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //최근 발행호 -->
 				<!-- 많이 본 콘텐츠// -->
 				<div class="tab-pane fade" id="tab-content-2-3" role="tabpanel" aria-labelledby="tab-con2-3">
 					<div class="bbs_gallist"></div>
-					<div class="bbs_paging"><nav class="pg_wrap"><span class="pg"></span></nav></div>
+					<div class="bbs_paging mt0"><nav class="pg_wrap"><span class="pg"></span></nav></div>
 				</div>
 				<!-- //많이 본 콘텐츠 -->
 			</div>

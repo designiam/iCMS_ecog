@@ -43,9 +43,9 @@
 	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 	</ul>
 	<!-- 내용더보기// -->
-	<div class="more_con">
+	<!-- <div class="more_con">
 		<a href="#"><span class="sr-only">내용 더보기</span></a>
-	</div>
+	</div> -->
 	<!-- //내용더보기 -->
 </div>
 
