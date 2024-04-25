@@ -51,27 +51,6 @@
 						<div class="sld-wrp">
 							<div class="slider_for_wrap">
 								<div class="slider-for">
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
 								</div>
 								<div class="control-wrap">
 									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
@@ -82,77 +61,10 @@
 					 			</div>
 					 		</div>
 							<div class="slider-nav">
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p>
-									</div>
-								</div>
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p>
-									</div>
-								</div>
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
-					<script>
-						$(function(){
-							function sliderSet(slickfor,slicknav){
-								$('#tab-content-1-1 .slider-for').slick({
-									slidesToShow: 1,
-									slidesToScroll: 1,
-									arrows: true,
-									autoplay: true,
-									autoplaySpeed : 3000,
-									lazyLoad: 'progressive',
-									infinite: true,
-									infiniteSlide: 0,
-									asNavFor: '#tab-content-1-1 .slider-nav',
-									prevArrow : $('#tab-content-1-1 .prevArrow'), 
-									nextArrow : $('#tab-content-1-1 .nextArrow'),
-								});
-								$('#tab-content-1-1 .slider-nav').slick({
-									vertical: true,
-									slidesToShow: 3,
-									slidesToScroll: 1,
-									arrows: false,
-									asNavFor: '#tab-content-1-1 .slider-for',
-									centerMode: false,
-									autoplay: false,
-									swipe: false,
-									focusOnSelect: true
-								});
-								$('#tab-content-1-1 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
-									var i = (currentSlide ? currentSlide : 0) + 1;
-									$('#tab-content-1-1 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
-								});
-								// 재생/정지 버튼 컨트롤
-								$('#tab-content-1-1 .play').click(function(){
-									$('#tab-content-1-1 .slider-for').slick('slickPlay');
-								}); 
-								$('#tab-content-1-1 .stop').click(function(){
-									$('#tab-content-1-1 .slider-for').slick('slickPause');
-								});
-							}
-							$('#tab-content-1-1 .slider_for_wrap').each(function(i,el){
-								i+=1;	
-								var slickfor = $(el).find('#tab-content-1-1 .slider-for').addClass('for'+ i)
-								var slicknav = $(el).find('#tab-content-1-1 .slider-nav').addClass('nav'+ i)
-								sliderSet(slickfor,slicknav);
-							});
-						});
-					</script>
+
 				</div>
 				<!-- //월간 BEST -->
 				<!-- 추천콘텐츠// -->
@@ -161,27 +73,6 @@
 						<div class="sld-wrp">
 							<div class="slider_for_wrap">
 								<div class="slider-for">
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
-									<div class="slide-container">
-										<a href="#">
-											<div class="img_con">
-												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
-											</div>
-										</a>
-									</div>
 								</div>
 								<div class="control-wrap">
 									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
@@ -192,77 +83,10 @@
 					 			</div>
 					 		</div>
 							<div class="slider-nav">
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p>
-									</div>
-								</div>
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p>
-									</div>
-								</div>
-								<div class="slide-btn">
-									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
-									<div class="thumb_txt">
-										<p class="type type_1">people</p>
-										<p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
-					<script>
-						$(function(){
-							function sliderSet(slickfor,slicknav){
-								$('#tab-content-1-2 .slider-for').slick({
-									slidesToShow: 1,
-									slidesToScroll: 1,
-									arrows: true,
-									autoplay: true,
-									autoplaySpeed : 3000,
-									lazyLoad: 'progressive',
-									infinite: true,
-									infiniteSlide: 0,
-									asNavFor: '#tab-content-1-2 .slider-nav',
-									prevArrow : $('#tab-content-1-2 .prevArrow'), 
-									nextArrow : $('#tab-content-1-2 .nextArrow'),
-								});
-								$('#tab-content-1-2 .slider-nav').slick({
-									vertical: true,
-									slidesToShow: 3,
-									slidesToScroll: 1,
-									arrows: false,
-									asNavFor: '#tab-content-1-2 .slider-for',
-									centerMode: false,
-									autoplay: false,
-									swipe: false,
-									focusOnSelect: true
-								});
-								$('#tab-content-1-2 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
-									var i = (currentSlide ? currentSlide : 0) + 1;
-									$('#tab-content-1-2 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
-								}); 
-								// 재생/정지 버튼 컨트롤
-								$('#tab-content-1-2 .play').click(function(){
-									$('#tab-content-1-2 .slider-for').slick('slickPlay');
-								}); 
-								$('#tab-content-1-2 .stop').click(function(){
-									$('#tab-content-1-2 .slider-for').slick('slickPause');
-								});
-							}
-							$('#tab-content-1-1 .slider_for_wrap').each(function(i,el){
-								i+=1;	
-								var slickfor = $(el).find('#tab-content-1-1 .slider-for').addClass('for'+ i)
-								var slicknav = $(el).find('#tab-content-1-1 .slider-nav').addClass('nav'+ i)
-								sliderSet(slickfor,slicknav);
-							});
-						});
-					</script>
+
 				</div>
 				<!-- //추천콘텐츠 -->
 			</div>
@@ -272,154 +96,6 @@
 	<!-- //.inner -->
 </div>
 <!-- //월간BEST_추천콘텐츠 -->
-
-<!-- 추천콘텐츠, 월간베스트, 최신콘텐츠// -->
-<div id="top_con_slide" style="display:none;">
-	<!-- .inner// -->
-	<div class="inner">
-		<div class="tabMenu-wrap tab-style-02">
-			<ul class="nav">
-				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con1-1" data-toggle="tab" data-target="#tab-content-1-1" role="tab" aria-controls="tab-content-1-1" aria-selected="true">월간 BEST</button></li>
-				<li class="nav-item"><button type="button" class="nav-link" id="tab-con1-2" data-toggle="tab" data-target="#tab-content-1-2" role="tab" aria-controls="tab-content-1-2" aria-selected="false">추천콘텐츠</button></li>
-			</ul>
-		</div>
-		<!-- //.tabMenu-wrap -->
-	
-		<div class="tabContent-wrap">
-			<div class="tabContent">
-				<!-- 월간 BEST// -->
-				<div class="tab-pane fade show active" id="tab-content-1-1" role="tabpanel" aria-labelledby="tab-con1-1">
-					<div class="top-con-swiper swiper-container">
-						<div class="swiper-wrapper">
-						</div>
-						<div class="control-wrap">
-							<div class="swiper-pagination"></div>
-							<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
-							<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
-							<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
-							<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
-						</div>
-					</div>
-					<div class="top-con-thumb-swiper swiper-container">
-						<div class="swiper-wrapper">
-						</div>
-					</div>
-					<script>
-						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-1 .top-con-swiper', {
-								//effect: 'fade',
-								slidesPerView: 1,  
-								loop: true,
-								loopedSlides: 3,
-								autoplay: {
-							        delay: 3000,
-							        disableOnInteraction: false,
-							    },
-								navigation: {
-									nextEl: '#tab-content-1-1 .swiper-gallery-next',
-									prevEl: '#tab-content-1-1 .swiper-gallery-prev',
-								},
-								pagination: {
-								  el: ".swiper-pagination",
-								  type: "fraction",
-								},
-								observer: true,
-								observeParents: true,
-							});
-							var galleryThumbs = new Swiper('#tab-content-1-1 .top-con-thumb-swiper', {
-							  direction: 'vertical',
-							  slidesPerView: 3,
-							  slideToClickedSlide: true,
-							  spaceBetween: 0,
-							  loop: true,
-							  loopedSlides: 3,
-							  observer: true,
-							  observeParents: true,
-							});
-							galleryTop.controller.control = galleryThumbs;
-							galleryThumbs.controller.control = galleryTop;
-
-							// 자동 재생 시작, 정지 버튼 만들기 스크립트
-							$('#tab-content-1-1 .top-con-swiper .swiper-gallery-pause').on('click', function() {
-								galleryTop.autoplay.stop();
-							});
-							$('#tab-content-1-1 .top-con-swiper .swiper-gallery-play').on('click', function() {
-								galleryTop.autoplay.start();
-							});
-						});
-					</script>
-				</div>
-				<!-- //월간 BEST -->
-				<!-- 추천콘텐츠// -->
-				<div class="tab-pane fade" id="tab-content-1-2" role="tabpanel" aria-labelledby="tab-con1-2">
-					<div class="top-con-swiper swiper-container">
-						<div class="swiper-wrapper">
-						</div>
-						<div class="control-wrap">
-							<div class="swiper-pagination"></div>
-							<div class="swiper-gallery-prev"><span class="hidden">이전</span></div>
-							<div class="swiper-gallery-play"><span class="hidden">시작</span></div>
-							<div class="swiper-gallery-pause"><span class="hidden">정지</span></div>
-							<div class="swiper-gallery-next"><span class="hidden">다음</span></div>
-						</div>
-					</div>
-					<div class="top-con-thumb-swiper swiper-container">
-						<div class="swiper-wrapper">
-						</div>
-					</div>
-					<script>
-						$(function(e) {					
-							var galleryTop = new Swiper('#tab-content-1-2 .top-con-swiper', {
-								//effect: 'fade',
-								slidesPerView: 1,  
-								loop: true,
-								loopedSlides: 3,
-								autoplay: {
-							        delay: 3000,
-							        disableOnInteraction: false,
-							    },
-								navigation: {
-									nextEl: '#tab-content-1-2 .swiper-gallery-next',
-									prevEl: '#tab-content-1-2 .swiper-gallery-prev',
-								},
-								pagination: {
-								  el: ".swiper-pagination",
-								  type: "fraction",
-								},
-								observer: true,
-								observeParents: true,
-							});
-							var galleryThumbs = new Swiper('#tab-content-1-2 .top-con-thumb-swiper', {
-							  direction: 'vertical',
-							  slidesPerView: 3,
-							  slideToClickedSlide: true,
-							  spaceBetween: 0,
-							  loop: true,
-							  loopedSlides: 3,
-							  observer: true,
-							  observeParents: true,
-							});
-							galleryTop.controller.control = galleryThumbs;
-							galleryThumbs.controller.control = galleryTop;
-
-							// 자동 재생 시작, 정지 버튼 만들기 스크립트
-							$('#tab-content-1-2 .top-con-swiper .swiper-gallery-pause').on('click', function() {
-								galleryTop.autoplay.stop();
-							});
-							$('#tab-content-1-2 .top-con-swiper .swiper-gallery-play').on('click', function() {
-								galleryTop.autoplay.start();
-							});
-						});
-					</script>
-				</div>
-				<!-- //추천콘텐츠 -->
-			</div>
-		</div>
-		<!-- //.tabContent-wrap -->
-	</div>
-	<!-- //.inner -->
-</div>
-<!-- //추천콘텐츠, 월간베스트, 최신콘텐츠 -->
 
 <!-- 콘텐츠 전체보기// -->
 <div id="contents_all">
@@ -483,7 +159,7 @@
 	<div class="inner">
 		<div class="event_con">
 			<p class="tit h04">EVENT</p>
-			<p class="img"><img src="/thema/basic/images/main/img_test3.jpg" alt="" /></p>
+			<p class="img"><img src="/thema/basic/images/main/img_test2.jpg" alt="" /></p>
 		</div>
 		<div class="sns_con">
 			<p class="tit h04">SNS로 만나는 광주환경공단</p>
@@ -491,25 +167,25 @@
 				<li>
 					<a href="#">
 						<span class="icon insta">인스타그램</span>
-						<img src="/thema/basic/images/main/img_test3.jpg" alt="" />
+						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
 				<li>
 					<a href="#">
 						<span class="icon face">페이스북</span>
-						<img src="/thema/basic/images/main/img_test3.jpg" alt="" />
+						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
 				<li>
 					<a href="#">
 						<span class="icon kakao">카카오채널</span>
-						<img src="/thema/basic/images/main/img_test3.jpg" alt="" />
+						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
 				<li>
 					<a href="#">
 						<span class="icon blog">네이버블로그</span>
-						<img src="/thema/basic/images/main/img_test3.jpg" alt="" />
+						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
 			</ul>
@@ -517,7 +193,45 @@
 	</div>
 </div>
 <!-- //이벤트_sns로 만나는 광주환경공단 -->
-
+<script>
+function sliderSet(slickID) {
+	$(slickID + " .slider-for").slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: true,
+		autoplay: true,
+		autoplaySpeed : 3000,
+		lazyLoad: 'progressive',
+		infinite: true,
+		infiniteSlide: 0,
+		asNavFor: slickID + " .slider-nav",
+		prevArrow : $(slickID + ' .prevArrow'), 
+		nextArrow : $(slickID + ' .nextArrow'),
+	});
+	$(slickID + " .slider-nav").slick({
+		vertical: true,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		arrows: false,
+		asNavFor: slickID + " .slider-for",
+		centerMode: false,
+		autoplay: false,
+		swipe: false,
+		focusOnSelect: true
+	});
+	$(slickID + " .slider-for").on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
+		var i = (currentSlide ? currentSlide : 0) + 1;
+		$(slickID + " .sPage1").html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
+	});
+	// 재생/정지 버튼 컨트롤
+	$(slickID + " .play").click(function(){
+		$(slickID + " .slider-for").slick('slickPlay');
+	}); 
+	$(slickID + " .stop").click(function(){
+		$(slickID + " .slider-for").slick('slickPause');
+	});
+}
+</script>
 <script>
 $(function() {
 	//최신 발행호
@@ -544,6 +258,8 @@ $(function() {
 <script>
 //월간 BEST
 function getPopularData() {
+	var slickID = "#tab-content-1-1";
+	
 	$.ajax({
 		url: "/web/selectPopularWrite.do",
 		data: {wr_vol : "${sessionScope.vol}"},
@@ -569,7 +285,7 @@ function getPopularData() {
 							break;
 						}
 						
-						slide_con1 +='<div class="swiper-slide">';
+						slide_con1 +='<div class="slide-container">';
 						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 						slide_con1 +='<div class="img_con">';
 						slide_con1 +='<p class="img" style="width: 100%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>';
@@ -578,7 +294,7 @@ function getPopularData() {
 						slide_con1 +='</div>';
 		
 						
-						slide_con2 +='<div class="swiper-slide">';
+						slide_con2 +='<div class="slide-btn">';
 						slide_con2 +='<div class="thumb_img"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>';
 						slide_con2 +='<div class="thumb_txt"><p class="type '+typeClass+'">'+obj.type+'</p>';
 						slide_con2 +='<p class="t04">'+obj.wr_subject+'</p>';
@@ -586,8 +302,10 @@ function getPopularData() {
 						slide_con2 +='</div>';
 					});
 		
-					$("#tab-content-1-1 .top-con-swiper .swiper-wrapper").empty().append(slide_con1);
-					$("#tab-content-1-1 .top-con-thumb-swiper .swiper-wrapper").empty().append(slide_con2);
+					$(slickID + " .slider-for").empty().append(slide_con1);
+					$(slickID + " .slider-nav").empty().append(slide_con2);
+					
+					sliderSet(slickID);
 				}
 			}
 		}, error:function(request,status,error) {
@@ -598,6 +316,8 @@ function getPopularData() {
 
 //추천 콘텐츠
 function getRecommendData() {
+	var slickID = "#tab-content-1-2";
+	
 	$.ajax({
 		url: "/web/selectRecommendWrite.do",
 		data: {wr_vol : "${sessionScope.vol}"},
@@ -623,7 +343,7 @@ function getRecommendData() {
 							break;
 						}
 						
-						slide_con1 +='<div class="swiper-slide">';
+						slide_con1 +='<div class="slide-container">';
 						slide_con1 +='<a href="?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 						slide_con1 +='<div class="img_con">';
 						slide_con1 +='<p class="img" style="width: 100%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>';
@@ -632,7 +352,7 @@ function getRecommendData() {
 						slide_con1 +='</div>';
 		
 						
-						slide_con2 +='<div class="swiper-slide">';
+						slide_con2 +='<div class="slide-btn">';
 						slide_con2 +='<div class="thumb_img"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>';
 						slide_con2 +='<div class="thumb_txt"><p class="type '+typeClass+'">'+obj.type+'</p>';
 						slide_con2 +='<p class="t04">'+obj.wr_subject+'</p>';
@@ -640,8 +360,10 @@ function getRecommendData() {
 						slide_con2 +='</div>';
 					});
 		
-					$("#tab-content-1-2 .top-con-swiper .swiper-wrapper").empty().append(slide_con1);
-					$("#tab-content-1-2 .top-con-thumb-swiper .swiper-wrapper").empty().append(slide_con2);
+					$(slickID + " .slider-for").empty().append(slide_con1);
+					$(slickID + " .slider-nav").empty().append(slide_con2);
+					
+					sliderSet(slickID);
 				}
 			}
 		}, error:function(request,status,error) {
@@ -654,10 +376,27 @@ function getRecommendData() {
 <script>
 $(function () {
 	getPopularData();
-	getRecommendData();
 	
 	getContentsList("tab-content-2-1", 1);
+});
+
+$(document).on('click','#tab-con1-1', function() {
+	getPopularData();
+});
+
+$(document).on('click','#tab-con1-2', function() {
+	getRecommendData();
+});
+
+$(document).on('click','#tab-con2-1', function() {
+	getContentsList("tab-content-2-1", 1);
+});
+
+$(document).on('click','#tab-con2-2', function() {
 	getContentsList("tab-content-2-2", 1);
+});
+
+$(document).on('click','#tab-con2-3', function() {
 	getContentsList("tab-content-2-3", 1);
 });
 
