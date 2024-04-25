@@ -3,6 +3,9 @@
 <mapper namespace="egovframework.diam.biz.db.main.CoverMapper">
 	<resultMap type="egovframework.diam.biz.model.main.Dm_cover_vo" id="resultCoverVO"/>
 	<sql id="selectWhere">
+		<if test='dm_year != null and dm_year != ""'>
+			AND A.dm_year = #{dm_year}
+		</if>
 		<if test='dm_status != null and dm_status != ""'>
 			AND A.dm_status = #{dm_status}
 		</if>
@@ -54,7 +57,8 @@
 		AND A.dm_delete_yn = 'N'
 		<include refid="selectWhere"/>
 	</select>
-	<insert id="upsertCover">
+	
+	<insert id="insertCover">
 		INSERT INTO dm_cover 
 			(  dm_id
 			 , dm_vol
@@ -62,6 +66,7 @@
 			 , dm_month
 			 , dm_title
 			 , dm_content
+			 , dm_cover_img
 			 , dm_status
 			 , dm_create_dt
 			 , dm_create_id
@@ -73,21 +78,27 @@
 			 , #{dm_month}
 			 , #{dm_title}
 			 , #{dm_content}
+			 , #{dm_cover_img}
 			 , #{dm_status}
 			 , now()
 			 , #{dm_create_id}
 			)
-		ON DUPLICATE KEY UPDATE
-			  dm_vol = #{dm_vol}
-			, dm_year = #{dm_year}
-			, dm_month = #{dm_month}
-			, dm_title = #{dm_title}
-			, dm_content = #{dm_content}
-			, dm_status = #{dm_status}
-			, dm_modify_dt = now()
-			, dm_modify_id = #{dm_modify_id}
 	</insert>
-	
+
+	<update id="updateCover">
+		UPDATE dm_cover 
+		   SET dm_vol = #{dm_vol}
+			 , dm_year = #{dm_year}
+		 	 , dm_month = #{dm_month}
+			 , dm_title = #{dm_title}
+			 , dm_content = #{dm_content}
+			 , dm_cover_img = #{dm_cover_img}
+			 , dm_status = #{dm_status}
+			 , dm_modify_dt = now()
+			 , dm_modify_id = #{dm_modify_id}
+		 WHERE	dm_id = #{dm_id} 
+	</update>
+		
 	<select id="selectUseStatusCover" resultMap="resultCoverVO">
 		SELECT *
 		  FROM dm_cover
@@ -149,4 +160,17 @@
 		</if>
 		GROUP BY dm_vol DESC
 	</select>
+	
+	<select id="selectCoverListForWeb" resultMap="resultCoverVO">
+		SELECT A.*
+		FROM dm_cover AS A
+		WHERE 1 = 1
+		AND A.dm_delete_yn = 'N'
+		<include refid="selectWhere"/>
+		ORDER BY A.dm_vol * 1 DESC
+		<if test='page > -1 and rows > 0'>
+			LIMIT #{page}, #{rows}
+		</if>
+	</select>
+	
 </mapper>

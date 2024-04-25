@@ -1,11 +1,15 @@
 package egovframework.diam.ui.main;
 
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,10 +84,11 @@ public class CoverController {
 	}
 	
 	@PostMapping("/adm/upsertCover.do")
-	public ResponseEntity<?> upsertCover(@Valid Dm_cover_vo coverVO, BindingResult br) {
+	public ResponseEntity<?> upsertCover(@Valid Dm_cover_vo coverVO, BindingResult br, HttpServletRequest request) {
 		Map<String, Object> resultMap = new HashMap<>();
 		CommonUtil commonUtil = new CommonUtil();
 		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		String FILE_PATH = request.getServletContext().getRealPath("/") + "resources/cover/";
 		
 		if(br.hasErrors()) {
 			List<FieldError> errors = br.getFieldErrors();
@@ -100,28 +105,105 @@ public class CoverController {
 				return new ResponseEntity<>(resultMap, HttpStatus.UNAUTHORIZED);
 			}
 			
-			int dup = coverService.selectUniqVol(coverVO);
-			if (dup > 0) {
-				resultMap.put("result", "fail");
-				resultMap.put("notice", "중복된 발행호수가 존재합니다.");
-				return new ResponseEntity<>(resultMap, HttpStatus.OK);
-			}
-			
-			if (coverVO.getDm_status().equals("0")) {
-				Dm_cover_vo checkVO = coverService.selectUseCover(coverVO);
-				if (checkVO == null) {
+			int result = 0;
+			if (commonUtil.isNullOrEmpty(coverVO.getDm_id())) {
+				int dup = coverService.selectUniqVol(coverVO);
+				if (dup > 0) {
 					resultMap.put("result", "fail");
-					resultMap.put("notice", "메인 표지를 등록해야 합니다.");
+					resultMap.put("notice", "중복된 발행호수가 존재합니다.");
 					return new ResponseEntity<>(resultMap, HttpStatus.OK);
 				}
+				
+				if (coverVO.getDm_status().equals("0")) {
+					Dm_cover_vo checkVO = coverService.selectUseCover(coverVO);
+					if (checkVO == null) {
+						resultMap.put("result", "fail");
+						resultMap.put("notice", "메인 표지를 등록해야 합니다.");
+						return new ResponseEntity<>(resultMap, HttpStatus.OK);
+					}
+				}
+				
+				File folder = new File(FILE_PATH);
+				if (!folder.exists()) {
+					folder.mkdirs();
+				}
+
+				if (coverVO.getMultiFile().getSize() > 0) {
+					boolean chkImageExt = commonUtil.imageExtCheck(coverVO.getMultiFile());
+					if (!chkImageExt) {
+						resultMap.put("result", "fail");
+						resultMap.put("notice", "jpg,jpeg,gif,png 확장자 파일만 업로드 가능합니다.");
+						return new ResponseEntity<>(resultMap, HttpStatus.OK);
+					}
+
+					uploadCoverFile(coverVO, null, FILE_PATH);
+				}
+
+				coverVO.setDm_create_id(loginVO.getId());
+				coverVO.setDm_content(commonUtil.xssSaxFiltering(coverVO.getDm_content()));
+				
+				result = coverService.insertCover(coverVO);
+				
+				if (result > 0) {
+					resultMap.put("result", "success");
+					resultMap.put("notice", MessageCode.CMS_INSERT_SUCCESS.getMessage());
+				} else {
+					resultMap.put("result", "fail");
+					resultMap.put("notice", MessageCode.CMS_INSERT_FAIL.getMessage());
+				}
+			} else {
+
+				Dm_cover_vo checkVO = new Dm_cover_vo();
+				checkVO.setDm_id(coverVO.getDm_id());
+				checkVO = coverService.selectCover(checkVO);
+				if (checkVO != null) {
+					if (!commonUtil.isNullOrEmpty(coverVO.getDm_del_image())) {
+						if(coverVO.getMultiFile().getSize() > 0) {
+							File file = new File(FILE_PATH + coverVO.getDm_del_image());
+							if( file.exists() ){
+								FileDelete(file);
+							}
+						} else {
+							resultMap.put("result", "fail");
+							resultMap.put("notice", "표지 이미지를 등록해주세요.");
+							return new ResponseEntity<>(resultMap, HttpStatus.OK);
+						}
+					}
+					
+					File folder = new File(FILE_PATH);
+					if (!folder.exists()) {
+						folder.mkdirs();
+					}
+
+					if (coverVO.getMultiFile().getSize() > 0) {
+						boolean chkImageExt = commonUtil.imageExtCheck(coverVO.getMultiFile());
+						if (!chkImageExt) {
+							resultMap.put("result", "fail");
+							resultMap.put("notice", "jpg,jpeg,gif,png 확장자 파일만 업로드 가능합니다.");
+							return new ResponseEntity<>(resultMap, HttpStatus.OK);
+						}
+
+						uploadCoverFile(coverVO, checkVO, FILE_PATH);
+					}
+					
+					coverVO.setDm_modify_id(loginVO.getId());
+					coverVO.setDm_content(commonUtil.xssSaxFiltering(coverVO.getDm_content()));
+					result = coverService.updateCover(coverVO);	
+					
+					if (result > 0) {
+						resultMap.put("result", "success");
+						resultMap.put("notice", MessageCode.CMS_UPDATE_SUCCESS.getMessage());							
+					} else {
+						resultMap.put("result", "success");
+						resultMap.put("notice", MessageCode.CMS_UPDATE_FAIL.getMessage());
+					}	
+
+				} else {
+					resultMap.put("result", "fail");
+					resultMap.put("notice", "수정하고자 하는 표지 정보가 없습니다.");
+				}
 			}
-			
-			coverVO.setDm_create_id(loginVO.getId());
-			coverVO.setDm_modify_id(loginVO.getId());
-			coverVO.setDm_content(commonUtil.xssSaxFiltering(coverVO.getDm_content()));
-			
-			coverService.upsertCover(coverVO);
-			
+
 			resultMap.put("result", "success");
 			resultMap.put("notice", MessageCode.CMS_UPSERT_SUCCESS.getMessage());
 			
@@ -219,4 +301,41 @@ public class CoverController {
 		
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
+
+	/**
+	 * @Method : uploadCoverFile
+	 * @Description : CMS  파일 업로드
+	 * @param coverVO
+	 * @param checkVO
+	 * @param file_path
+	 * @throws Exception
+	 */
+	private void uploadCoverFile(Dm_cover_vo coverVO, Dm_cover_vo checkVO, String file_path) throws Exception {
+		CommonUtil commonUtil = new CommonUtil();
+		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+
+        if (coverVO.getMultiFile().getSize() > 0 ) {
+        	coverVO.setDm_cover_img_ori(coverVO.getMultiFile().getOriginalFilename());
+    		String ext = coverVO.getMultiFile().getOriginalFilename().substring(coverVO.getMultiFile().getOriginalFilename().indexOf(".") + 1);
+			String upload_visual = today + "_" + commonUtil.convertSHA256(coverVO.getMultiFile().getOriginalFilename()) + "." + ext;
+    		System.out.print(file_path + upload_visual);
+			coverVO.getMultiFile().transferTo(new File(file_path + upload_visual));
+			coverVO.setDm_cover_img(upload_visual);
+		} else {
+			if (checkVO != null && (coverVO.getDm_del_image() == null || coverVO.getDm_del_image().isEmpty())) {
+				coverVO.setDm_cover_img(checkVO.getDm_cover_img());
+				coverVO.setDm_cover_img_ori(checkVO.getDm_cover_img_ori());
+			}
+		}
+	}
+	
+	/**
+	 * @Method : FileDelete
+	 * @Description : 파일삭제
+	 * @param file
+	 */
+	private synchronized void FileDelete(File file) {
+		file.delete();
+	}
+	
 }

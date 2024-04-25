@@ -277,4 +277,30 @@ public class WebCoverController {
 		}
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
+	
+	@GetMapping("/web/selectCoverVolList.do")
+	public ResponseEntity<?> selectCoverVolList(Dm_cover_vo vo) {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		try {
+
+			List<Dm_cover_vo> list = coverService.selectCoverList(vo);
+			int total = coverService.selectCoverListCount(vo);
+			
+			resultMap.put("result", "success");
+			resultMap.put("rows", list);
+			resultMap.put("total", total);
+
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
 }

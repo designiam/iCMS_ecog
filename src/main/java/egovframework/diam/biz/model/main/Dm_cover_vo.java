@@ -6,6 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -58,4 +60,14 @@ public class Dm_cover_vo {
 	private String search_end_date;
 	
 	private List<String> boardList;
+	
+	private String dm_cover_img;
+	private String dm_cover_img_ori;
+	
+	/** 삭제파일명 */
+	private String dm_del_image;
+
+	/** 업로드 파일 */
+	private MultipartFile multiFile;
+
 }

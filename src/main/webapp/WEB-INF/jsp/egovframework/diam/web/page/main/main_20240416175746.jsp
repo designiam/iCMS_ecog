@@ -792,9 +792,9 @@ function fnSetData(tab, rows) {
 			html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 			html += '<div class="img">';
 			if(obj.wr_thumb_sub) {
-				html += '<div class="thumb-wrap" style="width: 100%; padding-top: ${ratio }%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'/images/no_image.png\'"></div>';
+				html += '<div class="thumb-wrap" style="width: 100%; background-image: url(\''+obj.wr_path+obj.wr_thumb_sub+'\');"><img src="'+obj.wr_path+obj.wr_thumb_sub+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>';
 			} else {
-				html += '<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url(\'/images/no_image.png\');"><img src="/images/no_image.png" alt="no image"></div>';
+				html += '<div class="thumb-wrap noimg" style="width: 100%; background-image: url(\'${layout_path}/images/pages/no_image.png\');"><img src="${layout_path}/images/pages/no_image.png" alt="no image"></div>';
 			}
 			html += '</div>';
 			html += '<div class="con_txt">';
