@@ -10,7 +10,9 @@ public interface CoverService {
 
 	public int selectCoverListCount(Dm_cover_vo vo) throws Exception;
 
-	public void upsertCover(Dm_cover_vo vo) throws Exception;
+	public int insertCover(Dm_cover_vo vo) throws Exception;
+
+	public int updateCover(Dm_cover_vo vo) throws Exception;
 
 	public Dm_cover_vo selectCover(Dm_cover_vo vo) throws Exception;
 
@@ -27,5 +29,8 @@ public interface CoverService {
 	public List<Dm_cover_vo> selectCoverComboboxYear() throws Exception;
 
 	public List<Dm_cover_vo> selectCoverComboboxVol(Dm_cover_vo vo) throws Exception;
+	
+	public List<Dm_cover_vo> selectCoverListForWeb(Dm_cover_vo vo) throws Exception;
+
 
 }

@@ -84,7 +84,12 @@ function setValue(rows) {
 			$("#dm_status").combobox("setValue", rows.dm_status);
 		}
 	});
-	oEditors.getById["dm_content"].exec("PASTE_HTML", [$("#dm_content").val()]);
+	//oEditors.getById["dm_content"].exec("PASTE_HTML", [$("#dm_content").val()]);
+	
+    if (rows.dm_cover_img != null && rows.dm_cover_img != "") {
+    	$('.file_dd').append("<img src='/resources/cover/"+rows.dm_cover_img+"' style='max-width: 300px; margin-top:8px;'/><div><label><input type='checkbox' name='dm_cover_del_img' class='file_link' id='dm_cover_del_img' value='"+rows.dm_cover_img+"'/>삭제("+ rows.dm_cover_img_ori +")</label></div>");
+    }
+
 }
 
 
@@ -194,6 +199,13 @@ function setMonth(){
 	            	<dd class="zone">
 	            		<textarea id="dm_content" name="dm_content"></textarea>
 	            	</dd>
+	            </dl>
+	            <dl>
+	                <dt>이미지 파일<span class="required_value">*</span></dt>
+	                <dd class="file_dd">
+	                	<input type="file" name="multiFile" id="multiFile" accept=".jpg, .jpeg, .gif, .png">
+	                	<p class="noty">.jpg, .jpeg, .gif, .png 확장자 파일만 업로드 가능합니다.</p>
+	                </dd>
 	            </dl>
 	            <dl>
 	                <dt>사용여부<span class="required_value">*</span></dt>

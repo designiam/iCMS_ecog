@@ -591,7 +591,13 @@
 		LEFT JOIN dm_pages AS B
 			   ON A.wr_board = B.dm_board_id AND B.dm_delete_yn = 'N'
 	    LEFT JOIN dm_cover AS C ON A.wr_vol = C.dm_vol AND C.dm_delete_yn = 'N'
-			WHERE A.wr_vol = #{wr_vol}
+			WHERE 1=1
+		<if test='wr_year != null and wr_year != ""'>
+			  AND C.dm_year = #{wr_year}
+		</if>
+		<if test='wr_vol != null and wr_vol != ""'>
+			  AND A.wr_vol = #{wr_vol}
+		</if>
 			  AND A.dm_delete_yn = 'N'
 			  AND A.wr_reply = 0 
 			  AND A.wr_is_comment = 0

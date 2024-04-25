@@ -30,7 +30,7 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 
 	@Override
 	@Transactional
-	public void upsertCover(Dm_cover_vo vo) throws Exception {
+	public int insertCover(Dm_cover_vo vo) throws Exception {
 		if (vo.getDm_status().equals("1")) {
 			Dm_cover_vo checkVO = coverMapper.selectUseStatusCover(vo);
 			if (checkVO != null) {
@@ -38,9 +38,21 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 				coverMapper.updateCoverStatus(checkVO);
 			}
 		}
-		coverMapper.upsertCover(vo);
+		return coverMapper.insertCover(vo);
 	}
-
+	
+	@Override
+	@Transactional
+	public int updateCover(Dm_cover_vo vo) throws Exception {
+		if (vo.getDm_status().equals("1")) {
+			Dm_cover_vo checkVO = coverMapper.selectUseStatusCover(vo);
+			if (checkVO != null) {
+				checkVO.setDm_status("0");
+				coverMapper.updateCoverStatus(checkVO);
+			}
+		}
+		return coverMapper.updateCover(vo);
+	}
 	@Override
 	public Dm_cover_vo selectCover(Dm_cover_vo vo) throws Exception {
 		return coverMapper.selectCover(vo);
@@ -83,6 +95,11 @@ public class CoverServiceImpl extends EgovAbstractServiceImpl implements CoverSe
 	@Override
 	public List<Dm_cover_vo> selectCoverComboboxVol(Dm_cover_vo vo) throws Exception {
 		return coverMapper.selectCoverComboboxVol(vo);
+	}
+
+	@Override
+	public List<Dm_cover_vo> selectCoverListForWeb(Dm_cover_vo vo) throws Exception {
+		return coverMapper.selectCoverListForWeb(vo);
 	}
 
 }

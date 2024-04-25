@@ -382,4 +382,10 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	public int selectWriteListForMainCount(Dm_write_vo vo) throws Exception {
 		return mapper.selectWriteListForMainCount(vo);
 	}
+
+	@Override
+	public List<Dm_write_vo> selectCoverVolList(Dm_write_vo vo) throws Exception {
+		return mapper.selectCoverVolList(vo);
+	}
+	
 }
