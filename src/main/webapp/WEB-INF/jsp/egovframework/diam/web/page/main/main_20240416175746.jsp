@@ -263,44 +263,6 @@
 							});
 						});
 					</script>
-					<!-- <script>
-						$(document).on('ready', function() {
-							$('#tab-content-1-2 .slider-for').slick({
-								slidesToShow: 1,
-								slidesToScroll: 1,
-								arrows: true,
-								autoplay: true,
-								autoplaySpeed : 3000,
-								infinite: true,
-								infiniteSlide: 0,
-								asNavFor: '#tab-content-1-2 .slider-nav',
-								prevArrow : $('#tab-content-1-2 .prevArrow'), 
-								nextArrow : $('#tab-content-1-2 .nextArrow'),
-							});
-							$('#tab-content-1-2 .slider-nav').slick({
-								vertical: true,
-								slidesToShow: 3,
-								slidesToScroll: 1,
-								arrows: false,
-								asNavFor: '#tab-content-1-2 .slider-for',
-								centerMode: false,
-								autoplay: false,
-								swipe: false,
-								focusOnSelect: true
-							});
-							$('#tab-content-1-2 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
-								var i = (currentSlide ? currentSlide : 0) + 1;
-								$('#tab-content-1-2 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
-							}); 
-							// 재생/정지 버튼 컨트롤
-							$('#tab-content-1-2 .play').click(function(){
-								$('#tab-content-1-2 .slider-for').slick('slickPlay');
-							}); 
-							$('#tab-content-1-2 .stop').click(function(){
-								$('#tab-content-1-2 .slider-for').slick('slickPause');
-							});
-						});
-					</script> -->
 				</div>
 				<!-- //추천콘텐츠 -->
 			</div>
@@ -501,7 +463,7 @@
 	</div>
 	<!-- //.inner -->
 </div>
-<!-- //콘텐츠 전체보기 --> %>
+<!-- //콘텐츠 전체보기 -->
 
 
 <!-- 지난호보기// -->
