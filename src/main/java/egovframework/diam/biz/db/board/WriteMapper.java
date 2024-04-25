@@ -193,4 +193,6 @@ public interface WriteMapper {
 	public List<Dm_write_vo> selectWriteListForMain(Dm_write_vo vo);
 
 	public int selectWriteListForMainCount(Dm_write_vo vo);
+
+	public List<Dm_write_vo> selectCoverVolList(Dm_write_vo vo);
 }

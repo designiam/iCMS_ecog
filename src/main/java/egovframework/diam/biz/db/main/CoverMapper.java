@@ -12,7 +12,9 @@ public interface CoverMapper {
 
 	public int selectCoverListCount(Dm_cover_vo vo);
 
-	public int upsertCover(Dm_cover_vo vo);
+	public int insertCover(Dm_cover_vo vo);
+
+	public int updateCover(Dm_cover_vo vo);
 
 	public Dm_cover_vo selectUseStatusCover(Dm_cover_vo vo);
 
@@ -31,4 +33,6 @@ public interface CoverMapper {
 	public List<Dm_cover_vo> selectCoverComboboxYear();
 
 	public List<Dm_cover_vo> selectCoverComboboxVol(Dm_cover_vo vo);
+
+	public List<Dm_cover_vo> selectCoverListForWeb(Dm_cover_vo vo);
 }
