@@ -39,8 +39,9 @@
 /* 월간베스트, 추천콘텐츠 */
 #top_con_slide { margin:50px 0 80px; overflow:hidden; }
 #top_con_slide .inner { /* max-width:1100px; padding:0; */ }
-#top_con_slide .tab-pane { display:none; }
-#top_con_slide .tab-pane.active { display:block; }
+#top_con_slide .tabContent { position:relative; width:100%; height:330px; overflow:hidden; }
+#top_con_slide .tab-pane { position:absolute; opacity:0; z-index:-1; width:100%; /* display:none; */ }
+#top_con_slide .tab-pane.active { opacity:1; z-index:1; /* display:block; */ }
 #top_con_slide .tab-style-02 { /* text-align:center; */ }
 #top_con_slide .tab-style-02 .nav { /* display:inline-flex; */ align-items:center; position:relative; margin-bottom:30px; /* padding-bottom:10px; border-bottom:1px solid #000; */ }
 #top_con_slide .tab-style-02 .nav-item { padding:0 22px 0 20px; }
@@ -78,6 +79,40 @@
 #top_con_slide .top-con-thumb-swiper .thumb_txt { width:calc(100% - 140px); margin-left:12px; }
 #top_con_slide .top-con-thumb-swiper .thumb_txt .type { font-size:0.625rem; line-height:1.3; }
 #top_con_slide .top-con-thumb-swiper .thumb_txt .t04 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:35px; margin-top:5px; color:#000; white-space:normal; word-wrap:break-word; text-overflow:ellipsis; overflow:hidden; }
+
+/* 스크립트 변경 */
+.slide_top_wrap { max-width:1100px; }
+.sld-wrp { width: 100%; margin: 0; overflow:hidden;	}
+.slider_for_wrap { position:relative; width: 580px; height:330px; margin: 0; float:left; z-index: 10; overflow:hidden; }
+.slider-for { }
+.slide-container { height: 330px; text-align: center; line-height: 330px; box-sizing: border-box; }
+.slide-container a { display: block; width: 100%; height: 100%; overflow: hidden; transition: all .25s; }
+.slide-container .img_con .img { position: relative; width: 100%; padding-top: 59.82%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; /* width:404px; height:230px; */ }
+.slide-container .img_con .img img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); /* width:100%; height:100%; background-color:#C4C4C4; */ }
+
+.slick-disabled { cursor: not-allowed; }
+.slider-nav { display: none; }
+.slider-nav .slick-track { min-width: 100%; transform: translate3d(0, 0, 0)!important; }
+.control-wrap { display:flex; justify-content:flex-end; align-items:center; gap:0 10px; position:absolute; left:0; bottom:0; z-index:20; width:100%; height:30px; padding:0 5px; background:#000; color:#fff; box-sizing:border-box; }
+.control-wrap > div { display:block; width:23px; height:23px; cursor:pointer; }
+.control-wrap .play { background-image:url('../images/main/btn_con_play.png'); }
+.control-wrap .stop { background-image:url('../images/main/btn_con_pause.png'); }
+.control-wrap .numcount { width:auto; height:auto; position:static; font-size:1.188rem; font-weight:500; letter-spacing:-0.02em; }
+.control-wrap .prevArrow { background-image:url('../images/main/btn_con_prev.png'); }
+.control-wrap .nextArrow { background-image:url('../images/main/btn_con_next.png'); }
+
+@media screen and (min-width: 796px) {
+	.slider-nav { display: block; float:right; width:480px; height:330px; }
+	.slider-nav .slick-list { }
+	.slider-nav .slide-btn { display:flex !important; align-items:center; justify-content:center; box-sizing:border-box; margin-bottom:20px !important; cursor:pointer; }
+	.slider-nav .slide-btn:hover { }
+	.slider-nav .slide-btn:last-child { margin-bottom:0; }
+	.slider-nav .thumb_img { width:140px; height:95px; }
+	.slider-nav .thumb_img img { width:100%; height:100%; border-radius:5px; background-color:#C4C4C4; }
+	.slider-nav .thumb_txt { width:calc(100% - 140px); margin-left:12px; }
+	.slider-nav .thumb_txt .type { font-size:0.625rem; line-height:1.3; }
+	.slider-nav .thumb_txt .t04 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:35px; margin-top:5px; color:#000; white-space:normal; word-wrap:break-word; text-overflow:ellipsis; overflow:hidden; }
+}
 
 /* 콘텐츠 전체보기 */
 #contents_all { }

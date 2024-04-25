@@ -31,9 +31,288 @@
 </div>
 <!-- //guick_banner -->
 
+<!-- 월간BEST_추천콘텐츠// -->
+<div id="top_con_slide">
+	<!-- .inner// -->
+	<div class="inner">
+		<div class="tabMenu-wrap tab-style-02">
+			<ul class="nav">
+				<li class="nav-item"><button type="button" class="nav-link active" id="tab-con1-1" data-toggle="tab" data-target="#tab-content-1-1" role="tab" aria-controls="tab-content-1-1" aria-selected="true">월간 BEST</button></li>
+				<li class="nav-item"><button type="button" class="nav-link" id="tab-con1-2" data-toggle="tab" data-target="#tab-content-1-2" role="tab" aria-controls="tab-content-1-2" aria-selected="false">추천콘텐츠</button></li>
+			</ul>
+		</div>
+		<!-- //.tabMenu-wrap -->
+	
+		<div class="tabContent-wrap">
+			<div class="tabContent">
+				<!-- 월간 BEST// -->
+				<div class="tab-pane fade show active" id="tab-content-1-1" role="tabpanel" aria-labelledby="tab-con1-1">
+					<div class="slide_top_wrap">
+						<div class="sld-wrp">
+							<div class="slider_for_wrap">
+								<div class="slider-for">
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="control-wrap">
+									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
+									<div class="prevArrow"><span class="sr-only">이전</span></div>
+									<div class="play"><span class="sr-only">재생</span></div>
+									<div class="stop"><span class="sr-only">정지</span></div>
+									<div class="nextArrow"><span class="sr-only">다음</span></div> 
+					 			</div>
+					 		</div>
+							<div class="slider-nav">
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p>
+									</div>
+								</div>
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p>
+									</div>
+								</div>
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						$(function(){
+							function sliderSet(slickfor,slicknav){
+								$('#tab-content-1-1 .slider-for').slick({
+									slidesToShow: 1,
+									slidesToScroll: 1,
+									arrows: true,
+									autoplay: true,
+									autoplaySpeed : 3000,
+									lazyLoad: 'progressive',
+									infinite: true,
+									infiniteSlide: 0,
+									asNavFor: '#tab-content-1-1 .slider-nav',
+									prevArrow : $('#tab-content-1-1 .prevArrow'), 
+									nextArrow : $('#tab-content-1-1 .nextArrow'),
+								});
+								$('#tab-content-1-1 .slider-nav').slick({
+									vertical: true,
+									slidesToShow: 3,
+									slidesToScroll: 1,
+									arrows: false,
+									asNavFor: '#tab-content-1-1 .slider-for',
+									centerMode: false,
+									autoplay: false,
+									swipe: false,
+									focusOnSelect: true
+								});
+								$('#tab-content-1-1 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
+									var i = (currentSlide ? currentSlide : 0) + 1;
+									$('#tab-content-1-1 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
+								});
+								// 재생/정지 버튼 컨트롤
+								$('#tab-content-1-1 .play').click(function(){
+									$('#tab-content-1-1 .slider-for').slick('slickPlay');
+								}); 
+								$('#tab-content-1-1 .stop').click(function(){
+									$('#tab-content-1-1 .slider-for').slick('slickPause');
+								});
+							}
+							$('#tab-content-1-1 .slider_for_wrap').each(function(i,el){
+								i+=1;	
+								var slickfor = $(el).find('#tab-content-1-1 .slider-for').addClass('for'+ i)
+								var slicknav = $(el).find('#tab-content-1-1 .slider-nav').addClass('nav'+ i)
+								sliderSet(slickfor,slicknav);
+							});
+						});
+					</script>
+				</div>
+				<!-- //월간 BEST -->
+				<!-- 추천콘텐츠// -->
+				<div class="tab-pane fade" id="tab-content-1-2" role="tabpanel" aria-labelledby="tab-con1-2">
+					<div class="slide_top_wrap">
+						<div class="sld-wrp">
+							<div class="slider_for_wrap">
+								<div class="slider-for">
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+									<div class="slide-container">
+										<a href="#">
+											<div class="img_con">
+												<p class="img" style="width:100%; background-image: url('/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg');"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="control-wrap">
+									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
+									<div class="prevArrow"><span class="sr-only">이전</span></div>
+									<div class="play"><span class="sr-only">재생</span></div>
+									<div class="stop"><span class="sr-only">정지</span></div>
+									<div class="nextArrow"><span class="sr-only">다음</span></div> 
+					 			</div>
+					 		</div>
+							<div class="slider-nav">
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">쓰레기 문제 해결을 위한 순환 실험실, ‘한 걸음 가게’의 김지현  대표를 찾아서</p>
+									</div>
+								</div>
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222100640_대지 24@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">[민원과의 전쟁] 아니! 이게 광주환경공단 업무가 아니라고?</p>
+									</div>
+								</div>
+								<div class="slide-btn">
+									<div class="thumb_img"><img src="/resources/board/webzinetemp/20231222101545_대지 27@2x-100.jpg" alt="" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></div>
+									<div class="thumb_txt">
+										<p class="type type_1">people</p>
+										<p class="t04">‘가족애’를 이야기하는 동화 작가, 김숙 주임</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						$(function(){
+							function sliderSet(slickfor,slicknav){
+								$('#tab-content-1-2 .slider-for').slick({
+									slidesToShow: 1,
+									slidesToScroll: 1,
+									arrows: true,
+									autoplay: true,
+									autoplaySpeed : 3000,
+									lazyLoad: 'progressive',
+									infinite: true,
+									infiniteSlide: 0,
+									asNavFor: '#tab-content-1-2 .slider-nav',
+									prevArrow : $('#tab-content-1-2 .prevArrow'), 
+									nextArrow : $('#tab-content-1-2 .nextArrow'),
+								});
+								$('#tab-content-1-2 .slider-nav').slick({
+									vertical: true,
+									slidesToShow: 3,
+									slidesToScroll: 1,
+									arrows: false,
+									asNavFor: '#tab-content-1-2 .slider-for',
+									centerMode: false,
+									autoplay: false,
+									swipe: false,
+									focusOnSelect: true
+								});
+								$('#tab-content-1-2 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
+									var i = (currentSlide ? currentSlide : 0) + 1;
+									$('#tab-content-1-2 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
+								}); 
+								// 재생/정지 버튼 컨트롤
+								$('#tab-content-1-2 .play').click(function(){
+									$('#tab-content-1-2 .slider-for').slick('slickPlay');
+								}); 
+								$('#tab-content-1-2 .stop').click(function(){
+									$('#tab-content-1-2 .slider-for').slick('slickPause');
+								});
+							}
+							$('#tab-content-1-1 .slider_for_wrap').each(function(i,el){
+								i+=1;	
+								var slickfor = $(el).find('#tab-content-1-1 .slider-for').addClass('for'+ i)
+								var slicknav = $(el).find('#tab-content-1-1 .slider-nav').addClass('nav'+ i)
+								sliderSet(slickfor,slicknav);
+							});
+						});
+					</script>
+					<!-- <script>
+						$(document).on('ready', function() {
+							$('#tab-content-1-2 .slider-for').slick({
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: true,
+								autoplay: true,
+								autoplaySpeed : 3000,
+								infinite: true,
+								infiniteSlide: 0,
+								asNavFor: '#tab-content-1-2 .slider-nav',
+								prevArrow : $('#tab-content-1-2 .prevArrow'), 
+								nextArrow : $('#tab-content-1-2 .nextArrow'),
+							});
+							$('#tab-content-1-2 .slider-nav').slick({
+								vertical: true,
+								slidesToShow: 3,
+								slidesToScroll: 1,
+								arrows: false,
+								asNavFor: '#tab-content-1-2 .slider-for',
+								centerMode: false,
+								autoplay: false,
+								swipe: false,
+								focusOnSelect: true
+							});
+							$('#tab-content-1-2 .slider-for').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){ 
+								var i = (currentSlide ? currentSlide : 0) + 1;
+								$('#tab-content-1-2 .sPage1').html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
+							}); 
+							// 재생/정지 버튼 컨트롤
+							$('#tab-content-1-2 .play').click(function(){
+								$('#tab-content-1-2 .slider-for').slick('slickPlay');
+							}); 
+							$('#tab-content-1-2 .stop').click(function(){
+								$('#tab-content-1-2 .slider-for').slick('slickPause');
+							});
+						});
+					</script> -->
+				</div>
+				<!-- //추천콘텐츠 -->
+			</div>
+		</div>
+		<!-- //.tabContent-wrap -->
+	</div>
+	<!-- //.inner -->
+</div>
+<!-- //월간BEST_추천콘텐츠 -->
 
 <!-- 추천콘텐츠, 월간베스트, 최신콘텐츠// -->
-<div id="top_con_slide">
+<div id="top_con_slide" style="display:none;">
 	<!-- .inner// -->
 	<div class="inner">
 		<div class="tabMenu-wrap tab-style-02">
@@ -222,7 +501,7 @@
 	</div>
 	<!-- //.inner -->
 </div>
-<!-- //콘텐츠 전체보기 -->
+<!-- //콘텐츠 전체보기 --> %>
 
 
 <!-- 지난호보기// -->
