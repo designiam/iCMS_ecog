@@ -193,6 +193,7 @@
 	</div>
 </div>
 <!-- //이벤트_sns로 만나는 광주환경공단 -->
+<script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.min.js'/>"></script>
 <script>
 function sliderSet(slickID) {
 	$(slickID + " .slider-for").slick({
@@ -230,6 +231,7 @@ function sliderSet(slickID) {
 	$(slickID + " .stop").click(function(){
 		$(slickID + " .slider-for").slick('slickPause');
 	});
+	$(".slider").not('.slick-initialized').slick();
 }
 </script>
 <script>

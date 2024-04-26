@@ -56,7 +56,6 @@
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/bootstrap-4.6.0/js/bootstrap.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/swiper-5.4.5/swiper.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/swiper-5.4.5/swiper-animation.umd.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/validator.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/diam/aos/aos.js'/>"></script>
 <script type="text/javascript" src="<c:url value='${layout_path}/js/base.js'/>"></script>
@@ -81,7 +80,8 @@
 				<link rel="stylesheet" href="<c:url value='${layout_path}/css/main.css' />">
 				<script type="text/javascript" src="<c:url value='${layout_path}/js/main.js' />"></script>
 				<link rel="stylesheet" href="<c:url value='/js/egovframework/diam/slickslider/slick.css' />">
-				<script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.js' />"></script>
+				<%-- <script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.js' />"></script> --%>
+				
 			</c:when>
 			<c:otherwise>
 				<link rel="stylesheet" href="<c:url value='${layout_path}/css/page.css' />">
