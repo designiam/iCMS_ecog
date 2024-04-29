@@ -291,7 +291,7 @@
 	/* 월간베스트, 추천콘텐츠 */
 	#top_con_slide .tabContent { height:640px; }
 	#top_con_slide .top-con-thumb-swiper { height:290px; }
-	#top_con_slide .top-con-thumb-swiper .thumb_img { width:115px; height:78px; }
+	#top_con_slide .top-con-thumb-swiper .thumb_img { width:115px; height:78px;  }
 	
 	/* 이벤트_sns로 만나는 광주환경공단 */
 	#event_sns .sns_con ul { width:100%; margin:0; }
