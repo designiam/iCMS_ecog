@@ -178,7 +178,7 @@
 				</li>
 				<li>
 					<a href="#">
-						<span class="icon youtube">유튜브</span>
+						<span class="icon kakao">유튜브</span>
 						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
