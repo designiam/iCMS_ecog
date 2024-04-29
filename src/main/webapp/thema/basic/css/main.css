@@ -185,7 +185,7 @@
 #event_sns .sns_con .face { background-image:url('../images/main/ico_face_on.png'); }
 #event_sns .sns_con .kakao { background-image:url('../images/main/ico_kakao_on.png'); }
 #event_sns .sns_con .blog { background-image:url('../images/main/ico_blog_on.png'); }
-#event_sns .sns_con .youtube { background-image:url('../images/main/ico_youtube_on.png'); }
+#event_sns .sns_con .youtube { background-image:url('../images/main/ico_youtube_on.png');  }
 
 /* 반응형 기본 */
 /* Media Query - PC First */
