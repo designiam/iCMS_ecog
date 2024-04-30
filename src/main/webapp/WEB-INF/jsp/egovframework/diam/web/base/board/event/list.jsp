@@ -68,14 +68,14 @@
 						<div class="thumb-container">
 							<c:choose>
 							<c:when test="${empty result.wr_thumb }">
-								<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
-									<p class="img"><img src="/images/no_image.png" alt="no image"></p>
+								<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('${layout_path}/images/pages/no_image.png');">
+									<p class="img"><img src="${layout_path}/images/pages/no_image.png" alt="no image"></p>
 									<p class="label"></p>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="thumb-wrap" style="background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
-									<p class="img"><img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
+								<div class="thumb-wrap" style="background-image: url('<c:out value='${result.wr_path}${result.wr_thumb}'/>');">
+									<p class="img"><img src="<c:out value='${result.wr_path}${result.wr_thumb}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"></p>
 									<p class="label"></p>
 								</div>
 							</c:otherwise>

@@ -1,5 +1,10 @@
 package egovframework.diam.web.main;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +13,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -303,4 +315,150 @@ public class WebCoverController {
 
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
+	
+	@GetMapping("/web/selectSnsBlog.do")
+	public ResponseEntity<?> selectSnsBlog() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			String url = "https://blog.naver.com/prologue/PrologueList.naver?blogId=ecogj";//&amp;noTrackingCode=true&amp;directAccess=true
+			Connection conn = Jsoup.connect(url);
+			Document document = conn.get();
+
+			List<Element> elements = document.select(".p_photo_d > .p_img");
+		
+            // 선택자로 원하는 요소를 가져오기
+			//Element element = elements.get(0);(하나만 가져올 때)
+
+			ArrayList<Object> resultList = new ArrayList<>();
+
+			// 결과 값 출력
+	        for(Element element : elements) {
+				Map<String, Object> map = new HashMap<>();
+
+	        	String title = element.getElementsByTag("img").get(0).attr("title");
+	        	String link = element.getElementsByTag("a").get(0).attr("href");
+	        	String imgSrc = element.getElementsByTag("img").get(0).attr("src");
+				
+				map.put("link", link);
+				map.put("imgSrc", imgSrc);
+				map.put("title", title);
+				
+				resultList.add(map);
+			}
+	        
+         	resultMap.put("rows", resultList);
+         	resultMap.put("result", "success");
+         	
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+
+	@GetMapping("/web/selectSnsYoutube.do")
+	public ResponseEntity<?> selectSnsYoutube() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			
+			String key = "AIzaSyCmjd05zfj7Gw6XV-XhQ8cH9X3LcnZ1PyI";
+			String channelId = "UCCd9MhX9BrrS-vIbevOvo7w";
+			URL url = new URL("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&key="+key+"&channelId="+channelId+"&order=date");
+
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+			
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
+			JSONArray  itemsArray = (JSONArray)jsonObject.get("items");
+			
+			ArrayList<Object> resultList = new ArrayList<>();
+			
+			for(int i=0;i<itemsArray.size();i++){
+				JSONObject tmp = (JSONObject) (itemsArray.get(i));//인덱스 번호로 접근해서 가져온다.
+				JSONObject snippet = (JSONObject)tmp.get("snippet");
+				
+				JSONObject thumbnailsObj = (JSONObject)jsonParser.parse(snippet.get("thumbnails").toString());
+				JSONObject defaultObj = (JSONObject)jsonParser.parse(thumbnailsObj.get("high").toString());
+				JSONObject idObj = (JSONObject)tmp.get("id");
+				String link = "https://www.youtube.com/watch?v="+idObj.get("videoId").toString();
+				
+				Map<String, Object> map = new HashMap<>();
+				map.put("title", snippet.get("title"));
+				map.put("imgSrc", defaultObj.get("url"));
+				map.put("link", link);
+				
+				resultList.add(map);
+			}
+         	resultMap.put("rows", resultList);
+         	resultMap.put("result", "success");
+		} catch (Exception e) {
+			log.error(e.getMessage()+MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+
+
+	@GetMapping("/web/selectSnsFacebook.do")
+	public ResponseEntity<?> selectSnsFacebook() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			
+			String appId = "1059840051153042";
+			String token = "EAAEnJZBBaNPwBO1A7Ok5mUFhj35oi1DzIRaTPI6Py0iPlZBziRblCFjHSLJyPHnjqwAChR39vYOOBGcOeA2kVArH3NlVH7SZApDzwqTgABcJ0OahYwQl9s4ZCYkeZAsl4lXpPKTIoAhvcSHyK9bLXvMGfKRiqepWFlAWAnJ7K2OJzZBA60ovw5sfP7";
+			URL url = new URL("https://graph.facebook.com/"+appId+"?fields=posts%7Bcreated_time%2Cmessage%2Cpicture%2Cpermalink_url%7D&access_token="+token);
+
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
+
+			JSONObject  postObject = (JSONObject)jsonObject.get("posts");
+			JSONArray itemsArray = (JSONArray)postObject.get("data");
+
+			ArrayList<Object> resultList = new ArrayList<>();
+			for(int i=0;i<itemsArray.size();i++){
+				JSONObject data = (JSONObject) (itemsArray.get(i));
+				
+				Map<String, Object> map = new HashMap<>();
+				map.put("title", data.get("message").toString());
+				map.put("imgSrc", data.get("picture").toString());
+				map.put("link", data.get("permalink_url").toString());
+				
+				resultList.add(map);
+			}
+         	resultMap.put("rows", resultList);
+         	resultMap.put("result", "success");
+		} catch (Exception e) {
+			log.error(e.getMessage()+MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+
+	
 }
