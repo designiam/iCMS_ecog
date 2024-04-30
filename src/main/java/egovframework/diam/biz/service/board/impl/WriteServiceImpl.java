@@ -388,4 +388,8 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 		return mapper.selectCoverVolList(vo);
 	}
 	
+	@Override
+	public Dm_write_vo selectWriteForEvent(Dm_write_vo vo) throws Exception{
+		return mapper.selectWriteForEvent(vo);
+	}
 }

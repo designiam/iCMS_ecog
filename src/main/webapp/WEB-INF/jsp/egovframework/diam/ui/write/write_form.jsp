@@ -49,6 +49,22 @@ function selectWrite() {
 		}
 	});	
 }
+function setDate(item){
+	var sDate = new Date(item.wr_start_dt);
+	var eDate = new Date(item.wr_end_dt);
+	
+	var startYear = sDate.getFullYear();
+	var startMonth = (sDate.getMonth()+1);
+	var startDate = sDate.getDate();
+	
+	var endYear = eDate.getFullYear();
+	var endMonth = (eDate.getMonth()+1);
+	var endDate = eDate.getDate();
+
+	
+	$("#wr_start_dt").datebox('setValue', startYear+"-"+startMonth+"-"+startDate);
+	$("#wr_end_dt").datebox('setValue', endYear+"-"+endMonth+"-"+endDate);
+}
 
 function fnSetData(row) {
 	$("#dm_table_text").text(row.dm_table_text);
@@ -81,8 +97,7 @@ function fnSetData(row) {
 	if (row.wr_is_period == "1") {
 	    $("#wr_is_period").prop("checked", true);
 	}
-	$("#wr_start_dt").val(row.wr_start_dt);
-	$("#wr_end_dt").val(row.wr_end_dt);
+	setDate(row);
 
 	if (row.wr_file_array.length > 0) {
 		for (var i=0; i<row.wr_file_array.length; i++) {

@@ -195,4 +195,6 @@ public interface WriteMapper {
 	public int selectWriteListForMainCount(Dm_write_vo vo);
 
 	public List<Dm_write_vo> selectCoverVolList(Dm_write_vo vo);
+	
+	public Dm_write_vo selectWriteForEvent(Dm_write_vo vo);
 }

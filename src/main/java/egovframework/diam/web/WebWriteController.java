@@ -1144,4 +1144,32 @@ public class WebWriteController {
 		return ResponseEntity.ok(resultMap);
 	}
 
+	@RequestMapping(value="/web/selectWriteForEvent.do")
+	public ResponseEntity<?> selectWriteListForEvent(Dm_write_vo vo) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+
+		int row = vo.getRows() != 0 ? vo.getRows() : 10;
+
+		vo.setRows(row);
+		vo.setSearch_cate("이벤트");
+		Dm_write_vo writeVO = writeService.selectWriteForEvent(vo);
+		
+		if(writeVO != null) {
+			resultMap.put("rows", writeVO);
+			resultMap.put("result", "success");
+		} else {
+			vo.setSearch_cate("당첨자발표");
+			writeVO = writeService.selectWriteForEvent(vo);
+
+			if(writeVO != null) {
+				resultMap.put("rows", writeVO);
+				resultMap.put("result", "success");
+			} else {
+				resultMap.put("result", "fail");
+				resultMap.put("notice", "게시글데이터가 없습니다.");
+			}
+		}
+		return ResponseEntity.ok(resultMap);
+	}
+
 }

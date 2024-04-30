@@ -744,4 +744,21 @@
 		   <include refid="selectWriteListWhere"/>
 	</select>
 	
+	<select id="selectWriteForEvent" resultMap="resultWriteVO">
+		   SELECT A.*, C.dm_uid AS uid
+		  	 FROM dm_write AS A
+		INNER JOIN dm_board AS B
+		        ON A.wr_board = B.dm_id AND B.dm_skin = 'event'
+		 LEFT JOIN dm_pages AS C
+			    ON B.dm_id = C.dm_board_id AND C.dm_page_type = 'BOARD' AND C.dm_delete_yn = 'N'
+			WHERE 1=1
+			  AND A.dm_delete_yn = 'N'
+			  <include refid="selectWriteListWhere"/>
+			  <if test='search_cate == "이벤트"'>
+			  AND DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN  A.wr_start_dt AND A.wr_end_dt
+			  </if>
+		  ORDER BY  A.wr_datetime DESC
+		     LIMIT  #{rows}
+	
+	</select>
 </mapper>

@@ -161,4 +161,6 @@ public interface WriteService {
 	public int selectWriteListForMainCount(Dm_write_vo vo) throws Exception;
 
 	public List<Dm_write_vo> selectCoverVolList(Dm_write_vo vo) throws Exception;
+
+	public Dm_write_vo selectWriteForEvent(Dm_write_vo vo) throws Exception;
 }

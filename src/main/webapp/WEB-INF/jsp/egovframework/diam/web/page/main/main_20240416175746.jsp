@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!-- 최신 발행호 중 3개 콘텐츠 슬라이드// -->
 <!-- topSlider// -->
 <div id="topSlider">
@@ -164,25 +163,25 @@
 		<div class="sns_con">
 			<p class="tit h04">SNS로 만나는 광주환경공단</p>
 			<ul>
-				<li>
+				<li id="snsInstagram">
 					<a href="#">
 						<span class="icon insta">인스타그램</span>
 						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
-				<li>
+				<li id="snsFacebook">
 					<a href="#">
 						<span class="icon face">페이스북</span>
 						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
-				<li>
+				<li id="snsYoutube">
 					<a href="#">
-						<span class="icon kakao">유튜브</span>
+						<span class="icon youtube">유튜브</span>
 						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
 					</a>
 				</li>
-				<li>
+				<li id="snsBlog">
 					<a href="#">
 						<span class="icon blog">네이버블로그</span>
 						<img src="/thema/basic/images/main/img_test2.jpg" alt="" />
@@ -378,8 +377,12 @@ function getRecommendData() {
 <script>
 $(function () {
 	getPopularData();
-	
 	getContentsList("tab-content-2-1", 1);
+	getEventData();
+	getCrawlData();
+	getFacebookData();
+	getYoutubeData();
+	getBlogData();
 });
 
 $(document).on('click','#tab-con1-1', function() {
@@ -582,4 +585,151 @@ function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
         return false;
     });
 }
+var getEventData = function(){
+	$.ajax({
+		url: "/web/selectWriteForEvent.do",
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {
+				var html = '';
+				if(res.rows) {
+					var obj = res.rows;
+					html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view"">';
+					html += '<img src="'+obj.wr_path+obj.wr_thumb+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
+					html += '</a>';
+				} 
+				$(".event_con > .img").html(html);
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+
+var getCrawlData = function(){
+	$.ajax({
+		url : "/web/selectCrawlData.do",
+		type: "get"
+	}).done(function(response){
+		//setYoutube(response.youtube);
+		setInstagram(response.insta);
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+var getBlogData = function(){
+	$.ajax({
+		url: "/web/selectSnsBlog.do",
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {
+				var html = '';
+				if(res.rows.length > 0) {
+					var obj = res.rows[0];
+					html += '<a href="'+obj.link+'" target="_blank">';
+					html += '<span class="icon blog">네이버블로그</span>';
+					html += '<img src="'+obj.imgSrc+'" alt="'+obj.title+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
+					html += '</a>';
+				} 
+				$("#snsBlog").html(html);
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+var getYoutubeData = function() {
+	$.ajax({
+		url: "/web/selectSnsYoutube.do",
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {
+				var html = '';
+				if(res.rows.length > 0) {
+					var obj = res.rows[0];
+					html += '<a href="'+obj.link+'" target="_blank">';
+					html += '<span class="icon youtube">유튜브</span>';
+					html += '<img src="'+obj.imgSrc+'" alt="'+obj.title+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
+					html += '</a>';
+				} 
+				$("#snsYoutube").html(html);
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+var getFacebookData = function() {
+	$.ajax({
+		url : "/web/selectSnsFacebook.do",
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {
+				var html = '';
+				if(res.rows.length > 0) {
+					var obj = res.rows[0];
+					html += '<a href="'+obj.link+'" target="_blank">';
+					html += '<span class="icon face">페이스북</span>';
+					html += '<img src="'+obj.imgSrc+'" alt="'+obj.title+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
+					html += '</a>';
+				} 
+				$("#snsFacebook").html(html);
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
+
+function setInstagram(rows) {
+	var target = $("#snsInstagram");
+	if (rows.length > 0) {
+		target.empty();
+		var str = "";
+		var obj = rows[0];
+		str += '<a target="_blank" href="'+obj.dm_href+'"><span class="icon insta">인스타그램</span><img src="'+obj.dm_src+'" alt="인스타그램 게시물"></a>';
+		target.append(str);
+	}
+}
+
+
+/* function setYoutube(data) {
+	if (data.dm_href != "" && data.dm_href != null) {
+		var uniq = data.dm_href.split("?v=")[1];
+		var str = '';
+		str += '<a target="_blank" href="https://www.youtube-nocookie.com/embed/'+uniq+'?controls=0">';
+		str += '<span class="icon youtube">Youtube</span><img src="https://img.youtube.com/vi/'+uniq+'/hqdefault.jpg" /></a>';
+		$("#snsYoutube").empty().append(str);
+	}
+} */
+
 </script>
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1059840051153042',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v16.0' // 버전은 그래프 API GET 옆에나타나는 버전과 일치시켜야 합니다.
+    });
+
+    FB.api(
+    		"https://graph.facebook.com/v16.0/1059840051153042/feed?access_token=EAAEnJZBBaNPwBO1A7Ok5mUFhj35oi1DzIRaTPI6Py0iPlZBziRblCFjHSLJyPHnjqwAChR39vYOOBGcOeA2kVArH3NlVH7SZApDzwqTgABcJ0OahYwQl9s4ZCYkeZAsl4lXpPKTIoAhvcSHyK9bLXvMGfKRiqepWFlAWAnJ7K2OJzZBA60ovw5sfP7",
+    		'GET',
+    		{"fields":"attachments,message,picture,link,name,caption,description,source"},
+    		function(response) {
+   			  var data = response.data;
+   		      var html = "";
+ 		    	  html += '<a target="_blank" href="'+data[0].link+'">';
+ 		    	  html += '<span class="icon face">페이스북</span>';
+ 		    	  html += '<img id="image' + i + '" src="' + data[0].picture + '" alt="' + data[0].message + '"></a>';
+   			  $('#snsFacebook').html(html)
+    		}
+    );
+  };
+</script> -->
