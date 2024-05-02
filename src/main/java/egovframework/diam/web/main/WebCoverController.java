@@ -460,5 +460,86 @@ public class WebCoverController {
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
 
+	@GetMapping("/web/selectSnsInsta.do")
+	public ResponseEntity<?> selectSnsInsta() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			
+			String userId = "7459772327411988";
+			String token = "IGQWRPOUJiWE1WRmtzNy1Vak5qQWxBaVJWb0UzMTE1dnRKaXFZAaXNOS3FtOW92ZADlFbl9YejI3MEVfbGlUYmNMUlFtZAXBBQVRDb0tXUEl3QmwxSG0zQ05BNngtcXJxTFQ5SzBId18zLV9JdwZDZD";
+			URL url = new URL("https://graph.instagram.com/"+userId+"/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token="+token);
+
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
+
+			//JSONObject  postObject = (JSONObject)jsonObject.get("data");
+			JSONArray itemsArray = (JSONArray)jsonObject.get("data");
+
+			ArrayList<Object> resultList = new ArrayList<>();
+			for(int i=0;i<itemsArray.size();i++){
+				JSONObject data = (JSONObject) (itemsArray.get(i));
+				
+				Map<String, Object> map = new HashMap<>();
+				if(data.get("media_type").toString().equals("VIDEO")) {
+					map.put("imgSrc", data.get("thumbnail_url").toString());
+				} else {
+					map.put("imgSrc", data.get("media_url").toString());
+				}
+				map.put("title", data.get("caption").toString());
+				map.put("link", data.get("permalink").toString());
+				
+				resultList.add(map);
+			}
+         	resultMap.put("rows", resultList);
+         	resultMap.put("result", "success");
+		} catch (Exception e) {
+			log.error(e.getMessage()+MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+	
+	//장기실행 instagram 사용자 액세스 토큰 새로고침
+	@GetMapping("/web/refreshInstaToken.do")
+	public void refreshInstaToken() throws Exception {
+		try {
+			
+			String token = "IGQWRPOUJiWE1WRmtzNy1Vak5qQWxBaVJWb0UzMTE1dnRKaXFZAaXNOS3FtOW92ZADlFbl9YejI3MEVfbGlUYmNMUlFtZAXBBQVRDb0tXUEl3QmwxSG0zQ05BNngtcXJxTFQ5SzBId18zLV9JdwZDZD";
+			URL url = new URL("https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token="+token);
+
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
+			
+			System.out.print("Refresh_access_token : "+jsonObject.get("expires_in").toString());
+			
+		} catch (Exception e) {
+			log.error(e.getMessage()+MessageCode.CMM_SYSTEM_ERROR.getLog());
+        }
+		
+	}
 	
 }

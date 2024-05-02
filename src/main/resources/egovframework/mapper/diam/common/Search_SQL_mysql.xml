@@ -15,6 +15,24 @@
 		ORDER BY wr_datetime DESC
 	</sql>
 	
+	<sql id="selectWhere">
+		<if test='search_value != "" and search_value != null'>
+			<choose>
+				<when test='search_type == "dm_word"'>
+					AND	A.dm_word LIKE CONCAT('%', #{search_value} ,'%')
+				</when>
+				<otherwise>
+					AND	(
+						A.dm_word LIKE CONCAT('%', #{search_value} ,'%') 
+					)
+				</otherwise>
+			</choose>
+		</if>
+		<if test='search_domain != null and search_domain != ""'>
+ 			AND	A.dm_domain = #{search_domain}
+ 		</if>
+	</sql>
+		
 	<select id="selectBoardList" resultMap="boardVOResultMap">
 		SELECT  a.*
 			 ,	b.dm_uid
@@ -77,6 +95,13 @@
 		 WHERE dm_domain = #{dm_domain}
 		   AND dm_word = #{dm_word}
 	</select>
+
+ 	<select id="selectSearchWord" resultMap="searchVOResultMap">
+ 		SELECT	A.*
+ 		 	 ,	IFNULL((SELECT	dm_domain_nm FROM dm_domain_list WHERE dm_id = A.dm_domain), '도메인정보없음') as dm_domain_text
+ 		  FROM	dm_search_word A
+ 		 WHERE	A.dm_id = #{dm_id}
+ 	</select>
 	
 	<insert id="insertSearchWord">
 		INSERT 
@@ -95,6 +120,14 @@
 		 	 ,	now()
 		 	 )		
 	</insert>
+
+	<update id="updateSearchWord">
+		UPDATE	dm_search_word 
+		   SET	dm_count = #{dm_count}
+		     ,  dm_sort = #{dm_sort}
+		     ,	dm_modify_dt = now()
+		 WHERE dm_id = #{dm_id}
+	</update>
 	
 	<update id="updateSearchWordCount">
 		UPDATE	dm_search_word 
@@ -105,12 +138,43 @@
 
 	</update>
 	
+	<delete id="deleteSearchWord">
+		DELETE FROM	dm_search_word
+		 WHERE	dm_id = #{dm_id}
+	</delete>
+	
+	<select id="selectSearchWordDup" resultMap="searchVOResultMap">
+		SELECT	*
+		  FROM	dm_search_word
+		 WHERE dm_domain = #{dm_domain}
+		   AND dm_word = #{dm_word}
+	</select>
+	
 	<select id="selectPopularWord" resultMap="searchVOResultMap">
 		SELECT  *
 		  FROM  dm_search_word
 		 WHERE  1=1
 		   AND  dm_domain = #{dm_domain}
-		   ORDER BY dm_sort ASC, dm_count DESC
+		   ORDER BY dm_sort DESC, dm_count DESC
 		   LIMIT 6
+	</select>
+	
+	<select id="selectSearchWordList" resultMap="searchVOResultMap">
+		SELECT  A.*
+			,	IFNULL((SELECT	dm_domain_nm FROM dm_domain_list WHERE dm_id = A.dm_domain), '도메인정보없음') as dm_domain_text
+		  FROM  dm_search_word A
+		 WHERE  1=1
+		 <include refid="selectWhere"/>
+		 ORDER BY dm_sort DESC, dm_count DESC
+		<if test='page > -1 and rows > 0'>
+			LIMIT #{page}, #{rows}
+		</if>
+	</select>
+	
+	<select id="selectSearchWordListCnt" resultType="int">
+		SELECT COUNT(A.dm_id)
+		FROM dm_search_word AS A
+		WHERE 1 = 1
+		<include refid="selectWhere"/>
 	</select>
 </mapper>	
