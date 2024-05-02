@@ -21,8 +21,20 @@ public interface SearchMapper {
 
 	public int insertSearchWord(Dm_search_vo vo);
 
-	public int updateSearchWordCount(Dm_search_vo vo);
+	public int updateSearchWord(Dm_search_vo vo);
 	
+	public int updateSearchWordCount(Dm_search_vo vo);
+
 	public List<Dm_search_vo> selectPopularWord(Dm_search_vo vo);
+
+	public int selectSearchWordListCnt(Dm_search_vo vo);
+	
+	public List<Dm_search_vo> selectSearchWordList(Dm_search_vo vo);
+	
+	public Dm_search_vo selectSearchWord(Dm_search_vo vo);
+
+	public Dm_search_vo selectSearchWordDup(Dm_search_vo vo);
+
+	public int deleteSearchWord(Dm_search_vo vo);
 
 }

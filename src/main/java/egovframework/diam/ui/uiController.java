@@ -661,4 +661,15 @@ public class uiController {
 	public String file_form() {
 		return "egovframework/diam/ui/file/file_form";
 	}
+
+	@RequestMapping("/adm/searchword.do")
+	public String searchword() {
+		return "egovframework/diam/ui/search/searchword";
+	}
+	
+	@RequestMapping("/adm/searchword_form.do")
+	public String searchword_form() {
+		return "egovframework/diam/ui/search/searchword_form";
+	}
+	
 }
