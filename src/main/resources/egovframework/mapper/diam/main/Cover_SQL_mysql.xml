@@ -67,6 +67,8 @@
 			 , dm_title
 			 , dm_content
 			 , dm_cover_img
+			 , dm_link
+			 , dm_link_target
 			 , dm_status
 			 , dm_create_dt
 			 , dm_create_id
@@ -79,6 +81,8 @@
 			 , #{dm_title}
 			 , #{dm_content}
 			 , #{dm_cover_img}
+			 , #{dm_link}
+			 , #{dm_link_target}
 			 , #{dm_status}
 			 , now()
 			 , #{dm_create_id}
@@ -93,6 +97,8 @@
 			 , dm_title = #{dm_title}
 			 , dm_content = #{dm_content}
 			 , dm_cover_img = #{dm_cover_img}
+			 , dm_link = #{dm_link}
+			 , dm_link_target = #{dm_link_target}
 			 , dm_status = #{dm_status}
 			 , dm_modify_dt = now()
 			 , dm_modify_id = #{dm_modify_id}
