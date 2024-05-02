@@ -239,10 +239,10 @@ $(function() {
 	var topSlider = new Swiper( '#topSlider', {
 		slidesPerView: 'auto',
 		speed: 3000,
-		allowTouchMove:true,
-		loop: true,
-		autoplay: {
-		delay: 3000,
+		//allowTouchMove:true,
+		//loop: true,
+		//autoplay: {
+		//delay: 3000,
 		autoplayDisableOnInteraction: false,
 		disableOnInteraction: false,
 		pauseOnMouseEnter:true,
