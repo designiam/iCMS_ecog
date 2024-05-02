@@ -64,6 +64,9 @@ public class Dm_cover_vo {
 	private String dm_cover_img;
 	private String dm_cover_img_ori;
 	
+	private String dm_link;
+	private String dm_link_target;
+	
 	/** 삭제파일명 */
 	private String dm_del_image;
 

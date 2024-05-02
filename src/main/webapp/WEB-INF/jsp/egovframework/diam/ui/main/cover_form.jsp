@@ -6,6 +6,12 @@
 	String dm_id = request.getParameter("dm_id") != null ? request.getParameter("dm_id") : "";
 %>
 <c:set var="dm_id" value="<%=dm_id%>"/>
+<%
+Date today = new Date();
+SimpleDateFormat format = new SimpleDateFormat("yyyy");
+String year = format.format(today);			
+%>
+<c:set var="year" value="<%=year%>"/>
 <c:import url="/adm/page_header.do" />
 <script>
 var oEditors = [];
@@ -89,6 +95,9 @@ function setValue(rows) {
     if (rows.dm_cover_img != null && rows.dm_cover_img != "") {
     	$('.file_dd').append("<img src='/resources/cover/"+rows.dm_cover_img+"' style='max-width: 300px; margin-top:8px;'/><div><label><input type='checkbox' name='dm_cover_del_img' class='file_link' id='dm_cover_del_img' value='"+rows.dm_cover_img+"'/>삭제("+ rows.dm_cover_img_ori +")</label></div>");
     }
+    $("#dm_link").val(unescapeHtml(data.rows.dm_link));
+    $("#dm_link_type").combobox('reload', '/adm/select_code.do?dm_code_group=1005&selected='+data.rows.dm_link_type);
+
 
 }
 
@@ -130,18 +139,18 @@ function fnSave() {
 }
 
 function setYear() {
-	var i = 2022;
-	var str = "";
-	while (i <= 2035) {
+	var i = <c:out value='${year}'/>;
+	var str = '<option value="">선택</option>';
+	while (i >= 2015) {
 		str += '<option value="'+i+'">'+i+'</option>';
-		i++;
+		i--;
 	}
 	$("#dm_year").empty().append(str).css("width", "100%");
 }
 
 function setMonth(){
 	var i = 1;
-	var str = "";
+	var str = '<option value="">선택</option>';
 	while (i < 13) {
 		var j = i < 10 ? "0"+i : i;
 		str += '<option value="'+j+'">'+j+'</option>'
@@ -205,6 +214,27 @@ function setMonth(){
 	                <dd class="file_dd">
 	                	<input type="file" name="multiFile" id="multiFile" accept=".jpg, .jpeg, .gif, .png">
 	                	<p class="noty">.jpg, .jpeg, .gif, .png 확장자 파일만 업로드 가능합니다.</p>
+	                </dd>
+	            </dl>
+	            <dl>
+	                <dt>링크</dt>
+	                <dd>
+	                    <input type="text" name="dm_link" id="dm_link" maxlength="255" autocomplete="off">
+	                    <p class="noty">연결하고자 하는 외부페이지의 <b>http 프로토콜을 포함한 링크</b>를 입력해주세요. 최대 255자 작성가능합니다.</p>
+	                    <p class="noty">단순 게시용 배너일 경우 링크를 입력하지 않고 등록해주세요.</p>
+	                </dd>
+	            </dl>
+	            <dl>
+	                <dt>링크 타겟<span class="required_value">*</span></dt>
+	                <dd>
+	                	<select id="dm_link_type" name="dm_link_type" class="easyui-combobox" panelHeight="auto"
+	                            data-options="url: '/adm/select_code.do?dm_code_group=1005',
+	                                    method: 'post',
+	                                    valueField: 'dm_code_value',
+	                                    textField: 'dm_code_name',
+	                                    editable: false">
+	                    </select>
+	                    <p class="noty">_self(메뉴 클릭 시 현재창에서 링크이동), _blank(메뉴 클릭 시 새창에서 링크이동)</p>
 	                </dd>
 	            </dl>
 	            <dl>

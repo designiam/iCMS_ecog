@@ -224,7 +224,7 @@ var setComboListVol = function (year, rows) {
 	
 	$("#custom-select-list-vol").empty().append(str);
 	
-	//$("#custom-select-list-vol").find("li").eq(0).trigger("click");
+	$("#custom-select-list-vol").find("li").eq(0).trigger("click");
 }
 
 var getCoverTotalCount = function() {
@@ -260,7 +260,11 @@ var setVolList = function(rows) {
 		$.each(rows, function(i, obj) {
 			str += '<li class="cell col">';
 			//str += '<a href="?contentId='+obj.uid+'">';
-			str += '<a href="javascript:;" onclick="getWriteList('+obj.dm_vol+');">';
+			if(obj.dm_link){
+				str += '<a href="'+obj.dm_link+'" target="'+obj.dm_link_target+'">';
+			} else {
+				str += '<a href="javascript:;" onclick="getWriteList('+obj.dm_vol+');">';
+			}
 			str += '<div class="info">';
 			str += '<p class="tit"><em>vol. <span class="vol_num">'+obj.dm_vol+'</span></em><span class="date">'+obj.dm_year+'-'+obj.dm_month+'</span></p>';
 			str += '<p class="logo"><img src="${layout_path}/images/pages/img_logo.png" alt="'+obj.dm_title+'" /></p>';

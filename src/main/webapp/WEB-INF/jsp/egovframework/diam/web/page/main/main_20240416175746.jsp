@@ -241,7 +241,7 @@ $(function() {
 		speed: 3000,
 		//allowTouchMove:true,
 		//loop: true,
-		//autoplay: {
+		autoplay: {
 		//delay: 3000,
 		autoplayDisableOnInteraction: false,
 		disableOnInteraction: false,
@@ -588,6 +588,7 @@ function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
 var getEventData = function(){
 	$.ajax({
 		url: "/web/selectWriteForEvent.do",
+		data: { "rows" : 1	},
 		type: "get",
 		dataType : "json",
 		success : function (res) {
@@ -595,7 +596,7 @@ var getEventData = function(){
 				var html = '';
 				if(res.rows) {
 					var obj = res.rows;
-					html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view"">';
+					html += '<a href="${param.root }/index.do?contentId='+obj.uid+'&wr_id='+obj.wr_id+'&command=view">';
 					html += '<img src="'+obj.wr_path+obj.wr_thumb+'" alt="'+obj.wr_subject+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
 					html += '</a>';
 				} 
