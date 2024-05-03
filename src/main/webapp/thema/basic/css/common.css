@@ -838,11 +838,12 @@ table.dataTable tbody tr.selected { background-color: #eff3f9; }
 .bbs_gallist ul {}
 .bbs_gallist ul li { margin-bottom: 4.375rem; }
 /* .bbs_gallist ul li:nth-last-child(-n+3) { margin-bottom:0; } */
-.bbs_gallist ul li > a { display: block; width: 100%; height: 100%; border:1px solid #dbdbdb; border-radius:0.625rem 0.625rem 0 0; overflow: hidden; transition: all .25s; }
+.bbs_gallist ul li > a { display: block; width: 100%; height: 100%; border:1px solid #dbdbdb; border-radius:0.625rem 0.625rem 0 0; overflow: hidden; transition: all .5s; }
 .bbs_gallist ul li .cell_thumb { position: relative; margin: 0 auto; width: 100%; overflow: hidden; }
 .bbs_gallist ul li .cell_thumb .vol { position: absolute; bottom: 0; left: 0; display: inline-flex; justify-content: center; align-items: center; min-width: 100px; height: 40px; padding: 0 0.5rem; background: #3DBBA6; border-radius: 0 1.25rem 0 0; color: #fff; font-family: 'Poppins', 'Pretendard', 'Noto Sans KR', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 0; line-height: 1; }
 .bbs_gallist ul li .thumb-wrap { position: relative; width: 100%; padding-top: 59.82%; background-position: center; background-size: cover; background-repeat: no-repeat; overflow: hidden; }
 .bbs_gallist ul li .thumb-wrap img { opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.bbs_gallist ul li > a:hover { transform:translateY(-10px); }
 .bbs_gallist ul li .cell_txt { padding: 1.875rem 1.25rem 3.75rem; }
 .bbs_gallist ul li .cell_cate { color: #3DBBA6; font-size: 1rem; font-weight: 600; letter-spacing: 0; }
 .bbs_gallist ul li .cell_subject { margin-top: 1rem; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em; word-break: break-all;
@@ -875,6 +876,7 @@ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-cl
 }
 @media (hover: hover), (-ms-high-contrast:none) {
   .bbs_gallist ul li:hover > a { /* border:0 none; */ box-shadow:none; /* border: 1px solid #3DBBA6; box-shadow: 0.188rem 0.188rem 0.313rem rgba(0,0,0,0.16); */ }
+  .bbs_gallist ul li:hover .thumb-wrap { }
 }
 
 
