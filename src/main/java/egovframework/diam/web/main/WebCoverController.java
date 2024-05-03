@@ -1,7 +1,12 @@
 package egovframework.diam.web.main;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,6 +14,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +32,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -294,6 +302,18 @@ public class WebCoverController {
 	public ResponseEntity<?> selectCoverVolList(Dm_cover_vo vo) {
 		Map<String, Object> resultMap = new HashMap<>();
 
+		int row = vo.getRows() != 0 ? vo.getRows() : 12;
+		int page = vo.getPage() != 0 ? vo.getPage() : 1;
+		
+		if (row < 1 || page < 0) {
+			log.error(MessageCode.CMM_REQUEST_BADREQUEST.getLog());
+			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+		} else {
+			vo.setRows(row);
+			vo.setPage(row * (page -1));
+		}
+
 		try {
 
 			List<Dm_cover_vo> list = coverService.selectCoverList(vo);
@@ -316,8 +336,45 @@ public class WebCoverController {
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);
 	}
 	
+	@GetMapping("/web/selectWriteListVol.do")
+	public ResponseEntity<?> selectWriteListVol(Dm_write_vo vo) {
+		Map<String, Object> resultMap = new HashMap<>();
+
+		int row = vo.getRows() != 0 ? vo.getRows() : 12;
+		int page = vo.getPage() != 0 ? vo.getPage() : 1;
+		
+		if (row < 1 || page < 0) {
+			log.error(MessageCode.CMM_REQUEST_BADREQUEST.getLog());
+			resultMap.put("notice", MessageCode.CMM_REQUEST_BADREQUEST.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
+		} else {
+			vo.setRows(row);
+			vo.setPage(row * (page -1));
+		}
+
+		try {
+			List<Dm_write_vo> list = writeService.selectWriteListVol(vo);
+			int total = writeService.selectWriteListVolCount(vo);
+
+			resultMap.put("result", "success");
+			resultMap.put("rows", list);
+			resultMap.put("total", total);
+
+		} catch (DataAccessException dae) {
+			log.error(MessageCode.CMM_DATA_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_DATA_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
+			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(resultMap, HttpStatus.OK);
+	}
+	
 	@GetMapping("/web/selectSnsBlog.do")
-	public ResponseEntity<?> selectSnsBlog() throws Exception {
+	public ResponseEntity<?> selectSnsBlog(HttpServletRequest request) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		try {
@@ -331,7 +388,8 @@ public class WebCoverController {
 			//Element element = elements.get(0);(하나만 가져올 때)
 
 			ArrayList<Object> resultList = new ArrayList<>();
-
+			String[] ext_arr = {"jpg","jpeg","gif","png","JPG","JPEG","GIF","PNG"};
+			
 			// 결과 값 출력
 	        for(Element element : elements) {
 				Map<String, Object> map = new HashMap<>();
@@ -339,7 +397,43 @@ public class WebCoverController {
 	        	String title = element.getElementsByTag("img").get(0).attr("title");
 	        	String link = element.getElementsByTag("a").get(0).attr("href");
 	        	String imgSrc = element.getElementsByTag("img").get(0).attr("src");
-				
+	        	
+	        	String blogId = link.replaceAll("[^0-9]", "");
+				String ext = "";
+	        	//System.out.print("blogId============"+blogId);
+	        	for(String temp : ext_arr) {
+	        		if(imgSrc.contains(temp)) {
+	        			ext = temp;
+	        			break;
+	        		}
+	        	}
+	        	
+	        	String file_path = request.getServletContext().getRealPath("/resources/sns/blog/");
+	        	String file_name = blogId + "." + ext;
+	        	File folder = new File(file_path);
+				if (!folder.exists()) {
+					folder.mkdirs();
+				}
+				String target_file = file_path + file_name;
+				File file = new File(target_file);
+				if (!file.exists()) {
+					URL imgSrcUrl = new URL(imgSrc);
+					//읽기 객체
+					InputStream is = imgSrcUrl.openStream();
+					//쓰기 객체
+					OutputStream os = new FileOutputStream(target_file);
+					
+					byte[] buffer = new byte[1024*8];
+					
+					while (true) {
+						int inputData = is.read(buffer);
+						if(inputData == -1)break;
+						os.write(buffer,0,inputData);
+						
+					}
+					is.close(); os.close();
+				}
+				imgSrc = "/resources/sns/blog/"+file_name;
 				map.put("link", link);
 				map.put("imgSrc", imgSrc);
 				map.put("title", title);
@@ -351,7 +445,7 @@ public class WebCoverController {
          	resultMap.put("result", "success");
          	
 		} catch (Exception e) {
-			log.error(MessageCode.CMM_SYSTEM_ERROR.getLog());
+			log.error(e.getMessage()+MessageCode.CMM_SYSTEM_ERROR.getLog());
 			resultMap.put("notice", MessageCode.CMM_SYSTEM_ERROR.getMessage());
 			return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
         }
