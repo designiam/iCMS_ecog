@@ -420,7 +420,8 @@ public class WebCoverController {
 			
 			String appId = "1059840051153042";
 			String token = "EAAEnJZBBaNPwBO1A7Ok5mUFhj35oi1DzIRaTPI6Py0iPlZBziRblCFjHSLJyPHnjqwAChR39vYOOBGcOeA2kVArH3NlVH7SZApDzwqTgABcJ0OahYwQl9s4ZCYkeZAsl4lXpPKTIoAhvcSHyK9bLXvMGfKRiqepWFlAWAnJ7K2OJzZBA60ovw5sfP7";
-			URL url = new URL("https://graph.facebook.com/"+appId+"?fields=posts%7Bcreated_time%2Cmessage%2Cpicture%2Cpermalink_url%7D&access_token="+token);
+			URL url = new URL("https://graph.facebook.com/"+appId+"/feed?fields=attachments,message,picture,link&access_token="+token);
+			//URL url = new URL("https://graph.facebook.com/"+appId+"?fields=posts%7Bcreated_time%2Cmessage%2Cpicture%2Cpermalink_url%7D&access_token="+token);
 
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -435,19 +436,26 @@ public class WebCoverController {
 
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
-
-			JSONObject  postObject = (JSONObject)jsonObject.get("posts");
-			JSONArray itemsArray = (JSONArray)postObject.get("data");
+			JSONArray itemsArray = (JSONArray)jsonObject.get("data");
+			System.out.print(itemsArray.size());
 
 			ArrayList<Object> resultList = new ArrayList<>();
 			for(int i=0;i<itemsArray.size();i++){
-				JSONObject data = (JSONObject) (itemsArray.get(i));
+				JSONObject data = (JSONObject) (itemsArray.get(i));//인덱스 번호로 접근해서 가져온다.
 				
 				Map<String, Object> map = new HashMap<>();
 				map.put("title", data.get("message").toString());
-				map.put("imgSrc", data.get("picture").toString());
-				map.put("link", data.get("permalink_url").toString());
-				
+				map.put("link", data.get("link").toString());
+
+				JSONObject attachments = (JSONObject)data.get("attachments");
+				JSONArray dataArray = (JSONArray)attachments.get("data");
+
+				for(int j=0; j<dataArray.size(); j++) {
+					JSONObject attachObj = (JSONObject) (dataArray.get(j));//인덱스 번호로 접근해서 가져온다.
+					JSONObject mediaObj = (JSONObject)attachObj.get("media");
+					JSONObject imageObj = (JSONObject)mediaObj.get("image");
+					map.put("imgSrc", imageObj.get("src").toString());
+				}
 				resultList.add(map);
 			}
          	resultMap.put("rows", resultList);
