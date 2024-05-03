@@ -115,11 +115,13 @@
 
 @media (max-width: 1200px) {
 	/* header */
-	#hd_logo a { left:50%; height:auto; }
+	/* #hd_logo a { left:50%; height:auto; } */
+	#hd_logo a { left:calc(0.5rem + 100px); height:auto; }
 	#hd_button { right:calc(2rem + 120px); }
 	#hd_search #sch_stx { width:100%; }
 	#hd_toggle { left:2rem; }
 	#hd_wrap .btn-wrap2 { right:2rem; }
+	#hd_search { left:auto; right:calc(2rem + 120px); transform:translate(-20%,-50%); }
 }
 
 @media (max-width: 1100px) {
@@ -142,16 +144,18 @@
 
 @media (max-width: 768px) {
 	/* header */
-	#hd_logo a { left:calc(0.5rem + 100px) }
 	#hd_button { right:calc(1rem + 110px); }
+	#hd_search { right:calc(1rem + 110px); }
 	#hd_toggle { left:1rem; }
 	#hd_wrap .btn-wrap2 { right:1rem; }
 }
 
-@media (max-width: 486px) {
+@media (max-width: 576px) {
 	/* header */
 	#hd_button { display:none; }
-	
+}
+
+@media (max-width: 486px) {
 	/* footer */
 	#ft { padding:20px; }
 	#ft_sign { max-width:120px; margin:0 auto 15px; }
