@@ -50,12 +50,9 @@
 			<c:if test="${data.total > 0 }">
 			<div class="search-result-wrap">
 			
-				<!-- title_more// -->
-				<div class="title_more">
-					<p class="title"><c:out value="${data.dm_subject }"/> <span><c:out value="${data.total }"/></span></p>
-					<c:if test="${data.total > 3 }"><p class="btn_more" id="btn_more<c:out value='${data.dm_table }'/>"><a href="javascript:;" onclick="data_more('<c:out value="${data.dm_table }"/>',<c:out value="${data.total }"/>);">더보기</a></p></c:if>
-				</div>
-				<!-- //title_more -->
+				<!-- title// -->
+				<p class="title"><c:out value="${data.dm_subject }"/> <span><c:out value="${data.total }"/></span></p>
+				<!-- //title -->
 				<!-- .bbs_gallist// -->
 				<div class="bbs_gallist">
 					<ul id="<c:out value="data_${data.dm_table }"/>" class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
@@ -90,6 +87,9 @@
 					</ul>
 				</div>
 				<!-- //.bbs_gallist -->
+				<!-- .btn_more : s -->
+				<c:if test="${data.total > 3 }"><p class="btn_more" id="btn_more<c:out value='${data.dm_table }'/>"><a href="javascript:;" onclick="data_more('<c:out value="${data.dm_table }"/>',<c:out value="${data.total }"/>);">더보기</a></p></c:if>
+				<!-- .btn_more : e -->
 			</div>
 			</c:if>
 		</c:forEach>
