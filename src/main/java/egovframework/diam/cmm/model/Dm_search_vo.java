@@ -28,10 +28,12 @@ public class Dm_search_vo implements Serializable {
 	/** 도메인 */
 	private String dm_domain;
 
+	/** 도메인명 */
+	private String dm_domain_text;
 
 	/** 검색어 */
 	@NotBlank(message="검색어를 입력해주세요.")
-	@Pattern(regexp="^[a-zA-Z0-9가-힣ㄱ-ㅎ\\s]*$", message="검색어는 한글, 영문, 숫자로 입력해주세요.")
+	@Pattern(regexp="^[a-zA-Z0-9가-힣ㄱ-ㅎ\\s]*$", message="검색어는 한글, 영문, 숫자로만 입력해주세요.")
 	@Size(min=1, max=20, message="검색어는 1자 이상 20자 이하로 입력해주세요.")
 	private String dm_word;
 	
@@ -45,6 +47,27 @@ public class Dm_search_vo implements Serializable {
 	
 	/** 수정일자 */
 	private String dm_modify_dt;
+
+	private String search_domain;
+	
+	/** 검색어 리스트 검색시작일 */
+	private String search_start_date;
+	
+	/** 검색어 리스트 검색종료일 */
+	private String search_end_date;
+	
+	/** 검색어 리스트 검색조건 */
+	private String search_type;
+	
+	/** 검색어 리스트 검색단어 */
+	private String search_value;
+
+	/** 검색어 리스트 페이지당 게시물 수 */
+	private int page;
+	
+	/** 검색어 리스트 페이지번호 */
+	private int rows;
+		
 
 	
 }

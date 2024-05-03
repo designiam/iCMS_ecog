@@ -19,7 +19,19 @@ public interface SearchService {
 	
 	public int insertSearchWord(Dm_search_vo vo) throws Exception;
 
+	public int updateSearchWord(Dm_search_vo vo) throws Exception;
+	
 	public int updateSearchWordCount(Dm_search_vo vo) throws Exception;
 	
 	public List<Dm_search_vo> selectPopularWord(Dm_search_vo vo) throws Exception;
+	
+	public int selectSearchWordListCnt(Dm_search_vo vo) throws Exception;
+	
+	public List<Dm_search_vo> selectSearchWordList(Dm_search_vo vo) throws Exception;
+	
+	public Dm_search_vo selectSearchWord(Dm_search_vo vo) throws Exception;
+	
+	public Dm_search_vo selectSearchWordDup(Dm_search_vo vo) throws Exception;
+	
+	public void deleteSearchWord(List<Dm_search_vo> list) throws Exception;
 }

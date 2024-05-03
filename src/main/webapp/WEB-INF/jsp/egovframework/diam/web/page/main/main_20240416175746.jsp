@@ -379,10 +379,11 @@ $(function () {
 	getPopularData();
 	getContentsList("tab-content-2-1", 1);
 	getEventData();
-	getCrawlData();
+	//getCrawlData();
 	getFacebookData();
 	getYoutubeData();
 	getBlogData();
+	getInstaData();
 });
 
 $(document).on('click','#tab-con1-1', function() {
@@ -607,18 +608,6 @@ var getEventData = function(){
 		}
 	});
 }
-
-var getCrawlData = function(){
-	$.ajax({
-		url : "/web/selectCrawlData.do",
-		type: "get"
-	}).done(function(response){
-		//setYoutube(response.youtube);
-		setInstagram(response.insta);
-	}).fail(function(response, status, error){
-		alert(response.responseJSON.notice);
-	});
-}
 var getBlogData = function(){
 	$.ajax({
 		url: "/web/selectSnsBlog.do",
@@ -685,7 +674,43 @@ var getFacebookData = function() {
 		}
 	});
 }
+var getInstaData = function() {
+	$.ajax({
+		url : "/web/selectSnsInsta.do",
+		type: "get",
+		dataType : "json",
+		success : function (res) {
+			if(res.result == "success") {
+				var html = '';
+				if(res.rows.length > 0) {
+					var obj = res.rows[0];
+					html += '<a href="'+obj.link+'" target="_blank">';
+					html += '<span class="icon insta">인스타그램</span>';
+					html += '<img src="'+obj.imgSrc+'" alt="'+obj.title+'" onerror="this.src=\'${layout_path}/images/pages/no_image.png\'"/>';
+					html += '</a>';
+				} 
+				$("#snsInstagram").html(html);
+			}
+		}, error:function(request,status,error) {
+			alert(request.responseJSON.notice);
+		}
+	});
+}
 
+/*
+ 
+var getCrawlData = function(){
+	$.ajax({
+		url : "/web/selectCrawlData.do",
+		type: "get"
+	}).done(function(response){
+		//setYoutube(response.youtube);
+		setInstagram(response.insta);
+	}).fail(function(response, status, error){
+		alert(response.responseJSON.notice);
+	});
+}
+ 
 function setInstagram(rows) {
 	var target = $("#snsInstagram");
 	if (rows.length > 0) {
@@ -698,7 +723,7 @@ function setInstagram(rows) {
 }
 
 
-/* function setYoutube(data) {
+function setYoutube(data) {
 	if (data.dm_href != "" && data.dm_href != null) {
 		var uniq = data.dm_href.split("?v=")[1];
 		var str = '';
@@ -706,31 +731,6 @@ function setInstagram(rows) {
 		str += '<span class="icon youtube">Youtube</span><img src="https://img.youtube.com/vi/'+uniq+'/hqdefault.jpg" /></a>';
 		$("#snsYoutube").empty().append(str);
 	}
-} */
-
+}
+*/
 </script>
-<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '1059840051153042',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v16.0' // 버전은 그래프 API GET 옆에나타나는 버전과 일치시켜야 합니다.
-    });
-
-    FB.api(
-    		"https://graph.facebook.com/v16.0/1059840051153042/feed?access_token=EAAEnJZBBaNPwBO1A7Ok5mUFhj35oi1DzIRaTPI6Py0iPlZBziRblCFjHSLJyPHnjqwAChR39vYOOBGcOeA2kVArH3NlVH7SZApDzwqTgABcJ0OahYwQl9s4ZCYkeZAsl4lXpPKTIoAhvcSHyK9bLXvMGfKRiqepWFlAWAnJ7K2OJzZBA60ovw5sfP7",
-    		'GET',
-    		{"fields":"attachments,message,picture,link,name,caption,description,source"},
-    		function(response) {
-   			  var data = response.data;
-   		      var html = "";
- 		    	  html += '<a target="_blank" href="'+data[0].link+'">';
- 		    	  html += '<span class="icon face">페이스북</span>';
- 		    	  html += '<img id="image' + i + '" src="' + data[0].picture + '" alt="' + data[0].message + '"></a>';
-   			  $('#snsFacebook').html(html)
-    		}
-    );
-  };
-</script> -->
