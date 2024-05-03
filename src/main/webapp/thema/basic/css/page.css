@@ -99,7 +99,7 @@
 .tab-pane > ul > li > a:hover .img img { transform:scale(1.1); }
 
 /* people_Article_함께G : view */
-.type_pick_wrap { display:flex; margin-top:25px; }
+.type_pick_wrap { display:flex; position:relative; margin-top:25px; }
 .type_pick_wrap .type { margin-right:13px; }
 
 .pick_con { position:relative; }
@@ -116,7 +116,7 @@
 .pick_con > ul > li > strong { }
 
 /* 공유하기 */
-.share_box { display:none; position:absolute; top:0; left:0; padding:20px; border-radius:10px; width:400px; background:#fff; box-shadow:0px 5px 20px rgba(0,0,0,0.1); z-index:1; }
+.share_box { display:none; position:absolute; top:0; left:0; padding:20px; border-radius:10px; width:400px; background:#fff; box-shadow:0px 5px 20px rgba(0,0,0,0.1); z-index:999; }
 .share_box p { font-size:1.111rem; font-weight:500; }
 .share_box ul { display:flex; gap:40px; justify-content:center; padding:25px 0 25px; border:none; box-shadow:none; }
 .share_box ul li { padding:0; border:none; text-align:center; }
@@ -207,7 +207,7 @@
 .vol_list { margin:50px auto 0; }
 .vol_list ul { /* display:flex; flex-wrap:wrap; width:calc(100% + 26px); margin-left:-13px; */ }
 .vol_list ul li { /* width:calc(33.33% - 26px); margin:0 13px 26px; */ }
-.vol_list ul li:nth-last-child(-n+3) { margin-bottom:4.375rem; }
+/* .vol_list ul li:nth-last-child(-n+3) { margin-bottom:4.375rem; } */
 .vol_list ul li a { display:block; border-radius:12px; /* border:1px solid #fefefe; border-bottom:1px solid rgba(0,0,0,0.15); border-right:1px solid rgba(0,0,0,0.15); */ box-shadow:1.82px 1.82px 4.55px rgba(0,0,0,0.15); background-color:#fff; transition: all .5s; }
 .vol_list ul li:hover > a { /* border:1px solid #3DBBA6; */ box-shadow:1.82px 1.82px 4.55px rgba(0,0,0,0.15); transform:translateY(-10px); }
 .vol_list ul li .thumb-wrap { padding-top:71.82%; }
@@ -376,11 +376,7 @@
 	#guick_banner .quick_list li i { width:25px; height:25px; background-size:65% auto; }
 	#guick_banner .quick_list li .blog { background-size:75% auto; }
 	#guick_banner .quick_list li .facebook { background-size:40% auto; }
-	
-	/* 공유하기 */
-	.share_box {max-width:400px; width:95%; left:50%; transform:translate(-50%,0)}
-  	.share_box ul {gap:30px}
-  	
+	  	
   	/* people_Article_함께G : list */
 	.favor_con_wrap { padding:30px 0; }
   	.favor_keyword .keyword_list { gap:0 10px; }
@@ -414,12 +410,24 @@
 	.recommendG .tit { margin:0; }
 	.recommendG .cont { gap:8px; }
 	.result_txt { margin-top:30px; font-size:1.3rem; }
+	
+	/* 공유하기 */
+	.share_box {max-width:400px; width:100%; left:50%; transform:translate(-50%,0)}
+	.menutab .share_box ul { gap:30px; }
 }
 
 @media (max-width: 486px) {
 	/* 뉴스레터 구독 */
 	.bot_subscribe .con_txt { padding:20px 0; }
 	.bot_subscribe .con_txt::after { display:none; }
+}
+
+
+@media (max-width: 360px) {
+	.share_box ul { gap:20px; padding:30px 0 15px; }
+	.share_box ul li a img { width:35px; height:35px; }
+	.share_box div input { width:calc(100% - 35px); height:35px; }
+	.share_box div .share_link { width:35px; height:35px; background-size:15px auto; }
 }
 
 @media (max-width: 353px) {
