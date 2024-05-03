@@ -43,9 +43,9 @@
 	<ul class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 	</ul>
 	<!-- 내용더보기// -->
-	<!-- <div class="more_con">
+	<div class="more_con">
 		<a href="#"><span class="sr-only">내용 더보기</span></a>
-	</div> -->
+	</div>
 	<!-- //내용더보기 -->
 </div>
 
@@ -53,6 +53,7 @@
 
 var selectFlag;
 var selectVolFlag;
+var page = 1;
 
 // select box 오픈 리스너
 $(document).on('click','#custom-select-year > .custom-select', function() {
@@ -74,7 +75,9 @@ $(document).on('click','#custom-select-list li', function() {
 	$('#custom-select-list').slideUp();
 	
 	getComboListVol(year);
-	getVolList(year);
+	$('.custom-select-text-vol').html("전체");
+	page = 1;
+	getVolList(year, page);
 });
 
 //select box 오픈 리스너
@@ -96,22 +99,34 @@ $(document).on('click','#custom-select-list-vol li', function() {
 	$('.custom-select-text-vol').html($(this).html());
 	$('#custom-select-list-vol').slideUp();
 	
+	page = 1;
 	if(vol=="") {
-		getVolList(year);
+		getVolList(year, page);
 	} else {
-		getWriteList(vol);		
+		getWriteList(vol, page);		
 	}
 });
 
-var getWriteList = function(vol) {
+var getWriteList = function(vol, page) {
 	$.ajax({
-		url : "/web/selectSameVolWrite.do",
+		url : "/web/selectWriteListVol.do",
 		data : {
-			wr_vol : vol
+			wr_vol : vol,
+			"rows" : 12,
+			"page" : page
 		},
 		type : "get"
 	}).done(function(response){
 		setWriteList(response.rows);
+		
+		if(page * 12 >= response.total) {
+			$(".more_con").hide();
+		} else {
+			$(".more_con").show();
+		}
+		var start_index = (page - 1) * 12;
+		var offset = $("#cell_"+start_index).offset();
+		$("html, body").animate({scrollTop: offset.top},400);
 	}).fail(function(response, status, error){
 		alert(response.responseJSON.notice);
 	});
@@ -119,6 +134,7 @@ var getWriteList = function(vol) {
 
 var setWriteList = function(rows) {
 	var str = "";
+	var start_index = (page - 1) * 12;
 	if (rows.length > 0) {
 		$.each(rows, function(i, obj) {
 			var typeClass = "";
@@ -134,7 +150,8 @@ var setWriteList = function(rows) {
 				break;
 			}
 			
-			str += '<li class="cell col">';
+			index = start_index + i;
+			str += '<li class="cell col" id="cell_'+index+'">';
 			str += '<a href="?contentId='+obj.uid+'&command=view&wr_id='+obj.wr_id+'">';
 			str += '<div class="img">';
 			if (obj.wr_thumb_sub) {
@@ -167,13 +184,23 @@ var setWriteList = function(rows) {
 		str += '<li style="max-width: 100%; flex: 100%;"><img style="max-width:100%;" src="/images/noimg_content.jpg" alt="콘텐츠가 없습니다."></li>';
 	}
 	
-	$(".gall").empty().append(str);
+	if(page > 1) {
+		$(".gall").append(str);
+	} else {
+		$(".gall").empty().append(str);
+	}
 }
 
-$(function() {
-	getComboListYear();
-	getCoverTotalCount();
-	getVolList("");
+$(document).on('click','.more_con', function() {
+	var regex = /[^0-9]/g;
+	var year = $('.custom-select-text').text().replace(regex, "");
+	var vol = $('.custom-select-text-vol').text().replace(regex, "");
+	page++;
+	if(vol) {
+		getWriteList(vol, page);
+	} else {
+		getVolList(year, page);
+	}
 });
 
 var getComboListYear = function() {
@@ -211,7 +238,7 @@ var setComboListYear = function (rows) {
 	}
 	
 	$("#custom-select-list").empty().append(str);
-	$("#custom-select-list").find("li").eq(0).trigger("click");
+	//$("#custom-select-list").find("li").eq(0).trigger("click");
 }
 
 var setComboListVol = function (year, rows) {
@@ -224,7 +251,7 @@ var setComboListVol = function (year, rows) {
 	
 	$("#custom-select-list-vol").empty().append(str);
 	
-	$("#custom-select-list-vol").find("li").eq(0).trigger("click");
+	//$("#custom-select-list-vol").find("li").eq(0).trigger("click");
 }
 
 var getCoverTotalCount = function() {
@@ -240,30 +267,51 @@ var getCoverTotalCount = function() {
 	});
 }
 
-var getVolList = function(year) {
+function getVolList(year, page) {
 	$.ajax({
 		url : "/web/selectCoverVolList.do",
-		data : {"dm_year" : year},
+		data : {
+			"dm_year" : year,
+			"rows" : 12,
+			"page" : page
+		},
 		type: "get"
 	}).done(function(response){
 		if (response.result == "success") {
+			if(page * 12 >= response.total) {
+				$(".more_con").hide();
+			} else {
+				$(".more_con").show();
+			}
 			setVolList(response.rows);
+			var start_index = (page - 1) * 12;
+			//console.log(start_index);
+			var offset = $("#cell_"+start_index).offset();
+			$("html, body").animate({scrollTop: offset.top},400);
 		}
 	}).fail(function(response, status, error){
 		alert(response.responseJSON.notice);
 	});
 }
-
-var setVolList = function(rows) {
+function selectYearVol(year, vol) {
+	getComboListVol(year);
+	$('.custom-select-text').html(year+"년");
+	$('.custom-select-text-vol').html(vol+"호");
+	page = 1;
+	getWriteList(vol, page);
+}
+function setVolList(rows) {
 	var str = "";
+	var start_index = (page - 1) * 12;
 	if (rows.length > 0) {
 		$.each(rows, function(i, obj) {
-			str += '<li class="cell col">';
+			index = start_index + i;
+			str += '<li class="cell col" id="cell_'+index+'">';
 			//str += '<a href="?contentId='+obj.uid+'">';
 			if(obj.dm_link){
 				str += '<a href="'+obj.dm_link+'" target="'+obj.dm_link_target+'">';
 			} else {
-				str += '<a href="javascript:;" onclick="getWriteList('+obj.dm_vol+');">';
+				str += '<a href="javascript:;" onclick="selectYearVol('+obj.dm_year+','+obj.dm_vol+');">';
 			}
 			str += '<div class="info">';
 			str += '<p class="tit"><em>vol. <span class="vol_num">'+obj.dm_vol+'</span></em><span class="date">'+obj.dm_year+'-'+obj.dm_month+'</span></p>';
@@ -285,7 +333,18 @@ var setVolList = function(rows) {
 	} else {
 		str += '<li style="max-width: 100%; flex: 100%;"><img style="max-width:100%;" src="/images/noimg_content.jpg" alt="콘텐츠가 없습니다."></li>';
 	}
-	
-	$(".gall").empty().append(str);
+	if(page > 1) {
+		$(".gall").append(str);
+	} else {
+		$(".gall").empty().append(str);
+	}
 }
+
+$(function() {
+	getComboListYear();
+	getCoverTotalCount();
+	getVolList("", page);
+	
+});
+
 </script>
