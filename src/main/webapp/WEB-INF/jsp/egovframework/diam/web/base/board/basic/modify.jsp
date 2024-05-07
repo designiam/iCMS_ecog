@@ -55,6 +55,9 @@ function checkForm() {
 			var rsa = new RSAKey();
 			rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
 			$("#wr_password").val(rsa.encrypt(wr_password));
+    	} else {
+    		alert("비회원으로 등록 시에는 비밀번호를 입력해주세요.");
+    		return false;
 		}
 	</c:if>
 }
@@ -122,7 +125,7 @@ function checkForm() {
 				
 				<tr>
 					<th><label for="wr_subject">제목 <span class="required">필수</span></label></th>
-					<td><input type="text" name="wr_subject" id="wr_subject" class="form-control" value="${writeVO.wr_subject }"/></td>
+					<td><input type="text" name="wr_subject" id="wr_subject" class="form-control" value="${writeVO.wr_subject }" placeholder="제목"/></td>
 				</tr>
 				
 				<c:choose>
@@ -130,12 +133,12 @@ function checkForm() {
 						<tr>
 							<th><label for="wr_name">작성자<span class="required">*</span></label></th>
 							<td>
-								<input type="text" name="wr_name" id="wr_name" class="form-control" value="${writeVO.wr_name }"/>
+								<input type="text" name="wr_name" id="wr_name" class="form-control" value="${writeVO.wr_name }" placeholder="작성자"/>
 							</td>
 						</tr>
 					</c:when>
 					<c:otherwise>					
-						<input type="hidden" name="wr_name" id="wr_name" value="${DiamLoginVO.name}"/>
+						<input type="hidden" name="wr_name" id="wr_name" value="${DiamLoginVO.name}" placeholder="작성자"/>
 					</c:otherwise>
 				</c:choose>
 				
@@ -143,7 +146,7 @@ function checkForm() {
 					<tr class="write_password">
 						<th><label for="wr_password">비밀번호<span class="required">*</span></label></th>
 						<td>
-							<input type="password" name="wr_password" id="wr_password" class="form-control" autocomplete="new-password"/>
+							<input type="password" name="wr_password" id="wr_password" class="form-control" autocomplete="new-password" placeholder="비밀번호"/>
 						</td>
 					</tr>
 				</c:if>
@@ -153,13 +156,13 @@ function checkForm() {
 					<td>
 						<c:choose>
 							<c:when test="${boardVO.dm_use_dhtml_editor eq 1}">
-								<textarea id="wr_content" name="wr_content" rows="5" style="width:100%">
+								<textarea id="wr_content" name="wr_content" rows="5" style="width:100%" placeholder="내용">
 									<c:out value="${dm_basic_content_editor}"/>
 									<c:out value="${writeVO.wr_content }"></c:out>
 								</textarea>
 							</c:when>
 							<c:otherwise>
-								<textarea id="wr_content" name="wr_content" rows="5" style="width:100%"><c:out value="${dm_basic_content_normal}" escapeXml="false"/><c:out value="${writeVO.wr_content }" escapeXml="false"/></textarea>
+								<textarea id="wr_content" name="wr_content" rows="5" placeholder="내용" style="width:100%"><c:out value="${dm_basic_content_normal}" escapeXml="false"/><c:out value="${writeVO.wr_content }" escapeXml="false"/></textarea>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -173,7 +176,7 @@ function checkForm() {
 							</label>
 						</th>
 						<td>
-							<input type="text" name="wr_link1" id="wr_link1" class="form-control" size="50" value="<c:out value='${writeVO.wr_link1 }' />">
+							<input type="text" name="wr_link1" id="wr_link1" class="form-control" size="50" value="<c:out value='${writeVO.wr_link1 }' />" placeholder="링크 1">
 						</td>
 					</tr>
 					
@@ -184,7 +187,7 @@ function checkForm() {
 							</label>
 						</th>
 						<td>
-							<input type="text" name="wr_link2" id="wr_link2" class="form-control" size="50" value="<c:out value='${writeVO.wr_link2 }' />">
+							<input type="text" name="wr_link2" id="wr_link2" class="form-control" size="50" value="<c:out value='${writeVO.wr_link2 }' />" placeholder="링크 2">
 						</td>
 					</tr>
 				</c:if>

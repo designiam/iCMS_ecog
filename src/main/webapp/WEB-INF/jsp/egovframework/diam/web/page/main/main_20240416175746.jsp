@@ -382,10 +382,10 @@ $(function () {
 	getContentsList("tab-content-2-1", 1);
 	getEventData();
 	//getCrawlData();
+	getInstaData();
 	getFacebookData();
 	getYoutubeData();
 	getBlogData();
-	getInstaData();
 });
 
 $(document).on('click','#tab-con2-1', function() {
@@ -602,7 +602,7 @@ var getEventData = function(){
 				$(".event_con > .img").html(html);
 			}
 		}, error:function(request,status,error) {
-			alert(request.responseJSON.notice);
+			console.log(request.responseJSON.notice);
 		}
 	});
 }
@@ -624,7 +624,7 @@ var getBlogData = function(){
 				$("#snsBlog").html(html);
 			}
 		}, error:function(request,status,error) {
-			alert(request.responseJSON.notice);
+			console.log(request.responseJSON.notice);
 		}
 	});
 }
@@ -646,7 +646,7 @@ var getYoutubeData = function() {
 				$("#snsYoutube").html(html);
 			}
 		}, error:function(request,status,error) {
-			alert(request.responseJSON.notice);
+			console.log(request.responseJSON.notice);
 		}
 	});
 }
@@ -668,7 +668,7 @@ var getFacebookData = function() {
 				$("#snsFacebook").html(html);
 			}
 		}, error:function(request,status,error) {
-			alert(request.responseJSON.notice);
+			console.log(request.responseJSON.notice);
 		}
 	});
 }
@@ -690,7 +690,7 @@ var getInstaData = function() {
 				$("#snsInstagram").html(html);
 			}
 		}, error:function(request,status,error) {
-			alert(request.responseJSON.notice);
+			console.log(request.responseJSON.notice);
 		}
 	});
 }
