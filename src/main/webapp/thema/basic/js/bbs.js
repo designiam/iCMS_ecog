@@ -2,8 +2,8 @@
 var popupArr = new Array();
 var option = "scrollbars=auto,toolbar=no,location=no,status=no,menubar=no,resizable=yes,titlebar=no,width=450,height=400,left=200,top=200";
 
-function passwordPopup(domain, wr_id, contentId, board_id, queryString, mode) {
-	var tmpPopup = window.open(domain+'/write/secret.do?wr_id='+wr_id+'&contentId='+contentId +'&board_id=' +board_id+'&'+unescapeHtml(queryString)+'&mode='+mode, mode + "_passcheck", option);
+function passwordPopup(wr_id, contentId, board_id, queryString, mode) {
+	var tmpPopup = window.open('/write/secret.do?wr_id='+wr_id+'&contentId='+contentId +'&board_id=' +board_id+'&'+unescapeHtml(queryString)+'&mode='+mode, mode + "_passcheck", option);
 	popupArr.push(tmpPopup);
 }
 
