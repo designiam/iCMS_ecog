@@ -14,6 +14,7 @@
 #topSlider .swiper-button-next { display:none; transform:translateY(-50%); margin:0; }
 #topSlider .swiper-button-prev{left:50px;}
 #topSlider .swiper-button-next{right:50px;}
+#top_banner_m { display:none; }
 
 /* 퀵배너 */
 #guick_banner { width:100%; max-height:70px; padding:18px 0; background:#139A43; }
@@ -237,6 +238,10 @@
 }
 
 @media (max-width: 768px) {
+	/* 최신 발행호 */
+	#top_banner_pc { display:none; }
+	#top_banner_m { display:block; max-height:400px; }
+	
 	/* 월간베스트, 추천콘텐츠 */
 	/* #top_con_slide { margin:30px 0; }
 	#top_con_slide .top-con-swiper { width:100%; height:auto; }

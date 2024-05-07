@@ -234,7 +234,7 @@ function sliderSet(slickID) {
 }
 </script>
 <script>
-$(function() {
+/* $(function() {
 	//최신 발행호
 	var topSlider = new Swiper( '#topSlider', {
 		slidesPerView: 'auto',
@@ -253,7 +253,7 @@ $(function() {
 			prevEl: '#topSlider .swiper-button-prev',
 		},
 	});
-});
+}); */
 </script>
 
 <script>
@@ -377,6 +377,8 @@ function getRecommendData() {
 <script>
 $(function () {
 	getPopularData();
+	getRecommendData();
+	
 	getContentsList("tab-content-2-1", 1);
 	getEventData();
 	//getCrawlData();
@@ -384,14 +386,6 @@ $(function () {
 	getYoutubeData();
 	getBlogData();
 	getInstaData();
-});
-
-$(document).on('click','#tab-con1-1', function() {
-	getPopularData();
-});
-
-$(document).on('click','#tab-con1-2', function() {
-	getRecommendData();
 });
 
 $(document).on('click','#tab-con2-1', function() {
@@ -582,6 +576,10 @@ function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
         else if($id == "pageLast")   selectedPage = totalPage;
 
         getContentsList(tab, selectedPage);
+		if(selectedPage > 1) {
+			var offset = $("#"+tab+" > .bbs_gallist").offset();
+			$("html, body").animate({scrollTop: offset.top},400);
+		}
 
         return false;
     });
