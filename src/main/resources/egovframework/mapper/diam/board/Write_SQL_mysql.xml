@@ -95,6 +95,34 @@
 		]]>
 	</select>
 	
+	<select id="selectPrevWrite" resultMap="resultWriteVO">
+		<![CDATA[
+			SELECT	*
+		  	  FROM	dm_write A
+		INNER JOIN  (SELECT * FROM dm_write WHERE wr_id = #{wr_id}) AS B
+				ON  A.wr_board = B.wr_board
+		 	 WHERE	A.dm_delete_yn='N'
+		 	   AND  A.wr_datetime < B.wr_datetime
+		 	   AND  A.wr_id = A.wr_parent
+		 	 ORDER BY A.wr_datetime DESC
+		 	 LIMIT 1
+		]]>
+	</select>
+	
+	<select id="selectNextWrite" resultMap="resultWriteVO">
+		<![CDATA[
+			SELECT	*
+		  	  FROM	dm_write A
+		INNER JOIN  (SELECT * FROM dm_write WHERE wr_id = #{wr_id}) AS B
+				ON  A.wr_board = B.wr_board
+		 	 WHERE	A.dm_delete_yn='N'
+		 	   AND  A.wr_datetime > B.wr_datetime
+		 	   AND  A.wr_id = A.wr_parent
+		 	 ORDER BY A.wr_datetime ASC
+		 	 LIMIT 1
+		]]>
+	</select>
+
 	<insert id="insertWrite" useGeneratedKeys="true" keyProperty="wr_id">
 		INSERT 
 		  INTO	dm_write (

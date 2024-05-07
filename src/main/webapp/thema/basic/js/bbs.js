@@ -24,3 +24,21 @@ function executeCommentModify(wr_id, board_id) {
 		popupArr.push(tmpPopup);
 	}
 }
+
+function closeAllPopup() {
+	if (popupArr.length > 0) {
+		for (var i=0 ; i<popupArr.length ; i++) {
+			if (popupArr[i] && !popupArr[i].closed) {
+				popupArr[i].close();
+			}
+		}
+	}	
+}
+
+function secretCheck(url, secret_yn, wr_id, dm_uid, queryString) {
+	if (secret_yn) {
+		passwordPopup(wr_id, dm_uid, "", queryString, "list");
+	} else {
+		location.href = url;
+	}
+}

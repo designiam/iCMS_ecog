@@ -392,4 +392,14 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	public Dm_write_vo selectWriteForEvent(Dm_write_vo vo) throws Exception{
 		return mapper.selectWriteForEvent(vo);
 	}
+
+	@Override
+	public Dm_write_vo selectPrevWrite(Dm_write_vo vo) throws Exception{
+		return mapper.selectPrevWrite(vo);
+	}
+
+	@Override
+	public Dm_write_vo selectNextWrite(Dm_write_vo vo) throws Exception{
+		return mapper.selectNextWrite(vo);
+	}
 }

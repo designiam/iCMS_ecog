@@ -163,4 +163,9 @@ public interface WriteService {
 	public List<Dm_write_vo> selectCoverVolList(Dm_write_vo vo) throws Exception;
 
 	public Dm_write_vo selectWriteForEvent(Dm_write_vo vo) throws Exception;
+
+	public Dm_write_vo selectPrevWrite(Dm_write_vo vo) throws Exception;
+
+	public Dm_write_vo selectNextWrite(Dm_write_vo vo) throws Exception;
+
 }

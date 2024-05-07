@@ -719,12 +719,18 @@ public class webController {
 																								
 								String[] oriFileList = writeViewVO.getWr_ori_file_name().split("\\|");
 								String[] fileList = writeViewVO.getWr_file().split("\\|");
+								
+								//이전글 정보
+								Dm_write_vo prevWriteVO = writeService.selectPrevWrite(writeViewVO);
+								Dm_write_vo nextWriteVO = writeService.selectNextWrite(writeViewVO);
 															
 								result.addObject("is_reply", is_reply);
 								result.addObject("is_write", is_write);
 								result.addObject("oriFileList", oriFileList);
 								result.addObject("fileList", fileList);
 								result.addObject("writeVO", writeViewVO);
+								result.addObject("prevWriteVO", prevWriteVO);
+								result.addObject("nextWriteVO", nextWriteVO);
 								
 								JSONObject rsaObject = commonUtil.initRsa(request, "DIAM_WRITE_SECRET_RSA_KEY");
 								if ("success".equals(rsaObject.get("result"))) {
