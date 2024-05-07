@@ -182,12 +182,11 @@
 															</a>
 														</c:when>
 														<c:otherwise>
-															<i class="fas fa-lock"></i>
 															<a style="padding-left:<c:out value='${result.wr_reply * 10}'/>px;" href="javascript:secretCheck('<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value="${result.wr_id}"/>&<c:out value="${writeSearchQueryString}" escapeXml='false'/>', true , '<c:out value='${result.wr_id}'/>', '<c:out value='${pageVO.dm_uid }'/>', '<c:out value="${writeSearchQueryString}" escapeXml="false"/>');">
 																<c:if test="${result.wr_reply > 0 }">
 																	<img src="/images/re.png" alt="답변 아이콘" class="list_reply"/>																
 																</c:if>
-																비밀글입니다.
+																<i class="fas fa-lock"></i> 비밀글입니다.
 															</a>
 														</c:otherwise>
 													</c:choose>

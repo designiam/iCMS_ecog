@@ -110,19 +110,25 @@ function chk_cancel() {
 </script>
 
 <style>
+body,
+html { margin:0; padding:0; font-family:'Pretendard', 'Noto Sans KR', sans-serif; }
+#write_secret { padding:85px 50px; }
 #write_secret .secret_img {display:table; margin:0 auto 20px auto;}
-#write_secret .write_password h1 {font-size:20px; text-align:center;}
-#write_secret .write_password p {font-size:16px; text-align:center;}
-#write_secret .write_password #pass {display:block; width:80%; margin:0 auto 15px auto;}
+#write_secret .write_password h1 {margin:0 0 25px; padding:0; font-size:1.375rem;text-align:center;color: #139A43;}
+#write_secret .write_password p {margin:0 0 25px; padding:0; font-size: 1.1rem;color: #333;text-align:center;line-height:1.4;}
+#write_secret .write_password #pass {display:block; width:100%; margin:0 auto 25px;}
+
 #write_secret .write_password .secret_btn {display:table; margin:0 auto;}
-#write_secret .write_password .secret_btn a {display:inline-block; font-size:14px; font-weight:300; color:#fff; border:1px solid #c6c6c6; padding:7px 15px; text-decoration:none; margin:0 3px;}
-#write_secret .write_password .secret_btn a.confirm {background:#4b449c;}
-#write_secret .write_password .secret_btn a.cancel {background:#23272b;}
+#write_secret .write_password .secret_btn a {display:inline-block; font-size:0.938rem; color:#111; border:1px solid #ddd; padding:7px 15px; text-decoration:none; margin:0 3px;}
+#write_secret .write_password .secret_btn a.confirm {background:#139A43;color:#fff;border:1px solid #139A43;}
+#write_secret .write_password .secret_btn a.cancel {background:#fff;}
+input::placeholder { color:#B4B4B4; font-size:0.875rem; }
+input.form-control {height:40px;line-height:40px;padding:0 15px;border: 1px solid #ddd;border-radius:5px;}
 </style>
 
 <div class="secret_box">
 	<div class="secret_wrap" id="write_secret">
-		<img src="<c:url value='/images/secret_icon.png'/>" alt="비밀글" class="secret_img"/>
+		<%-- <img src="<c:url value='/images/secret_icon.png'/>" alt="비밀글" class="secret_img"/> --%>
 		<div class="write_password">
 			<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 			<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
