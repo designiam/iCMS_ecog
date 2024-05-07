@@ -1120,7 +1120,7 @@ public class WebWriteController {
 	}
 
 	@RequestMapping(value="/web/selectWriteListForMain.do")
-	public ResponseEntity<?> selectWriteListLike(Dm_write_vo vo) throws Exception {
+	public ResponseEntity<?> selectWriteListForMain(Dm_write_vo vo) throws Exception {
 		Map<String , Object> resultMap = new HashMap<>();
 
 		int row = vo.getRows() != 0 ? vo.getRows() : 10;
