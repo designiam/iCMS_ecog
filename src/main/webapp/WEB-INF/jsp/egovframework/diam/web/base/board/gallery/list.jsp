@@ -98,6 +98,18 @@ $(function () {
 var dataPerPage = <c:out value="${boardVO.dm_page_rows}" />;
 var pageCount = 5;
 
+$(document).on('click','#tab-con-1', function() {
+	getContentsList("tab-content-1", 1);
+});
+
+$(document).on('click','#tab-con-2', function() {
+	getContentsList("tab-content-2", 1);
+});
+
+$(document).on('click','#tab-con-3', function() {
+	getContentsList("tab-content-3", 1);
+});
+
 function getContentsList(tab, page) {
 	switch(tab) {
 	  case "tab-content-1": default:
@@ -263,6 +275,10 @@ function paging(tab, totalCount, dataPerPage, pageCount, currentPage) {
         else if($id == "pageLast")   selectedPage = totalPage;
 
         getContentsList(tab, selectedPage);
+		if(selectedPage > 1) {
+			var offset = $("#"+tab+" > .bbs_gallist").offset();
+			$("html, body").animate({scrollTop: offset.top},400);
+		}
 
         return false;
     });
