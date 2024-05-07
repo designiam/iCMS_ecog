@@ -240,28 +240,74 @@ function deleteWrite() {
 		</div>
 		
 		<ul class="nb_ul">
+			<c:if test="${!empty prevWriteVO }">
 			<li class="btn_prev">
 				<span class="nb_tit"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글</span>
 				<c:choose>
-					<c:when test="${writeVO.prev_id ne null }">
-						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.prev_id }' />"><c:out value="${writeVO.prev_subject }" /></a>
+					<c:when test="${prevWriteVO.wr_option eq 'secret' }">
+						<c:choose>
+						<c:when test="${prevWriteVO.mb_id eq '비회원'}">
+							<c:choose>
+							<c:when test="${is_admin}">
+							<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${prevWriteVO.wr_id }' />"><c:out value="${prevWriteVO.wr_subject }" /></a>
+							</c:when>
+							<c:otherwise>
+							<a href="javascript:secretCheck('<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value="${prevWriteVO.wr_id}"/>&<c:out value="${writeSearchQueryString}" escapeXml='false'/>', true , '<c:out value='${prevWriteVO.wr_id}'/>', '<c:out value='${pageVO.dm_uid }'/>', '<c:out value="${writeSearchQueryString}" escapeXml="false"/>');">비밀글입니다.</a>
+							</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${is_admin ne true && prevWriteVO.mb_id ne DiamLoginVO.id}">
+									<a href="javascript:alert('작성자와 관리자만 접근 가능합니다.');">비밀글입니다.</a>
+								</c:when>
+								<c:otherwise>
+								<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${prevWriteVO.wr_id }' />"><c:out value="${prevWriteVO.wr_subject }" /></a>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<a>이전 게시글이 존재하지 않습니다.</a>
+						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${prevWriteVO.wr_id }' />"><c:out value="${prevWriteVO.wr_subject }" /></a>
 					</c:otherwise>
 				</c:choose>
 			</li>
+			</c:if>
+			<c:if test="${!empty nextWriteVO }">
 			<li class="btn_next">
 				<span class="nb_tit"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글</span>
 				<c:choose>
-					<c:when test="${writeVO.next_id ne null }">
-						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${writeVO.next_id }' />"><c:out value="${writeVO.next_subject }" /></a>
+					<c:when test="${nextWriteVO.wr_option eq 'secret' }">
+						<c:choose>
+						<c:when test="${nextWriteVO.mb_id eq '비회원'}">
+							<c:choose>
+							<c:when test="${is_admin}">
+							<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${nextWriteVO.wr_id }' />"><c:out value="${nextWriteVO.wr_subject }" /></a>
+							</c:when>
+							<c:otherwise>
+							<a href="javascript:secretCheck('<c:out value='${param.root }'/>/index.do?command=view&wr_id=<c:out value="${nextWriteVO.wr_id}"/>&<c:out value="${writeSearchQueryString}" escapeXml='false'/>', true , '<c:out value='${nextWriteVO.wr_id}'/>', '<c:out value='${pageVO.dm_uid }'/>', '<c:out value="${writeSearchQueryString}" escapeXml="false"/>');">비밀글입니다.</a>
+							</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${is_admin ne true && nextWriteVO.mb_id ne DiamLoginVO.id}">
+									<a href="javascript:alert('작성자와 관리자만 접근 가능합니다.');">비밀글입니다.</a>
+								</c:when>
+								<c:otherwise>
+								<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${nextWriteVO.wr_id }' />"><c:out value="${nextWriteVO.wr_subject }" /></a>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<a>다음 게시글이 존재하지 않습니다.</a>					
+						<a href="<c:out value='${param.root }'/>/index.do?command=view&contentId=<c:out value='${pageVO.dm_uid}'/>&wr_id=<c:out value='${nextWriteVO.wr_id }' />"><c:out value="${nextWriteVO.wr_subject }" /></a>
 					</c:otherwise>
 				</c:choose>
 			</li>
+			</c:if>
 		</ul>
 	</div>
 	<c:if test="${boardVO.dm_is_comment eq 1}">
