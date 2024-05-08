@@ -107,7 +107,7 @@
 			</ul>
 		</div>
 		<!-- //.tabMenu-wrap -->
-		<div class="last_view"><a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="t05">지난호 보기 <i class="fas fa-sharp fa-thin fa-chevron-right"></i></a></div>
+		<!-- <div class="last_view"><a href="?contentId=abb7c68a0900d318989c201245657cf7433701a9ff1e317f7043ac8aaebebbb4" class="t05">지난호 보기 <i class="fas fa-sharp fa-thin fa-chevron-right"></i></a></div> -->
 	</div>
 	<!-- //.tab_menu_con -->
 	<!-- .inner// -->

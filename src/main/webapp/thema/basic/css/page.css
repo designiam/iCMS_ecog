@@ -291,6 +291,7 @@
 .event_view .bbs_view_title .cate { display:inline-block; color:#2950E0; font-size:1rem; line-height:1.4; letter-spacing:-0.02em; font-weight:600; }
 .event_view .bbs_view_title h4 { color:#000; font-size:1.875rem; line-height:1.4; letter-spacing:-0.02em; font-weight:700; }
 .event_view .bbs_viewing { border:0 none; }
+.bbs_viewing > .bbs_view_info dl:not(:first-child)::before { font-size:1rem; color:#ddd; }
 /* 목록 버튼 */ 
 .event_view .bbs_viewbtn { justify-content: center; margin:0; padding:30px 0; border-top:1px solid #000; }
 .event_view .bbs_viewbtn .btn_list { display: inline-flex; justify-content: center; align-items: center; min-width: 130px; height: 40px; background: #fff; border: 1px solid #ddd; border-radius: 0.313rem; color: #111; font-weight:600; letter-spacing:-0.03em; line-height:1.2; font-size:0.813rem; }
@@ -306,6 +307,20 @@
 .event_view .bbs_view_writer ul li:last-child::after { display:none; }
 .event_view .bbs_view_writer ul li span { color:#606060; }
 
+/* 게시판 댓글 쓰기 */
+.comment_write input[type="text"]::placeholder,
+.comment_write input[type="password"]::placeholder,
+.comment_write textarea::placeholder { font-size:0.875rem; }
+.comment_header .comment_button ul li a,
+.comment_header .comment_button ul li button { font-size:0.875rem; }
+.comment_header dl.comment_wr_date { font-size:0.875rem; }
+.comment_header dl.comment_wr_name dd { font-size:1.125rem; }
+.comment_box .comment_sympathy .view_sympathy_box > a,
+.comment_box .btn_write { font-size:0.875rem; }
+.comment_content { font-size:1rem; }
+.cmt_btn { font-size:1.25rem; }
+.cmt_btn span { margin-left:5px; font-size:1rem; }
+.comment_box { padding:1.25rem 1.25rem; }
 
 /* 반응형 기본 */
 /* Media Query - PC First */
