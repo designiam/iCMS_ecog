@@ -164,6 +164,7 @@
 		<if test='dm_year != null and dm_year != ""'>
 			AND dm_year = #{dm_year}
 		</if>
+		    AND IFNULL(dm_link, '') = ''
 		GROUP BY dm_vol DESC
 	</select>
 	
