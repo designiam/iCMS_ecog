@@ -192,7 +192,7 @@
 	</div>
 </div>
 <!-- //이벤트_sns로 만나는 광주환경공단 -->
-<script type="text/javascript" src="<c:url value='/js/egovframework/diam/slickslider/slick.min.js'/>"></script>
+<script src="<c:url value='/js/egovframework/diam/slickslider/slick.min.js'/>"></script>
 <script>
 function sliderSet(slickID) {
 	$(slickID + " .slider-for").slick({
@@ -600,6 +600,8 @@ var getEventData = function(){
 					html += '</a>';
 				} 
 				$(".event_con > .img").html(html);
+			} else {
+				$(".event_con").hide();
 			}
 		}, error:function(request,status,error) {
 			console.log(request.responseJSON.notice);
@@ -694,41 +696,4 @@ var getInstaData = function() {
 		}
 	});
 }
-
-/*
- 
-var getCrawlData = function(){
-	$.ajax({
-		url : "/web/selectCrawlData.do",
-		type: "get"
-	}).done(function(response){
-		//setYoutube(response.youtube);
-		setInstagram(response.insta);
-	}).fail(function(response, status, error){
-		alert(response.responseJSON.notice);
-	});
-}
- 
-function setInstagram(rows) {
-	var target = $("#snsInstagram");
-	if (rows.length > 0) {
-		target.empty();
-		var str = "";
-		var obj = rows[0];
-		str += '<a target="_blank" href="'+obj.dm_href+'"><span class="icon insta">인스타그램</span><img src="'+obj.dm_src+'" alt="인스타그램 게시물"></a>';
-		target.append(str);
-	}
-}
-
-
-function setYoutube(data) {
-	if (data.dm_href != "" && data.dm_href != null) {
-		var uniq = data.dm_href.split("?v=")[1];
-		var str = '';
-		str += '<a target="_blank" href="https://www.youtube-nocookie.com/embed/'+uniq+'?controls=0">';
-		str += '<span class="icon youtube">Youtube</span><img src="https://img.youtube.com/vi/'+uniq+'/hqdefault.jpg" /></a>';
-		$("#snsYoutube").empty().append(str);
-	}
-}
-*/
 </script>
