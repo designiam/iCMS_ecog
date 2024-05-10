@@ -27,6 +27,10 @@
 		<c:choose>
 			<c:when test="${!empty result.wr_start_dt && !empty result.wr_end_dt }">
 				<c:choose>
+					<c:when test='${curDate le result.wr_start_dt }'>
+						<c:set var="status_name" value="대기" />
+						<c:set var="status_class" value=" proceed" />
+					</c:when>
 					<c:when test='${curDate ge result.wr_start_dt && curDate le result.wr_end_dt }'>
 						<c:set var="status_name" value="진행중" />
 						<c:set var="status_class" value=" proceed" />
@@ -34,7 +38,6 @@
 					<c:otherwise>
 						<c:set var="status_name" value="종료" />
 						<c:set var="status_class" value="" />
-						<c:set var="status_label" value="종료" />
 					</c:otherwise>
 				</c:choose>
 				<div class="event-item">
@@ -44,13 +47,13 @@
 							<c:when test="${empty result.wr_thumb }">
 								<div class="thumb-wrap noimg" style="width: 100%; padding-top: ${ratio }%; background-image: url('/images/no_image.png');">
 									<p class="img"><img src="/images/no_image.png" alt="no image"></p>
-									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_label}"/></p>
+									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_name}"/></p>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div class="thumb-wrap" style="background-image: url('<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>');">
 									<p class="img"><img src="<c:out value='${result.wr_path}${result.wr_thumb_sub}'/>" alt="<c:out value='${result.wr_subject}' escapeXml='false'/>" onerror="this.src=\'/thema/basic/images/pages/no_image.png\'"></p>
-									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_label}"/></p>
+									<p class="label<c:out value='${status_class }'/>"><c:out value="${status_name}"/></p>
 								</div>
 							</c:otherwise>
 						</c:choose>

@@ -434,7 +434,7 @@ public class WriteController {
 						writeVO.setWr_ori_file_name(String.join("|", file_ori_array));
 						writeVO.setWr_path(FILE_PATH);
 						newUpload(writeVO);
-						
+						writeVO.setWr_path("/resources/board/"+ boardVO.getDm_table() + "/");
 				        int result = writeService.updateWrite(writeVO);
 				        
 				        session.removeAttribute("DIAM_WRITE_RSA_KEY");

@@ -95,8 +95,8 @@ function setValue(rows) {
     if (rows.dm_cover_img != null && rows.dm_cover_img != "") {
     	$('.file_dd').append("<img src='/resources/cover/"+rows.dm_cover_img+"' style='max-width: 300px; margin-top:8px;'/><div><label><input type='checkbox' name='dm_cover_del_img' class='file_link' id='dm_cover_del_img' value='"+rows.dm_cover_img+"'/>삭제("+ rows.dm_cover_img_ori +")</label></div>");
     }
-    $("#dm_link").val(unescapeHtml(data.rows.dm_link));
-    $("#dm_link_type").combobox('reload', '/adm/select_code.do?dm_code_group=1005&selected='+data.rows.dm_link_type);
+    $("#dm_link").val(unescapeHtml(rows.dm_link));
+    $("#dm_link_type").combobox('reload', '/adm/select_code.do?dm_code_group=1005&selected='+rows.dm_link_type);
 
 
 }

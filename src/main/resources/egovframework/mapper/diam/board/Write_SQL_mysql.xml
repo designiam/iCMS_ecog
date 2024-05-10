@@ -159,7 +159,9 @@
 			wr_thumb,
 			wr_background,
 			wr_direct,
+			<if test="wr_vol != null and wr_vol != ''">
 			wr_vol,
+			</if>
 			wr_writer,
 			wr_writer_mail,
 			wr_hashtag,
@@ -209,7 +211,9 @@
 			#{wr_thumb},
 			#{wr_background},
 			#{wr_direct},
+			<if test="wr_vol != null and wr_vol != ''">
 			#{wr_vol},
+			</if>
 			#{wr_writer},
 			#{wr_writer_mail},
 			#{wr_hashtag},
@@ -260,7 +264,9 @@
 				wr_name = #{wr_name}, 
 				wr_file = #{wr_file}, 
 				wr_ori_file_name = #{wr_ori_file_name},
+				<if test="wr_vol != null and wr_vol != ''">
 				wr_vol = #{wr_vol},
+				</if>
 				wr_main = #{wr_main},
 				wr_head = #{wr_head},
 				wr_banner = #{wr_banner},
