@@ -169,7 +169,7 @@
 
 /* 이벤트_sns로 만나는 광주환경공단 */
 #event_sns { width:100%; padding:50px 0 60px; background-color:#F2FCF4; }
-#event_sns .inner { display:flex; flex-wrap:wrap; justify-content:space-between; gap:15px 0; }
+#event_sns .inner { display:flex; flex-wrap:wrap; justify-content:center; gap:15px 57px; /* justify-content:space-between; gap:15px 0; */ }
 #event_sns .inner .tit { margin-bottom:8px; color:#000; }
 #event_sns .event_con {  }
 #event_sns .event_con .img { width:560px; height:420px; background-color:#C4C4C4; overflow:hidden; }

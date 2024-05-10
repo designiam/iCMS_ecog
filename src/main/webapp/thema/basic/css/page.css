@@ -314,13 +314,24 @@
 .comment_header .comment_button ul li a,
 .comment_header .comment_button ul li button { font-size:0.875rem; }
 .comment_header dl.comment_wr_date { font-size:0.875rem; }
-.comment_header dl.comment_wr_name dd { font-size:1.125rem; }
+.comment_header dl.comment_wr_name dd { font-size:1rem; }
 .comment_box .comment_sympathy .view_sympathy_box > a,
 .comment_box .btn_write { font-size:0.875rem; }
-.comment_content { font-size:1rem; }
-.cmt_btn { font-size:1.25rem; }
-.cmt_btn span { margin-left:5px; font-size:1rem; }
+.comment_content { font-size:0.938rem; }
+.cmt_btn { font-size:1.125rem; }
+.cmt_btn span { margin-left:5px; font-size:0.875rem; }
 .comment_box { padding:1.25rem 1.25rem; }
+
+/* 의견게시판 - 목록 */
+.bbs_leadin .bbs_count span:first-child { font-size:1rem; }
+.bbs_leadin .bbs_count b { color:#139A43; }
+.bbs_listing .table th,
+.bbs_listing .table td { font-weight:700; letter-spacing:-0.03em; line-height:1.4; font-size:1rem; }
+.bbs_listing .td_subject a { color:#000; font-weight:700; }
+
+/*의견게시판 - 상세 */
+.bbs_viewing > h5 { font-size:1.125rem; font-weight:700; }
+.bbs_viewing > .bbs_view_info { font-size:1rem; }
 
 /* 반응형 기본 */
 /* Media Query - PC First */
