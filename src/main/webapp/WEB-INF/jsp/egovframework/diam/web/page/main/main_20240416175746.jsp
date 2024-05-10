@@ -54,8 +54,8 @@
 								<div class="control-wrap">
 									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
 									<div class="prevArrow"><span class="sr-only">이전</span></div>
-									<div class="play"><span class="sr-only">재생</span></div>
-									<div class="stop"><span class="sr-only">정지</span></div>
+									<div class="play_stop stop"><span class="sr-only">재생</span></div>
+									<!-- <div class="stop"><span class="sr-only">정지</span></div> -->
 									<div class="nextArrow"><span class="sr-only">다음</span></div> 
 					 			</div>
 					 		</div>
@@ -76,8 +76,8 @@
 								<div class="control-wrap">
 									<div class="numcount sPage1"><span class="now">1</span><span> / 3</span></div>
 									<div class="prevArrow"><span class="sr-only">이전</span></div>
-									<div class="play"><span class="sr-only">재생</span></div>
-									<div class="stop"><span class="sr-only">정지</span></div>
+									<div class="play_stop stop"><span class="sr-only">재생</span></div>
+									<!-- <div class="stop"><span class="sr-only">정지</span></div> -->
 									<div class="nextArrow"><span class="sr-only">다음</span></div> 
 					 			</div>
 					 		</div>
@@ -224,13 +224,27 @@ function sliderSet(slickID) {
 		$(slickID + " .sPage1").html("<span class='now'>"+i+"</span><span> / "+slick.slideCount+"</span>");
 	});
 	// 재생/정지 버튼 컨트롤
-	$(slickID + " .play").click(function(){
-		$(slickID + " .slider-for").slick('slickPlay');
-	}); 
-	$(slickID + " .stop").click(function(){
-		$(slickID + " .slider-for").slick('slickPause');
+	$(slickID + " .play_stop").on('click', function(e) {
+	  e.preventDefault();
+			if (jQuery(this).hasClass("stop")) { // add class where you want to add class active for process
+				jQuery(this).removeClass("stop");
+	   jQuery(slickID + " .slider-for").slick('slickPause');
+	      jQuery(this).addClass("play");
+			} else {
+				jQuery(this).removeClass("play");
+				jQuery(this).addClass("stop");
+	      $(slickID + " .slider-for").slick('slickPlay');
+			}
 	});
-	$(".slider").not('.slick-initialized').slick();
+	// 재생/정지 버튼 컨트롤
+	//$(slickID + " .play").click(function(){
+		//$(slickID + " .slider-for").slick('slickPlay');
+	//}); 
+	//$(slickID + " .stop").click(function(){
+		//$(slickID + " .slider-for").slick('slickPause');
+	//});
+	$(slickID + " .slider-for").not('.slick-initialized').slick();
+	$(slickID + " .slider-nav").not('.slick-initialized').slick();
 }
 </script>
 <script>
