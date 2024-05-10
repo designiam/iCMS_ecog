@@ -1158,16 +1158,16 @@ public class WebWriteController {
 			resultMap.put("rows", writeVO);
 			resultMap.put("result", "success");
 		} else {
-			vo.setSearch_cate("당첨자발표");
-			writeVO = writeService.selectWriteForEvent(vo);
+			//vo.setSearch_cate("당첨자발표");
+			//writeVO = writeService.selectWriteForEvent(vo);
 
-			if(writeVO != null) {
-				resultMap.put("rows", writeVO);
-				resultMap.put("result", "success");
-			} else {
+			//if(writeVO != null) {
+			//	resultMap.put("rows", writeVO);
+			//	resultMap.put("result", "success");
+			//} else {
 				resultMap.put("result", "fail");
 				resultMap.put("notice", "게시글데이터가 없습니다.");
-			}
+			//}
 		}
 		return ResponseEntity.ok(resultMap);
 	}
