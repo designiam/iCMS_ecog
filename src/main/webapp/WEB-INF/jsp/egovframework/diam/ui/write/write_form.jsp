@@ -52,6 +52,7 @@ function selectWrite() {
 function setDate(item){
 	var sDate = new Date(item.wr_start_dt);
 	var eDate = new Date(item.wr_end_dt);
+	var announceDate = new Date(item.wr_announce);
 	
 	var startYear = sDate.getFullYear();
 	var startMonth = (sDate.getMonth()+1);
@@ -61,9 +62,13 @@ function setDate(item){
 	var endMonth = (eDate.getMonth()+1);
 	var endDate = eDate.getDate();
 
+	var announceYear = announceDate.getFullYear();
+	var announceMonth = (announceDate.getMonth()+1);
+	var announceDate = announceDate.getDate();
 	
 	$("#wr_start_dt").datebox('setValue', startYear+"-"+startMonth+"-"+startDate);
 	$("#wr_end_dt").datebox('setValue', endYear+"-"+endMonth+"-"+endDate);
+	$("#wr_announce").datebox('setValue', announceYear+"-"+announceMonth+"-"+announceDate);
 }
 
 function fnSetData(row) {
@@ -98,7 +103,10 @@ function fnSetData(row) {
 	    $("#wr_is_period").prop("checked", true);
 	}
 	setDate(row);
-
+	$("#wr_target").val(row.wr_target);
+	$("#wr_host").val(row.wr_host);
+	$("#wr_inquiry").val(row.wr_inquiry);
+	
 	if (row.wr_file_array.length > 0) {
 		for (var i=0; i<row.wr_file_array.length; i++) {
 			var file_path = row.wr_file_array[i].split("/");
@@ -190,21 +198,8 @@ function fnSave() {
     	}
 	</c:if>
 	
-	switch ($("#skin").val()) {
-		case "video":
-			$(".gallery_only").remove();
-			break;
-		case "gallery":
-			$(".video_only").remove();
-			break;
-		default:
-			$("#wr_vol").val("-1");
-			$(".video_only").remove();
-			$(".gallery_only").remove();
-			break;
-	}
-	
-	if ($("#skin").val() != "basic") {
+
+	if ($("#skin").val() == "gallery") {
 		if ($("#wr_vol").val() == "") {
 			alert("발행 호수를 입력하세요");
 			$(".btnWrap").show();
