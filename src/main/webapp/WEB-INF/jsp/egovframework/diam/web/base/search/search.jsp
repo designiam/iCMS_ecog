@@ -29,7 +29,7 @@
 			            </div>
 			        </div>
 		        </form>
-		        <p class="result_txt"><strong><c:out value="${search_value }"/></strong>검색결과</p>
+		        <p class="result_txt"><strong>"&nbsp;<c:out value="${search_value }"/>&nbsp;"</strong>검색결과</p>
 		    </div>
 		</div>
 		<!--//search_box-->

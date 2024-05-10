@@ -276,7 +276,7 @@ function copyUrl(){
 						<small>간편하게 만나는 함께그린광주</small>
 					</div>
 				</h5>
-				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
 				<div class="modal-form">
