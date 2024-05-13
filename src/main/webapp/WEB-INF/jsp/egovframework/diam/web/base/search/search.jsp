@@ -9,7 +9,6 @@
 		<c:set value="" var="root"/>
 	</c:otherwise>
 </c:choose>
-
 <div class="unified-search-result">
 	<!-- 검색결과// -->
 	<div class="search-result">
@@ -55,7 +54,7 @@
 				<!-- //title -->
 				<!-- .bbs_gallist// -->
 				<div class="bbs_gallist">
-					<ul id="<c:out value="data_${data.dm_table }"/>" class="gall row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+					<ul id="<c:out value="data_${data.dm_table }"/>" class="gall row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3">
 					<c:forEach items="${data.write }" var="item" varStatus="loop">
 						<li class="cell col"<c:if test="${loop.index > 2 }"> style="display:none"</c:if>>
 							<a href="<c:out value='${root }'/>/index.do?command=view&contentId=<c:out value='${data.dm_uid }'/>&wr_id=<c:out value='${item.wr_id}'/>">
@@ -78,7 +77,18 @@
 									<p class="tit t02"><c:out value="${item.wr_subject }" escapeXml="false"/></p>
 									<div class="bot">
 										<c:if test="${!empty item.wr_vol}"><p class="vol">vol. <c:out value="${item.wr_vol }"/></p></c:if>
-										<c:if test="${!empty item.wr_hashtag}"><p class="tag_con"><span class="tag">#민원정보</span><span class="tag">#업무정보</span><span class="tag">#사업분야</span></p></c:if>
+										<c:if test="${!empty item.wr_hashtag}">
+										<p class="tag_con">
+										<c:set value="${fn:split(item.wr_hashtag, '#')}" var="hashtag"/>
+										<c:set var="tag_count" value="0"/>
+										<c:forEach items="${hashtag }" var="tag" varStatus="stat">
+										<c:if test="${!empty fn:trim(tag) and tag_count < 3 }">
+										<span class="tag">#<c:out value="${fn:trim(tag)}" escapeXml='false'/></span>
+										<c:set var="tag_count" value="${tag_count+1 }"/>
+										</c:if>
+										</c:forEach>
+										</p>
+										</c:if>
 									</div>
 								</div>
 							</a>
@@ -115,4 +125,5 @@ function data_more(board, total) {
 	}
 	
 }
+
 </script>

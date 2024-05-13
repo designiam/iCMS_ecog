@@ -3,7 +3,12 @@
  */
 package egovframework.diam.biz.service.board.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +17,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
 
 import egovframework.diam.biz.db.board.BoardMapper;
 import egovframework.diam.biz.db.board.WriteMapper;
@@ -22,6 +28,8 @@ import egovframework.diam.cmm.util.CommonUtil;
 import egovframework.diam.cmm.util.MessageCode;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * @Class Name : WriteServiceImpl.java
  * @Description : 관리자/사용자페이지 게시물 페이지에서 사용하는 게시물 데이터 CRUD 메소드를 수행하는 Service
@@ -402,4 +410,163 @@ public class WriteServiceImpl extends EgovAbstractServiceImpl implements WriteSe
 	public Dm_write_vo selectNextWrite(Dm_write_vo vo) throws Exception{
 		return mapper.selectNextWrite(vo);
 	}
+
+	/**
+	 * selectWriteList
+	 * 검색 값에 따른 게시물 리스트데이터 조회
+	 * @param vo 게시물데이터 검색조건,페이징 값을 vo객체에 담아 전달
+	 * @return List<Dm_write_vo> 조회된 게시물데이터를 List 자료형으로 전달
+	*/
+	@Override
+	public List<Dm_write_vo> selectDeleteList(Dm_write_vo vo) throws Exception {
+		List<Dm_write_vo> writeList = mapper.selectDeleteList(vo);
+		return writeList;
+	}
+	
+	/**
+	 * selectDeleteListCnt
+	 * 검색 값에 따른 게시물 리스트데이터 개수 조회
+	 * @param vo 게시물데이터 검색조건값을 vo객체에 담아 전달
+	 * @return int 조회된 게시물데이터의 개수를 정수형으로 전달
+	*/
+	@Override
+	public int selectDeleteListCnt(Dm_write_vo vo) throws Exception {
+		int result = mapper.selectDeleteListCnt(vo);
+		return result;
+	}
+	
+	/**
+	 * deleteWrite
+	 * 게시물 PK값으로 등록되어 있는 게시물데이터 삭제
+	 * @param vo 사용자가 삭제하고자 하는 게시물데이터의 PK값을 vo객체에 담아 전달
+	 * @return void 게시물데이터 delete 기능만 담당하는 메소드
+	*/
+	@Override
+	@Transactional
+	public void removeWrite(List<Dm_write_vo> list) throws Exception {
+		
+		if (list.size() > 0) {
+			list.forEach(item -> {
+				Dm_board_vo boardVO = Dm_board_vo.builder().dm_id(item.getWr_board()).build();
+				boardVO = boardMapper.selectBoard(boardVO);
+				
+				if (boardVO != null) {
+					//첨부파일 삭제
+					List<String> file_list = new ArrayList<String>(Arrays.asList(item.getWr_file().split("\\|")));
+					String[] extlist = {"jpg","gif","png","JPG","GIF","PNG","jpeg","JPEG"};
+					
+					if (file_list.size() > 0) {
+						for (int i=0 ; i < file_list.size() ; i++) {
+							File file = new File(getRealPath() + file_list.get(i));
+							
+							if(file.exists()) {
+								file.delete();
+								System.out.print("원본파일삭제");
+							}
+							//썸네일삭제
+							String ext = file_list.get(i).substring(file_list.get(i).indexOf(".") + 1);
+							boolean extchk = false;
+							extchk = Arrays.asList(extlist).contains(ext);
+
+							if(extchk) {
+								String thumbname = file_list.get(i).replace("/resources/board/"+boardVO.getDm_table()+"/", "/resources/board/"+boardVO.getDm_table()+"/gallery/t-");
+								File thumbFile = new File(getRealPath() + thumbname);
+								if(thumbFile.exists()) {
+									thumbFile.delete();
+									System.out.print("썸네일파일 삭제");
+								}
+							}
+						} 					
+					}
+					
+					if(!"".equals(item.getWr_path())) {
+						if(!"".equals(item.getWr_head())) {
+							File file = new File(getRealPath() + item.getWr_path() + item.getWr_head());
+							if(file.exists()) {
+								file.delete();
+								System.out.print("head 파일 삭제");
+							}
+						}
+						
+						if(!"".equals(item.getWr_banner())) {
+							File file = new File(getRealPath() + item.getWr_path() + item.getWr_banner());
+							if(file.exists()) {
+								file.delete();
+								System.out.print("banner 파일 삭제");
+							}
+						}
+						if(!"".equals(item.getWr_thumb())) {
+							File file = new File(getRealPath() + item.getWr_path() + item.getWr_thumb());
+							if(file.exists()) {
+								file.delete();
+								System.out.print("thumb 파일 삭제");
+							}
+						}
+						if(!"".equals(item.getWr_background())) {
+							File file = new File(getRealPath() + item.getWr_path() + item.getWr_background());
+							if(file.exists()) {
+								file.delete();
+								System.out.print("background 파일 삭제");
+							}
+						}
+						if(!"".equals(item.getWr_thumb_sub())) {
+							File file = new File(getRealPath() + item.getWr_path() + item.getWr_thumb_sub());
+							if(file.exists()) {
+								file.delete();
+								System.out.print("thumb_sub 파일 삭제");
+							}
+						}
+					}
+					
+					if ("both".equals(boardVO.getDm_reply_delete_type()) && (item.getWr_reply() == 0 && item.getWr_is_comment() == 0)) {
+						//게시글 데이터 삭제
+						mapper.removeWriteBoth(item);
+					} else {
+						mapper.removeWrite(item);
+					}
+				} else {
+					throw new RuntimeException();
+				}
+				
+			});
+		}
+	}
+
+	/**
+	 * restoreWrite
+	 * 게시물 PK값으로 등록되어 있는 게시물데이터 복구
+	 * @param vo 사용자가 복구하고자 하는 게시물데이터의 PK값을 vo객체에 담아 전달
+	 * @return void 게시물데이터 복구 기능만 담당하는 메소드
+	*/
+	@Override
+	@Transactional
+	public void restoreWrite(List<Dm_write_vo> list) throws Exception {
+		
+		if (list.size() > 0) {
+			list.forEach(item -> {
+				Dm_board_vo boardVO = Dm_board_vo.builder().dm_id(item.getWr_board()).build();
+				boardVO = boardMapper.selectBoard(boardVO);
+				if (boardVO != null) {
+					if ("both".equals(boardVO.getDm_reply_delete_type()) && (item.getWr_reply() == 0 && item.getWr_is_comment() == 0)) {
+						//게시글 데이터 복원
+						mapper.restoreWriteBoth(item);
+					} else {
+						mapper.restoreWrite(item);
+					}
+				} else {
+					throw new RuntimeException();
+				}
+				
+			});
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static String getRealPath() {
+		//StringBuffer sb = new StringBuffer();
+		ServletRequestAttributes sra = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
+
+		return sra.getRequest().getRealPath("");
+	}
+
 }

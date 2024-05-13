@@ -201,4 +201,54 @@ public interface WriteMapper {
 	public Dm_write_vo selectPrevWrite(Dm_write_vo vo);
 	
 	public Dm_write_vo selectNextWrite(Dm_write_vo vo);
+	
+	/**
+	 * selectDeleteList
+	 * 검색 값에 따른 삭제게시물 리스트데이터 조회
+	 * @param vo 게시물데이터 검색조건,페이징 값을 vo객체에 담아 전달
+	 * @return List<Dm_write_vo> 조회된 삭제게시물데이터를 List 자료형으로 전달
+	*/
+	public List<Dm_write_vo> selectDeleteList(Dm_write_vo vo);
+	
+	/**
+	 * selectDeleteListCnt
+	 * 검색 값에 따른 게시물 리스트데이터 개수 조회
+	 * @param vo 게시물데이터 검색조건값을 vo객체에 담아 전달
+	 * @return int 조회된 게시물데이터의 개수를 정수형으로 전달
+	*/
+	public int selectDeleteListCnt(Dm_write_vo vo);
+	
+	/**
+	 * removeWrite
+	 * 게시물 PK값으로 등록되어 있는 게시물데이터  완전 삭제
+	 * @param vo 사용자가 삭제하고자 하는 게시물데이터의 PK값을 vo객체에 담아 전달
+	 * @return void 게시물데이터 delete 기능만 담당하는 메소드
+	*/
+	public int removeWrite(Dm_write_vo vo);
+	
+	/**
+	 * removeWriteBoth
+	 * 게시글 삭제 시 게시판 옵션에서 답글도 같이 삭제하는 옵션 선택 시 삭제할 게시글의 작성된 답글도 삭제
+	 * @param vo 등록된 게시물 데이터를 vo객체에 담아 전달
+	 * @return void 게시글 삭제 시 작성된 답글도 delete 하는 기능만 담당하는 메소드
+	*/
+	public void removeWriteBoth(Dm_write_vo vo);
+
+	/**
+	 * restoreWrite
+	 * 게시물 PK값으로 등록되어 있는 게시물데이터  복구
+	 * @param vo 사용자가 복구하고자 하는 게시물데이터의 PK값을 vo객체에 담아 전달
+	 * @return void 게시물데이터 복구 기능만 담당하는 메소드
+	*/
+	public int restoreWrite(Dm_write_vo vo);
+	
+	/**
+	 * restoreWriteBoth
+	 * 게시글 복구 시 게시판 옵션에서 답글도 같이 복구하는 옵션 선택 시 복구할 게시글의 작성된 답글도 복구
+	 * @param vo 등록된 게시물 데이터를 vo객체에 담아 전달
+	 * @return void 게시글 복구 시 작성된 답글도 복구 하는 기능만 담당하는 메소드
+	*/
+	public void restoreWriteBoth(Dm_write_vo vo);
+	
+	
 }

@@ -45,6 +45,45 @@
 			AND A.ca_name LIKE CONCAT('%', #{search_cate} ,'%')
 		</if>
 	</sql>
+
+	<sql id="selectDeleteListWhere">
+		<if test="type != 'comment'">
+			AND	A.wr_is_comment = 0
+		</if>
+		AND	A.wr_reply = 0
+   		<if test='search_value != "" and search_value != null'>
+   			<choose>
+				<when test='search_type == "wr_subject"'>
+					AND	A.wr_subject LIKE CONCAT('%', #{search_value}, '%')
+				</when>
+				<when test='search_type == "wr_content"'>
+					AND	A.wr_content LIKE CONCAT('%', #{search_value}, '%')
+				</when>
+				<when test='search_type == "wr_name"'>
+					AND	A.wr_name LIKE CONCAT('%', #{search_value}, '%')
+				</when>
+				<otherwise>
+					AND	(
+						A.wr_subject LIKE CONCAT ('%', #{search_value} , '%') 
+						OR A.wr_content LIKE CONCAT ('%', #{search_value} , '%')
+						OR A.wr_name LIKE CONCAT ('%', #{search_value} , '%')
+					)
+				</otherwise>
+			</choose>
+   		</if>
+   		<if test='search_start_date != "" and search_start_date != null'>
+			AND	DATE_FORMAT(A.dm_delete_dt, '%Y-%m-%d') &gt;= STR_TO_DATE(#{search_start_date}, '%Y-%m-%d')
+		</if>
+		<if test='search_end_date != "" and search_end_date != null'>
+			AND	DATE_FORMAT(A.dm_delete_dt, '%Y-%m-%d') &lt;= STR_TO_DATE(#{search_end_date}, '%Y-%m-%d')
+		</if>
+		<if test='search_board != "" and search_board != null'>
+			AND A.wr_board = #{search_board}
+		</if>
+		<if test='search_cate != null and search_cate != ""'>
+			AND A.ca_name LIKE CONCAT('%', #{search_cate} ,'%')
+		</if>
+	</sql>	
 	
 	<select id="selectWriteList" resultMap="resultWriteVO">
 		  	SELECT  A.* 
@@ -769,4 +808,58 @@
 		     LIMIT  #{rows}
 	
 	</select>
+
+	<select id="selectDeleteList" resultMap="resultWriteVO">
+		  	SELECT  A.* 
+			  	  , B.dm_table AS dm_table
+			  	  , B.dm_subject AS dm_table_text
+			      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_reply &gt; 0 AND dm_delete_yn = 'N') AS re_count
+			      , (SELECT COUNT(wr_id) FROM dm_write WHERE wr_num = A.wr_num AND wr_is_comment = 1 AND dm_delete_yn = 'N') AS com_count
+			  FROM  dm_write AS A
+		INNER JOIN  (SELECT dm_table, dm_subject, dm_id FROM dm_board WHERE dm_delete_yn = 'N') AS B
+				ON  A.wr_board = B.dm_id
+			 WHERE  1=1
+			   AND  A.dm_delete_yn = 'Y'
+    	<include refid="selectDeleteListWhere"/>
+    	  ORDER BY  <if test='type == "web"'>
+    	  			  A.wr_is_notice DESC ,
+    	  			</if>
+    	  			A.dm_delete_dt DESC
+             LIMIT  #{page}, #{rows}
+	</select>
+	<select id="selectDeleteListCnt" resultType="int">
+		SELECT	COUNT(wr_id)
+		  FROM	dm_write AS A
+		 WHERE	1=1
+		   AND  A.dm_delete_yn = 'Y'
+		 <include refid="selectDeleteListWhere"/>
+	</select>
+	
+	<delete id="removeWrite">
+		DELETE FROM	dm_write
+		 WHERE	wr_id = #{wr_id}
+	</delete>
+	
+	<delete id="removeWriteBoth">
+		DELETE FROM	dm_write
+		 WHERE	wr_num = #{wr_num}
+		   AND  dm_delete_yn = 'Y'
+	</delete>
+
+	<update id="restoreWrite">
+		UPDATE	dm_write
+		   SET  dm_delete_id = NULL
+		      , dm_delete_yn = 'N'
+		      , dm_delete_dt = NULL
+		 WHERE	wr_id = #{wr_id}
+	</update>
+	
+	<update id="restoreWriteBoth">
+		UPDATE	dm_write
+		   SET  dm_delete_id = NULL
+		      , dm_delete_yn = 'N'
+		      , dm_delete_dt = NULL
+		 WHERE	wr_num = #{wr_num}
+		   AND  dm_delete_yn = 'Y'
+	</update>	
 </mapper>
