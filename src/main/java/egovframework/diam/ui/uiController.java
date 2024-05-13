@@ -672,4 +672,14 @@ public class uiController {
 		return "egovframework/diam/ui/search/searchword_form";
 	}
 	
+	/**
+	 * delete_write_list
+	 * 관리자페이지 게시글관리 페이지 파일경로를 문자열로 ViewResolver로 전송
+	 * @return String 관리자페이지 게시글관리 페이지 파일경로를 문자열로 return
+	*/
+	@RequestMapping("/adm/delete_write_list.do")
+	public String delete_write_list() {
+		return "egovframework/diam/ui/write/delete_write_list";
+	}
+
 }
