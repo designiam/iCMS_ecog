@@ -471,6 +471,13 @@ public class webController {
 					//자주 찾는 검색어 조회
 					List<Dm_search_vo> searchList = searchService.selectPopularWord(searchVO);
 					
+					if(commonUtil.isNullOrEmpty(loginVO.getId())) {
+						pageVO.setSearch_level("0");
+						pageVO.setSearch_login_id("비회원");
+					} else {
+						pageVO.setSearch_level(loginVO.getDm_level());
+						pageVO.setSearch_login_id(loginVO.getId());
+					}
 					List<Dm_board_vo> boardList = searchService.selectBoardList(pageVO);
 					Dm_write_vo vo = new Dm_write_vo();
 					List<Object> list = new ArrayList<>();

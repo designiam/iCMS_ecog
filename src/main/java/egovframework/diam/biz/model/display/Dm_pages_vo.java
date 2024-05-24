@@ -120,4 +120,7 @@ public class Dm_pages_vo implements Serializable {
 	
 	/** 페이지리스트 페이지당 게시물 수 */
 	private int rows;
+	
+	private String search_level;
+	private String search_login_id;
 }

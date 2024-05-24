@@ -50,6 +50,15 @@
 		   AND  a.dm_delete_yn = 'N'
 		   AND  b.dm_delete_yn = 'N'
 		   AND  a.dm_domain = #{dm_domain}
+		   <if test='search_login_id != null and search_login_id != "" and search_level != null and search_level != ""'>
+		   AND  (CASE WHEN a.dm_auth_type='3' THEN 1
+					  WHEN a.dm_auth_type='2' AND a.dm_list_level <![CDATA[ <= ]]> #{search_level} THEN 1
+				 	  WHEN a.dm_auth_type='2' AND a.dm_list_level <![CDATA[ > ]]> #{search_level} THEN 0
+					  WHEN a.dm_auth_type='1' AND a.dm_list_group = (SELECT group_id FROM dm_member WHERE dm_id = #{search_login_id}) THEN 1
+				ELSE 0
+				END
+				) = 1 
+		   </if>
 		   ORDER BY board_sort
 	</select>
 	
