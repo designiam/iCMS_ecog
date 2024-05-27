@@ -465,36 +465,44 @@
 					</c:when>
 				</c:choose>
 				<div class="contentContainer">
-					<c:choose>
-				<c:when test="${fn:length(menuList) > 0 }">
-					<ul id="gnb_1dul">
-						<c:forEach var="menu" items="${menuList}" varStatus="status">
-							<c:if test="${menu.dm_depth eq 2 && menu.dm_menu_hidden ne '1'}">
-								<li class="gnb_1dli">
-									<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><c:out value="${menu.dm_menu_text}" /></a>
-									<ul class="gnb_2dul">
-										<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
-											<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
-												<li class="gnb_2dli">
-													<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
-													<ul class="gnb_3dul">
-													<c:forEach items="${menuList }" var="depth3">
-														<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
-															<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
-															</li>
-														</c:if>
-													</c:forEach>
-													</ul>
-												</li>
-											</c:if>
-										</c:forEach>
-									</ul>
-								</li>
-							</c:if>
-						</c:forEach>
-					</ul>
-				</c:when>
-			</c:choose>
+					<c:forEach items="${menuList}" var="item">
+						<c:if test="${item.dm_link_data eq pageVO.dm_uid}">
+							<c:set var="exist" value="exist"/>
+						</c:if>
+					</c:forEach>
+
+					<c:if test="${exist eq 'exist' }">
+						<div class="menutab">
+							<div class="dep-wrap">
+								<c:forEach var="entry" items="${now_menu }" varStatus="status">
+									<c:if test="${entry.key ne '1' && status.index < 3}">
+										<fmt:parseNumber var="i" value="${entry.key }" type="number" />
+										<c:set var="parseInt" value="${i-1 }"/>
+										<div class="dep dep<c:out value='${parseInt}'/>">
+											<div><h3><c:out value="${entry.value.dm_menu_text}"/><i class="di di-arr-bot"></i></h3></div>
+											<ul>
+												<c:forEach items="${menuList}" var="item">
+													<c:if test="${item.dm_parent_id eq entry.value.dm_parent_id && item.dm_menu_hidden ne '1'}">
+														<li class="<c:if test='${entry.value.dm_id eq item.dm_id }'>on</c:if>">
+															<c:choose>
+																<c:when test="${item.dm_link_type eq '1' }">
+																	<a href="<c:out value='${param.root }'/>/index.do?contentId=<c:out value='${item.dm_id}'/>" target="<c:out value='${item.dm_link_target}'/>"><c:out value="${item.dm_menu_text }"/></a>
+																</c:when>
+																<c:otherwise>
+																	<a href="<c:out value='${item.dm_url}'/>" target="<c:out value='${item.dm_link_target}'/>"><c:out value="${item.dm_menu_text}" /></a>											
+																</c:otherwise>
+															</c:choose>
+														</li>
+													</c:if>
+												</c:forEach>
+											</ul>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+					</c:if>
+					<!-- //.menutab -->
 		</c:if>
 <script>
 	$(function(){
