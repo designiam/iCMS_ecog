@@ -99,13 +99,29 @@
 .pick_con > ul > li { position:relative; padding:0 12px 0 7px; }
 .pick_con > ul > li::after { content:"/"; position:absolute; top:50%; right:0; transform:translateY(-50%); color:#606060; font-weight:600; font-size:0.813rem; }
 .pick_con > ul > li:last-child::after { display:none; }
-.pick_con > ul > li > a { position:relative; display:flex; align-items:center; gap:0 5px; font-weight:600; letter-spacing:-0.03em; line-height:1.2; font-size:0.813rem; color:#606060; }
+.pick_con > ul > li > a { position:relative; display:flex; align-items:center; gap:0 5px; font-weight:600; letter-spacing:-0.03em; line-height:1.2; font-family:'Pretendard', 'Noto Sans KR', sans-serif; font-size:0.813rem; color:#606060; }
 .pick_con > ul > li i { display:inline-block; width:22px; height:23px; background-position:center center; background-repeat:no-repeat; }
 .pick_con > ul > li.like i { background-image:url('../images/pages/ico_like.png'); }
 .pick_con > ul > li.like2 i { background-image:url('../images/pages/ico_like2.png'); }
 .pick_con > ul > li.share i { width:19px; height:18px; background-image:url('../images/pages/ico_share.png'); }
 .pick_con > ul > li > span { }
 .pick_con > ul > li > strong { }
+
+
+/* menutab */
+.menutab.event .dep-wrap { max-width:1100px; border:0 none; }
+.menutab.event .dep-wrap .dep { height:auto; }
+.menutab.event .dep-wrap .dep1 { width:auto; }
+.tabMenu-wrap.event { margin:100px 0 50px; }
+.menutab.event .nav { justify-content:center; }
+.menutab.event .nav .nav-item { margin:0; }
+.tab-style-02.event .nav-item .nav-link { min-width:auto; color:#606060; font-size:1rem; font-weight:300; letter-spacing:-0.05em; border:0 none; border-radius:unset; }
+.tab-style-02.event .nav-item .nav-link:not(:last-child)::after { height:15px; }
+.tab-style-02.event .nav-item .nav-link::after { display:none; }
+.tab-style-02.event .nav-item.on .nav-link { color:#000; font-weight:700; font-size:1.25rem; border-bottom:0 none; }
+@media (hover: hover), (-ms-high-contrast:none) {
+	.tab-style-02.event .nav-item .nav-link:hover { color:#000; font-weight:700; }
+}
 
 /* 공유하기 */
 .share_box { display:none; position:absolute; top:0; left:0; padding:20px; border-radius:10px; width:400px; background:#fff; box-shadow:0px 5px 20px rgba(0,0,0,0.1); z-index:999; }
