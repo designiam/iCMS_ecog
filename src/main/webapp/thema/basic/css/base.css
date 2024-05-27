@@ -210,7 +210,7 @@ a:hover { color: #111; text-decoration: none; }
 #gnb_1dul .gnb_1dli:hover .gnb_1da { color: #337140; }
 #gnb_1dul .gnb_1dli:hover .gnb_1da span::before { opacity: 1; visibility: visible; top: -0.5rem; }
 
-#gnb_1dul .gnb_2dul_con { position: relative; }
+/* #gnb_1dul .gnb_2dul_con { position: relative; }
 #gnb_1dul .gnb_1dli_on .gnb_2dul_con { height: 260px; margin: 2.813rem 0; }
 #gnb_1dul .gnb_2dul { opacity: 0; visibility: hidden; position: absolute; top: 0; left: 0; right: 0; height: 100%; border-right: 1px solid #eee; color: #333; }
 #gnb_1dul .gnb_1dli:last-child .gnb_2dul { border-right: 0; }
@@ -218,7 +218,7 @@ a:hover { color: #111; text-decoration: none; }
 #gnb_1dul .gnb_2dli { position: relative; }
 #gnb_1dul .gnb_2dli:last-child { }
 #gnb_1dul .gnb_2da { overflow: hidden; width: 100%; display: block; padding: .75em 1.25em; text-align: center; text-decoration: none; font-size: 1.125rem; letter-spacing: 0; text-transform: uppercase; transition: all .15s; }
-#gnb_1dul .gnb_2da:hover { color: #138976; font-weight: 700; }
+#gnb_1dul .gnb_2da:hover { color: #138976; font-weight: 700; } */
 
 #gnb_1dul .gnb_3dul { display: block; opacity: 0; visibility: hidden; position: absolute; top: 40px; left: 100%; width: auto; margin: 0; white-space: nowrap; line-height: 1; transition: all 0.25s ease-in-out; min-width: 160px; max-width: 200px; background: #6d788f; color: #fff; }
 #gnb_1dul .gnb_3dul:after { display: block; visibility: hidden; clear: both; content: ""; }

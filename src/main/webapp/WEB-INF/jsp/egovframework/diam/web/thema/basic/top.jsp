@@ -465,6 +465,36 @@
 					</c:when>
 				</c:choose>
 				<div class="contentContainer">
+					<c:choose>
+				<c:when test="${fn:length(menuList) > 0 }">
+					<ul id="gnb_1dul">
+						<c:forEach var="menu" items="${menuList}" varStatus="status">
+							<c:if test="${menu.dm_depth eq 2 && menu.dm_menu_hidden ne '1'}">
+								<li class="gnb_1dli">
+									<a href='<c:out value="${menu.dm_url}"/>' class="gnb_1da" target="<c:out value='${menu.dm_link_target}'/>"><c:out value="${menu.dm_menu_text}" /></a>
+									<ul class="gnb_2dul">
+										<c:forEach var="subMenu" items="${menuList}" varStatus="subStatus">
+											<c:if test="${menu.dm_id eq subMenu.dm_parent_id && subMenu.dm_menu_hidden ne '1'}">
+												<li class="gnb_2dli">
+													<a href="<c:out value='${subMenu.dm_url}' />" class="gnb_2da" target="<c:out value='${subMenu.dm_link_target}'/>"><c:out value="${subMenu.dm_menu_text}" /></a>
+													<ul class="gnb_3dul">
+													<c:forEach items="${menuList }" var="depth3">
+														<c:if test="${subMenu.dm_id eq depth3.dm_parent_id && depth3.dm_menu_hidden ne '1'}">
+															<li><a href="<c:out value='${depth3.dm_url }'/>" class="gnb_3da" target="${depth3.dm_link_target }"><c:out value="${depth3.dm_menu_text }"/></a>
+															</li>
+														</c:if>
+													</c:forEach>
+													</ul>
+												</li>
+											</c:if>
+										</c:forEach>
+									</ul>
+								</li>
+							</c:if>
+						</c:forEach>
+					</ul>
+				</c:when>
+			</c:choose>
 		</c:if>
 <script>
 	$(function(){
