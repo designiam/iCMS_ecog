@@ -365,6 +365,34 @@ function deleteWrite() {
 			</ul>
 		</div>
 	</div>
+	<!-- 개인정보수집동의 -->
+	<div class="bbs_agree_docs">
+		<h4>개인정보 수집 동의 <span class="point">[필수]</span></h4>
+		<div class="bbs_agree_text">
+			<p class="text">광주환경공단은 환경소식지 이벤트 신청 및 처리를 위해 최소한의 개인정보를 아래와 같이 수집&middot;이용하고 있습니다.</p>
+			<ul class="list_style">
+				<li>수집 목적 : 환경소식지 이벤트 접수 및 처리</li>
+				<li>수집 항목 : 이름, 비밀번호</li>
+				<li>보유 이용기간 : <strong class="point">이벤트 종료 시</strong></li>
+			</ul>
+			<p class="text">※ 정보주체께서는 개인정보 수집&middot;이용 동의를 거부할 권리가 있으며, 동의를 거부할 경우에는 환경소식지 이벤트 참여에 제한을 받게 됩니다.</p>
+		</div>
+		<div class="agree_check_box">
+			<p>☞ 개인정보 수집•이용에 동의하시겠습니까 ?</p>
+			<div class="agree_radio">
+				<span>
+					<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
+					<label for="agreeYN1">동의</label>
+				</span>
+				<span>
+					<input type="radio" id="agreeYN2" name="agreeYN" value="n" />
+					<label for="agreeYN2">동의하지 않음</label>
+				</span>
+			</div>
+			<p>(동 서비스는 만14세 이상에게 제공합니다. 필요한 경우에는 법정대리인을 통해 신청해 주시기 바랍니다)</p>
+		</div>
+	</div>
+	<!-- 개인정보수집동의 -->
 	<c:if test="${boardVO.dm_is_comment eq 1}">
 		<c:if test="${writeVO.wr_reply eq '0'}">
 			<c:import url="/write/get_comment_list.do?dm_id=${pageVO.dm_board_id}"/>
