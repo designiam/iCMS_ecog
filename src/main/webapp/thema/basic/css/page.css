@@ -563,7 +563,7 @@
 .bbs_agree_docs { margin:40px auto 0; }
 .bbs_agree_docs h4 { margin-bottom:20px; font-size:1.25rem; }
 .bbs_agree_docs h4 span.point { color:#139A43; }
-.bbs_agree_text { margin:0; padding:25px 30px; border:1px solid #ddd; background:#F9F9F9; height:200px; overflow-y:auto; font-size:1.125rem; }
+.bbs_agree_docs .bbs_agree_text { margin:0; padding:25px 30px; border:1px solid #ddd; background:#F9F9F9; height:200px; overflow-y:auto; font-size:1.125rem; }
 .bbs_agree_docs p.text{ margin-bottom:20px; font-size:1rem; }
 .bbs_agree_docs p.text:last-child { margin:0; }
 .bbs_agree_docs .list_style { margin-bottom:20px; list-style:none; }
@@ -575,6 +575,6 @@
 .bbs_agree_docs .agree_radio span { margin-right:20px; }
 @media ( max-width: 768px ) {
 	.bbs_agree_text,
-	.agree_check_box { padding:20px 15px; }
+	.bbs_agree_docs .agree_check_box { padding:20px 15px; }
 }
 

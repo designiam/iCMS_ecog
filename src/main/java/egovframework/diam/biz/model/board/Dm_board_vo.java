@@ -157,7 +157,7 @@ public class Dm_board_vo implements Serializable {
 	
 	/** 게시판 스킨 */
 	@NotNull(message="스킨을 선택해주세요.")
-	@Pattern(regexp="^basic$|^gallery$|^video$|^event$", message="등록되지 않은 스킨값입니다.")
+	@Pattern(regexp="^basic$|^quiz$|^gallery$|^video$|^event$", message="등록되지 않은 스킨값입니다.")
 	@Size(min=1, max=30, message="스킨값은 30자리까지 입력가능합니다.")
 	private String dm_skin;
 	

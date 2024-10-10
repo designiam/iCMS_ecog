@@ -299,15 +299,36 @@ function copyUrl(){
 						<h4>개인정보 수집 및 활용 동의<span class="required">필수</span></h4>
 						<div class="agree_text clause">
 							<%-- <c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/> --%>
-							개인정보 수집목적: 광주환경공단 ‘함께green광주’ 웹진 발송 <br>
-							개인정보 수집내용: 이름, 이메일 <br>
-							개인정보 이용기간: 별도의 개인정보 삭제 요청시까지(구독해지) <br>
-							<br>
-							개인정보 수집 및 이용을 거부할 수 있습니다. 다만, 관련 서비스 이용에 제한이 있을 수 있습니다.
+							<p class="text">광주환경공단은 환경소식지 의견게시 글쓰기를 위해 최소한의 개인정보를 아래와 같이 수집&middot;이용하고 있습니다.</p>
+							<ul class="list_style">
+								<li>수집 목적 : 환경소식지 발송</li>
+								<li>수집 항목 : 제안
+									<ul class="list_style2">
+										<li>웹진발송 : 이름, 이메일</li>
+										<li>책자 발송 : 이름, 주소</li>
+									</ul>
+								</li>
+								<li>보유 이용기간 : <strong class="point">환경소식지 수신 철회 시, 환경 소식지 반송 시</strong></li>
+							</ul>
+							<p class="text">※ 정보주체께서는 개인정보 수집&middot;이용 동의를 거부할 권리가 있으며, 동의를 거부할 경우에는 환경소식지 수신이 어렵습니다.</p>
 						</div>
 						<div class="custom-control custom-checkbox agree_check">
-							<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
-							<label for="dm_agree2" class="custom-control-label" >개인정보 수집 및 이용에 동의합니다.</label>
+							<p>☞ 개인정보 수집•이용에 동의하시겠습니까?</p>
+							<div class="agree_radio">
+								<span>
+									<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
+									<label for="agreeYN1">동의</label>
+								</span>
+								<span>
+									<input type="radio" id="agreeYN2" name="agreeYN" value="n" />
+									<label for="agreeYN2">동의하지 않음</label>
+								</span>
+							</div>
+							<p>(동 서비스는 만14세 이상에게 제공합니다. 필요한 경우에는 법정대리인을 통해 신청해 주시기 바랍니다.)</p>
+							<div class="all_check">
+								<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
+								<label for="dm_agree2" class="custom-control-label" >환경소식지 수신에 동의합니다.</label>
+							</div>
 						</div>
 					</div>
 				</div>

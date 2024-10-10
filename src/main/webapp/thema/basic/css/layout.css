@@ -167,3 +167,40 @@
 	/* footer */
 	#ft_info .ft_comp > ul { flex-wrap:wrap; justify-content:flex-start; }
 }
+
+/* 개인정보이용동의 - 20241010 신규추가/기존수정 */
+.modal.subscribe .logo-title { gap:2rem; }
+.modal.subscribe .modal-content { padding:2rem 2rem; }
+.modal.subscribe .modal-header { margin-bottom:1rem; }
+.modal.subscribe .modal-form { margin-bottom:1.5rem; }
+.modal.subscribe .modal-form .form-group { margin-bottom:0; }
+.modal.subscribe .modal-footer { margin-top:1rem; }
+.modal.subscribe .close { top:-0.75rem; right:-0.75rem; }
+.modal.subscribe .mb_agree .agree_text { margin:0; padding:15px 20px; border:1px solid #ddd; border-radius:0; background:#F9F9F9; height:150px; overflow-y:auto; }
+.modal.subscribe .mb_agree .agree_text p.text{ margin-bottom:8px; line-height:1.4; }
+.modal.subscribe .mb_agree .agree_text p.text:last-child { margin:0; }
+.modal.subscribe .mb_agree .agree_text .list_style { margin-bottom:8px; list-style:none; }
+.modal.subscribe .mb_agree .agree_text .list_style li { position:relative; margin:0; padding-left:8px; list-style-type:none; }
+.modal.subscribe .mb_agree .agree_text .list_style li::before { content:''; display:block; position:absolute; top:0.6rem; left:0; width:3px; height:3px; background:#139A43; border-radius:100%; }
+.modal.subscribe .mb_agree .agree_text .list_style li .point { text-decoration:underline; font-weight:700; }
+.modal.subscribe .mb_agree .agree_text .list_style2 { margin:0; list-style:none; }
+.modal.subscribe .mb_agree .agree_text .list_style2 li { position:relative; margin:0; padding-left:8px; list-style-type:none; }
+.modal.subscribe .mb_agree .agree_text .list_style2 li::before { content:''; display:block; position:absolute; top:0.7rem; left:0; width:3px; height:1px; background:#139A43; }
+.modal.subscribe .mb_agree .agree_check { width:100%; padding:15px 20px; border:1px solid #ddd; border-top:0; font-size:14px; }
+.modal.subscribe .mb_agree .agree_check { margin:0; }
+.modal.subscribe .mb_agree .agree_check .agree_radio { margin:15px 0; }
+.modal.subscribe .mb_agree .agree_check .agree_radio span { margin-right:20px; }
+.modal.subscribe .mb_agree .agree_check .agree_radio label { margin:0; }
+.modal.subscribe .mb_agree .agree_check .all_check { margin-top:15px; padding:0 22px; }
+.modal.subscribe .mb_agree input[type=checkbox],
+.modal.subscribe .mb_agree input[type=radio] { vertical-align:middle; margin-top:-3px; }
+.modal.subscribe .mb_agree .custom-checkbox .custom-control-input,
+.modal.subscribe .mb_agree .custom-checkbox .custom-control-label::before,
+.modal.subscribe .mb_agree .custom-checkbox .custom-control-label::after,
+.modal.subscribe .mb_agree .custom-checkbox .custom-control-input:checked~.custom-control-label::after { width:1rem; height:1rem; left:-1.4rem; }
+.modal.subscribe .mb_agree .custom-control-label::after { top:0; }
+.modal.subscribe .mb_agree .custom-checkbox .custom-control-label::after { left:-1.4rem; }
+@media ( max-width: 768px ) {
+	.modal.subscribe .mb_agree .agree_text,
+	.modal.subscribe .mb_agree .agree_check .agree_check_box { padding:10px; }
+}

@@ -323,7 +323,7 @@ function deleteWrite() {
 			<p class="text">※ 정보주체께서는 개인정보 수집&middot;이용 동의를 거부할 권리가 있으며, 동의를 거부할 경우에는 환경소식지 의견게시 퀴즈 참여에 제한을 받게 됩니다.</p>
 		</div>
 		<div class="agree_check_box">
-			<p>☞ 개인정보 수집•이용에 동의하시겠습니까 ?</p>
+			<p>☞ 개인정보 수집•이용에 동의하시겠습니까?</p>
 			<div class="agree_radio">
 				<span>
 					<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
@@ -334,7 +334,7 @@ function deleteWrite() {
 					<label for="agreeYN2">동의하지 않음</label>
 				</span>
 			</div>
-			<p>(동 서비스는 만14세 이상에게 제공합니다. 필요한 경우에는 법정대리인을 통해 신청해 주시기 바랍니다)</p>
+			<p>(동 서비스는 만14세 이상에게 제공합니다. 필요한 경우에는 법정대리인을 통해 신청해 주시기 바랍니다.)</p>
 		</div>
 	</div>
 	<!-- 개인정보수집동의 -->
