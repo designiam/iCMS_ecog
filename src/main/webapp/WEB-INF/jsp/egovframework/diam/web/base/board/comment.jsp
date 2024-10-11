@@ -52,6 +52,35 @@ function deleteComment(wr_id, nonMemberAt){
 } 
 
 function writeComment() {
+	//개인정보수입이용동의 체크 확인
+	var agreeYN = $('input[name="agreeYN"]:checked').val();
+	if (agreeYN != "y") {
+		alert("개인정보 수집•이용 동의 후 이용가능합니다.");
+		$('#agreeYN1').focus();
+		return false;
+	}
+	var wr_name = $('input[name="wr_name"]').val();
+	if (wr_name == "") {
+		alert("작성자를 입력해 주세요.");
+		$('#wr_name').focus();
+		return false;
+	}
+	<c:if test="${DiamLoginVO.id eq null}">
+	var wr_password = $("#wr_password").val();
+	if (wr_password != "" && wr_password != null) {
+	} else {
+		alert("비회원으로 등록 시에는 비밀번호를 입력해주세요.");
+		$('#wr_name').focus();
+		return false;
+	}
+	</c:if>
+	var wr_content = $('#wr_content').val().replace(/(<([^>]+)>)/ig,"").replace(/&nbsp;/g, "");
+	if (wr_content == "") {
+		alert("내용을 입력해 주세요.");
+		$('#wr_content').focus();
+		return false;
+	}
+
 	if (confirm("댓글을 등록하시겠습니까?")) {
 		<c:if test="${DiamLoginVO.id eq null}">
 			var wr_password = $("#wr_password").val();
