@@ -381,7 +381,7 @@ function deleteWrite() {
 			<p>☞ 개인정보 수집•이용에 동의하시겠습니까?</p>
 			<div class="agree_radio">
 				<span>
-					<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
+					<input type="radio" id="agreeYN1" name="agreeYN" value="y" />
 					<label for="agreeYN1">동의</label>
 				</span>
 				<span>

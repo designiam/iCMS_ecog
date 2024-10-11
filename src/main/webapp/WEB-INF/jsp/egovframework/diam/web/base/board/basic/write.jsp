@@ -36,14 +36,33 @@ $(function () {
 	});
 	
 	$("#btn_write").on('click', function(){
-		if (confirm("저장하시겠습니까?")) {
-			$("#writeVO").submit();
-			$("#wr_password").val("");			
-		}
+		return checkForm();
 	});
 });
 
 function checkForm() {
+	//개인정보수입이용동의 체크 확인
+	var agreeYN = $('input[name="agreeYN"]:checked').val();
+	if (agreeYN != "y") {
+		alert("개인정보 수집•이용 동의 후 이용가능합니다.");
+		$('#agreeYN1').focus();
+		return false;
+	}
+	
+	var wr_subject = $('input[name="wr_subject"]').val();
+	if (wr_subject == "") {
+		alert("제목을 입력해 주세요.");
+		$('#wr_subject').focus();
+		return false;
+	}
+	
+	var wr_name = $('input[name="wr_name"]').val();
+	if (wr_name == "") {
+		alert("작성자를 입력해 주세요.");
+		$('#wr_name').focus();
+		return false;
+	}
+	
 	<c:if test="${boardVO.dm_use_dhtml_editor eq 1}">
 	oEditors.getById["wr_content"].exec("UPDATE_CONTENTS_FIELD", []); //textarea의 id를 적어줍니다.
 	</c:if>
@@ -58,7 +77,16 @@ function checkForm() {
     		alert("비회원으로 등록 시에는 비밀번호를 입력해주세요.");
     		return false;
     	}
-	</c:if>	
+	</c:if>
+	
+	var wr_content = $('#wr_content').val().replace(/(<([^>]+)>)/ig,"").replace(/&nbsp;/g, "");
+	if (wr_content == "") {
+		alert("내용을 입력해 주세요.");
+		$('#wr_content').focus();
+		return false;
+	}
+
+	$("#writeVO").submit();
 }
 </script>
 
@@ -78,7 +106,7 @@ function checkForm() {
 		<p>☞ 개인정보 수집•이용에 동의하시겠습니까?</p>
 		<div class="agree_radio">
 			<span>
-				<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
+				<input type="radio" id="agreeYN1" name="agreeYN" value="y" />
 				<label for="agreeYN1">동의</label>
 			</span>
 			<span>
@@ -93,7 +121,7 @@ function checkForm() {
 
 <div class="bbs bbs_post bbs_<c:out value='${boardVO.dm_skin }'/>" id="bbs_<c:out value='${boardVO.dm_table }'/>">
 	<p aria-hidden="true" class="mb15"><span class="required">*</span>표시된 입력값은 필수입력값입니다.</p>
-	<form action="<c:out value='${param.root }'/>/write/set_write.do" name="writeVO" id="writeVO" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+	<form action="<c:out value='${param.root }'/>/write/set_write.do" name="writeVO" id="writeVO" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 		<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 		<input type="hidden" name="dm_table" value="<c:out value='${boardVO.dm_table}'/>"/>
@@ -151,7 +179,7 @@ function checkForm() {
 				
 				<tr>
 					<th><label for="wr_subject">제목 <span class="required">필수</span></label></th>
-					<td><input type="text" name="wr_subject" id="wr_subject" class="form-control" placeholder="제목"/></td>
+					<td><input type="text" name="wr_subject" id="wr_subject" class="form-control" placeholder="제목" required /></td>
 				</tr>
 				
 				<c:choose>
@@ -182,9 +210,7 @@ function checkForm() {
 					<td>
 						<c:choose>
 							<c:when test="${boardVO.dm_use_dhtml_editor eq 1}">
-								<textarea id="wr_content" class="form-control" name="wr_content" placeholder="내용" style="width:100%">
-									<c:out value="${dm_basic_content_editor}"/>
-								</textarea>
+								<textarea id="wr_content" class="form-control" name="wr_content" placeholder="내용" style="width:100%"><c:out value="${dm_basic_content_editor}"/></textarea>
 							</c:when>
 							<c:otherwise>
 								<textarea id="wr_content" class="form-control" name="wr_content" rows="5" placeholder="내용" style="width:100%"><c:out value="${dm_basic_content_normal}" escapeXml="false"/></textarea>

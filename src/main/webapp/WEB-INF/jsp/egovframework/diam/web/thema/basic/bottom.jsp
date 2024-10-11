@@ -281,15 +281,15 @@ function copyUrl(){
 			<div class="modal-body">
 				<div class="modal-form">
 					<div class="form-group">
-						<label class="sr-only" for="dm_name">이름 <span class="required">필수</span></label>
-						<input type="text" name="dm_name" id="dm_name" class="form-control" maxlength="30" autocomplete="off" placeholder="이름">
+						<label class="sr-only" for="subscribe_dm_name">이름 <span class="required">필수</span></label>
+						<input type="text" name="dm_name" id="subscribe_dm_name" class="form-control" maxlength="30" autocomplete="off" placeholder="이름">
 					</div>
 					<div class="form-group">
-						<label class="sr-only" for="dm_email1">이메일<span class="required">필수</span></label>
+						<label class="sr-only" for="subscribe_dm_email">이메일<span class="required">필수</span></label>
 						<div class="form-row align-items-center">
 							<div class="col">
-								<label for="dm_email1" class="sr-only">이메일</label>
-								<input type="text" id="dm_email" class="form-control" maxlength="80" autocomplete="off" placeholder="이메일">
+								<label for="subscribe_dm_email" class="sr-only">이메일</label>
+								<input type="text" id="subscribe_dm_email" class="form-control" maxlength="80" autocomplete="off" placeholder="이메일">
 							</div>
 						</div>
 					</div>
@@ -316,26 +316,26 @@ function copyUrl(){
 							<p>☞ 개인정보 수집•이용에 동의하시겠습니까?</p>
 							<div class="agree_radio">
 								<span>
-									<input type="radio" id="agreeYN1" name="agreeYN" value="y" checked />
-									<label for="agreeYN1">동의</label>
+									<input type="radio" id="subscribe_agreeYN1" name="subscribe_agreeYN" value="y" />
+									<label for="subscribe_agreeYN1">동의</label>
 								</span>
 								<span>
-									<input type="radio" id="agreeYN2" name="agreeYN" value="n" />
-									<label for="agreeYN2">동의하지 않음</label>
+									<input type="radio" id="subscribe_agreeYN2" name="subscribe_agreeYN" value="n" />
+									<label for="subscribe_agreeYN2">동의하지 않음</label>
 								</span>
 							</div>
 							<p>(동 서비스는 만14세 이상에게 제공합니다. 필요한 경우에는 법정대리인을 통해 신청해 주시기 바랍니다.)</p>
 							<div class="all_check">
-								<input type="checkbox" name="" id="dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
-								<label for="dm_agree2" class="custom-control-label" >환경소식지 수신에 동의합니다.</label>
+								<input type="checkbox" id="subscribe_dm_agree2" class="custom-control-input dm_check"  value="개인정보처리방침" />
+								<label for="subscribe_dm_agree2" class="custom-control-label" >환경소식지 수신에 동의합니다.</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="submit btn-lg btn-fill-03" data-val="Y">구독신청</button>
-				<button type="button" class="submit btn-lg btn-fill-04" data-val="N">구독해지</button>
+				<button type="button" class="subscribe_submit btn-lg btn-fill-03" data-val="Y">구독신청</button>
+				<button type="button" class="subscribe_submit btn-lg btn-fill-04" data-val="N">구독해지</button>
 			</div>
 		</div>
 	</div>
@@ -362,13 +362,13 @@ function copyUrl(){
 $(function(){	
 	// modal fade in 리스너
 	$("#Modal").on("show.bs.modal", function(){
-		$("#dm_name").val("");
-		$("#dm_email").val("");
-		$("#dm_agree2").prop("checked", false);
+		$("#subscribe_dm_name").val("");
+		$("#subscribe_dm_email").val("");
+		$("#subscribe_dm_agree2").prop("checked", false);
 	});
 	
 	//제출 리스너
-	$(".submit").on("click", function(){
+	$(".subscribe_submit").on("click", function(){
 		var txt = $(this).text();
 		var type = $(this).data("val");
 		
@@ -376,28 +376,45 @@ $(function(){
 			alert("잘못된 접근입니다. 새로고침 후 다시 시도해주세요.");
 			location.reload();
 		}
-		//동의
-		var agr = $("#dm_agree2").prop("checked");
-		if (!agr) {
-			alert("개인정보 처리방침 동의 후 이용가능합니다.");
-			return;
+		//구독신청이면
+		if(type == "Y") {
+			//개인정보수입이용동의 체크 확인
+			var agreeYN = $('input[name="subscribe_agreeYN"]:checked').val();
+			if (agreeYN != "y") {
+				alert("개인정보 수집•이용 동의 후 이용가능합니다.");
+				return;
+			}
+			//환경소식지 수신 동의
+			var agr = $("#subscribe_dm_agree2").prop("checked");
+			if (!agr) {
+				alert("환경소식지 수신에 동의 후 이용가능합니다.");
+				return;
+			}
+			
+		} else if(type == "N") { //구독해지이면
+			//개인정보수입이용동의 체크 확인
+			var agreeYN = $('input[name="subscribe_agreeYN"]:checked').val();
+			if (agreeYN != "y") {
+				alert("개인정보 수집•이용 동의 후 이용가능합니다.");
+				return;
+			}
 		}
 		
 		//이름
-		var name = $.trim($("#dm_name").val());
+		var name = $.trim($("#subscribe_dm_name").val());
 		if (name == "") {
 			alert("이름은 필수 입력입니다.");
-			$("#dm_name").focus();
+			$("#subscribe_dm_name").focus();
 			return;
 		}
 		
 		// 이메일 유효성
-		var mail = $.trim($("#dm_email").val());
+		var mail = $.trim($("#subscribe_dm_email").val());
 		var emailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
 		var dotCount = mail.match(/\./g);
 		if (!emailChk.test(mail) || dotCount == null || dotCount.length > 2) {
 			alert("이메일 형식이 잘못됐습니다.");
-			$("#dm_email").focus();
+			$("#subscribe_dm_email").focus();
 			return;
 		}
 		
