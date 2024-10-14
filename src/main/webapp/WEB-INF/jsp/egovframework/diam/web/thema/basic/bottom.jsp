@@ -299,7 +299,7 @@ function copyUrl(){
 						<h4>개인정보 수집 및 활용 동의<span class="required">필수</span></h4>
 						<div class="agree_text clause">
 							<%-- <c:out value="${CONFIG_INFO.dm_private_text}" escapeXml="false"/> --%>
-							<p class="text">광주환경공단은 환경소식지 의견게시 글쓰기를 위해 최소한의 개인정보를 아래와 같이 수집&middot;이용하고 있습니다.</p>
+							<p class="text">광주환경공단은 환경소식지 발송을 위해 필요한 최소한의 개인정보를 아래와 같이 수집&middot;이용하고 있습니다.</p>
 							<ul class="list_style">
 								<li>수집 목적 : 환경소식지 발송</li>
 								<li>수집 항목 : 제안
